@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.activities.R;
+import com.example.activities.RegisterToApp;
 import com.example.activities.SearchPost;
 import com.example.activities.ui.login.LoginViewModel;
 import com.example.activities.ui.login.LoginViewModelFactory;
@@ -31,16 +32,16 @@ import com.example.activities.ui.login.LoginViewModelFactory;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-private Button button;
+    private Button RegisterButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        button=findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        RegisterButton=findViewById(R.id.button);
+        RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSearchPostActivity();
+                openRegisterToAppActivity();
             }
         });
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
@@ -124,9 +125,14 @@ private Button button;
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+                openSearchPostActivity();
             }
         });
     }
+   public void openRegisterToAppActivity(){
+       Intent intent=new Intent(LoginActivity.this, RegisterToApp.class);
+       startActivity(intent);
+   }
 
     public void openSearchPostActivity(){
         Intent intent=new Intent(LoginActivity.this,SearchPost.class);
