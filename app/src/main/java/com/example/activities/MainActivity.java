@@ -16,13 +16,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-private Button button;
+private Button welcomeToActivities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button=findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        welcomeToActivities=findViewById(R.id.button2);
+        welcomeToActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLoginActivity();
