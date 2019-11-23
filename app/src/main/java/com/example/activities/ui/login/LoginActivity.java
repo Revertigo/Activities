@@ -80,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Login error, Please login again",Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(LoginActivity.this,"Invalid username or password",Toast.LENGTH_SHORT).show();
+//                            // Username or password false, display and an error
                         }
                         else{
                             Intent intent=new Intent(LoginActivity.this,SearchPost.class);
@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         }//end onCreate
+
     protected void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mAuthStateListener);
