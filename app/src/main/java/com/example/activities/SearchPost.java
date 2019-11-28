@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SearchPost extends AppCompatActivity {
   private Button buttonLogout;
+  private Button closeAppFromSearchPost;
+
    FirebaseAuth auth;
   private FirebaseAuth.AuthStateListener authListener;
     @Override
@@ -20,6 +22,16 @@ public class SearchPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_post);
 
+        //close app button
+        closeAppFromSearchPost=findViewById(R.id.button13);
+        closeAppFromSearchPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                moveTaskToBack(true);
+
+            }
+        });
 
         String[] arraySpinner1 = new String[] {
                 "Enter Location","North", "Middle", "South","Another"
