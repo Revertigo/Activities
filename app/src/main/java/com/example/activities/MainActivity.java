@@ -16,23 +16,52 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-private Button welcomeToActivities;
+private Button LoginToActivities;
+private Button RegisterToActivities;
+private Button closeAppBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        welcomeToActivities=findViewById(R.id.button2);
-        welcomeToActivities.setOnClickListener(new View.OnClickListener() {
+
+        //button of the login
+        LoginToActivities=findViewById(R.id.button2);
+        LoginToActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLoginActivity();
             }
         });
+
+        //button of the Logout
+        RegisterToActivities=findViewById(R.id.button10);
+        RegisterToActivities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegisterActivity();
+            }
+        });
+
+        //button to close the app
+        closeAppBtn=findViewById(R.id.button11);
+        closeAppBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
     }
 
     public void openLoginActivity(){
         Intent intent=new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+    public void openRegisterActivity(){
+        Intent intent=new Intent(MainActivity.this,RegisterToApp.class);
+    startActivity(intent);
     }
 
     @Override
