@@ -26,4 +26,5 @@
     <string name="activity_selection">Activity Selection</string>
     <string name="activity_description">Activity Description</string>
     <string name="activity_forpost">Activity for:</string>
+    <string name="name">Name</string>
 </resources>
