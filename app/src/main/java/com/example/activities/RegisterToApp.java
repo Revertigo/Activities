@@ -3,6 +3,7 @@ package com.example.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +27,21 @@ public class RegisterToApp extends AppCompatActivity {
     private EditText passwordEditText;
     private Button buttonSignUp;
     private TextView tvSignIn;
+    private Button closeAppFromRegisterActivity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_to_app);
-
+        closeAppFromRegisterActivity=findViewById(R.id.button4);
+        closeAppFromRegisterActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                moveTaskToBack(true);
+            }
+        });
         mAuth=FirebaseAuth.getInstance();
         usernameEditText = findViewById(R.id.editText);
         passwordEditText = findViewById(R.id.editText7);
