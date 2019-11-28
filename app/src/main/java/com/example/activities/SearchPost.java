@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SearchPost extends AppCompatActivity {
   private Button buttonLogout;
   private Button closeAppFromSearchPost;
+  private Button changeActivityToPostActivity;
+  private Button changeActivityToSearchActivity;
 
    FirebaseAuth auth;
   private FirebaseAuth.AuthStateListener authListener;
@@ -21,6 +23,27 @@ public class SearchPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_post);
+
+
+        //Button to change to post activity
+        changeActivityToPostActivity=findViewById(R.id.button8);
+        changeActivityToPostActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchPost.this,PostActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Button to change to search activity
+        changeActivityToSearchActivity=findViewById(R.id.button9);
+        changeActivityToSearchActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchPost.this,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //close app button
         closeAppFromSearchPost=findViewById(R.id.button13);
