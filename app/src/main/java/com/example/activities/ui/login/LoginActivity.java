@@ -34,12 +34,22 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonSignIn;
     private Button tvSignUp;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private Button closeAppFromLoginActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //close app button
+        closeAppFromLoginActivity=findViewById(R.id.button12);
+        closeAppFromLoginActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                moveTaskToBack(true);
+            }
+        });
         mAuth=FirebaseAuth.getInstance();
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
