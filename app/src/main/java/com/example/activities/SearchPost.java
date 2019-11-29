@@ -18,7 +18,6 @@ public class SearchPost extends AppCompatActivity {
   private Button changeActivityToSearchActivity;
 
   private  FirebaseAuth auth;
-  private FirebaseAuth.AuthStateListener authListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,34 +55,7 @@ public class SearchPost extends AppCompatActivity {
             }
         });
 
-        String[] arraySpinner1 = new String[] {
-                "Enter Location","North", "Middle", "South","Another"
-        };
-        String[] arraySpinner2 = new String[] {
-                "Enter Activity","Sport", "Food", "Fun","Another"
-        };
-        String[] arraySpinner3 = new String[] {
-                "Enter Level","Beginner", "Advanced", "Expert"
-        };
 
-        Spinner spin1 = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapterForSpinner2 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner2);
-        adapterForSpinner2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin1.setAdapter(adapterForSpinner2);
-
-        Spinner spin2 = (Spinner) findViewById(R.id.spinner1);
-        ArrayAdapter<String> adapterForSpinner1 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner1);
-        adapterForSpinner1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin2.setAdapter(adapterForSpinner1);
-
-
-        Spinner spin3 = (Spinner) findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapterForSpinner3 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner3);
-        adapterForSpinner3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin3.setAdapter(adapterForSpinner3);
 
 
         buttonLogout=findViewById(R.id.button7);
