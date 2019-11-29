@@ -50,4 +50,8 @@
     <string name="find_existing_activity">Find existing Activity</string>
     <string name="sign_up">Sign-up</string>
     <string name="welcome_to_activities">Welcome to Activities</string>
+    <string name="advanced_search">Advanced Search</string>
+    <string name="search_by_id">Search by id</string>
+    <string name="gender_selection">Gender selection</string>
+    <string name="activity_name">Activity name</string>
 </resources>
