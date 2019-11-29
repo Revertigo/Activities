@@ -21,7 +21,6 @@ public class SearchPost extends AppCompatActivity {
   private Button changeActivityToPostActivity;
   private Button changeActivityToSearchActivity;
 
-  private  FirebaseAuth auth;
    private FirebaseAuth.AuthStateListener authListener;
 
     @Override
