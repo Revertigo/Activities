@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,12 +15,15 @@ import android.widget.Spinner;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SearchPost extends AppCompatActivity {
-  private Button buttonLogout;
+   private Button buttonLogout;
+   private FirebaseAuth auth;
   private Button closeAppFromSearchPost;
   private Button changeActivityToPostActivity;
   private Button changeActivityToSearchActivity;
 
   private  FirebaseAuth auth;
+   private FirebaseAuth.AuthStateListener authListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
