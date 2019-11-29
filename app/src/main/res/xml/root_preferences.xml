@@ -56,4 +56,8 @@
         android:summaryOn="Visible"
         android:title="@string/display_text"/>
 
+    <Preference
+        android:key="sample_key"
+        android:title="Button preference example"></Preference>
+
 </PreferenceScreen>
