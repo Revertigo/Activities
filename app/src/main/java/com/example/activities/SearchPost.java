@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SearchPost extends AppCompatActivity {
    private Button buttonLogout;
    private FirebaseAuth auth;
-  private Button closeAppFromSearchPost;
-  private Button changeActivityToPostActivity;
-  private Button changeActivityToSearchActivity;
+   private Button closeAppFromSearchPost;
+   private Button changeActivityToPostActivity;
+   private Button changeActivityToSearchActivity;
 
    private FirebaseAuth.AuthStateListener authListener;
 
@@ -59,9 +59,6 @@ public class SearchPost extends AppCompatActivity {
 
             }
         });
-
-
-
 
         buttonLogout=findViewById(R.id.button7);
         buttonLogout.setOnClickListener(new View.OnClickListener() {

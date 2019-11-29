@@ -48,4 +48,7 @@
     <string name="what_kind_of_activity_you_looking_for">What kind of activity you looking for?</string>
     <string name="post_your_own_activity">Post your own Activity</string>
     <string name="find_existing_activity">Find existing Activity</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="close_app">Close app</string>
+    <string name="welcome_to_activities">Welcome to Activities</string>
 </resources>
