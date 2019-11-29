@@ -85,7 +85,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity_selection"
+        android:text="Gender selection"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,5 +172,15 @@
         app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Activity name"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="27dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
