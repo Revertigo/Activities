@@ -37,13 +37,17 @@ public class PostActivity extends AppCompatActivity {
 
         //spinner info
         String[] arraySpinner1 = new String[] {
-                "Enter Location","North", "Middle", "South","Another"
+                "Type","Sport", "Food", "Fun","Another"
         };
         String[] arraySpinner2 = new String[] {
-                "Enter Activity","Sport", "Food", "Fun","Another"
+                "City/Statement","Tel-aviv", "Eilat", "Quiryat shemona"
         };
         String[] arraySpinner3 = new String[] {
-                "Enter Level","Beginner", "Advanced", "Expert"
+                "Street","Dizingoff", "Hertzel", "Another"
+        };
+
+        String[] arraySpinner4 = new String[] {
+                "Difficulty","Begginer", "Advanced", "Proffessional"
         };
 
         Spinner spin1 = (Spinner) findViewById(R.id.spinner3);
@@ -64,6 +68,12 @@ public class PostActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, arraySpinner3);
         adapterForSpinner3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3.setAdapter(adapterForSpinner3);
+
+        Spinner spin4 = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapterForSpinner4 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner4);
+        adapterForSpinner4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin4.setAdapter(adapterForSpinner4);
 
         //log out burron
         buttonLogout=findViewById(R.id.button16);
