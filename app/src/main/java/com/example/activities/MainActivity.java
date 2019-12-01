@@ -58,7 +58,7 @@ private Button closeAppBtn;
         startActivity(intent);
     }
     public void openRegisterActivity(){
-        Intent intent=new Intent(MainActivity.this,RegisterToApp.class);
+        Intent intent=new Intent(MainActivity.this, RegisterToApp_Email.class);
     startActivity(intent);
     }
 
