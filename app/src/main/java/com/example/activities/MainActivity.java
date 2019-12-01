@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.activities.ui.login.LoginActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.activities.ui.login.Registration.RegisterToApp_Email;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.view.Menu;
