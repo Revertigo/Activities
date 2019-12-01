@@ -48,7 +48,8 @@ public class User implements Parcelable{
         this.permition = permition;
     }
 
-    //parcel part
+    //Parcel implementation part:
+    //User constructor from Parcel (for the getIntent().getParcelableExtra method)
     public User(Parcel in){
         String[] data= new String[NUM_USER_PROPS];
 
@@ -68,6 +69,8 @@ public class User implements Parcelable{
         return 0;
     }
 
+    //String array from User fields
+    //for i.putExtra("newUser",newUser) method
     @Override
     public void writeToParcel(Parcel dest, int flags) {
     // TODO Auto-generated method stub
