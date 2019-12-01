@@ -12,12 +12,13 @@ import com.example.activities.ui.login.Users.User;
 public class RegisterToApp_Password extends AppCompatActivity {
     private EditText passwordEditText;
     private Button Next;
-    private User newUser = getIntent().getParcelableExtra("newUser");
+    private User newUser ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_password);
+      newUser = getIntent().getParcelableExtra("newUser");
 
 //        mAuth=FirebaseAuth.getInstance();
 

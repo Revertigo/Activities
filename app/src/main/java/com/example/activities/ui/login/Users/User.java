@@ -53,9 +53,9 @@ public class User implements Parcelable{
         String[] data= new String[NUM_USER_PROPS];
 
         in.readStringArray(data);
-        this.username = data[0];
-        this.email = data[1];
-        this.password = data[2];
+        this.email = data[0];
+        this.password = data[1];
+        this.username = data[2];
         this.permition = data[3];
         this.gender = data[4];
         this.dateOfBirth = data[5];
