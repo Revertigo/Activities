@@ -5,7 +5,7 @@ import android.os.Parcel;
 
 public class User implements Parcelable{
 
-
+    private final int NUM_USER_PROPS = 7;
     public String email;
     private String password;
     public String username;
@@ -50,7 +50,7 @@ public class User implements Parcelable{
 
     //parcel part
     public User(Parcel in){
-        String[] data= new String[3];
+        String[] data= new String[NUM_USER_PROPS];
 
         in.readStringArray(data);
         this.username = data[0];
