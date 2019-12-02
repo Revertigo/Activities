@@ -7,7 +7,6 @@ import com.example.activities.ui.login.LoginActivity;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,7 +49,6 @@ private Button closeAppBtn;
                 moveTaskToBack(true);
             }
         });
-
     }
 
     public void openLoginActivity(){
