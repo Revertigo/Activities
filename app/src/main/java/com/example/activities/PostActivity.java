@@ -34,7 +34,7 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
-
+        CsvReader.readRecordsfromDB(CsvReader.cities_and_settlements, "server/cities_settlements");
         //spinner info
         String[] arraySpinner1 = new String[] {
                 "Type","Sport", "Food", "Fun","Another"
