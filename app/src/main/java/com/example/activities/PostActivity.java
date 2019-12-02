@@ -33,45 +33,46 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-
-        CsvReader.readRecordsfromDB(CsvReader.cities_and_settlements, "server/cities_settlements");
-        //spinner info
-        String[] arraySpinner1 = new String[] {
+        //spinner info slots
+        String[] types = new String[] {
                 "Type","Sport", "Food", "Fun","Another"
         };
-        String[] arraySpinner2 = new String[] {
-                "City/Statement","Tel-aviv", "Eilat", "Quiryat shemona"
-        };
-        String[] arraySpinner3 = new String[] {
+//        String[] cities_settlments = new String[] {
+//                "City/Settlement","Tel-aviv", "Eilat", "Quiryat shemona"
+//        };
+
+        String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
+
+        String[] streets = new String[] {
                 "Street","Dizingoff", "Hertzel", "Another"
         };
 
-        String[] arraySpinner4 = new String[] {
+        String[] difficulty = new String[] {
                 "Difficulty","Begginer", "Advanced", "Proffessional"
         };
 
         Spinner spin1 = (Spinner) findViewById(R.id.spinner3);
         ArrayAdapter<String> adapterForSpinner2 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner2);
+                android.R.layout.simple_spinner_item, cities_settlments);
         adapterForSpinner2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin1.setAdapter(adapterForSpinner2);
 
         Spinner spin2 = (Spinner) findViewById(R.id.spinner4);
         ArrayAdapter<String> adapterForSpinner1 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner1);
+                android.R.layout.simple_spinner_item, types);
         adapterForSpinner1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin2.setAdapter(adapterForSpinner1);
 
 
         Spinner spin3 = (Spinner) findViewById(R.id.spinner5);
         ArrayAdapter<String> adapterForSpinner3 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner3);
+                android.R.layout.simple_spinner_item, streets);
         adapterForSpinner3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3.setAdapter(adapterForSpinner3);
 
         Spinner spin4 = (Spinner) findViewById(R.id.spinner2);
         ArrayAdapter<String> adapterForSpinner4 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner4);
+                android.R.layout.simple_spinner_item, difficulty);
         adapterForSpinner4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin4.setAdapter(adapterForSpinner4);
 
