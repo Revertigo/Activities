@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".PostActivity">
-
 
     <TextView
         android:id="@+id/textView18"
@@ -57,8 +57,8 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="133dp"
-        android:layout_height="23dp"
+        android:layout_width="120dp"
+        android:layout_height="27dp"
         android:text="@string/apartment_number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,8 +81,8 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="125dp"
-        android:layout_height="26dp"
+        android:layout_width="133dp"
+        android:layout_height="29dp"
         android:text="@string/activity_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -259,8 +259,9 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="34dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
@@ -272,20 +273,41 @@
         app:layout_constraintVertical_bias="0.048" />
 
     <EditText
+        android:id="@+id/editText"
+        android:layout_width="184dp"
+        android:layout_height="33dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+    <EditText
+        android:id="@+id/EditTextDescribeApp"
         android:layout_width="252dp"
         android:layout_height="100dp"
-        android:gravity="top|left"
+        android:layout_margin="3dp"
+        android:background="@android:color/white"
+        android:ems='10'
         android:inputType="textMultiLine"
         android:lines="8"
         android:maxLines="10"
         android:minLines="6"
         android:scrollbars="vertical"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintVertical_bias="0.007"
+        android:importantForAutofill="no" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
