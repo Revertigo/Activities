@@ -55,4 +55,8 @@
     <string name="gender_selection">Gender selection</string>
     <string name="apartment_number">Apartment number</string>
     <string name="activity_name">Activity Name</string>
+    <string name="cyty_settelment">Cyty/Settelment</string>
+    <string name="type">Type</string>
+    <string name="street">Street</string>
+    <string name="difficulty">Difficulty</string>
 </resources>
