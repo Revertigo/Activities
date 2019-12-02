@@ -11,6 +11,8 @@ import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Collections;
+
 public class PostActivity extends AppCompatActivity {
 
     private Button closeAppFromPost;
@@ -37,10 +39,10 @@ public class PostActivity extends AppCompatActivity {
         String[] types = new String[] {
                 "Type","Sport", "Food", "Fun","Another"
         };
-//        String[] cities_settlments = new String[] {
-//                "City/Settlement","Tel-aviv", "Eilat", "Quiryat shemona"
-//        };
 
+        Collections.sort(CsvReader.cities);
+        CsvReader.cities.remove("City/Settlement");//Remove from the list the first slot
+        CsvReader.cities.add(0, "City/Settlement");//Re add it after sorting
         String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
 
         String[] streets = new String[] {

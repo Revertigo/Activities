@@ -26,23 +26,21 @@ public class CsvReader {
 
     private static DatabaseReference mDatabase = null;
 
+    //Static block to initialize out ArrayList
+    static
+    {
+        cities.add("City/Settlement");
+    }
+
     public static String [] ReadCSVFile(String path, Context c) {
         String [] tokens = null;
 
         try(InputStream is = c.getAssets().open(path);){
-//            File file = new File(c.getAssets().open);
-//            copyInputStreamToFile(is, file);
-//            CSVReader reader = new CSVReader(new FileReader(file));
-//            String[] nextLine;
-//            while ((nextLine = reader.readNext()) != null) {
-//                // nextLine[] is an array of values from the line
-//                Log.wtf("Data", nextLine[0] + " " + nextLine[1] + " " + nextLine[2] + " " + nextLine[3]);
-//            }
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             String output = new String(buffer);
-            tokens = output.split("\\r?\\n");//Split by
+            tokens = output.split("\\r?\\n");//Split by line feed and carriage return
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -70,8 +68,8 @@ public class CsvReader {
         mDatabase.orderByChild(record).addChildEventListener(new ChildEventListener(){
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                String city = dataSnapshot.getValue(String.class);
-                cities.add(city);
+                //Add one city/settlement each time function is called
+                cities.add(dataSnapshot.getValue(String.class));
             }
 
             @Override
