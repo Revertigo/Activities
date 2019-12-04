@@ -6,14 +6,14 @@ import android.os.Parcel;
 public class User implements Parcelable{
 
     private final int NUM_USER_PROPS = 7;
-    public String email;
+    private String email;
     private String password;
-    public String username;
+    private String username;
     private String permition;
 
-    public String gender;
-    public String dateOfBirth;
-    public String location;
+    private String gender;
+    private String dateOfBirth;
+    private String location;
 
     //to do: for later
     //ArrayList<String> hobbies;
@@ -24,29 +24,39 @@ public class User implements Parcelable{
         this.email = email;
     }
 
+    public String getEmail(){return this.email;}
+    public void setEmail(String mail){this.email=mail;}
+
+    public String getPassword(){return this.password;}
     public void setPassword(String password){
         this.password = password;
     }
 
+    public String getDateOfBirth(String dateOfBirth){
+        return this.dateOfBirth;
+    }
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getUsername(){return this.username;}
     public void setUsername(String username){
         this.username = username;
     }
-
+    public String getGender(){return this.gender;}
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+    public String getLocation(){return this.location;}
     public void setLocation(String location) {
         this.location = location;
     }
-
+    public String getPermition(){return this.permition;}
     public void setPermition(String permition) {
         this.permition = permition;
     }
+
+
 
     //Parcel implementation part:
     //User constructor from Parcel (for the getIntent().getParcelableExtra method)
