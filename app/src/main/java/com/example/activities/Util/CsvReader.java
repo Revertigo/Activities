@@ -1,7 +1,6 @@
-package com.example.activities;
+package com.example.activities.Util;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -13,13 +12,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
 public class CsvReader {
-    static final String cities_and_settlements = "server/cities_settlements";
+    static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
     static final String streets = "server/streets";
 
     public static ArrayList<String> cities = new ArrayList<String>();
@@ -53,7 +53,7 @@ public class CsvReader {
 
     static void writeRecordsToDB(String [] records)
     {
-        mDatabase = FirebaseDatabase.getInstance().getReference(cities_and_settlements);//Get Database instance
+        mDatabase = FirebaseDatabase.getInstance().getReference(CITIES_AND_SETTLEMENTS);//Get Database instance
 
         //Write data into FireBase realtime database
         for (int i = 0; i < records.length; i++) {
@@ -93,6 +93,14 @@ public class CsvReader {
             }
         });
     }
+
+    public static void reorganize_data()
+    {
+        Collections.sort(CsvReader.cities);
+        CsvReader.cities.remove("City/Settlement");//Remove from the list the first slot
+        CsvReader.cities.add(0, "City/Settlement");//Re add it after sorting
+    }
+
 
 
 }

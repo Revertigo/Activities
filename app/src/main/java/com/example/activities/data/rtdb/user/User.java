@@ -1,4 +1,4 @@
-package com.example.activities.ui.login.Users;
+package com.example.activities.data.rtdb.user;
 
 import android.os.Parcelable;
 import android.os.Parcel;
@@ -15,7 +15,7 @@ public class User implements Parcelable{
     private String dateOfBirth;
     private String location;
 
-    //to do: for later
+    //TODO: for later
     //ArrayList<String> hobbies;
 
     public User(){}
