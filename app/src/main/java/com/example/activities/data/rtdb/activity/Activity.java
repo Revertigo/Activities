@@ -16,13 +16,24 @@ public class Activity {
     private Date date;
     private String time;//Format: hh:mm
 
-    String data_array[]=new String[11];//array with the strings of the data(easy insert to database)
-
-    private static class Address
+    String data_array[]=new String[12];//array with the strings of the data(easy insert to database)
+public Activity(long id,String name,String Type,Address addr,String difficulty,boolean single_group,Gender gender,String description, Date date, String time){
+    this.id=id;
+    this.name=name;
+    this.Type=Type;
+    this.addr=addr;
+    this.difficulty=difficulty;
+    this.single_group=single_group;
+    this.gender=gender;
+    this.description=description;
+    this.date=date;
+    this.time=time;
+}
+    public static class Address
     {
-        private String city_set;//City or settlement
-        private String street;
-        private int apartment_number;//zero for none
+        public String city_set;//City or settlement
+        public String street;
+        public int apartment_number;//zero for none
 
         public Address(String city_set, String street, int apartment_number) {
             this.city_set = city_set;
@@ -55,7 +66,7 @@ public String[] getData(){
        data_array[11]=this.time;//format
        return this.data_array;
     }
-    private enum Gender
+    public enum Gender
     {
         FEMALE, MALE, BOTH
     }
