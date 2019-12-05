@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
@@ -27,6 +30,8 @@ public class PostActivity extends AppCompatActivity {
     private Button clickToPost;
     private static DatabaseReference myRef = null;
     static final String activities = "activities/";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class PostActivity extends AppCompatActivity {
         //Sort the data
         CsvReader.reorganize_data();
 
-        String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
+       final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
 
         String[] streets = new String[] {
                 "Street","Dizingoff", "Hertzel", "Another"
@@ -101,23 +106,57 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+
+
         //send data to database
         clickToPost=findViewById(R.id.btnClickToPost);
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final TextView activityName,apartNum,desc;
+                activityName=findViewById(R.id.editText2);
+                desc=findViewById(R.id.EditTextDescribeApp);
+                apartNum=findViewById(R.id.editText);
+
+
+
+                //Type
+                final Spinner activityType=findViewById(R.id.spinner4);
+                //addapt Type
+
+                //end adapt Type
+
+                //City
+                final Spinner activityCity=findViewById(R.id.spinner3);
+
+                //Street
+                final Spinner activityStreet=findViewById(R.id.spinner5);
+
+                //Difficulty
+                final Spinner activityDifficulty=findViewById(R.id.spinner2);
+
+
+
+
+
                 myRef = FirebaseDatabase.getInstance().getReference(activities+ FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                /*
-                Activity currentActivity=new Activity(FirebaseAuth.getInstance().getCurrentUser().getUid(),string name,string type,Activity.Adress addr,String difficulty,Boolean single_group, Activity.Gender gender,String describption,Date date, String time);
+                Activity.Address addr=new Activity.Address(activityCity.getSelectedItem().toString(),activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString()));
+                boolean single_group=true;
+                Activity.Gender gender=Activity.Gender.FEMALE;
+                Date date=new Date();
+                String format="format";
+                long a=1;
+                Activity currentActivity=new Activity(a,activityName.getText().toString(),activityType.getSelectedItem().toString(),addr,activityDifficulty.getSelectedItem().toString(), single_group,  gender,desc.getText().toString(),date, format);
 
 
                 String currentPostData[]=currentActivity.getData();
 
-                for(int i=0;i<2;i++) {
-                    myRef.setValue(currentPostData[i]);
+                for(int i=0;i<currentPostData.length;i++) {
+                    myRef.child("activities"+i).setValue(currentPostData[i]);
                 }
-                 */
+
             }
         });
 
