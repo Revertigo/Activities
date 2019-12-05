@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 
 
 public class CsvReader {
-    static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
+ public   static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
     static final String streets = "server/streets";
 
     public static ArrayList<String> cities = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class CsvReader {
         }
     }
 
-    static void readRecordsfromDB(String path_to_collection, String record)
+  public  static void readRecordsfromDB(String path_to_collection, String record)
     {
         mDatabase = FirebaseDatabase.getInstance().getReference(path_to_collection);//Get Database instance
 
