@@ -71,7 +71,7 @@ public class SearchPost extends AppCompatActivity {
 
 
         //Read all relevant data from Realtime DB(cities and settlements, streets)
-        CsvReader.readRecordsfromDB(CsvReader.cities_and_settlements, "server/cities_settlements");
+      //  CsvReader.readRecordsfromDB(CsvReader.cities_and_settlements, "server/cities_settlements");
     }
 
     @Override
