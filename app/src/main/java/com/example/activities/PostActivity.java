@@ -36,14 +36,17 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+        //Setup back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //spinner info slots
         String[] types = new String[] {
                 "Type","Sport", "Food", "Fun","Another"
         };
 
-        Collections.sort(CsvReader.cities);
-        CsvReader.cities.remove("City/Settlement");//Remove from the list the first slot
-        CsvReader.cities.add(0, "City/Settlement");//Re add it after sorting
+        //Sort the data
+        CsvReader.reorganize_data();
+
         String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
 
         String[] streets = new String[] {
@@ -79,7 +82,7 @@ public class PostActivity extends AppCompatActivity {
         adapterForSpinner4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin4.setAdapter(adapterForSpinner4);
 
-        //log out burron
+        //log out button
         buttonLogout=findViewById(R.id.button16);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,5 +93,15 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id==android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
