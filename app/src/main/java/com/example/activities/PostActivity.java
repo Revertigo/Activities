@@ -11,7 +11,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.activities.Util.CsvReader;
+import com.example.activities.data.rtdb.activity.Activity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 
 public class PostActivity extends AppCompatActivity {
@@ -19,6 +24,9 @@ public class PostActivity extends AppCompatActivity {
     private Button closeAppFromPost;
     private Button buttonLogout;
     FirebaseAuth auth;
+    private Button clickToPost;
+    private static DatabaseReference myRef = null;
+    static final String activities = "activities/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +98,26 @@ public class PostActivity extends AppCompatActivity {
                 auth.getInstance().signOut();
                 Intent intent =new Intent(PostActivity.this,MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //send data to database
+        clickToPost=findViewById(R.id.btnClickToPost);
+        clickToPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRef = FirebaseDatabase.getInstance().getReference(activities+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                /*
+                Activity currentActivity=new Activity(FirebaseAuth.getInstance().getCurrentUser().getUid(),string name,string type,Activity.Adress addr,String difficulty,Boolean single_group, Activity.Gender gender,String describption,Date date, String time);
+
+
+                String currentPostData[]=currentActivity.getData();
+
+                for(int i=0;i<2;i++) {
+                    myRef.setValue(currentPostData[i]);
+                }
+                 */
             }
         });
 
