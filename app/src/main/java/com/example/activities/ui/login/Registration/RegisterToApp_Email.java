@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.activities.R;
-import com.example.activities.ui.login.Users.User;
+import com.example.activities.data.rtdb.user.User;
 
 public class RegisterToApp_Email extends AppCompatActivity {
 
