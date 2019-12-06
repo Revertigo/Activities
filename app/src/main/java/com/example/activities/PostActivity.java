@@ -32,14 +32,13 @@ public class PostActivity extends AppCompatActivity {
     static final String activities = "activities/";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
         //close app button
-        closeAppFromPost=findViewById(R.id.button14);
+        closeAppFromPost = findViewById(R.id.button14);
         closeAppFromPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,21 +52,21 @@ public class PostActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //spinner info slots
-        String[] types = new String[] {
-                "Type","Sport", "Food", "Fun","Another"
+        String[] types = new String[]{
+                "Type", "Sport", "Food", "Fun", "Another"
         };
 
         //Sort the data
         CsvReader.reorganize_data();
 
-       final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
+        final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
 
-        String[] streets = new String[] {
-                "Street","Dizingoff", "Hertzel", "Another"
+        String[] streets = new String[]{
+                "Street", "Dizingoff", "Hertzel", "Another"
         };
 
-        String[] difficulty = new String[] {
-                "Difficulty","Begginer", "Advanced", "Proffessional"
+        String[] difficulty = new String[]{
+                "Difficulty", "Begginer", "Advanced", "Proffessional"
         };
 
         Spinner spin1 = (Spinner) findViewById(R.id.spinner3);
@@ -96,65 +95,58 @@ public class PostActivity extends AppCompatActivity {
         spin4.setAdapter(adapterForSpinner4);
 
         //log out button
-        buttonLogout=findViewById(R.id.button16);
+        buttonLogout = findViewById(R.id.button16);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 auth.getInstance().signOut();
-                Intent intent =new Intent(PostActivity.this,MainActivity.class);
+                Intent intent = new Intent(PostActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
 
-
         //send data to database
-        clickToPost=findViewById(R.id.btnClickToPost);
+        clickToPost = findViewById(R.id.btnClickToPost);
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final TextView activityName,apartNum,desc;
-                activityName=findViewById(R.id.editText2);
-                desc=findViewById(R.id.EditTextDescribeApp);
-                apartNum=findViewById(R.id.editText);
-
-
+                final TextView activityName, apartNum, desc;
+                activityName = findViewById(R.id.editText2);
+                desc = findViewById(R.id.EditTextDescribeApp);
+                apartNum = findViewById(R.id.editText);
 
                 //Type
-                final Spinner activityType=findViewById(R.id.spinner4);
+                final Spinner activityType = findViewById(R.id.spinner4);
                 //addapt Type
 
                 //end adapt Type
 
                 //City
-                final Spinner activityCity=findViewById(R.id.spinner3);
+                final Spinner activityCity = findViewById(R.id.spinner3);
 
                 //Street
-                final Spinner activityStreet=findViewById(R.id.spinner5);
+                final Spinner activityStreet = findViewById(R.id.spinner5);
 
                 //Difficulty
-                final Spinner activityDifficulty=findViewById(R.id.spinner2);
+                final Spinner activityDifficulty = findViewById(R.id.spinner2);
 
+                myRef = FirebaseDatabase.getInstance().getReference(activities);
 
+                Activity.Address addr = new Activity.Address(activityCity.getSelectedItem().toString(),
+                        activityStreet.getSelectedItem().toString(), Integer.parseInt(apartNum.getText().toString()));
+                boolean single_group = true;//TODO:Finish
+                Activity.Gender gender = Activity.Gender.FEMALE;//TODO:Finish
+                Date date = new Date();
+                String format = "format";
+                Activity currentActivity = new Activity(activityName.getText().toString(), activityType.getSelectedItem().toString(),
+                        addr, activityDifficulty.getSelectedItem().toString(), single_group, gender, desc.getText().toString(), date, format);
 
+                String currentPostData[] = currentActivity.getData();
 
-
-                myRef = FirebaseDatabase.getInstance().getReference(activities+ FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-                Activity.Address addr=new Activity.Address(activityCity.getSelectedItem().toString(),activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString()));
-                boolean single_group=true;
-                Activity.Gender gender=Activity.Gender.FEMALE;
-                Date date=new Date();
-                String format="format";
-                long a=1;
-                Activity currentActivity=new Activity(a,activityName.getText().toString(),activityType.getSelectedItem().toString(),addr,activityDifficulty.getSelectedItem().toString(), single_group,  gender,desc.getText().toString(),date, format);
-
-
-                String currentPostData[]=currentActivity.getData();
-
-                for(int i=0;i<currentPostData.length;i++) {
-                    myRef.child("activities"+i).setValue(currentPostData[i]);
+                for (int i = 0; i < currentPostData.length; i++) {
+                    myRef.child(Activity.getNames(i)).setValue(currentPostData[i]);
                 }
 
             }
@@ -165,7 +157,7 @@ public class PostActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id==android.R.id.home) {
+        if (id == android.R.id.home) {
             finish();
             return true;
         }
