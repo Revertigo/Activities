@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,11 +139,17 @@ public class PostActivity extends AppCompatActivity {
                 Activity.Address addr = new Activity.Address(activityCity.getSelectedItem().toString(),
                         activityStreet.getSelectedItem().toString(), Integer.parseInt(apartNum.getText().toString()));
                 boolean single_group = true;//TODO:Finish
-                Activity.Gender gender = Activity.Gender.FEMALE;//TODO:Finish
+
                 Date date = new Date();
                 String format = "format";
+
+                RadioGroup rg=findViewById(R.id.rgGender);
+                final String gender = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
+                rg=findViewById(R.id.rgActivityFor);
+                final String activityFor = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
+
                 Activity currentActivity = new Activity(activityName.getText().toString(), activityType.getSelectedItem().toString(),
-                        addr, activityDifficulty.getSelectedItem().toString(), single_group, gender, desc.getText().toString(), date, format);
+                        addr, activityDifficulty.getSelectedItem().toString(), single_group, gender, desc.getText().toString(), date, format,activityFor);
 
                 String currentPostData[] = currentActivity.getData();
 
