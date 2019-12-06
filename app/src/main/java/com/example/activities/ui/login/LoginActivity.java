@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //close app button
-        closeAppFromLoginActivity=findViewById(R.id.button12);
+        closeAppFromLoginActivity = findViewById(R.id.button12);
         closeAppFromLoginActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,58 +46,54 @@ public class LoginActivity extends AppCompatActivity {
                 moveTaskToBack(true);
             }
         });
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         buttonSignIn = findViewById(R.id.button6);
-        tvSignUp=findViewById(R.id.button);
+        tvSignUp = findViewById(R.id.button);
 
-        mAuthStateListener=new FirebaseAuth.AuthStateListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser=mAuth.getCurrentUser();
-                if(mFirebaseUser !=null){
-                    Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(LoginActivity.this,SearchPost.class);
+                FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+                if (mFirebaseUser != null) {
+                    Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, SearchPost.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
                 }
-                else{Toast.makeText(LoginActivity.this,"Please login",Toast.LENGTH_SHORT).show();}
 
             }
         };
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=usernameEditText.getText().toString();
-                String pass=passwordEditText.getText().toString();
-                if(email.isEmpty()){
+                String email = usernameEditText.getText().toString();
+                String pass = passwordEditText.getText().toString();
+                if (email.isEmpty()) {
                     usernameEditText.setError("Please enter email id");
                     usernameEditText.requestFocus();
-                }
-                else if(pass.isEmpty()){
+                } else if (pass.isEmpty()) {
                     passwordEditText.setError("Please enter password");
                     passwordEditText.requestFocus();
-                }
-                else if(email.isEmpty()&&pass.isEmpty()){
-                    Toast.makeText(LoginActivity.this,"Fields are empty!",Toast.LENGTH_SHORT).show();
-                }
-                else if(!(email.isEmpty()&&pass.isEmpty())){
-                    mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                } else if (email.isEmpty() && pass.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
+                } else if (!(email.isEmpty() && pass.isEmpty())) {
+                    mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Invalid username or password",Toast.LENGTH_SHORT).show();
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
 //                            // Username or password false, display and an error
-                        }
-                        else{
-                            Intent intent=new Intent(LoginActivity.this,SearchPost.class);
-                            startActivity(intent);
-                        }
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this, SearchPost.class);
+                                startActivity(intent);
+                            }
                         }
                     });
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Error Occured",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -106,19 +102,18 @@ public class LoginActivity extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this, RegisterToApp_Email.class);
-            startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, RegisterToApp_Email.class);
+                startActivity(intent);
             }
         });
 
     }//end onCreate
 
 
-
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthStateListener);
     }
-    }
+}
 
 

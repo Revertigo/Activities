@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 
 
 public class CsvReader {
- public   static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
+    public static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
     static final String streets = "server/streets";
 
     public static ArrayList<String> cities = new ArrayList<String>();
@@ -27,15 +27,14 @@ public class CsvReader {
     private static DatabaseReference mDatabase = null;
 
     //Static block to initialize out ArrayList
-    static
-    {
+    static {
         cities.add("City/Settlement");
     }
 
-    public static String [] ReadCSVFile(String path, Context c) {
-        String [] tokens = null;
+    public static String[] ReadCSVFile(String path, Context c) {
+        String[] tokens = null;
 
-        try(InputStream is = c.getAssets().open(path);){
+        try (InputStream is = c.getAssets().open(path);) {
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -51,8 +50,7 @@ public class CsvReader {
         return tokens;
     }
 
-    static void writeRecordsToDB(String [] records)
-    {
+    static void writeRecordsToDB(String[] records) {
         mDatabase = FirebaseDatabase.getInstance().getReference(CITIES_AND_SETTLEMENTS);//Get Database instance
 
         //Write data into FireBase realtime database
@@ -61,11 +59,10 @@ public class CsvReader {
         }
     }
 
-  public  static void readRecordsfromDB(String path_to_collection, String record)
-    {
+    public static void readRecordsfromDB(String path_to_collection, String record) {
         mDatabase = FirebaseDatabase.getInstance().getReference(path_to_collection);//Get Database instance
 
-        mDatabase.orderByChild(record).addChildEventListener(new ChildEventListener(){
+        mDatabase.orderByChild(record).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                 //Add one city/settlement each time function is called
@@ -94,13 +91,9 @@ public class CsvReader {
         });
     }
 
-    public static void reorganize_data()
-    {
+    public static void reorganize_data() {
         Collections.sort(CsvReader.cities);
         CsvReader.cities.remove("City/Settlement");//Remove from the list the first slot
         CsvReader.cities.add(0, "City/Settlement");//Re add it after sorting
     }
-
-
-
 }

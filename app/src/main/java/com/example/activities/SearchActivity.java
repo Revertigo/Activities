@@ -22,7 +22,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
         //close app button
-        closeAppFromSearch=findViewById(R.id.button18);
+        closeAppFromSearch = findViewById(R.id.button18);
         closeAppFromSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,12 +33,12 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         //log out button
-        buttonLogout=findViewById(R.id.button19);
+        buttonLogout = findViewById(R.id.button19);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 auth.getInstance().signOut();
-                Intent intent =new Intent(SearchActivity.this,MainActivity.class);
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

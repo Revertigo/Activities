@@ -7,15 +7,16 @@ import com.example.activities.ui.login.LoginActivity;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-private Button LoginToActivities;
-private Button RegisterToActivities;
-private Button closeAppBtn;
+    private Button LoginToActivities;
+    private Button RegisterToActivities;
+    private Button closeAppBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ private Button closeAppBtn;
         setContentView(R.layout.activity_main);
 
         //button of the login
-        LoginToActivities=findViewById(R.id.button2);
+        LoginToActivities = findViewById(R.id.button2);
         LoginToActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +33,7 @@ private Button closeAppBtn;
         });
 
         //button of the Logout
-        RegisterToActivities=findViewById(R.id.button10);
+        RegisterToActivities = findViewById(R.id.button10);
         RegisterToActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +42,7 @@ private Button closeAppBtn;
         });
 
         //button to close the app
-        closeAppBtn=findViewById(R.id.button11);
+        closeAppBtn = findViewById(R.id.button11);
         closeAppBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,13 +52,14 @@ private Button closeAppBtn;
         });
     }
 
-    public void openLoginActivity(){
-        Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+    public void openLoginActivity() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
-    public void openRegisterActivity(){
-        Intent intent=new Intent(MainActivity.this, RegisterToApp_Email.class);
-    startActivity(intent);
+
+    public void openRegisterActivity() {
+        Intent intent = new Intent(MainActivity.this, RegisterToApp_Email.class);
+        startActivity(intent);
     }
 
     @Override
