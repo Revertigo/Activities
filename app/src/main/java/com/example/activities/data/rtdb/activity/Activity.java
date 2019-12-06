@@ -11,20 +11,22 @@ public class Activity {
     private Address addr;//Activity address
     private String difficulty;
     private boolean single_group;//True for Group, False for single
-    private Gender gender;
+    private String gender;
     private String description;
     private Date date;
     private String time;//Format: hh:mm
+    private String activityFor;
 
     static String[] names = {"ID", "Name", "Type", "Address-City", "Address-Street", "Apart Num",
-            "Difficulty", "Single-Group", "Gender", "Description", "Date", "Time"};
+            "Difficulty", "Single-Group", "Gender", "Description", "Date", "Time","Activity for"};
 
     public static String getNames(int i) {
         return names[i];
     }
 
 
-    public Activity(String name, String Type, Address addr, String difficulty, boolean single_group, Gender gender, String description, Date date, String time) {
+    public Activity(String name, String Type, Address addr, String difficulty, boolean single_group,
+                    String gender, String description, Date date, String time,String activityFor) {
         this.id = id_counter++;
         this.name = name;
         this.Type = Type;
@@ -35,6 +37,7 @@ public class Activity {
         this.description = description;
         this.date = date;
         this.time = time;
+        this.activityFor=activityFor;
     }
 
     public static class Address {
@@ -66,7 +69,7 @@ public class Activity {
     }
 
     public String[] getData() {
-        String[] data_array = new String[12];//array with the strings of the data(easy insert to database)
+        String[] data_array = new String[13];//array with the strings of the data(easy insert to database)
 
         data_array[0] = Long.toString(this.id); // the id of the activity
         data_array[1] = this.name;//the name of the activity
@@ -82,9 +85,9 @@ public class Activity {
         else {
             data_array[7] = "false";
         } //singe
-        if (gender.equals(0)) {//gender of the activity
+        if (gender.equals("Female")) {//gender of the activity
             data_array[8] = "female";
-        } else if (gender.equals(1)) {
+        } else if (gender.equals("Male")) {
             data_array[8] = "male";
         }//gender of the activity
         else {
@@ -93,7 +96,7 @@ public class Activity {
         data_array[9] = this.description; //the describe of the activity
         data_array[10] = "date"; //the date of the activity post
         data_array[11] = this.time;//format
-
+        data_array[12]=this.activityFor;
         return data_array;
     }
 
@@ -154,11 +157,11 @@ public class Activity {
     }
 
     //gender of the activity
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return this.gender;
     }
 
@@ -184,5 +187,7 @@ public class Activity {
     public void setTime(String time) {
         this.time = time;
     }
+    public void setActivityFor(String activityFor){this.activityFor=activityFor;}
+    public String getActivityFor(){return this.activityFor;}
 
 }
