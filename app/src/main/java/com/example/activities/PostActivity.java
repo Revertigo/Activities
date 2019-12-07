@@ -55,7 +55,7 @@ public class PostActivity extends AppCompatActivity {
 
         //spinner info slots
         String[] types = new String[]{
-                "Type", "Sport", "Food", "Fun", "Another"
+                "Type", "Sport", "Food", "Online gaming", "Art", "Learning", "Other"
         };
 
         //Sort the data
@@ -68,7 +68,7 @@ public class PostActivity extends AppCompatActivity {
         };
 
         String[] difficulty = new String[]{
-                "Difficulty", "Begginer", "Advanced", "Proffessional"
+                "Difficulty", "Beginner", "Advanced", "Professional"
         };
 
         Spinner spin1 = (Spinner) findViewById(R.id.spinner3);
