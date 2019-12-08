@@ -43,7 +43,6 @@
     <string name="activity_selection">Activity Selection</string>
     <string name="activity_description">Activity Description</string>
     <string name="activity_forpost">Activity for:</string>
-    <string name="name">Name</string>
     <string name="click_to_search">Click to Search</string>
     <string name="what_kind_of_activity_you_looking_for">What kind of activity you looking for?</string>
     <string name="post_your_own_activity">Post your own Activity</string>
@@ -61,4 +60,7 @@
     <string name="difficulty">Difficulty</string>
     <string name="activity_forFirstStepPost">Activity for:</string>
     <string name="nextFirstStepPost">Next</string>
+    <string name="time_and_location">Time and Location</string>
+    <string name="name">Name</string>
+    <string name="enter_date">Enter date</string>
 </resources>

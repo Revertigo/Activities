@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.activities.Util.CsvReader;
-import com.example.activities.data.rtdb.activity.NewActivity;
+import com.example.activities.data.rtdb.activity.Activity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,7 +28,7 @@ public class PostActivity extends AppCompatActivity {
     private Button clickToPost;
     private static DatabaseReference myRef = null;
     static final String activities = "activities/";
-    private NewActivity newPost;
+    private Activity newPost;
 
 
     @Override
@@ -106,7 +106,7 @@ public class PostActivity extends AppCompatActivity {
 
                 //Difficulty
 
-                myRef = FirebaseDatabase.getInstance().getReference(activities);
+                myRef = FirebaseDatabase.getInstance().getReference(activities+newPost.getIdCounter());
 
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
@@ -114,12 +114,12 @@ public class PostActivity extends AppCompatActivity {
                 String format = "Todo Format";
                 
 
-                 newPost.completeDataInit(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),apartNum.getText().toString(),date, format);
+                 newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),date, format);
 
                 String currentPostData[] = newPost.getData();
 
                 for (int i = 0; i < currentPostData.length; i++) {
-                    myRef.child(NewActivity.getNames(i)).setValue(currentPostData[i]);
+                    myRef.child(Activity.getNames(i)).setValue(currentPostData[i]);
                 }
 
             }

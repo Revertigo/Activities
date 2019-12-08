@@ -3,7 +3,6 @@ package com.example.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.example.activities.data.rtdb.activity.NewActivity;
+import com.example.activities.data.rtdb.activity.Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class firstStepPostActivity extends AppCompatActivity {
@@ -91,7 +90,7 @@ public class firstStepPostActivity extends AppCompatActivity {
                 final RadioGroup rgActivityFor=findViewById(R.id.rgActivityFor);
                     String activityFor = ((RadioButton)findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();
 
-                NewActivity newPost = new NewActivity(activityNameChoosen,theTypedThatSelected,difficultThatSelected,gender,desc,activityFor);
+                Activity newPost = new Activity(activityNameChoosen,theTypedThatSelected,difficultThatSelected,gender,desc,activityFor);
 
                 Intent intent=new Intent(firstStepPostActivity.this,PostActivity.class);
                 intent.putExtra("newPost",newPost);
