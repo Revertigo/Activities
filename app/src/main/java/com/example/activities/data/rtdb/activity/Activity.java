@@ -1,11 +1,10 @@
 package com.example.activities.data.rtdb.activity;
 
+import java.io.Serializable;
 
-import android.os.Parcelable;
-import android.os.Parcel;
+public class Activity implements Parcelable,Serializable {
+    private static long id_counter = 1;//For autoincrement of id's
 
-public class Activity implements Parcelable {
-    private static int id_counter = 0;//For autoincrement of id's
     private final int NUM_USER_PROPS = 12;
 
     private long id;//Very long id number
@@ -13,29 +12,21 @@ public class Activity implements Parcelable {
     private String type;
     private Address addr;//Activity address
     private String difficulty;
+    private boolean group;//True for Group, False for single
     private String gender;
     private String description;
     private String date;
     private String timeFormat;//Format: hh:mm
-    private String activityFor;
 
-    static String[] names = {"ID", "Name", "Type", "Address-City", "Address-Street", "Apart Num",
-            "Difficulty",  "Gender", "Description", "Date", "Time Format","Activity for"};
-
-    public static String getNames(int i) {
-        return names[i];
-    }
-
+    public Activity(String name, String Type, Address addr, String difficulty, boolean group,
+                    String gender, String description, Date date, String time) {
     public Activity(){}
-
-    public Activity(String name, String Type, String difficulty, String gender, String description, String activityFor) {
-        this.id = Long.parseLong(Integer.toString(id_counter++));
         this.name = name;
         this.type = Type;
         this.difficulty = difficulty;
+        this.group = group;
         this.gender = gender;
         this.description = description;
-        this.activityFor=activityFor;
     }
     public void completeDataInit(Activity.Address addr,String date,String timeFormat){
        this.addr=addr;
@@ -67,24 +58,6 @@ public class Activity implements Parcelable {
         }
     }
 
-
-    public String[] getData() {
-        String[] data_array = new String[NUM_USER_PROPS];//array with the strings of the data(easy insert to database)
-
-        data_array[0] = Long.toString(this.id); // the id of the activity
-        data_array[1] = this.name;//the name of the activity
-        data_array[2] = this.type;//type of activity
-        data_array[3] = this.addr.city_set;//city of the activity
-        data_array[4] = this.addr.street;//street of the activity
-        data_array[5] = Integer.toString(this.addr.apartment_number);//apartment number of the activity
-        data_array[6] = this.difficulty;//the difficult of the activity
-        data_array[7]=this.gender;
-        data_array[8] = this.description; //the describe of the activity
-        data_array[9] =this.date; //the date of the activity post
-        data_array[10] = this.timeFormat;//format
-        data_array[11]=this.activityFor;
-        return data_array;
-    }
 
 
 
@@ -133,6 +106,10 @@ public class Activity implements Parcelable {
         return this.difficulty;
     }
 
+    public void setGroup(boolean ans) {
+        this.group = ans;
+    public boolean isGroup() {
+        return group;
 
     //gender of the activity
     public void setGender(String gender) {
@@ -165,9 +142,9 @@ public class Activity implements Parcelable {
     public void setTime(String time) {
         this.timeFormat = time;
     }
-    public void setActivityFor(String activityFor){this.activityFor=activityFor;}
-    public String getActivityFor(){return this.activityFor;}
-
+    public static long getId_counter() {
+        return id_counter;
+    }
     //implementation
     //implementation
     public Activity(Parcel in) {
@@ -217,4 +194,5 @@ public class Activity implements Parcelable {
         }
     };
 
+    public static void setId_counter(long id_counter) {Activity.id_counter = id_counter; }
 }

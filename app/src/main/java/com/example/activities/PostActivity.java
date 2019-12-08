@@ -1,5 +1,7 @@
 package com.example.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,21 +17,22 @@ import android.widget.TextView;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-
 public class PostActivity extends AppCompatActivity {
-
     private Button closeAppFromPost;
     private Button buttonLogout;
     FirebaseAuth auth;
     private Button clickToPost;
-    private static DatabaseReference myRef = null;
+    private static DatabaseReference database_ref_id_counter = null;
+    private static DatabaseReference database_activity = null;
     static final String activities = "activities/";
-    private Activity newPost;
-
+    private static final String id_counter_path = "resources/activity_id_counter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +91,43 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
-        //send data to database
+        //send data to the database
         clickToPost = findViewById(R.id.btnClickToPost);
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final TextView  apartNum;
+                //First read from the database
+                String [] tokens = id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
+
+                database_ref_id_counter = FirebaseDatabase.getInstance().getReference(tokens[0]);//Get Database instance
+
+                database_ref_id_counter.orderByChild(tokens[1]).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                        Activity.setId_counter((dataSnapshot.getValue(Long.class)));
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 apartNum = findViewById(R.id.apartNumberPlainText);
 
@@ -106,21 +139,22 @@ public class PostActivity extends AppCompatActivity {
 
                 //Difficulty
 
-                myRef = FirebaseDatabase.getInstance().getReference(activities+newPost.getIdCounter());
-
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
                 String date =   theDate.getText().toString();
                 String format = "Todo Format";
                 
+                boolean single_group = activityFor.equals("Group") ? true : false;
 
                  newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),date, format);
+                        addr, activityDifficulty.getSelectedItem().toString(), single_group, gender, desc.getText().toString(), date, time);
 
-                String currentPostData[] = newPost.getData();
+                //Write new id counter to the database
+                database_ref_id_counter.child(tokens[1]).setValue(Activity.getId_counter());
 
-                for (int i = 0; i < currentPostData.length; i++) {
-                    myRef.child(Activity.getNames(i)).setValue(currentPostData[i]);
-                }
+                //Write new activity to the database
+                database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + currentActivity.getID());
+                database_activity.setValue(currentActivity);
 
             }
         });
