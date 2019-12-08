@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.activities.Util.CsvReader;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SearchPost extends AppCompatActivity {
+public class SearchOrPost extends AppCompatActivity {
     private Button buttonLogout;
     private FirebaseAuth auth;
     private Button closeAppFromSearchPost;
@@ -33,7 +33,7 @@ public class SearchPost extends AppCompatActivity {
         changeActivityToPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchPost.this, firstStepPostActivity.class);
+                Intent intent = new Intent(SearchOrPost.this, firstStepPostActivity.class);
                 startActivity(intent);
             }
         });
@@ -43,7 +43,7 @@ public class SearchPost extends AppCompatActivity {
         changeActivityToSearchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchPost.this, SearchActivity.class);
+                Intent intent = new Intent(SearchOrPost.this, SearchActivity.class);
                 startActivity(intent);
             }
         });
@@ -64,7 +64,7 @@ public class SearchPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 auth.getInstance().signOut();
-                Intent intent = new Intent(SearchPost.this, MainActivity.class);
+                Intent intent = new Intent(SearchOrPost.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +85,7 @@ public class SearchPost extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(SearchPost.this, SettingsActivity.class);
+            Intent intent = new Intent(SearchOrPost.this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }

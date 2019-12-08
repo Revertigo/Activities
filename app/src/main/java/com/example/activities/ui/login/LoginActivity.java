@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.activities.R;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
-import com.example.activities.SearchPost;
+import com.example.activities.SearchOrPost;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
                     Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, SearchPost.class);
+                    Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
 //                            // Username or password false, display and an error
                             } else {
-                                Intent intent = new Intent(LoginActivity.this, SearchPost.class);
+                                Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
                                 startActivity(intent);
                             }
                         }

@@ -13,11 +13,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".SearchPost"
+				  android:parentActivityName=".SearchOrPost">
             android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.activities.SearchPost" />
+                  android:value="com.example.activities.SearchOrPost" />
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -33,7 +33,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SearchPost"
-            android:windowSoftInputMode="adjustPan" />
+            android:name=".SearchOrPost" ></activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
