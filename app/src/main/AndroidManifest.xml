@@ -32,7 +32,6 @@
             android:name=".ui.login.Registration.RegisterToApp_Password"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SearchPost"
             android:name=".SearchOrPost" ></activity>
         <activity
             android:name=".ui.login.LoginActivity"

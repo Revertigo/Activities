@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 
 public class PostActivity extends AppCompatActivity {
     private Button closeAppFromPost;
@@ -33,7 +35,7 @@ public class PostActivity extends AppCompatActivity {
     private static DatabaseReference database_activity = null;
     static final String activities = "activities/";
     private static final String id_counter_path = "resources/activity_id_counter";
-
+    private Activity newPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +131,7 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
 
-                apartNum = findViewById(R.id.apartNumberPlainText);
+               final TextView apartNum = findViewById(R.id.apartNumberPlainText);
 
                 //City
                 final Spinner activityCity = findViewById(R.id.citySettlementSpinner);
@@ -141,20 +143,19 @@ public class PostActivity extends AppCompatActivity {
 
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
-                String date =   theDate.getText().toString();
                 String format = "Todo Format";
                 
-                boolean single_group = activityFor.equals("Group") ? true : false;
+               // boolean single_group = activityFor.equals("Group") ? true : false;
 
-                 newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),date, format);
-                        addr, activityDifficulty.getSelectedItem().toString(), single_group, gender, desc.getText().toString(), date, time);
+                 newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),theDate.getText().toString(), format);
+
 
                 //Write new id counter to the database
                 database_ref_id_counter.child(tokens[1]).setValue(Activity.getId_counter());
 
                 //Write new activity to the database
-                database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + currentActivity.getID());
-                database_activity.setValue(currentActivity);
+                database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getID());
+               database_activity.setValue(newPost);
 
             }
         });

@@ -178,10 +178,10 @@
         android:layout_width="136dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/activityForTextView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/activityForTextView"
+        app:layout_constraintTop_toBottomOf="@+id/activityForTextView"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
@@ -211,7 +211,7 @@
         app:layout_constraintVertical_bias="0.353" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/activityForTextView"
         android:layout_width="136dp"
         android:layout_height="36dp"
         android:text="@string/activity_forFirstStepPost"

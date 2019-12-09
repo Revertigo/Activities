@@ -88,9 +88,9 @@ public class firstStepPostActivity extends AppCompatActivity {
                      String desc=description.getText().toString();
 
                 final RadioGroup rgActivityFor=findViewById(R.id.rgActivityFor);
-                    String activityFor = ((RadioButton)findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();
+                    String singleOrGroup = ((RadioButton)findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();
 
-                Activity newPost = new Activity(activityNameChoosen,theTypedThatSelected,difficultThatSelected,gender,desc,activityFor);
+                Activity newPost = new Activity(activityNameChoosen,theTypedThatSelected,difficultThatSelected,gender,desc,singleOrGroup);
 
                 Intent intent=new Intent(firstStepPostActivity.this,PostActivity.class);
                 intent.putExtra("newPost",newPost);
