@@ -1,12 +1,17 @@
 package com.example.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.KeyListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.SearchView;
 
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.ShowActivities;
@@ -20,15 +25,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 import static com.example.activities.PostActivity.activities;
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
 import static java.lang.Thread.sleep;
 
 public class SearchActivity extends AppCompatActivity {
 
+
+    private static DatabaseReference mDatabase = null;
+
     private Button buttonLogout;
     private Button closeAppFromSearch;
     private Button searchByString;
+    private SearchView search_by_string;
 
 
     @Override
@@ -78,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
         //close app button
-        closeAppFromSearch = findViewById(R.id.closeAppSearchActivity);
+        closeAppFromSearch = findViewById(R.id.closeBtn);
         closeAppFromSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         //log out button
-        buttonLogout = findViewById(R.id.logoutSearchActivity);
+        buttonLogout = findViewById(R.id.logoutBtn);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +113,46 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+        search_by_string = findViewById(R.id.searchByString);
+        //Search via soft keyboard key
+        search_by_string.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mDatabase = FirebaseDatabase.getInstance().getReference(PostActivity.activities);
+                Query search_result = mDatabase.orderByChild("name").equalTo(query);
+                search_result.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        Log.wtf("The object is:", dataSnapshot.toString());
 
+                            Activity act = dataSnapshot.getValue(Activity.class) ;
+                            Log.wtf("Activity.name ",act.getName());
+                            Log.wtf("Activity.type ",act.getType());
+                            Log.wtf("The value is ", dataSnapshot.getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        //Search via search button on the activity
+        search_by_string.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.wtf("This is the text:", search_by_string.getQuery().toString());
+            }
+        });
     }
 }
