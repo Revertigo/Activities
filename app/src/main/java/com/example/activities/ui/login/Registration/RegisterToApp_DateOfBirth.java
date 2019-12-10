@@ -11,7 +11,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.ui.login.Users.User;
+import com.example.activities.ui.login.user.User;
+
 
 import java.util.Calendar;
 

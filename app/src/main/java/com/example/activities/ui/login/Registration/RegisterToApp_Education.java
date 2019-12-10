@@ -8,8 +8,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.ui.login.Users.PostUser;
-import com.example.activities.ui.login.Users.User;
+import com.example.activities.ui.login.user.PostUser;
+
 
 public class RegisterToApp_Education extends AppCompatActivity {
 

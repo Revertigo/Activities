@@ -8,7 +8,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.ui.login.Users.User;
+import com.example.activities.ui.login.user.User;
+
 
 public class RegisterToApp_Gender extends AppCompatActivity {
 

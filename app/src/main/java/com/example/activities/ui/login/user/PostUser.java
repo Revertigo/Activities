@@ -1,7 +1,6 @@
-package com.example.activities.ui.login.Users;
+package com.example.activities.ui.login.user;
 
 import android.os.Parcel;
-import com.example.activities.ui.login.Users.User;
 
 public class PostUser extends User {
 

@@ -7,7 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.ui.login.Users.User;
+import com.example.activities.ui.login.user.User;
+
 
 public class RegisterToApp_Name extends AppCompatActivity {
 

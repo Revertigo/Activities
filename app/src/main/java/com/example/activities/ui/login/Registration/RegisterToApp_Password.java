@@ -2,13 +2,12 @@ package com.example.activities.ui.login.Registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.data.rtdb.user.User;
+import com.example.activities.ui.login.user.User;
 
 public class RegisterToApp_Password extends AppCompatActivity {
 

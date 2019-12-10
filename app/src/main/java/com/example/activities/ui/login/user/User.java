@@ -1,4 +1,4 @@
-package com.example.activities.data.rtdb.user;
+package com.example.activities.ui.login.user;
 
 import android.os.Parcelable;
 import android.os.Parcel;
@@ -91,21 +91,10 @@ public class User implements Parcelable {
         this.permition = permition;
     }
 
-    // Getters :
-
-    public String getEmail() { return this.email; }
-
-    public String getPassword() { return this.password; }
-
-    public String getUsername() { return this.username; }
-
-    public String getPermition() { return this.permition; }
-
-    public String getGender() { return this.gender; }
 
     public String getDateOfBirth() { return this.dateOfBirth; }
 
-    public String getLocation() { return this.location; }
+
 
 
     //Parcel implementation part:
