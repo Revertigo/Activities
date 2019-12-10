@@ -32,6 +32,24 @@
             android:name=".ui.login.Registration.RegisterToApp_Password"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_Name" ></activity>
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_Gender" ></activity>
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_DateOfBirth" ></activity>
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_Permition" ></activity>
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_PostIntro" ></activity>
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.login.Registration.RegisterToApp_Education" ></activity>
+        <activity
             android:name=".SearchOrPost" ></activity>
         <activity
             android:name=".ui.login.LoginActivity"
