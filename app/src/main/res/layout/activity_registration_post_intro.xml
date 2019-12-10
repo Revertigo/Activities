@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.Registration.RegisterToApp_Email">
+    tools:context=".ui.login.Registration.RegisterToApp_PostIntro">
+
 
     <TextView
-        android:id="@+id/Registration1"
+        android:id="@+id/Registration6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registration"
@@ -19,33 +20,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044" />
 
-    <TextView
-        android:id="@+id/EnterYourMail"
-        android:layout_width="107dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="144dp"
-        android:text="Enter your Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276" />
-
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="@string/prompt_email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
-
-
     <Button
-        android:id="@+id/Next1"
+        android:id="@+id/Next6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next"
@@ -54,6 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.929" />
+
+    <TextView
+        android:id="@+id/ExplainTextView"
+        android:layout_width="278dp"
+        android:layout_height="223dp"
+        android:layout_marginStart="16dp"
+        android:text="Filling in the next fields is recommended in order to increase your credibility as an activity advertiser."
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.405" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

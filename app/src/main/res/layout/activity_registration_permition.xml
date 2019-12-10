@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.Registration.RegisterToApp_Email">
+    tools:context=".ui.login.Registration.RegisterToApp_Name">
 
     <TextView
-        android:id="@+id/Registration1"
+        android:id="@+id/Registration3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registration"
@@ -19,41 +19,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044" />
 
-    <TextView
-        android:id="@+id/EnterYourMail"
-        android:layout_width="107dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="144dp"
-        android:text="Enter your Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276" />
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="@string/prompt_email"
+    <TextView
+        android:id="@+id/WhatPlaning"
+        android:layout_width="381dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="16dp"
+        android:text="What are you planning to do here?"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
-
+        app:layout_constraintVertical_bias="0.307" />
 
     <Button
-        android:id="@+id/Next1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next"
+        android:id="@+id/registerToSearchButton"
+        android:layout_width="373dp"
+        android:layout_height="101dp"
+        android:text="Search and join activities"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.474" />
+
+    <Button
+        android:id="@+id/registerToPostButton"
+        android:layout_width="373dp"
+        android:layout_height="104dp"
+        android:text="Both post and search activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintVertical_bias="0.673" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

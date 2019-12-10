@@ -16,24 +16,20 @@ public class RegisterToApp_Email extends AppCompatActivity {
     private EditText EmailEditText;
     private Button Next;
 
-    //  private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration_email);
 
-//        mAuth=FirebaseAuth.getInstance();
-
         EmailEditText = findViewById(R.id.editTextEmail);
-
         Next = findViewById(R.id.Next1);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email= EmailEditText.getText().toString();
-                //String pass=passwordEditText.getText().toString();
+                //TO DO:
+                //add constrains on the email
                 if(email.isEmpty()){
                     EmailEditText.setError("Please enter email id");
                     EmailEditText.requestFocus();
@@ -41,7 +37,7 @@ public class RegisterToApp_Email extends AppCompatActivity {
                 else{
                     User newUser = new User(email);
                     Intent i = new Intent(RegisterToApp_Email.this, RegisterToApp_Password.class);
-                    i.putExtra("newUser",newUser);
+                    i.putExtra("newUser",newUser); //Submit the User object to the next activity
                     startActivity(i);
                 }
             }

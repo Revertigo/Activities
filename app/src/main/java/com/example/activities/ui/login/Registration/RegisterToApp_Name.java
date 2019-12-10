@@ -2,46 +2,44 @@ package com.example.activities.ui.login.Registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.data.rtdb.user.User;
+import com.example.activities.ui.login.Users.User;
 
-public class RegisterToApp_Password extends AppCompatActivity {
+public class RegisterToApp_Name extends AppCompatActivity {
 
-    private EditText passwordEditText;
+    private EditText nameEditText;
     private Button Next;
     private User newUser ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_password);
+        setContentView(R.layout.activity_registration_name);
         //Get from last activity the User object of new user:
         newUser = getIntent().getParcelableExtra("newUser");
 
-        passwordEditText = findViewById(R.id.editTextPassword);
-        Next = findViewById(R.id.Next2);
+        nameEditText = findViewById(R.id.yourName1);
+        Next = findViewById(R.id.Next3);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password= passwordEditText.getText().toString();
+                String name= nameEditText.getText().toString();
                 // TO DO:
-                // add constrains on the password
-                if(password.isEmpty()){
-                    passwordEditText.setError("Please enter correct password");
-                    passwordEditText.requestFocus();
+                // add constrains on the Name/to parse it
+                if(name.isEmpty()){
+                    nameEditText.setError("Please enter your name");
+                    nameEditText.requestFocus();
                 }
                 else{
-                    newUser.setPassword(password);
-                    Intent i = new Intent(RegisterToApp_Password.this, RegisterToApp_Name.class);
+                    newUser.setUsername(name);
+                    Intent i = new Intent(RegisterToApp_Name.this, RegisterToApp_Gender.class);
                     i.putExtra("newUser",newUser);//Submit the User object to the next activity
                     startActivity(i);
-
                 }
             }
         });

@@ -5,20 +5,30 @@ import android.os.Parcel;
 
 public class User implements Parcelable {
 
-    private final int NUM_USER_PROPS = 7;
-    private String email;
-    private String password;
-    private String username;
-    private String permition;
+    private int NUM_USER_PROPS = 7;
+    protected String email;
+    protected String password;
+    protected String username;
+    protected String permition;
 
-    private String gender;
-    private String dateOfBirth;
-    private String location;
+    protected String gender;
+    protected String dateOfBirth;
+    protected String location;
 
     //TODO: for later
     //ArrayList<String> hobbies;
 
     public User() {
+    }
+
+    public User(User other){
+        this.email = other.getEmail();
+        this.password = other.getPassword();
+        this.username = other.getUsername();
+        this.permition = other.getPermition();
+        this.gender = other.getGender();
+        this.dateOfBirth = other.getDateOfBirth();
+        this.location = other.getLocation();
     }
 
     public User(String email) {
@@ -81,6 +91,22 @@ public class User implements Parcelable {
         this.permition = permition;
     }
 
+    // Getters :
+
+    public String getEmail() { return this.email; }
+
+    public String getPassword() { return this.password; }
+
+    public String getUsername() { return this.username; }
+
+    public String getPermition() { return this.permition; }
+
+    public String getGender() { return this.gender; }
+
+    public String getDateOfBirth() { return this.dateOfBirth; }
+
+    public String getLocation() { return this.location; }
+
 
     //Parcel implementation part:
     //User constructor from Parcel (for the getIntent().getParcelableExtra method)
@@ -109,7 +135,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
         dest.writeStringArray(
-                new String[]{this.username, this.email, this.password,
+                new String[]{this.email, this.password, this.username,
                         this.permition, this.gender, this.dateOfBirth, this.location});
     }
 
