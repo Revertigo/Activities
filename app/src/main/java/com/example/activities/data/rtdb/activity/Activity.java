@@ -105,6 +105,7 @@ public class Activity implements Parcelable {
                 return apartment_number;
             }
         }
+        public Activity.Address getAddr(){return  this.addr;}
 
 
         public enum Gender {
