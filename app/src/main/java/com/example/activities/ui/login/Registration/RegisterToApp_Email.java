@@ -14,7 +14,7 @@ import com.example.activities.ui.login.user.User;
 public class RegisterToApp_Email extends AppCompatActivity {
 
     private EditText EmailEditText;
-    private Button Next;
+    private Button Next ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

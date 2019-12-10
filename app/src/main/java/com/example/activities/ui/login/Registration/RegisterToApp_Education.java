@@ -5,10 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.ui.login.user.PostUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterToApp_Education extends AppCompatActivity {
@@ -17,6 +28,10 @@ public class RegisterToApp_Education extends AppCompatActivity {
     private PostUser postNewUser ;
     private EditText occupationEditText;
     private EditText educationEditText;
+    private FirebaseAuth mAuth;
+    private DatabaseReference users_ref;
+    private String post_users="Post users/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +42,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
 
         occupationEditText = findViewById(R.id.occupationEditText);
         educationEditText = findViewById(R.id.educationEditText);
-        Next = findViewById(R.id.Next7);
+        Next = findViewById(R.id.nextEducation);
 
 
         Next.setOnClickListener(new View.OnClickListener() {
@@ -46,9 +61,32 @@ public class RegisterToApp_Education extends AppCompatActivity {
                 else{
                     postNewUser.setOccupation(occupation);
                     postNewUser.setEducation(education);
-                    Intent i = new Intent(RegisterToApp_Education.this, RegisterToApp_Education.class);
-                    i.putExtra("newUser",postNewUser);//Submit the PostUser object to the next activity
-                    startActivity(i);
+                    //Create new postUser:
+                    mAuth = FirebaseAuth.getInstance();
+                    mAuth.createUserWithEmailAndPassword(postNewUser.getEmail(), postNewUser.getPassword())
+                            .addOnCompleteListener(RegisterToApp_Education.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+
+                                        //Todo create text views and take info and insert into post user
+                                        //send post user to database
+                                        postNewUser.setEducation(educationEditText.getText().toString());
+                                        postNewUser.setOccupation(occupationEditText.getText().toString());
+                                        users_ref = FirebaseDatabase.getInstance().getReference(post_users);
+                                        users_ref.child(post_users).setValue(postNewUser);
+                                        Intent i=new Intent(RegisterToApp_Education.this, MainActivity.class);
+                                        startActivity(i);
+                                    }
+                                    else {
+                                        Intent i=new Intent(RegisterToApp_Education.this, RegisterToApp_Education.class);
+                                       Toast.makeText(getApplicationContext(),
+                                                "enter education,occapution faild try again",
+                                                Toast.LENGTH_SHORT).show();
+                                       startActivity(i);
+                                    }
+                                }
+                            });
                 }
             }
         });

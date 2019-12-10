@@ -11,7 +11,7 @@
         android:id="@+id/Registration6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,29 +21,30 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <Button
-        android:id="@+id/Next6"
+        android:id="@+id/nextIntro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintVertical_bias="0.894" />
 
     <TextView
         android:id="@+id/ExplainTextView"
         android:layout_width="278dp"
         android:layout_height="223dp"
         android:layout_marginStart="16dp"
-        android:text="Filling in the next fields is recommended in order to increase your credibility as an activity advertiser."
+        android:text="@string/filling_in_the_next_fields_is_recommended_in_order_to_increase_your_credibility_as_an_activity_advertiser"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.259" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

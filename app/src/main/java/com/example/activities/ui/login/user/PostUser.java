@@ -1,26 +1,29 @@
 package com.example.activities.ui.login.user;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
-public class PostUser extends User {
+public class PostUser extends User{
 
     private int NUM_USER_PROPS = 9;
-    String occupation;
-    String education;
+    private String occupation;
+    private String education;
 
     public PostUser(User user){
         super(user);
-        this.occupation = "";
-        this.education ="";
+        this.occupation = "occupation";
+        this.education ="education";
     }
 
     public void setOccupation(String occupation){
         this.occupation = occupation;
     }
+    public String getOccupation(){return this.occupation;}
 
     public void setEducation(String education){
         this.education = education;
     }
+    public String getEducation(){return this.education;}
 
 
     //Parcel implementation part:
@@ -39,5 +42,37 @@ public class PostUser extends User {
         this.occupation = data[7];
         this.education = data[8];
     }
+
+
+    @Override
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    //String array from User fields
+    //for i.putExtra("newUser",newUser) method
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // TODO Auto-generated method stub
+        dest.writeStringArray(
+                new String[]{this.email, this.password, this.username,
+                        this.permition, this.gender, this.dateOfBirth, this.location,this.occupation,this.education});
+    }
+
+    public static final Parcelable.Creator<PostUser> CREATOR = new Parcelable.Creator<PostUser>() {
+
+        @Override
+        public PostUser createFromParcel(Parcel source) {
+            // TODO Auto-generated method stub
+            return new PostUser(source);  //using parcelable constructor
+        }
+
+        @Override
+        public PostUser[] newArray(int size) {
+            // TODO Auto-generated method stub
+            return new PostUser[size];
+        }
+    };
 
 }

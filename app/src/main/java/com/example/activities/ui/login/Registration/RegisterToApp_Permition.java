@@ -20,13 +20,14 @@ public class RegisterToApp_Permition extends AppCompatActivity {
 
     private Button search;
     private Button post;
-    private String permition;
+    private String permition="search";//default for Parcalble
 
     private User newUser ;
 
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
     private String search_users="Search users/";
+
 
 
 
@@ -52,6 +53,8 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    users_ref = FirebaseDatabase.getInstance().getReference(search_users);
+                                    users_ref.child(search_users).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
                                 }
                                 else {
@@ -60,8 +63,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                                 }
                             }
                         });
-                users_ref = FirebaseDatabase.getInstance().getReference(search_users);
-                users_ref.child(search_users).setValue(newUser);
+
             }
         });
 
@@ -71,7 +73,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                 permition = "post";
                 newUser.setPermition(permition);
                 Intent i = new Intent(RegisterToApp_Permition.this, RegisterToApp_PostIntro.class);
-                i.putExtra("newUser",newUser); //Submit the object to the next activity
+                i.putExtra("newUser",newUser);
                 startActivity(i);
             }
         });

@@ -10,7 +10,6 @@ public class User implements Parcelable {
     protected String password;
     protected String username;
     protected String permition;
-
     protected String gender;
     protected String dateOfBirth;
     protected String location;
@@ -43,6 +42,7 @@ public class User implements Parcelable {
         this.email = mail;
     }
 
+
     public String getPassword() {
         return this.password;
     }
@@ -51,13 +51,15 @@ public class User implements Parcelable {
         this.password = password;
     }
 
-    public String getDateOfBirth(String dateOfBirth) {
+
+    public String getDateOfBirth() {
         return this.dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
 
     public String getUsername() {
         return this.username;
@@ -67,6 +69,7 @@ public class User implements Parcelable {
         this.username = username;
     }
 
+
     public String getGender() {
         return this.gender;
     }
@@ -74,6 +77,7 @@ public class User implements Parcelable {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 
     public String getLocation() {
         return this.location;
@@ -83,6 +87,7 @@ public class User implements Parcelable {
         this.location = location;
     }
 
+
     public String getPermition() {
         return this.permition;
     }
@@ -91,8 +96,6 @@ public class User implements Parcelable {
         this.permition = permition;
     }
 
-
-    public String getDateOfBirth() { return this.dateOfBirth; }
 
 
 

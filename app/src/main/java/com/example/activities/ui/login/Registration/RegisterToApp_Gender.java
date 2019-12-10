@@ -14,7 +14,7 @@ import com.example.activities.ui.login.user.User;
 public class RegisterToApp_Gender extends AppCompatActivity {
 
     private Button Next;
-    private String gender;
+    private String gender="gender";
     private User newUser ;
 
     private RadioButton lastRadioBtn;
@@ -56,11 +56,11 @@ public class RegisterToApp_Gender extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radioButtonMan:
                 if (checked){
-                    gender = "Man";
+                    this.gender = "Man";
                     break;}
             case R.id.radioButtonWoman:
                 if (checked){
-                    gender = "Woman";
+                    this.gender = "Woman";
                     break;}
         }
     }
