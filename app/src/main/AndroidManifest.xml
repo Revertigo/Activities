@@ -54,8 +54,8 @@
             android:name=".ui.login.Registration.RegisterToApp_Education" ></activity>
         <activity
             android:name=".SearchOrPost"
-            android:windowSoftInputMode="adjustResize"
-            ></activity>
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
@@ -68,10 +68,10 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
     </application>
 
 </manifest>

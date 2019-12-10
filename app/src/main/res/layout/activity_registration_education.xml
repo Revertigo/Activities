@@ -8,23 +8,23 @@
 
 
     <TextView
-        android:id="@+id/Registration6"
+        android:id="@+id/completeRegistratiorEducation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/registration"
+        android:text="complete registration"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.062" />
 
     <Button
         android:id="@+id/nextEducation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:text="done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,60 +33,58 @@
 
     <TextView
         android:id="@+id/whatOccupationTextView"
-        android:layout_width="149dp"
-        android:layout_height="86dp"
+        android:layout_width="385dp"
+        android:layout_height="59dp"
         android:layout_marginStart="16dp"
         android:text="@string/what_is_your_occupation"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <EditText
         android:id="@+id/occupationEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="384dp"
+        android:layout_height="57dp"
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textLongMessage|textCapWords|textCapCharacters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/whatOccupationTextView"
+        app:layout_constraintTop_toBottomOf="@+id/whatOccupationTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/educationTextView"
-        android:layout_width="233dp"
+        android:layout_width="401dp"
         android:layout_height="57dp"
         android:layout_marginStart="16dp"
         android:text="@string/relevant_education"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
+        app:layout_constraintVertical_bias="0.543" />
 
     <EditText
         android:id="@+id/educationEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="232dp"
+        android:layout_width="403dp"
+        android:layout_height="57dp"
         android:ems="10"
         android:importantForAutofill="no"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.451" />
+        app:layout_constraintEnd_toEndOf="@+id/educationTextView"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/educationTextView"
+        app:layout_constraintTop_toBottomOf="@+id/educationTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
