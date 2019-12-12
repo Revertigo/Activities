@@ -7,7 +7,7 @@
     tools:context=".SearchActivity">
 
     <SearchView
-        android:id="@+id/searchView2"
+        android:id="@+id/searchByStringPlainText"
         android:layout_width="254dp"
         android:layout_height="34dp"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.081" />
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/btnAdvancedSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/advanced_search"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.754" />
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/closeAppSearchActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/close_app"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.976" />
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/logoutSearchActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.976" />
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/btnSearchByString"
         android:layout_width="127dp"
         android:layout_height="46dp"
         android:text="@string/search_by_id"

@@ -42,8 +42,8 @@ public class Activity implements Parcelable{
         this.time = time;
     }
 
-    public void Activity(){}
-    public void Activity(Activity activity){
+    public  Activity(){}
+    public  Activity(Activity activity){
         this.id=activity.getId();
         this.name=activity.getName();
         this.type=activity.getType();
@@ -74,7 +74,7 @@ public class Activity implements Parcelable{
         private String street;
         private int apartment_number;//zero for none
 
-        public Address() { }
+        public Address() {}
 
         public Address(String city_set, String street, int apartment_number) {
             this.city_set = city_set;
@@ -121,8 +121,7 @@ public class Activity implements Parcelable{
         this.difficulty = data[6];
         this.gender = data[7];
         this.description = data[8];
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-//Todo check if date its ok
+        DateFormat format = new SimpleDateFormat("DD mm, yyyy", Locale.ENGLISH);
         try {
             this.date =format.parse(data[9]);
         } catch (ParseException e) {

@@ -67,7 +67,6 @@
     <string name="activity_forFirstStepPost">Activity for:</string>
     <string name="nextFirstStepPost">Next</string>
     <string name="time_and_location">Time and Location</string>
-    <string name="name">Name</string>
     <string name="enter_date">Enter date</string>
     <string name="finish_registration">Finish Registration</string>
     <string name="filling_in_the_next_fields_is_recommended_in_order_to_increase_your_credibility_as_an_activity_advertiser">Filling in the next fields is recommended in order to increase your credibility as an activity advertiser.</string>
@@ -79,4 +78,5 @@
     <string name="registration">Registration</string>
     <string name="relevant_education">Relevant education:</string>
     <string name="the_name_of_the_activity">The name of the activity</string>
+    <string name="name">Name</string>
 </resources>
