@@ -2,63 +2,115 @@ package com.example.activities.data.rtdb.activity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class Activity implements Parcelable {
-    //Todo  ,implemenst Serializable
+public class Activity implements Parcelable{
 
-
-    private static long id_counter = 1;//For autoincrement of id's
-
+    private static long id_counter;//For autoincrement of id's
     private final int NUM_USER_PROPS = 12;
 
-    private long id=id_counter;//Very long id number
-    private String name="def_name";//Activity name
-    private String type="def_type";
-    private Activity.Address addr=new Address("def_city","def_street",1);//Activity address
-    private String difficulty="diffic";
-    private String gender="gender";
-    private String description="desc";
-    private Date date=new Date();
-    private String timeFormat="def_format";//Format: hh:mm
-    private boolean group=true;//True for Group, False for single
+    private long id;//Very long id number
+    private String name;//Activity name
+    private String type;
+    private Address addr;//Activity address
+    private String difficulty;
+    private boolean group;//True for Group, False for single
+    private String gender;
+    private String description;
+    private Date date;
+    private String time;//Format: hh:mm
 
-    DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
 
-    public Activity() {}
 
-        public Activity(String name, String type, String difficulty,
-                        String gender, String description ,String group) {
-            this.id=getId_counter();
-            setId_counter(getId_counter()+1);
-            this.name = name;
-            this.type = type;
-            this.difficulty = difficulty;
-            this.group = Boolean.valueOf(group);
-            this.gender = gender;
-            this.description = description;
-        }
+    public Activity(String name, String type, Address addr, String difficulty, boolean group,
+                    String gender, String description, Date date, String time) {
+        this.id = id_counter++;
+        this.name = name;
+        this.type = type;
+        this.addr = addr;
+        this.difficulty = difficulty;
+        this.group = group;
+        this.gender = gender;
+        this.description = description;
+        this.date = date;
+        this.time = time;
+    }
 
-        public void completeDataInit (Activity.Address addr, String currentTime, String timeFormat){
+    public void Activity(){}
+    public void Activity(Activity activity){
+        this.id=activity.getId();
+        this.name=activity.getName();
+        this.type=activity.getType();
+        this.addr=activity.getAddr();
+        this.difficulty=activity.getDifficulty();
+        this.group=activity.getGroup();
+        this.gender=activity.getGender();
+        this.description=activity.getDescription();
+        this.date=activity.getDate();
+        this.time=activity.getTime();
+    }
+
+    public void completeDataInit (Activity.Address addr, String currentTime, String timeFormat){
+//DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
         this.addr=addr;
-            try {
-                this.date =format.parse(currentTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            this.timeFormat = timeFormat;
+        try {
+            this.date =format.parse(currentTime);
+            Log.wtf("This date send: ", date.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        this.time = timeFormat;
+    }
+
+    public static class Address {
+        private String city_set;//City or settlement
+        private String street;
+        private int apartment_number;//zero for none
+
+        public Address() { }
+
+        public Address(String city_set, String street, int apartment_number) {
+            this.city_set = city_set;
+            this.street = street;
+            this.apartment_number = apartment_number;
+        }
+
+        public String getCity_set() {
+            return city_set;
+        }
+        public String getStreet() {
+            return street;
+        }
+        public int getApartment_number() {
+            return apartment_number;
+        }
+
+        public void setCity_set(String city_set) {
+            this.city_set = city_set;
+        }
+
+        public void setStreet(String street) {
+            this.street = street;
+        }
+
+        public void setApartment_number(int apartment_number) {
+            this.apartment_number = apartment_number;
+        }
+    }
 
     public Activity(Parcel in) {
         String[] data = new String[NUM_USER_PROPS];
         in.readStringArray(data);
+
+//This shouldn't be in here, but due to null exception according we will keep it here.
+        this.addr = new Address();
 
         this.id = Long.parseLong(data[0]);
         this.name = data[1];
@@ -69,161 +121,137 @@ public class Activity implements Parcelable {
         this.difficulty = data[6];
         this.gender = data[7];
         this.description = data[8];
-        //Todo check if date its ok
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+//Todo check if date its ok
         try {
             this.date =format.parse(data[9]);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        this.timeFormat = data[10];
+        this.time = data[10];
         if(data[11].equals("False")){
             this.group =false;}
         else {this.group=true;}
 
     }
 
-        public static class Address {
-            public String city_set;//City or settlement
-            public String street;
-            public int apartment_number;//zero for none
+    public enum Gender {
+        FEMALE, MALE, BOTH
+    }
 
-            public Address(String city_set, String street, int apartment_number) {
-                this.city_set = city_set;
-                this.street = street;
-                this.apartment_number = apartment_number;
-            }
-
-            public String getCity_set() {
-                return city_set;
-            }
-
-            public String getStreet() {
-                return street;
-            }
-
-            public int getApartment_number() {
-                return apartment_number;
-            }
-        }
-        public Activity.Address getAddr(){return  this.addr;}
+    //id
+    public long getId () {
+        return this.id;
+    }
+    public void setId ( long id){
+        this.id = id;
+    }
 
 
-        public enum Gender {
-            FEMALE, MALE, BOTH
-        }
+    //name
+    public String getName () {
+        return this.name;
+    }
+    public void setName (String name){
+        this.name = name;
+    }
 
+    //type
+    public String getType () {
+        return this.type;
+    }
+    public void setType (String type){
+        this.type = type;
+    }
 
-        //id
-        public long getID () {
-            return this.id;
-        }
+    //addr
+    public Address getAddr() {
+        return this.addr;
+    }
+    public void setAddr(Address addr) {
+        this.addr = addr;
+    }
 
-        public void setID ( long id){
-            this.id = id;
-        }
+    //difficulty
+    public void setDifficulty (String difficulty){
+        this.difficulty = difficulty;
+    }
+    public String getDifficulty () {
+        return this.difficulty;
+    }
 
-        //name
-        public String getName () {
-            return this.name;
-        }
+    public void setGroup ( boolean ans){
+        this.group = ans;
+    }
+    public boolean getGroup () {
+        return group;
+    }
 
-        public void setName (String name){
-            this.name = name;
-        }
+    //gender of the activity
+    public void setGender (String gender){
+        this.gender = gender;
+    }
+    public String getGender () {
+        return this.gender;
+    }
 
-        //type
-        public String getType () {
-            return this.type;
-        }
+    //description of the activity
+    public void setDescription (String description){
+        this.description = description;
+    }
+    public String getDescription () {
+        return this.description;
+    }
 
-        public void setType (String type){
-            this.type = type;
-        }
+    //date
+    public Date getDate () {
+        return this.date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
+    //time format
+    public String getTime () {
+        return this.time;
+    }
+    public void setTime (String time){
+        this.time = time;
+    }
 
-        //difficulty
+    public static long getId_counter () {
+        return id_counter;
+    }
+    public static void setId_counter ( long id_counter){
+        Activity.id_counter = id_counter;
+    }
 
+//implementation
 
-        public void setDifficulty (String difficulty){
-            this.difficulty = difficulty;
-        }
+    @Override
+    public int describeContents () {
+        return 0;
+    }
 
-        public String getDifficulty () {
-            return this.difficulty;
-        }
-
-        public void setGroup ( boolean ans){
-            this.group = ans;
-        }
-        public boolean isGroup () {
-            return group;
-        }
-        //gender of the activity
-        public void setGender (String gender){
-            this.gender = gender;
-        }
-
-        public String getGender () {
-            return this.gender;
-        }
-
-        //description of the activity
-        public void setDescription (String description){
-            this.description = description;
-        }
-
-        public String getDescription () {
-            return this.description;
-        }
-
-        //date
-        public Date getDate () {
-            return this.date;
-        }
-
-        //time format
-        public String getTime () {
-            return this.timeFormat;
-        }
-
-        public void setTime (String time){
-            this.timeFormat = time;
-        }
-        public static long getId_counter () {
-            return id_counter;
-        }
-
-        //implementation
+    @Override
+    public void writeToParcel (Parcel dest,int flags){
+        dest.writeStringArray(
+                new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set,
+                        this.addr.street,
+                        Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description, new SimpleDateFormat("MM/dd/yyyy").format(this.date), this.time, String.valueOf(this.group)});
+    }
+    public static final Parcelable.Creator<Activity> CREATOR = new Parcelable.Creator<Activity>() {
 
         @Override
-        public int describeContents () {
-            return 0;
+        public Activity createFromParcel(Parcel source) {
+// TODO Auto-generated method stub
+            return new Activity(source); //using parcelable constructor
         }
 
         @Override
-        public void writeToParcel (Parcel dest,int flags){
-            dest.writeStringArray(
-                    new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set,
-                            this.addr.street,
-                            Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description, new SimpleDateFormat("MM/dd/yyyy").format(this.date), this.timeFormat, String.valueOf(this.group)});
+        public Activity[] newArray(int size) {
+// TODO Auto-generated method stub
+            return new Activity[size];
         }
-        public static final Parcelable.Creator<Activity> CREATOR = new Parcelable.Creator<Activity>() {
-
-            @Override
-            public Activity createFromParcel(Parcel source) {
-                // TODO Auto-generated method stub
-                return new Activity(source);  //using parcelable constructor
-            }
-
-            @Override
-            public Activity[] newArray(int size) {
-                // TODO Auto-generated method stub
-                return new Activity[size];
-            }
-        };
-
-        public static void setId_counter ( long id_counter){
-            Activity.id_counter = id_counter;
-        }
-
+    };
 }

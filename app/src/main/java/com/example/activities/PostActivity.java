@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,10 +32,10 @@ public class PostActivity extends AppCompatActivity {
     private Button buttonLogout;
     FirebaseAuth auth;
     private Button clickToPost;
-    private static DatabaseReference database_ref_id_counter = null;
     private static DatabaseReference database_activity = null;
-    static final String activities = "activities/";
+    private static DatabaseReference database_ref_id_counter = null;
     private static final String id_counter_path = "resources/activity_id_counter";
+    static final String activities = "activities/";
     private Activity newPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class PostActivity extends AppCompatActivity {
 
         newPost=getIntent().getParcelableExtra("newPost");
 
-        //close app button
+//close app button
         closeAppFromPost = findViewById(R.id.closeAppPostActivity);
         closeAppFromPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,13 +55,10 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        //Setup back button
+//Setup back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Sort the data
+//Sort the data
         CsvReader.reorganize_data();
-
-
-
 
         final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
         Spinner cities_settlmentsSpinner = findViewById(R.id.citySettlementSpinner);
@@ -69,11 +67,11 @@ public class PostActivity extends AppCompatActivity {
         adapterForcities_settlmentsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cities_settlmentsSpinner.setAdapter(adapterForcities_settlmentsSpinner);
 
-        //string array for streetSpinner
+//string array for streetSpinner
         String[] streets = new String[]{
                 "Street", "Dizingoff", "Hertzel", "Another"
         };
-        //using streets string array
+//using streets string array
         Spinner streetsSpinner = findViewById(R.id.streetsSpinner);
         ArrayAdapter<String> adapterForstreetsSpinner = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, streets);
@@ -81,7 +79,7 @@ public class PostActivity extends AppCompatActivity {
         streetsSpinner.setAdapter(adapterForstreetsSpinner);
 
 
-        //log out button
+//log out button
         buttonLogout = findViewById(R.id.logoutPostActivity);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,69 +91,39 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
-        //send data to the database
+//send data to the database
         clickToPost = findViewById(R.id.btnClickToPost);
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //First read from the database
+//First read from the database
                 String [] tokens = id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
 
                 database_ref_id_counter = FirebaseDatabase.getInstance().getReference(tokens[0]);//Get Database instance
+                final TextView apartNum = findViewById(R.id.apartNumberPlainText);
 
-                database_ref_id_counter.orderByChild(tokens[1]).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                        Activity.setId_counter((dataSnapshot.getValue(Long.class)));
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-               final TextView apartNum = findViewById(R.id.apartNumberPlainText);
-
-                //City
+//City
                 final Spinner activityCity = findViewById(R.id.citySettlementSpinner);
 
-                //Street
+//Street
                 final Spinner activityStreet = findViewById(R.id.streetsSpinner);
 
-                //Difficulty
-
+//Difficulty
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
                 String format = "Todo Format";
-                
-               // boolean single_group = activityFor.equals("Group") ? true : false;
 
-                 newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(), activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),theDate.getText().toString(), format);
+                newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(),
+                                activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),
+                        theDate.getText().toString(), format);
 
 
-                //Write new id counter to the database
+//Write new id counter to the database
                 database_ref_id_counter.child(tokens[1]).setValue(Activity.getId_counter());
 
-                //Write new activity to the database
-                database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getID());
-               database_activity.setValue(newPost);
+//Write new activity to the database
+                database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
+                database_activity.setValue(newPost);
 
             }
         });
