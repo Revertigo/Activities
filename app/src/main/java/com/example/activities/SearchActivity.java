@@ -1,31 +1,21 @@
 package com.example.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.Toast;
-
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.ShowActivities;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import static com.example.activities.PostActivity.activities;
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
-import static java.lang.Thread.sleep;
 
 public class SearchActivity extends AppCompatActivity {
 
