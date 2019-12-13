@@ -27,12 +27,12 @@ public class Activity implements Parcelable{
     private String time;//Format: hh:mm
 
 
+    public Activity() {}
 
-    public Activity(String name, String type, Address addr, String difficulty, boolean group,
+    public Activity(String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
-        this.id = id_counter++;
         this.name = name;
-        this.type = type;
+        this.type = Type;
         this.addr = addr;
         this.difficulty = difficulty;
         this.group = group;
@@ -42,27 +42,11 @@ public class Activity implements Parcelable{
         this.time = time;
     }
 
-    public  Activity(){}
-    public  Activity(Activity activity){
-        this.id=activity.getId();
-        this.name=activity.getName();
-        this.type=activity.getType();
-        this.addr=activity.getAddr();
-        this.difficulty=activity.getDifficulty();
-        this.group=activity.getGroup();
-        this.gender=activity.getGender();
-        this.description=activity.getDescription();
-        this.date=activity.getDate();
-        this.time=activity.getTime();
-    }
-
     public void completeDataInit (Activity.Address addr, String currentTime, String timeFormat){
-//DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
         DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
         this.addr=addr;
         try {
             this.date =format.parse(currentTime);
-            Log.wtf("This date send: ", date.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -74,7 +58,10 @@ public class Activity implements Parcelable{
         private String street;
         private int apartment_number;//zero for none
 
-        public Address() {}
+        public Address() {
+            city_set = "";
+            street = "";
+        }
 
         public Address(String city_set, String street, int apartment_number) {
             this.city_set = city_set;
@@ -109,7 +96,7 @@ public class Activity implements Parcelable{
         String[] data = new String[NUM_USER_PROPS];
         in.readStringArray(data);
 
-//This shouldn't be in here, but due to null exception according we will keep it here.
+        //This shouldn't be in here, but due to null exception according we will keep it here.
         this.addr = new Address();
 
         this.id = Long.parseLong(data[0]);
@@ -121,12 +108,11 @@ public class Activity implements Parcelable{
         this.difficulty = data[6];
         this.gender = data[7];
         this.description = data[8];
-        DateFormat format = new SimpleDateFormat("DD mm, yyyy", Locale.ENGLISH);
-        try {
-            this.date =format.parse(data[9]);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+        //Todo check if date its ok
+        //this.date =format.parse(data[9]);
+        this.date = new Date();
+
         this.time = data[10];
         if(data[11].equals("False")){
             this.group =false;}
@@ -142,6 +128,7 @@ public class Activity implements Parcelable{
     public long getId () {
         return this.id;
     }
+
     public void setId ( long id){
         this.id = id;
     }
@@ -151,6 +138,7 @@ public class Activity implements Parcelable{
     public String getName () {
         return this.name;
     }
+
     public void setName (String name){
         this.name = name;
     }
@@ -159,6 +147,7 @@ public class Activity implements Parcelable{
     public String getType () {
         return this.type;
     }
+
     public void setType (String type){
         this.type = type;
     }
@@ -167,6 +156,7 @@ public class Activity implements Parcelable{
     public Address getAddr() {
         return this.addr;
     }
+
     public void setAddr(Address addr) {
         this.addr = addr;
     }
@@ -175,6 +165,7 @@ public class Activity implements Parcelable{
     public void setDifficulty (String difficulty){
         this.difficulty = difficulty;
     }
+
     public String getDifficulty () {
         return this.difficulty;
     }
@@ -182,14 +173,14 @@ public class Activity implements Parcelable{
     public void setGroup ( boolean ans){
         this.group = ans;
     }
-    public boolean getGroup () {
+    public boolean isGroup () {
         return group;
     }
-
     //gender of the activity
     public void setGender (String gender){
         this.gender = gender;
     }
+
     public String getGender () {
         return this.gender;
     }
@@ -198,6 +189,7 @@ public class Activity implements Parcelable{
     public void setDescription (String description){
         this.description = description;
     }
+
     public String getDescription () {
         return this.description;
     }
@@ -206,6 +198,7 @@ public class Activity implements Parcelable{
     public Date getDate () {
         return this.date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -214,6 +207,7 @@ public class Activity implements Parcelable{
     public String getTime () {
         return this.time;
     }
+
     public void setTime (String time){
         this.time = time;
     }
@@ -221,11 +215,12 @@ public class Activity implements Parcelable{
     public static long getId_counter () {
         return id_counter;
     }
-    public static void setId_counter ( long id_counter){
+
+    public static void setId_counter (long id_counter){
         Activity.id_counter = id_counter;
     }
 
-//implementation
+    //implementation
 
     @Override
     public int describeContents () {
@@ -243,13 +238,13 @@ public class Activity implements Parcelable{
 
         @Override
         public Activity createFromParcel(Parcel source) {
-// TODO Auto-generated method stub
-            return new Activity(source); //using parcelable constructor
+            // TODO Auto-generated method stub
+            return new Activity(source);  //using parcelable constructor
         }
 
         @Override
         public Activity[] newArray(int size) {
-// TODO Auto-generated method stub
+            // TODO Auto-generated method stub
             return new Activity[size];
         }
     };
