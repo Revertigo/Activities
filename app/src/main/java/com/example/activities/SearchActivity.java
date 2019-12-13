@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
                                 Integer.toString(currentActivity.getAddr().getApartment_number()),currentActivity.getDifficulty(),
                                 currentActivity.getGender(), currentActivity.getDescription(),
                                 new SimpleDateFormat("MM/dd/yyyy").format(currentActivity.getDate()), currentActivity.getTime(),
-                                String.valueOf(currentActivity.getGroup())};
+                                String.valueOf(currentActivity.isGroup())};
 
                         //send the string array to the next activity
                        intent.putExtra("str", str);
