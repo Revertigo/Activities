@@ -113,6 +113,8 @@ public class PostActivity extends AppCompatActivity {
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
+
+                startActivity(new Intent(PostActivity.this, SearchOrPost.class));
             }
         });
 
