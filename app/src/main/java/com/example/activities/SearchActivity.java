@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
 public class SearchActivity extends AppCompatActivity {
@@ -45,8 +47,13 @@ public class SearchActivity extends AppCompatActivity {
                         Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
 
                         //get current activity from database
-
-                        Activity  currentActivity =dataSnapshot.child("Activity_"+Activity.getId_counter()).getValue(Activity.class);
+                        ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                           activitiesArray.add(ds.getValue(Activity.class));
+                        }
+                        intent.putExtra("activitiesArray",activitiesArray);
+                        /*
+                                                Activity  currentActivity =dataSnapshot.child("Activity_"+Activity.getId_counter()).getValue(Activity.class);
 
                         //create array of strings and send it to next intent
                         String[] str={Long.toString(currentActivity.getId()), currentActivity.getName(),currentActivity.getType(),
@@ -59,6 +66,8 @@ public class SearchActivity extends AppCompatActivity {
 
                         //send the string array to the next activity
                         intent.putExtra("str", str);
+                        */
+
                         startActivity(intent);
                     }
                     @Override
