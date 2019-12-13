@@ -146,7 +146,4 @@ public class firstStepPostActivity extends AppCompatActivity {
         });
     }//end onCreate
 
-
-
-
 }
