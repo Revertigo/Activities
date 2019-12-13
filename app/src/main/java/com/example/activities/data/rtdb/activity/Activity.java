@@ -2,8 +2,6 @@ package com.example.activities.data.rtdb.activity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +9,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Activity implements Parcelable{
-
     private static long id_counter;//For autoincrement of id's
     private final int NUM_USER_PROPS = 12;
 
@@ -43,7 +40,7 @@ public class Activity implements Parcelable{
     }
 
     public void completeDataInit (Activity.Address addr, String currentTime, String timeFormat){
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
         this.addr=addr;
         try {
             this.date =format.parse(currentTime);
@@ -108,16 +105,9 @@ public class Activity implements Parcelable{
         this.difficulty = data[6];
         this.gender = data[7];
         this.description = data[8];
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
-        //Todo check if date its ok
-        //this.date =format.parse(data[9]);
-        this.date = new Date();
-
+        this.date = new Date();//Since we will update later this.date
         this.time = data[10];
-        if(data[11].equals("False")){
-            this.group =false;}
-        else {this.group=true;}
-
+        this.group = Boolean.parseBoolean(data[11]);
     }
 
     public enum Gender {
@@ -230,21 +220,19 @@ public class Activity implements Parcelable{
     @Override
     public void writeToParcel (Parcel dest,int flags){
         dest.writeStringArray(
-                new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set,
-                        this.addr.street,
-                        Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description, new SimpleDateFormat("MM/dd/yyyy").format(this.date), this.time, String.valueOf(this.group)});
+                new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set, this.addr.street,
+                        Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description,
+                        new SimpleDateFormat("dd/mm/yyyy").format(this.date), this.time, String.valueOf(this.group)});
     }
     public static final Parcelable.Creator<Activity> CREATOR = new Parcelable.Creator<Activity>() {
 
         @Override
         public Activity createFromParcel(Parcel source) {
-            // TODO Auto-generated method stub
             return new Activity(source);  //using parcelable constructor
         }
 
         @Override
         public Activity[] newArray(int size) {
-            // TODO Auto-generated method stub
             return new Activity[size];
         }
     };

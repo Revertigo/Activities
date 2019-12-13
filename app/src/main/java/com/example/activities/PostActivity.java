@@ -19,14 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PostActivity extends AppCompatActivity {
+    private static final String activities = "activities/";
+    private static DatabaseReference database_activity = null;
+
     private Button closeAppFromPost;
     private Button buttonLogout;
-    FirebaseAuth auth;
     private Button clickToPost;
-    private static DatabaseReference database_activity = null;
-    private static DatabaseReference database_ref_id_counter = null;
-    private static final String id_counter_path = "resources/activity_id_counter";
-    static final String activities = "activities/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,22 +73,18 @@ public class PostActivity extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(PostActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-
 
         //send data to the database
         clickToPost = findViewById(R.id.btnClickToPost);
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //First read from the database
-                String [] tokens = id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
 
-                database_ref_id_counter = FirebaseDatabase.getInstance().getReference(tokens[0]);//Get Database instance
                 final TextView apartNum = findViewById(R.id.apartNumberPlainText);
 
                 //City
@@ -112,7 +106,8 @@ public class PostActivity extends AppCompatActivity {
                 //Write new id counter to the database
                 while(!firstStepPostActivity.is_id_read);
                 newPost.setId(Activity.getId_counter());//Update the real id of the user
-                database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
+                String [] tokens = firstStepPostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
+                firstStepPostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
                 firstStepPostActivity.is_id_read = false;
 
                 //Write new activity to the database

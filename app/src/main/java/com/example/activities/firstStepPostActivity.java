@@ -26,14 +26,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
 
 public class firstStepPostActivity extends AppCompatActivity {
-    private static final String id_counter_path = "resources/activity_id_counter/";
+    static final String id_counter_path = "resources/activity_id_counter";
+    static DatabaseReference database_ref_id_counter = null;
+    static boolean is_id_read = false;
 
     private Button btnCloseAppFromFirstStepPostActivity;
     private Button btnLogoutFromFirstStepPostActivity;
     private Button btnChangeToPostActivity;
-    FirebaseAuth auth;
-    private static DatabaseReference database_ref_id_counter = null;
-    static boolean is_id_read = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,7 @@ public class firstStepPostActivity extends AppCompatActivity {
         btnLogoutFromFirstStepPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(firstStepPostActivity.this, MainActivity.class);
                 startActivity(intent);
             }
