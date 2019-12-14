@@ -236,4 +236,20 @@ public class Activity implements Parcelable{
             return new Activity[size];
         }
     };
+
+    public String toString(){
+        return (
+            getId()+
+            " , "+getName()+
+            " , "+getType()+
+            " , "+ getAddr().getCity_set()+
+            " , "+getAddr().getStreet()+
+            " , "+getAddr().getApartment_number()+
+            " , "+getDifficulty()+
+            " , "+isGroup()+
+            " , "+getGender()+
+            " , "+getDescription()+
+            " , "+getDate().toString()+
+            " , "+getTime());
+    }
 }
