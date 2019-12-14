@@ -239,17 +239,17 @@ public class Activity implements Parcelable{
 
     public String toString(){
         return (
-            getId()+
-            " , "+getName()+
-            " , "+getType()+
-            " , "+ getAddr().getCity_set()+
-            " , "+getAddr().getStreet()+
-            " , "+getAddr().getApartment_number()+
-            " , "+getDifficulty()+
-            " , "+isGroup()+
-            " , "+getGender()+
-            " , "+getDescription()+
-            " , "+getDate().toString()+
-            " , "+getTime());
+            "Activity's id: "+getId()+"\n"+
+            "Activity's name: "+getName()+"\n"+
+            "Activity's type: "+getType()+"\n"+
+            "Occurrence City: "+ getAddr().getCity_set()+"\n"+
+            "Street name: "+getAddr().getStreet()+"\n"+
+            "Apartment number:"+getAddr().getApartment_number()+"\n"+
+            "Difficulty classification: "+getDifficulty()+"\n"+
+            "Group / Single: "+isGroup()+"\n"+
+            "Gender suitable: "+getGender()+"\n"+
+            "Activity Description: "+getDescription()+"\n"+
+            "Date: "+getDate().toString()+"\n"+
+            "Time:"+getTime());
     }
 }
