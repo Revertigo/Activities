@@ -2,30 +2,35 @@ package com.example.activities.PostActivitiyJava;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
-import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
-import com.example.activities.data.rtdb.activity.ShowActivities;
+import com.example.activities.ui.login.Registration.RegisterToApp_DateOfBirth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class PostActivity extends AppCompatActivity {
@@ -35,6 +40,10 @@ public class PostActivity extends AppCompatActivity {
     private Button closeAppFromPost;
     private Button buttonLogout;
     private Button clickToPost;
+    private Button dateButton;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String dateStr;
+    private TextView showTheDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,34 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         final Activity newPost=getIntent().getParcelableExtra("newPost");
+            showTheDate=findViewById(R.id.enterDatePlainText) ;
+        dateButton=findViewById(R.id.setDatePostActivity);
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        PostActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                dateStr = month + "/" + day + "/" + year;
+                showTheDate.setText(dateStr);
+            }
+        };
 
         //close app button
         closeAppFromPost = findViewById(R.id.closeAppPostActivity);
@@ -89,7 +126,8 @@ public class PostActivity extends AppCompatActivity {
 
                 //set Format
                 String format2 = "dd/mm/yyy";
-                newPost.setTime(format2);
+                TextView time=findViewById(R.id.timeEditText);
+                newPost.setTime(time.getText().toString());
                 //Write new id counter to the database
                 while(!NamePostActivity.is_id_read);
                 newPost.setId(Activity.getId_counter());//Update the real id of the user

@@ -93,4 +93,8 @@
     <string name="man">Man</string>
     <string name="woman">Woman</string>
     <string name="i_am_a">I am a</string>
+    <string name="dd_mm_yyy">dd/mm/yyy</string>
+    <string name="add_date">Add date</string>
+    <string name="textview">TextView</string>
+    <string name="the_choosen_date">The choosen date:</string>
 </resources>

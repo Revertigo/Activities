@@ -46,7 +46,7 @@
         android:id="@+id/timeAndLocationTextView"
         android:layout_width="293dp"
         android:layout_height="56dp"
-        android:text="@string/time_and_location"
+        android:text="Date and Time"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,16 +56,16 @@
 
     <TextView
         android:id="@+id/dateTextView"
-        android:layout_width="140dp"
-        android:layout_height="42dp"
-        android:text="@string/enter_date"
+        android:layout_width="185dp"
+        android:layout_height="43dp"
+        android:text="@string/the_choosen_date"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/timeAndLocationTextView"
-        app:layout_constraintHorizontal_bias="0.411"
-        app:layout_constraintStart_toStartOf="@+id/timeAndLocationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeAndLocationTextView"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.257" />
 
     <EditText
         android:id="@+id/enterDatePlainText"
@@ -74,13 +74,51 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="dd/mm/yyy"
+        android:text="@string/dd_mm_yyy"
+        app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dateTextView"
+        app:layout_constraintTop_toTopOf="@+id/dateTextView"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <Button
+        android:id="@+id/setDatePostActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_date"
         app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
-        app:layout_constraintEnd_toEndOf="@+id/dateTextView"
-        app:layout_constraintHorizontal_bias="0.339"
-        app:layout_constraintStart_toStartOf="@+id/dateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeAndLocationTextView"
+        app:layout_constraintVertical_bias="0.194" />
+
+    <TextView
+        android:id="@+id/timeDescriptionTextView"
+        android:layout_width="183dp"
+        android:layout_height="44dp"
+        android:text="Time Description"
+        app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintVertical_bias="0.454" />
+
+    <EditText
+        android:id="@+id/timeEditText"
+        android:layout_width="199dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="enter time"
+        app:layout_constraintBottom_toBottomOf="@+id/timeDescriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/timeDescriptionTextView"
+        app:layout_constraintTop_toTopOf="@+id/timeDescriptionTextView"
+        app:layout_constraintVertical_bias="0.289" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
