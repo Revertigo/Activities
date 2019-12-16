@@ -11,8 +11,8 @@ public class PostUser extends User{
 
     public PostUser(User user){
         super(user);
-        this.occupation = "occupation";
-        this.education ="education";
+        this.occupation = "default_occupation";
+        this.education ="default_education";
     }
 
     public void setOccupation(String occupation){

@@ -38,7 +38,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_education);
         //Get from last activity the User object of new user:
-        postNewUser = getIntent().getParcelableExtra("PostNewUser");
+        postNewUser = getIntent().getParcelableExtra("postNewUser");
 
         occupationEditText = findViewById(R.id.occupationEditText);
         educationEditText = findViewById(R.id.educationEditText);
@@ -79,11 +79,9 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         startActivity(i);
                                     }
                                     else {
-                                        Intent i=new Intent(RegisterToApp_Education.this, RegisterToApp_Education.class);
                                        Toast.makeText(getApplicationContext(),
                                                 "enter education,occapution faild try again",
                                                 Toast.LENGTH_SHORT).show();
-                                       startActivity(i);
                                     }
                                 }
                             });
