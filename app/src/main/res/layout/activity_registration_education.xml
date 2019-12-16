@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".ui.login.Registration.RegisterToApp_Education">
 
 
@@ -11,25 +12,25 @@
         android:id="@+id/completeRegistratiorEducation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="complete registration"
+        android:text="@string/complete_registration"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/finishRegistratiorButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="done"
+        android:layout_width="398dp"
+        android:layout_height="71dp"
+        android:text="@string/done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintEnd_toEndOf="@+id/educationEditText"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="@+id/educationEditText"
+        app:layout_constraintTop_toBottomOf="@+id/educationEditText"
+        app:layout_constraintVertical_bias="0.729" />
 
     <TextView
         android:id="@+id/whatOccupationTextView"
@@ -42,8 +43,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintTop_toBottomOf="@+id/completeRegistratiorEducation"
+        app:layout_constraintVertical_bias="0.203" />
 
     <EditText
         android:id="@+id/occupationEditText"
@@ -61,24 +62,25 @@
 
     <TextView
         android:id="@+id/educationTextView"
-        android:layout_width="401dp"
-        android:layout_height="57dp"
+        android:layout_width="379dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:text="@string/relevant_education"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <EditText
         android:id="@+id/educationEditText"
-        android:layout_width="403dp"
-        android:layout_height="57dp"
+        android:layout_width="377dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:importantForAutofill="no"
+        android:inputType="textLongMessage|textCapWords|textCapCharacters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/educationTextView"
         app:layout_constraintHorizontal_bias="0.333"

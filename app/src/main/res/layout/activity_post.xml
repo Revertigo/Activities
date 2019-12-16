@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".PostActivity">
+    tools:context=".PostActivitiyJava.PostActivity">
 
     <Button
         android:id="@+id/closeAppPostActivity"
@@ -44,9 +44,10 @@
 
     <TextView
         android:id="@+id/timeAndLocationTextView"
-        android:layout_width="177dp"
-        android:layout_height="29dp"
+        android:layout_width="293dp"
+        android:layout_height="56dp"
         android:text="@string/time_and_location"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,11 +61,11 @@
         android:text="@string/enter_date"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintEnd_toEndOf="@+id/timeAndLocationTextView"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="@+id/timeAndLocationTextView"
+        app:layout_constraintTop_toBottomOf="@+id/timeAndLocationTextView"
+        app:layout_constraintVertical_bias="0.206" />
 
     <EditText
         android:id="@+id/enterDatePlainText"
@@ -73,13 +74,13 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/name"
-        app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/dateTextView"
-        app:layout_constraintTop_toTopOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="dd/mm/yyy"
+        app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
+        app:layout_constraintEnd_toEndOf="@+id/dateTextView"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="@+id/dateTextView"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+        app:layout_constraintVertical_bias="0.234" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

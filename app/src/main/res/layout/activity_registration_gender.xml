@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".ui.login.Registration.RegisterToApp_Gender">
 
     <TextView
         android:id="@+id/Registration4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,20 +26,20 @@
         android:layout_width="123dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
-        android:text="I am a"
+        android:text="@string/i_am_a"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/Next4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,26 +51,25 @@
         android:layout_width="187dp"
         android:layout_height="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522"
-       >
+        app:layout_constraintEnd_toEndOf="@+id/Iam"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="@+id/Iam"
+        app:layout_constraintTop_toBottomOf="@+id/Iam"
+        app:layout_constraintVertical_bias="0.208">
 
         <RadioButton
             android:id="@+id/radioButtonMan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Man"
-            android:onClick="onRadioButtonClicked"/>
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/man" />
 
         <RadioButton
             android:id="@+id/radioButtonWoman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Woman"
-            android:onClick="onRadioButtonClicked"/>
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/woman" />
     </RadioGroup>
 
 

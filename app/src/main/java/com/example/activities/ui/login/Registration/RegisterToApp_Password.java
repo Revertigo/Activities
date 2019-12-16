@@ -23,7 +23,7 @@ public class RegisterToApp_Password extends AppCompatActivity {
         newUser = getIntent().getParcelableExtra("newUser");
 
         passwordEditText = findViewById(R.id.editTextPassword);
-        Next = findViewById(R.id.Next2);
+        Next = findViewById(R.id.nextPassword);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override

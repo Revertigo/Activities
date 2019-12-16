@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".ui.login.Registration.RegisterToApp_Name">
 
     <TextView
@@ -22,8 +23,8 @@
 
     <TextView
         android:id="@+id/WhatPlaning"
-        android:layout_width="381dp"
-        android:layout_height="68dp"
+        android:layout_width="391dp"
+        android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:text="@string/what_are_you_planning_to_do_here"
         android:textSize="24sp"
@@ -32,30 +33,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.233" />
 
     <Button
         android:id="@+id/registerToSearchButton"
-        android:layout_width="373dp"
-        android:layout_height="101dp"
+        android:layout_width="366dp"
+        android:layout_height="108dp"
         android:text="@string/search_and_join_activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.474" />
+        app:layout_constraintTop_toBottomOf="@+id/WhatPlaning"
+        app:layout_constraintVertical_bias="0.218" />
 
     <Button
         android:id="@+id/registerToPostButton"
-        android:layout_width="373dp"
-        android:layout_height="104dp"
+        android:layout_width="365dp"
+        android:layout_height="107dp"
         android:text="@string/both_post_and_search_activities"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
+        app:layout_constraintEnd_toEndOf="@+id/registerToSearchButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/registerToSearchButton"
+        app:layout_constraintTop_toBottomOf="@+id/registerToSearchButton"
+        app:layout_constraintVertical_bias="0.366" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

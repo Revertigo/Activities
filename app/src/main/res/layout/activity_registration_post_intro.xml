@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".ui.login.Registration.RegisterToApp_PostIntro">
 
 
@@ -34,17 +35,17 @@
 
     <TextView
         android:id="@+id/ExplainTextView"
-        android:layout_width="278dp"
-        android:layout_height="223dp"
+        android:layout_width="387dp"
+        android:layout_height="203dp"
         android:layout_marginStart="16dp"
         android:text="@string/filling_in_the_next_fields_is_recommended_in_order_to_increase_your_credibility_as_an_activity_advertiser"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.369" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
