@@ -42,7 +42,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
 
         occupationEditText = findViewById(R.id.occupationEditText);
         educationEditText = findViewById(R.id.educationEditText);
-        Next = findViewById(R.id.nextEducation);
+        Next = findViewById(R.id.finishRegistratiorButton);
 
 
         Next.setOnClickListener(new View.OnClickListener() {
