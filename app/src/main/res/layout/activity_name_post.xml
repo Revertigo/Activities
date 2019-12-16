@@ -4,66 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity.SearchActivity">
-
-    <SearchView
-        android:id="@+id/searchByStringPlainText"
-        android:layout_width="254dp"
-        android:layout_height="34dp"
-        android:layout_alignParentTop="true"
-        android:iconifiedByDefault="false"
-        android:queryHint='Search Activity by "activity id"'
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+    tools:context=".PostActivitiyJava.NamePostActivity">
 
     <Button
-        android:id="@+id/btnAdvancedSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/advanced_search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
-
-    <Button
-        android:id="@+id/closeAppSearchActivity"
+        android:id="@+id/closeAppNamePostActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/close_app"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
     <Button
-        android:id="@+id/logoutSearchActivity"
+        android:id="@+id/nextToType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextFirstStepPost"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855" />
+
+    <Button
+        android:id="@+id/logoutNamePostActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.973" />
 
-    <Button
-        android:id="@+id/btnSearchByString"
-        android:layout_width="127dp"
-        android:layout_height="46dp"
-        android:text="@string/search_by_id"
+    <EditText
+        android:id="@+id/activityNameEditText"
+        android:layout_width="156dp"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="type here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activityNameTextView"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="@+id/activityNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/activityNameTextView"
+        app:layout_constraintVertical_bias="0.252" />
+
+    <TextView
+        android:id="@+id/activityNameTextView"
+        android:layout_width="114dp"
+        android:layout_height="31dp"
+        android:text="@string/activity_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.109" />
 </androidx.constraintlayout.widget.ConstraintLayout>

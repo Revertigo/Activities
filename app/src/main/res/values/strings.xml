@@ -79,4 +79,6 @@
     <string name="relevant_education">Relevant education:</string>
     <string name="the_name_of_the_activity">The name of the activity</string>
     <string name="name">Name</string>
+    <string name="enter_activity_name">Enter activity name</string>
+    <string name="activity_type">Activity Type</string>
 </resources>

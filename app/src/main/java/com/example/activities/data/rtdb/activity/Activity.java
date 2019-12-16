@@ -39,17 +39,6 @@ public class Activity implements Parcelable{
         this.time = time;
     }
 
-    public void completeDataInit (Activity.Address addr, String currentTime, String timeFormat){
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
-        this.addr=addr;
-        try {
-            this.date =format.parse(currentTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.time = timeFormat;
-    }
-
     public static class Address {
         private String city_set;//City or settlement
         private String street;
@@ -149,6 +138,7 @@ public class Activity implements Parcelable{
 
     public void setAddr(Address addr) {
         this.addr = addr;
+
     }
 
     //difficulty

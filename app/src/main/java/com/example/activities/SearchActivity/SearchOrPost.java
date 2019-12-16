@@ -1,4 +1,4 @@
-package com.example.activities;
+package com.example.activities.SearchActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.activities.MainActivity;
+import com.example.activities.PostActivitiyJava.NamePostActivity;
+import com.example.activities.R;
+import com.example.activities.SettingsActivity;
 import com.example.activities.Util.CsvReader;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,7 +37,7 @@ public class SearchOrPost extends AppCompatActivity {
         changeActivityToPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchOrPost.this, firstStepPostActivity.class);
+                Intent intent = new Intent(SearchOrPost.this, NamePostActivity.class);
                 startActivity(intent);
             }
         });

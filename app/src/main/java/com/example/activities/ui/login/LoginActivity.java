@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.activities.R;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
-import com.example.activities.SearchOrPost;
+import com.example.activities.SearchActivity.SearchOrPost;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

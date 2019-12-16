@@ -7,7 +7,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
-import com.example.activities.SearchActivity;
+import com.example.activities.SearchActivity.SearchActivity;
 import com.example.activities.ui.login.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

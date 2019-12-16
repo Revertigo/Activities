@@ -1,4 +1,4 @@
-package com.example.activities;
+package com.example.activities.PostActivitiyJava;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +12,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.activities.MainActivity;
+import com.example.activities.R;
+import com.example.activities.SearchActivity.SearchActivity;
+import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
+import com.example.activities.data.rtdb.activity.ShowActivities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class PostActivity extends AppCompatActivity {
     private static final String activities = "activities/";
@@ -49,23 +59,6 @@ public class PostActivity extends AppCompatActivity {
         //Sort the data
         CsvReader.reorganize_data();
 
-        final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
-        Spinner cities_settlmentsSpinner = findViewById(R.id.citySettlementSpinner);
-        ArrayAdapter<String> adapterForcities_settlmentsSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, cities_settlments);
-        adapterForcities_settlmentsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cities_settlmentsSpinner.setAdapter(adapterForcities_settlmentsSpinner);
-
-        //string array for streetSpinner
-        String[] streets = new String[]{
-                "Street", "Dizingoff", "Hertzel", "Another"
-        };
-        //using streets string array
-        Spinner streetsSpinner = findViewById(R.id.streetsSpinner);
-        ArrayAdapter<String> adapterForstreetsSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, streets);
-        adapterForstreetsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        streetsSpinner.setAdapter(adapterForstreetsSpinner);
 
 
         //log out button
@@ -85,36 +78,30 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final TextView apartNum = findViewById(R.id.apartNumberPlainText);
-
-                //City
-                final Spinner activityCity = findViewById(R.id.citySettlementSpinner);
-
-                //Street
-                final Spinner activityStreet = findViewById(R.id.streetsSpinner);
-
-                //Difficulty
-
+                //set Date
                 EditText theDate=findViewById(R.id.enterDatePlainText);
-                String format = "Todo Format";
+                DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
+                try {
+                    newPost.setDate(format.parse( theDate.getText().toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-                newPost.completeDataInit(new Activity.Address(activityCity.getSelectedItem().toString(),
-                                activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())),
-                        theDate.getText().toString(), format);
-
-
+                //set Format
+                String format2 = "dd/mm/yyy";
+                newPost.setTime(format2);
                 //Write new id counter to the database
-                while(!firstStepPostActivity.is_id_read);
+                while(!NamePostActivity.is_id_read);
                 newPost.setId(Activity.getId_counter());//Update the real id of the user
-                String [] tokens = firstStepPostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
-                firstStepPostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
-                firstStepPostActivity.is_id_read = false;
+                String [] tokens = NamePostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
+                NamePostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
+                NamePostActivity.is_id_read = false;
 
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
 
-                startActivity(new Intent(PostActivity.this, SearchOrPost.class));
+                startActivity(new Intent(PostActivity.this, SearchActivity.class));
             }
         });
 

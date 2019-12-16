@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostActivitiyJava.AdressPostActivity">
+
+    <EditText
+        android:id="@+id/apartNumberPlainText"
+        android:layout_width="193dp"
+        android:layout_height="36dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/apartNumberTextView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/apartNumberTextView"
+        app:layout_constraintTop_toBottomOf="@+id/apartNumberTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/apartNumberTextView"
+        android:layout_width="193dp"
+        android:layout_height="37dp"
+        android:text="@string/apartment_number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/streetsSpinner"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/streetsSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/streetsSpinner"
+        app:layout_constraintVertical_bias="0.196" />
+
+    <Spinner
+        android:id="@+id/streetsSpinner"
+        android:layout_width="198dp"
+        android:layout_height="43dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/streetsTextView"
+        app:layout_constraintStart_toStartOf="@+id/streetsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/streetsTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/streetsTextView"
+        android:layout_width="196dp"
+        android:layout_height="40dp"
+        android:text="@string/street"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/citySettlementSpinner"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="@+id/citySettlementSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/citySettlementSpinner"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <Spinner
+        android:id="@+id/citySettlementSpinner"
+        android:layout_width="196dp"
+        android:layout_height="47dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/citySettlementsTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/citySettlementsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/citySettlementsTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/citySettlementsTextView"
+        android:layout_width="198dp"
+        android:layout_height="38dp"
+        android:text="@string/cyty_settelment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <Button
+        android:id="@+id/nextToPostActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apartNumberPlainText"
+        app:layout_constraintVertical_bias="0.49" />
+</androidx.constraintlayout.widget.ConstraintLayout>
