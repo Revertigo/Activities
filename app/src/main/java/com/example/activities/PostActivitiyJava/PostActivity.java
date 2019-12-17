@@ -4,6 +4,7 @@ package com.example.activities.PostActivitiyJava;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,18 +15,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
-import com.example.activities.ui.login.Registration.RegisterToApp_DateOfBirth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -41,9 +40,11 @@ public class PostActivity extends AppCompatActivity {
     private Button buttonLogout;
     private Button clickToPost;
     private Button dateButton;
+    private Button timeButton;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private String dateStr;
     private TextView showTheDate;
+    private TextView showtheTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,38 @@ public class PostActivity extends AppCompatActivity {
                 showTheDate.setText(dateStr);
             }
         };
+
+        //time add button
+        timeButton=findViewById(R.id.addTimeButton);
+        showtheTime=findViewById(R.id.showTheTime);
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(PostActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String a = "" + selectedMinute;
+                        String b = "" + selectedHour;
+                        if(selectedMinute<10){
+                            a = "0"+selectedMinute;
+                        }
+                        if(selectedHour<10){
+                            b = "0"+selectedHour;
+                        }
+                        showtheTime.setText( b + ":" + a);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+
+
 
         //close app button
         closeAppFromPost = findViewById(R.id.closeAppPostActivity);
@@ -126,7 +159,7 @@ public class PostActivity extends AppCompatActivity {
 
                 //set Format
                 String format2 = "dd/mm/yyy";
-                TextView time=findViewById(R.id.timeEditText);
+                TextView time=findViewById(R.id.showTheTime);
                 newPost.setTime(time.getText().toString());
                 //Write new id counter to the database
                 while(!NamePostActivity.is_id_read);
