@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.008"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setDatePostActivity"
+        app:layout_constraintTop_toBottomOf="@+id/pressToSetDate"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.276" />
 
     <Button
-        android:id="@+id/setDatePostActivity"
+        android:id="@+id/pressToSetDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="press to add date"

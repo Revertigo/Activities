@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,10 +39,10 @@ public class PostActivity extends AppCompatActivity {
     private Button clickToPost;
     private Button dateButton;
     private Button timeButton;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private String dateStr;
     private TextView showTheDate;
     private TextView showtheTime;
+    final Calendar myCalendar = Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,34 +50,34 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         final Activity newPost=getIntent().getParcelableExtra("newPost");
+
+        //add date button
             showTheDate=findViewById(R.id.enterDatePlainText) ;
-        dateButton=findViewById(R.id.setDatePostActivity);
+        dateButton=findViewById(R.id.pressToSetDate);final Calendar myCalendar = Calendar.getInstance();
         dateButton.setOnClickListener(new View.OnClickListener() {
+            DatePickerDialog datePickerDialog;
+            int year;
+            int month;
+            int dayOfMonth;
+            Calendar calendar;
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        PostActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(PostActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                showTheDate.setText(day + "/" + (month + 1) + "/" + year);
+                            }
+                        }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.show();
             }
         });
 
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                dateStr = month + "/" + day + "/" + year;
-                showTheDate.setText(dateStr);
-            }
-        };
 
         //time add button
         timeButton=findViewById(R.id.addTimeButton);
@@ -158,7 +156,6 @@ public class PostActivity extends AppCompatActivity {
                 }
 
                 //set Format
-                String format2 = "dd/mm/yyy";
                 TextView time=findViewById(R.id.showTheTime);
                 newPost.setTime(time.getText().toString());
                 //Write new id counter to the database
