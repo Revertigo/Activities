@@ -209,7 +209,7 @@ public class Activity implements Parcelable{
         dest.writeStringArray(
                 new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set, this.addr.street,
                         Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description,
-                        new SimpleDateFormat("dd.MM.yyyy").format(this.date), this.time, String.valueOf(this.group)});
+                        new SimpleDateFormat("dd/MM/yyyy").format(this.date), this.time, String.valueOf(this.group)});
     }
     public static final Parcelable.Creator<Activity> CREATOR = new Parcelable.Creator<Activity>() {
 
@@ -236,7 +236,7 @@ public class Activity implements Parcelable{
             "Group / Single: "+isGroup()+"\n"+
             "Gender suitable: "+getGender()+"\n"+
             "Activity Description: "+getDescription()+"\n"+
-            "Date: "+new SimpleDateFormat("dd.MM.yyyy").format(this.date)+"\n"+
+            "Date: "+new SimpleDateFormat("dd/MM/yyyy").format(this.date)+"\n"+
             "Time:"+getTime());
     }
 }
