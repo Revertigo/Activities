@@ -15,7 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import java.util.Date;
 
 public class NamePostActivity extends AppCompatActivity {
 
@@ -69,7 +68,7 @@ public class NamePostActivity extends AppCompatActivity {
                 String activityNameChoosen=name.getText().toString();
 
                   Activity  newPost = new Activity(activityNameChoosen,"", new Activity.Address(), "",
-                            true,"","", new Date(), "");
+                            true,"","", new Activity.Date(),"");
 
                 Intent intent=new Intent(NamePostActivity.this, TypePostActivity.class);
                 intent.putExtra("newPost",newPost);

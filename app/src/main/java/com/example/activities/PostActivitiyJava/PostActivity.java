@@ -29,6 +29,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class PostActivity extends AppCompatActivity {
@@ -146,14 +147,13 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //set Date
+
                 EditText theDate=findViewById(R.id.enterDatePlainText);
-                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    newPost.setDate(format.parse( theDate.getText().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+String st=theDate.getText().toString();
+                String[] st2=st.split("/");
+                Activity.Date date=new Activity.Date(st2[0],st2[1],st2[2]);
+                    newPost.setDate(date);
+
 
                 //set Format
                 TextView time=findViewById(R.id.showTheTime);
