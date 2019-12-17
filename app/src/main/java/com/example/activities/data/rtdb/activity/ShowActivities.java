@@ -14,7 +14,6 @@ import com.example.activities.R;
 import java.util.ArrayList;
 
 public class ShowActivities extends AppCompatActivity {
-    private Activity currentActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

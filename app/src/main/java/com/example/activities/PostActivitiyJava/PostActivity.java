@@ -41,7 +41,6 @@ public class PostActivity extends AppCompatActivity {
     private Button timeButton;
     private TextView showTheDate;
     private TextView showtheTime;
-    final Calendar myCalendar = Calendar.getInstance();
 
 
     @Override
@@ -53,7 +52,7 @@ public class PostActivity extends AppCompatActivity {
 
         //add date button
             showTheDate=findViewById(R.id.enterDatePlainText) ;
-        dateButton=findViewById(R.id.pressToSetDate);final Calendar myCalendar = Calendar.getInstance();
+        dateButton=findViewById(R.id.pressToSetDate);
         dateButton.setOnClickListener(new View.OnClickListener() {
             DatePickerDialog datePickerDialog;
             int year;
@@ -148,7 +147,7 @@ public class PostActivity extends AppCompatActivity {
 
                 //set Date
                 EditText theDate=findViewById(R.id.enterDatePlainText);
-                DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
                 try {
                     newPost.setDate(format.parse( theDate.getText().toString()));
                 } catch (ParseException e) {
