@@ -36,6 +36,7 @@ public class NamePostActivity extends AppCompatActivity {
                 String [] tokens = id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
 
                 database_ref_id_counter = FirebaseDatabase.getInstance().getReference(tokens[0]);//Get Database instance
+
                 database_ref_id_counter.orderByChild(tokens[1]).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
@@ -65,15 +66,20 @@ public class NamePostActivity extends AppCompatActivity {
                 });
 
                 final EditText name =findViewById(R.id.activityNameEditText);
+
                 String activityNameChoosen=name.getText().toString();
+                if(activityNameChoosen.isEmpty()) {
+                    name.setError("Please enter your name");
+                    name.requestFocus();
+                }else {
 
-                  Activity  newPost = new Activity(activityNameChoosen,"", new Activity.Address(), "",
-                            true,"","", new Activity.Date(),"");
+                    Activity newPost = new Activity(activityNameChoosen, "", new Activity.Address(), "",
+                            true, "", "", new Activity.Date(), "");
 
-                Intent intent=new Intent(NamePostActivity.this, TypePostActivity.class);
-                intent.putExtra("newPost",newPost);
-                startActivity(intent);
-
+                    Intent intent = new Intent(NamePostActivity.this, TypePostActivity.class);
+                    intent.putExtra("newPost", newPost);
+                    startActivity(intent);
+                }
             }
         });
 
