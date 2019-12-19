@@ -53,42 +53,28 @@ public class SearchActivity extends AppCompatActivity {
               ref.addValueEventListener(new ValueEventListener() {
                   @Override
                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                      ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
-                        Intent intent=new Intent(SearchActivity.this,ShowActivities.class);
-                        SearchView searchView=findViewById(R.id.advancedSearchSearchView);
-                        String query=searchView.getQuery().toString();
-                      for(DataSnapshot ds: dataSnapshot.getChildren()){
-                                //name
-                              if(ds.getValue(Activity.class).getName().contains(query)){
+                      ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                      Intent intent = new Intent(SearchActivity.this, ShowActivities.class);
+                      SearchView searchView = findViewById(R.id.advancedSearchSearchView);
+                      String query = searchView.getQuery().toString();
+                      if (!query.isEmpty()) {
+                          for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                              //name
+                              if (ds.getValue(Activity.class).getName().contains(query)) {
                                   activitiesArray.add(ds.getValue(Activity.class));
-                          }
-                                //type
-                              else if(ds.getValue(Activity.class).getType().contains(query)){activitiesArray.add(ds.getValue(Activity.class)); }
-                              //address
-                              else if(ds.getValue(Activity.class).getAddr().getCity_set().contains(query)||
-                                      ds.getValue(Activity.class).getAddr().getStreet().contains(query)||
-                                      Integer.toString(ds.getValue(Activity.class).getAddr().getApartment_number()).contains(query))
-                          {
-                              activitiesArray.add(ds.getValue(Activity.class));
-                          }
-                              //difficulty
-                              else if(ds.getValue(Activity.class).getDifficulty().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
-                              //group
-                              else if(String.valueOf(ds.getValue(Activity.class).isGroup()).contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
-                              //gender
-                              else if(ds.getValue(Activity.class).getGender().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                              }
                               //description
-                              else if(ds.getValue(Activity.class).getDescription().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
-                              //date
-                              else if(ds.getValue(Activity.class).getDate().getDay().contains(query)
-                                      ||ds.getValue(Activity.class).getDate().getMonth().contains(query)
-                                      ||ds.getValue(Activity.class).getDate().getYear().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
-                             //time
-                         else if(  ds.getValue(Activity.class).getTime().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
-
+                              else if (ds.getValue(Activity.class).getDescription().contains(query)) {
+                                  activitiesArray.add(ds.getValue(Activity.class));
+                              }
+                          }
+                          if (activitiesArray.size() == 0) {
+                              Toast.makeText(getApplicationContext(), "Sorry, there wasn't match to your search. ", Toast.LENGTH_SHORT).show();
+                          } else {
+                              intent.putExtra("activitiesArray", activitiesArray);
+                              startActivity(intent);
+                          }
                       }
-                      intent.putExtra("activitiesArray",activitiesArray);
-                      startActivity(intent);
                   }
 
                   @Override
