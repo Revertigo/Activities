@@ -21,9 +21,7 @@ public class ShowActivities extends AppCompatActivity {
 
         ArrayList<Activity> theActivities;
         theActivities=getIntent().getParcelableArrayListExtra("activitiesArray");
-        for(int i=0;i<theActivities.size();i++){
-            Log.wtf("the "+i+"th activity's Date is:",theActivities.get(i).getDate().toString());
-        }
+
         ListView activityListView=findViewById(R.id.listViewShowActivities);
         ArrayAdapter<Activity> adapter =new ArrayAdapter<Activity>(ShowActivities.this,android.R.layout.simple_list_item_1,theActivities);
         activityListView.setAdapter(adapter);

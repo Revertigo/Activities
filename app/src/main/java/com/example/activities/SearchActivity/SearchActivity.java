@@ -1,12 +1,15 @@
 package com.example.activities.SearchActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.activities.MainActivity;
 import com.example.activities.R;
@@ -28,16 +31,20 @@ public class SearchActivity extends AppCompatActivity {
     private Button closeAppFromSearch;
     private Button searchByString;
     private SearchView search_by_string;
+    private Button searchById;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        searchByString=findViewById(R.id.btnSearchByString);
+
+        searchByString=findViewById(R.id.showAllTheActivitiesButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final String path="activities";
         final DatabaseReference ref = database.getReference(path);
+
+
 
 
         searchByString.setOnClickListener(new View.OnClickListener() {
@@ -55,21 +62,6 @@ public class SearchActivity extends AppCompatActivity {
                            activitiesArray.add(ds.getValue(Activity.class));
                         }
                         intent.putExtra("activitiesArray",activitiesArray);
-                        /*
-                                                Activity  currentActivity =dataSnapshot.child("Activity_"+Activity.getId_counter()).getValue(Activity.class);
-
-                        //create array of strings and send it to next intent
-                        String[] str={Long.toString(currentActivity.getId()), currentActivity.getName(),currentActivity.getType(),
-                                currentActivity.getAddr().getCity_set(),
-                                currentActivity.getAddr().getStreet(),
-                                Integer.toString(currentActivity.getAddr().getApartment_number()),currentActivity.getDifficulty(),
-                                currentActivity.getGender(), currentActivity.getDescription(),
-                                new SimpleDateFormat("MM/dd/yyyy").format(currentActivity.getDate()), currentActivity.getTime(),
-                                String.valueOf(currentActivity.isGroup())};
-
-                        //send the string array to the next activity
-                        intent.putExtra("str", str);
-                        */
 
                         startActivity(intent);
                     }
@@ -82,8 +74,47 @@ public class SearchActivity extends AppCompatActivity {
 
         });
 
+        //search by activity's id
+        searchById=findViewById(R.id.searchByIdButton);
+        searchById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                             ref.addValueEventListener(new ValueEventListener() {
+                                 @Override
+                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                     Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
+                                     String id;
+                                     SearchView enterId=findViewById(R.id.searchByIdEditText);
+                                     id=enterId.getQuery().toString();
+                                     Log.wtf("the id is: ",id);
+                                     ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
+                                     for(DataSnapshot ds: dataSnapshot.getChildren()){
+                                         if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
+                                             activitiesArray.add(ds.getValue(Activity.class));
+                                             Log.wtf("the id is: ",Long.toString(ds.getValue(Activity.class).getId()));
+                                             break;
+                                         }
 
-        search_by_string = findViewById(R.id.searchByStringPlainText);
+                                     }
+                                     if(activitiesArray.size()==1){
+                                     //send the string array to the next activity
+                                     intent.putExtra("activitiesArray", activitiesArray);
+                                     startActivity(intent);}
+                                     else{
+                                         Toast.makeText(getApplicationContext(),"the id is not exist, try again",Toast.LENGTH_SHORT).show();
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                 }
+                             });
+
+            }
+        });
+
+        search_by_string = findViewById(R.id.searchByIdEditText);
         //Search via soft keyboard key
         search_by_string.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
