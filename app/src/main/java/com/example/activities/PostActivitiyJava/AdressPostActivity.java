@@ -54,20 +54,23 @@ private Activity newPost;
             @Override
             public void onClick(View v) {
                 final TextView apartNum = findViewById(R.id.apartNumberPlainText);
-
+                String apartmentNumber=apartNum.getText().toString();
                 //City
                 final Spinner activityCity = findViewById(R.id.citySettlementSpinner);
 
                 //Street
 
                 final Spinner activityStreet = findViewById(R.id.streetsSpinner);
-               newPost.setAddr(new Activity.Address(activityCity.getSelectedItem().toString(),
-                       activityStreet.getSelectedItem().toString(),Integer.parseInt(apartNum.getText().toString())));
+                if(apartmentNumber.isEmpty()){
+                    apartNum.setError("Please enter apartment number");
+                }else {
+                    newPost.setAddr(new Activity.Address(activityCity.getSelectedItem().toString(),
+                            activityStreet.getSelectedItem().toString(), Integer.parseInt(apartmentNumber)));
 
-                Intent intent=new Intent(AdressPostActivity.this, PostActivity.class);
-                intent.putExtra("newPost",newPost);
-                startActivity(intent);
-
+                    Intent intent = new Intent(AdressPostActivity.this, PostActivity.class);
+                    intent.putExtra("newPost", newPost);
+                    startActivity(intent);
+                }
             }
         });
     }
