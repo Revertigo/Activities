@@ -22,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.commons.collections.map.CaseInsensitiveMap;
+
 import java.util.ArrayList;
 
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
@@ -58,13 +60,15 @@ public class SearchActivity extends AppCompatActivity {
                       SearchView searchView = findViewById(R.id.advancedSearchSearchView);
                       String query = searchView.getQuery().toString();
                       if (!query.isEmpty()) {
+                          query=query.toLowerCase();
+
                           for (DataSnapshot ds : dataSnapshot.getChildren()) {
                               //name
-                              if (ds.getValue(Activity.class).getName().contains(query)) {
+                              if (ds.getValue(Activity.class).getName().toLowerCase().contains(query)) {
                                   activitiesArray.add(ds.getValue(Activity.class));
                               }
                               //description
-                              else if (ds.getValue(Activity.class).getDescription().contains(query)) {
+                              else if (ds.getValue(Activity.class).getDescription().toLowerCase().contains(query)) {
                                   activitiesArray.add(ds.getValue(Activity.class));
                               }
                           }
