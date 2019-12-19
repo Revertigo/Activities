@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
@@ -25,12 +26,17 @@ private Activity newPost;
             @Override
             public void onClick(View v) {
                 final RadioGroup rgActivityFor=findViewById(R.id.rgGroupSingle);
-                String activityFor = ((RadioButton)findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();
-                boolean singleOrGroup = activityFor.equals("Group") ? true : false;
-                newPost.setGroup(singleOrGroup);
-                Intent intent=new Intent(GroupPostActivity.this,DescribePostActivity.class);
-                intent.putExtra("newPost",newPost);
-                startActivity(intent);
+                if(rgActivityFor.getCheckedRadioButtonId()==-1) {
+                    Toast.makeText(getApplicationContext(), "Select activity capacity suitable", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String activityFor = ((RadioButton) findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();
+                    boolean singleOrGroup = activityFor.equals("Group") ? true : false;
+                    newPost.setGroup(singleOrGroup);
+                    Intent intent = new Intent(GroupPostActivity.this, DescribePostActivity.class);
+                    intent.putExtra("newPost", newPost);
+                    startActivity(intent);
+                }
             }
         });
 
