@@ -75,6 +75,8 @@ public class SearchActivity extends AppCompatActivity {
                               startActivity(intent);
                           }
                       }
+                      else { Toast.makeText(getApplicationContext(), "What do you want to search?", Toast.LENGTH_SHORT).show();
+                      }
                   }
 
                   @Override
