@@ -69,7 +69,7 @@ public class NamePostActivity extends AppCompatActivity {
 
                 String activityNameChoosen=name.getText().toString();
                 if(activityNameChoosen.isEmpty()) {
-                    name.setError("Please enter your name");
+                    name.setError("Please enter your Activity's name");
                     name.requestFocus();
                 }else {
 

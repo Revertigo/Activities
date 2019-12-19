@@ -51,7 +51,7 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:hint="type here"
+        android:hint="Activity Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/activityNameTextView"
         app:layout_constraintHorizontal_bias="0.521"

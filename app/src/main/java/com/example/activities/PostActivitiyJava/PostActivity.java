@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
+import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -149,7 +150,7 @@ public class PostActivity extends AppCompatActivity {
 
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
-String st=theDate.getText().toString();
+                String st=theDate.getText().toString();
                 String[] st2=st.split("/");
                 Activity.Date date=new Activity.Date(st2[0],st2[1],st2[2]);
                     newPost.setDate(date);
@@ -168,7 +169,7 @@ String st=theDate.getText().toString();
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
-                startActivity(new Intent(PostActivity.this, SearchActivity.class));
+                startActivity(new Intent(PostActivity.this, SearchOrPost.class));
             }
         });
 
