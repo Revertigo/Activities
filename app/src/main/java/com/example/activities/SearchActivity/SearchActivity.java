@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,9 +30,10 @@ public class SearchActivity extends AppCompatActivity {
 
     private Button buttonLogout;
     private Button closeAppFromSearch;
-    private Button searchByString;
-    private SearchView search_by_string;
+    private Button showAllActivities;
+    private SearchView searchByStringSearchView;
     private Button searchById;
+    private Button advancedSearchButton;
 
 
     @Override
@@ -39,18 +41,69 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        searchByString=findViewById(R.id.showAllTheActivitiesButton);
+        showAllActivities=findViewById(R.id.showAllTheActivitiesButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final String path="activities";
         final DatabaseReference ref = database.getReference(path);
 
-
-
-
-        searchByString.setOnClickListener(new View.OnClickListener() {
+        advancedSearchButton=findViewById(R.id.advancedSearchButton);
+        advancedSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              ref.addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                      ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
+                        Intent intent=new Intent(SearchActivity.this,ShowActivities.class);
+                        SearchView searchView=findViewById(R.id.advancedSearchSearchView);
+                        String query=searchView.getQuery().toString();
+                      for(DataSnapshot ds: dataSnapshot.getChildren()){
+                                //name
+                              if(ds.getValue(Activity.class).getName().contains(query)){
+                                  activitiesArray.add(ds.getValue(Activity.class));
+                          }
+                                //type
+                              else if(ds.getValue(Activity.class).getType().contains(query)){activitiesArray.add(ds.getValue(Activity.class)); }
+                              //address
+                              else if(ds.getValue(Activity.class).getAddr().getCity_set().contains(query)||
+                                      ds.getValue(Activity.class).getAddr().getStreet().contains(query)||
+                                      Integer.toString(ds.getValue(Activity.class).getAddr().getApartment_number()).contains(query))
+                          {
+                              activitiesArray.add(ds.getValue(Activity.class));
+                          }
+                              //difficulty
+                              else if(ds.getValue(Activity.class).getDifficulty().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                              //group
+                              else if(String.valueOf(ds.getValue(Activity.class).isGroup()).contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                              //gender
+                              else if(ds.getValue(Activity.class).getGender().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                              //description
+                              else if(ds.getValue(Activity.class).getDescription().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                              //date
+                              else if(ds.getValue(Activity.class).getDate().getDay().contains(query)
+                                      ||ds.getValue(Activity.class).getDate().getMonth().contains(query)
+                                      ||ds.getValue(Activity.class).getDate().getYear().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
+                             //time
+                         else if(  ds.getValue(Activity.class).getTime().contains(query)){activitiesArray.add(ds.getValue(Activity.class));}
 
+                      }
+                      intent.putExtra("activitiesArray",activitiesArray);
+                      startActivity(intent);
+                  }
+
+                  @Override
+                  public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                  }
+              });
+            }
+        });
+
+
+
+        showAllActivities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,44 +132,43 @@ public class SearchActivity extends AppCompatActivity {
         searchById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                             ref.addValueEventListener(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                     Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
-                                     String id;
-                                     SearchView enterId=findViewById(R.id.searchByIdEditText);
-                                     id=enterId.getQuery().toString();
-                                     Log.wtf("the id is: ",id);
-                                     ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
-                                     for(DataSnapshot ds: dataSnapshot.getChildren()){
-                                         if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
-                                             activitiesArray.add(ds.getValue(Activity.class));
-                                             Log.wtf("the id is: ",Long.toString(ds.getValue(Activity.class).getId()));
-                                             break;
-                                         }
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
+                        String id;
+                        SearchView enterId=findViewById(R.id.searchByIdSearchView);
+                        id=enterId.getQuery().toString();
+                        Log.wtf("the id is: ",id);
+                        ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
+                                activitiesArray.add(ds.getValue(Activity.class));
+                                Log.wtf("the id is: ",Long.toString(ds.getValue(Activity.class).getId()));
+                                break;
+                            }
 
-                                     }
-                                     if(activitiesArray.size()==1){
-                                     //send the string array to the next activity
-                                     intent.putExtra("activitiesArray", activitiesArray);
-                                     startActivity(intent);}
-                                     else{
-                                         Toast.makeText(getApplicationContext(),"the id is not exist, try again",Toast.LENGTH_SHORT).show();
-                                     }
-                                 }
+                        }
+                        if(activitiesArray.size()==1){
+                            //send the string array to the next activity
+                            intent.putExtra("activitiesArray", activitiesArray);
+                            startActivity(intent);}
+                        else{
+                            Toast.makeText(getApplicationContext(),"the id is not exist, try again",Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                 }
-                             });
-
+                    }
+                });
             }
         });
 
-        search_by_string = findViewById(R.id.searchByIdEditText);
+        searchByStringSearchView = findViewById(R.id.searchByIdSearchView);
         //Search via soft keyboard key
-        search_by_string.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchByStringSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Log.wtf("From soft keyboard", "dsadsasd");
@@ -135,7 +187,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 moveTaskToBack(true);
-
             }
         });
 

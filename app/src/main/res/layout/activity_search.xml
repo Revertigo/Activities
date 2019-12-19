@@ -8,7 +8,7 @@
     tools:context=".SearchActivity.SearchActivity">
 
     <SearchView
-        android:id="@+id/searchByIdEditText"
+        android:id="@+id/searchByIdSearchView"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_alignParentTop="true"
@@ -78,20 +78,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchByIdButton"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.49"
 
-    <EditText
-        android:id="@+id/advancedSearchEditText"
+        />
+
+    <SearchView
+        android:id="@+id/advancedSearchSearchView"
         android:layout_width="245dp"
         android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="what do you want to search?"
+        android:queryHint="What do you want to search?"
+        android:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="@+id/advancedSearchButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/advancedSearchButton"
         app:layout_constraintTop_toTopOf="@+id/advancedSearchButton"
         app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
