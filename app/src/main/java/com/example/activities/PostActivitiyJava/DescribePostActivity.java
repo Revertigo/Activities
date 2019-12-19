@@ -24,10 +24,15 @@ private Button nextToPostActivity;
             public void onClick(View v) {
                 final EditText description=findViewById(R.id.editTextDescribeApp);
                 String desc=description.getText().toString();
+                if(desc.isEmpty()){
+                    description.setError("Enter any describe please, to help another mates to understand your activity");
+                    description.requestFocus();
+                }
+                else{
                 newPost.setDescription(desc);
                 Intent intent=new Intent(DescribePostActivity.this, AdressPostActivity.class);
                 intent.putExtra("newPost",newPost);
-                startActivity(intent);
+                startActivity(intent);}
             }
         });
 
