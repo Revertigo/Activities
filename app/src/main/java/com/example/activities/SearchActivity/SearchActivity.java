@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.activities.AdvancedSearch;
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
@@ -33,6 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private SearchView searchByStringSearchView;
     private Button searchById;
     private Button searchByString;
+    private Button advancedSearch;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,14 @@ public class SearchActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final String path="activities";
         final DatabaseReference ref = database.getReference(path);
-
+        advancedSearch=findViewById(R.id.advancedSearchButton);
+        advancedSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchActivity.this, AdvancedSearch.class);
+                startActivity(intent);
+            }
+        });
         searchByString =findViewById(R.id.StringSearchButton);
         //Search by activity name/description
         searchByString.setOnClickListener(new View.OnClickListener() {
