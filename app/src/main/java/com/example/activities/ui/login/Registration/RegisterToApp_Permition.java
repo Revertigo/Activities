@@ -45,7 +45,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 permition = "search";
-                newUser.setPermition(permition);
+                newUser.setPermission(permition);
                 //Upload to database:
                 mAuth = FirebaseAuth.getInstance();// Initialize Firebase Auth
                 mAuth.createUserWithEmailAndPassword(newUser.getUsername(), newUser.getPassword())
@@ -71,7 +71,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 permition = "post";
-                newUser.setPermition(permition);
+                newUser.setPermission(permition);
                 Intent i = new Intent(RegisterToApp_Permition.this, RegisterToApp_PostIntro.class);
                 i.putExtra("newUser",newUser);
                 startActivity(i);

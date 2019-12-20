@@ -35,7 +35,7 @@ public class PostUser extends User{
         this.username = data[0];
         this.password = data[1];
         this.name = data[2];
-        this.permition = data[3];
+        this.permission = data[3];
         this.gender = data[4];
         this.dateOfBirth = data[5];
         this.location = data[6];
@@ -57,7 +57,7 @@ public class PostUser extends User{
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.name,
-                        this.permition, this.gender, this.dateOfBirth, this.location,this.occupation,this.education});
+                        this.permission, this.gender, this.dateOfBirth, this.location,this.occupation,this.education});
     }
 
     public static final Parcelable.Creator<PostUser> CREATOR = new Parcelable.Creator<PostUser>() {

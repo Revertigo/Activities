@@ -9,7 +9,7 @@ public class User implements Parcelable {
     protected String username;
     protected String password;
     protected String name;
-    protected String permition;
+    protected String permission;
     protected String gender;
     protected String dateOfBirth;
     protected String location;
@@ -24,7 +24,7 @@ public class User implements Parcelable {
         this.username = other.getUsername();
         this.password = other.getPassword();
         this.name = other.getName();
-        this.permition = other.getPermition();
+        this.permission = other.getPermission();
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
         this.location = other.getLocation();
@@ -88,12 +88,12 @@ public class User implements Parcelable {
     }
 
 
-    public String getPermition() {
-        return this.permition;
+    public String getPermission() {
+        return this.permission;
     }
 
-    public void setPermition(String permition) {
-        this.permition = permition;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 
 
@@ -109,7 +109,7 @@ public class User implements Parcelable {
         this.username = data[0];
         this.password = data[1];
         this.name = data[2];
-        this.permition = data[3];
+        this.permission = data[3];
         this.gender = data[4];
         this.dateOfBirth = data[5];
         this.location = data[6];
@@ -128,7 +128,7 @@ public class User implements Parcelable {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.name,
-                        this.permition, this.gender, this.dateOfBirth, this.location});
+                        this.permission, this.gender, this.dateOfBirth, this.location});
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
