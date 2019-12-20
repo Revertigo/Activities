@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,10 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.apache.commons.collections.map.CaseInsensitiveMap;
 
 import java.util.ArrayList;
 
@@ -33,11 +29,11 @@ public class SearchActivity extends AppCompatActivity {
     private Button buttonLogout;
     private Button closeAppFromSearch;
     private Button showAllActivities;
+    private SearchView searchByIDSearchView;
     private SearchView searchByStringSearchView;
     private Button searchById;
-    private Button advancedSearchButton;
-
-
+    private Button searchByString;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,49 +44,14 @@ public class SearchActivity extends AppCompatActivity {
         final String path="activities";
         final DatabaseReference ref = database.getReference(path);
 
-        advancedSearchButton=findViewById(R.id.advancedSearchButton);
-        advancedSearchButton.setOnClickListener(new View.OnClickListener() {
+        searchByString =findViewById(R.id.advancedSearchButton);
+        //Search by activity name/description
+        searchByString.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              ref.addValueEventListener(new ValueEventListener() {
-                  @Override
-                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                      ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
-                      Intent intent = new Intent(SearchActivity.this, ShowActivities.class);
-                      SearchView searchView = findViewById(R.id.advancedSearchSearchView);
-                      String query = searchView.getQuery().toString();
-                      if (!query.isEmpty()) {
-                          query=query.toLowerCase();
-
-                          for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                              //name
-                              if (ds.getValue(Activity.class).getName().toLowerCase().contains(query)) {
-                                  activitiesArray.add(ds.getValue(Activity.class));
-                              }
-                              //description
-                              else if (ds.getValue(Activity.class).getDescription().toLowerCase().contains(query)) {
-                                  activitiesArray.add(ds.getValue(Activity.class));
-                              }
-                          }
-                          if (activitiesArray.size() == 0) {
-                              Toast.makeText(getApplicationContext(), "Sorry, there wasn't match to your search. ", Toast.LENGTH_SHORT).show();
-                          } else {
-                              intent.putExtra("activitiesArray", activitiesArray);
-                              startActivity(intent);
-                          }
-                      }
-                      else { Toast.makeText(getApplicationContext(), "What do you want to search?", Toast.LENGTH_SHORT).show();
-                      }
-                  }
-
-                  @Override
-                  public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                  }
-              });
+                searchByString(ref);
             }
         });
-
 
 
         showAllActivities.setOnClickListener(new View.OnClickListener() {
@@ -124,46 +85,32 @@ public class SearchActivity extends AppCompatActivity {
         searchById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
-                        String id;
-                        SearchView enterId=findViewById(R.id.searchByIdSearchView);
-                        id=enterId.getQuery().toString();
-                        Log.wtf("the id is: ",id);
-                        ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
-                        for(DataSnapshot ds: dataSnapshot.getChildren()){
-                            if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
-                                activitiesArray.add(ds.getValue(Activity.class));
-                                Log.wtf("the id is: ",Long.toString(ds.getValue(Activity.class).getId()));
-                                break;
-                            }
-
-                        }
-                        if(activitiesArray.size()==1){
-                            //send the string array to the next activity
-                            intent.putExtra("activitiesArray", activitiesArray);
-                            startActivity(intent);}
-                        else{
-                            Toast.makeText(getApplicationContext(),"the id is not exist, try again",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                searchByID(ref);
             }
         });
 
-        searchByStringSearchView = findViewById(R.id.searchByIdSearchView);
+        searchByIDSearchView = findViewById(R.id.searchByIdSearchView);
+        //Search via soft keyboard key
+        searchByIDSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchByID(ref);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //searchByID(ref);
+                return false;
+            }
+        });
+
+        searchByStringSearchView = findViewById(R.id.stringSearchView);
         //Search via soft keyboard key
         searchByStringSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.wtf("From soft keyboard", "dsadsasd");
+                searchByString(ref);
                 return false;
             }
 
@@ -194,4 +141,78 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     }
+
+    private void searchByID(DatabaseReference ref)
+    {
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
+                String id;
+                SearchView enterId=findViewById(R.id.searchByIdSearchView);
+                id=enterId.getQuery().toString();
+                ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
+                        activitiesArray.add(ds.getValue(Activity.class));
+                        break;
+                    }
+
+                }
+                if(activitiesArray.size()== 1){
+                    //send the string array to the next activity
+                    intent.putExtra("activitiesArray", activitiesArray);
+                    startActivity(intent);}
+                else{
+                    Toast.makeText(getApplicationContext(),"The id isn't exist, try again",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void searchByString(DatabaseReference ref)
+    {
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                Intent intent = new Intent(SearchActivity.this, ShowActivities.class);
+                SearchView searchView = findViewById(R.id.stringSearchView);
+                String query = searchView.getQuery().toString();
+                if (!query.isEmpty()) {
+                    query=query.toLowerCase();
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        //name
+                        if (ds.getValue(Activity.class).getName().toLowerCase().contains(query)) {
+                            activitiesArray.add(ds.getValue(Activity.class));
+                        }
+                        //description
+                        else if (ds.getValue(Activity.class).getDescription().toLowerCase().contains(query)) {
+                            activitiesArray.add(ds.getValue(Activity.class));
+                        }
+                    }
+                    if (activitiesArray.size() == 0) {
+                        Toast.makeText(getApplicationContext(), "Sorry, there wasn't match to your search. ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        intent.putExtra("activitiesArray", activitiesArray);
+                        startActivity(intent);
+                    }
+                }
+                else { Toast.makeText(getApplicationContext(), "What do you want to search?", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

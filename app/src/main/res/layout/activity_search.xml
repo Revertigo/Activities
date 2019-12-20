@@ -83,7 +83,7 @@
         />
 
     <SearchView
-        android:id="@+id/advancedSearchSearchView"
+        android:id="@+id/stringSearchView"
         android:layout_width="245dp"
         android:layout_height="48dp"
         android:iconifiedByDefault="false"
