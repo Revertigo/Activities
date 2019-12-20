@@ -29,9 +29,9 @@ public class RegisterToApp_Email extends AppCompatActivity {
             public void onClick(View v) {
                 String email= EmailEditText.getText().toString();
                 //TO DO:
-                //add constrains on the email
+                //add constrains on the username
                 if(email.isEmpty()){
-                    EmailEditText.setError("Please enter email id");
+                    EmailEditText.setError("Please enter username id");
                     EmailEditText.requestFocus();
                 }
                 else{

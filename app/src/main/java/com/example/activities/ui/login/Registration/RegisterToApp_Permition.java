@@ -48,7 +48,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                 newUser.setPermition(permition);
                 //Upload to database:
                 mAuth = FirebaseAuth.getInstance();// Initialize Firebase Auth
-                mAuth.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword())
+                mAuth.createUserWithEmailAndPassword(newUser.getUsername(), newUser.getPassword())
                         .addOnCompleteListener(RegisterToApp_Permition.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {

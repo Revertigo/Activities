@@ -6,9 +6,9 @@ import android.os.Parcel;
 public class User implements Parcelable {
 
     private int NUM_USER_PROPS = 7;
-    protected String email;
-    protected String password;
     protected String username;
+    protected String password;
+    protected String name;
     protected String permition;
     protected String gender;
     protected String dateOfBirth;
@@ -21,9 +21,9 @@ public class User implements Parcelable {
     }
 
     public User(User other){
-        this.email = other.getEmail();
-        this.password = other.getPassword();
         this.username = other.getUsername();
+        this.password = other.getPassword();
+        this.name = other.getName();
         this.permition = other.getPermition();
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
@@ -31,15 +31,15 @@ public class User implements Parcelable {
     }
 
     public User(String email) {
-        this.email = email;
+        this.username = email;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setEmail(String mail) {
-        this.email = mail;
+    public void setUsername(String mail) {
+        this.username = mail;
     }
 
 
@@ -61,12 +61,12 @@ public class User implements Parcelable {
     }
 
 
-    public String getUsername() {
-        return this.username;
+    public String getName() {
+        return this.name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
 
@@ -106,9 +106,9 @@ public class User implements Parcelable {
         String[] data = new String[NUM_USER_PROPS];
 
         in.readStringArray(data);
-        this.email = data[0];
+        this.username = data[0];
         this.password = data[1];
-        this.username = data[2];
+        this.name = data[2];
         this.permition = data[3];
         this.gender = data[4];
         this.dateOfBirth = data[5];
@@ -127,7 +127,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
         dest.writeStringArray(
-                new String[]{this.email, this.password, this.username,
+                new String[]{this.username, this.password, this.name,
                         this.permition, this.gender, this.dateOfBirth, this.location});
     }
 

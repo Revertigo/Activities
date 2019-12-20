@@ -63,7 +63,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
                     postNewUser.setEducation(education);
                     //Create new postUser:
                     mAuth = FirebaseAuth.getInstance();
-                    mAuth.createUserWithEmailAndPassword(postNewUser.getEmail(), postNewUser.getPassword())
+                    mAuth.createUserWithEmailAndPassword(postNewUser.getUsername(), postNewUser.getPassword())
                             .addOnCompleteListener(RegisterToApp_Education.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -74,7 +74,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         postNewUser.setEducation(educationEditText.getText().toString());
                                         postNewUser.setOccupation(occupationEditText.getText().toString());
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
-                                        users_ref.child(postNewUser.getUsername()).setValue(postNewUser);
+                                        users_ref.child(postNewUser.getName()).setValue(postNewUser);
                                         Intent i=new Intent(RegisterToApp_Education.this, MainActivity.class);
                                         startActivity(i);
                                     }

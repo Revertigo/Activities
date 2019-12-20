@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mAuth = FirebaseAuth.getInstance();
-        usernameEditText = findViewById(R.id.username);
+        usernameEditText = findViewById(R.id.name);
         passwordEditText = findViewById(R.id.password);
         buttonSignIn = findViewById(R.id.button6);
         tvSignUp = findViewById(R.id.button);
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = usernameEditText.getText().toString();
                 String pass = passwordEditText.getText().toString();
                 if (email.isEmpty()) {
-                    usernameEditText.setError("Please enter email id");
+                    usernameEditText.setError("Please enter username id");
                     usernameEditText.requestFocus();
                 } else if (pass.isEmpty()) {
                     passwordEditText.setError("Please enter password");
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Invalid name or password", Toast.LENGTH_SHORT).show();
 //                            // Username or password false, display and an error
                             } else {
                                 Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);

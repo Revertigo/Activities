@@ -32,9 +32,9 @@ public class PostUser extends User{
         String[] data= new String[NUM_USER_PROPS];
 
         in.readStringArray(data);
-        this.email = data[0];
+        this.username = data[0];
         this.password = data[1];
-        this.username = data[2];
+        this.name = data[2];
         this.permition = data[3];
         this.gender = data[4];
         this.dateOfBirth = data[5];
@@ -56,7 +56,7 @@ public class PostUser extends User{
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
         dest.writeStringArray(
-                new String[]{this.email, this.password, this.username,
+                new String[]{this.username, this.password, this.name,
                         this.permition, this.gender, this.dateOfBirth, this.location,this.occupation,this.education});
     }
 
