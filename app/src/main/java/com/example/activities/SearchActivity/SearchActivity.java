@@ -44,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
         final String path="activities";
         final DatabaseReference ref = database.getReference(path);
 
-        searchByString =findViewById(R.id.advancedSearchButton);
+        searchByString =findViewById(R.id.StringSearchButton);
         //Search by activity name/description
         searchByString.setOnClickListener(new View.OnClickListener() {
             @Override

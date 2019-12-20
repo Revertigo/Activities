@@ -69,10 +69,10 @@
         app:layout_constraintVertical_bias="0.631" />
 
     <Button
-        android:id="@+id/advancedSearchButton"
+        android:id="@+id/StringSearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/advanced_search"
+        android:text="@string/string_search"
         app:layout_constraintBottom_toTopOf="@+id/showAllTheActivitiesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,11 +88,11 @@
         android:layout_height="48dp"
         android:iconifiedByDefault="false"
         android:queryHint="Search here.."
-        app:layout_constraintBottom_toBottomOf="@+id/advancedSearchButton"
+        app:layout_constraintBottom_toBottomOf="@+id/StringSearchButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/advancedSearchButton"
-        app:layout_constraintTop_toTopOf="@+id/advancedSearchButton"
+        app:layout_constraintStart_toEndOf="@+id/StringSearchButton"
+        app:layout_constraintTop_toTopOf="@+id/StringSearchButton"
         app:layout_constraintVertical_bias="0.0" />
 
 
