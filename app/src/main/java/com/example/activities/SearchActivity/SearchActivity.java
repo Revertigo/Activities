@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.activities.AdvancedSearch;
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;

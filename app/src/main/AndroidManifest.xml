@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdvancedSearch"></activity>
+        <activity android:name=".SearchActivity.AdvancedSearch"></activity>
         <activity android:name=".PostActivitiyJava.AdressPostActivity" />
         <activity android:name=".PostActivitiyJava.DescribePostActivity" />
         <activity android:name=".PostActivitiyJava.GenderPostActivity" />

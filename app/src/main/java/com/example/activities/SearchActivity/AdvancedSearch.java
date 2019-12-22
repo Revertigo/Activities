@@ -1,4 +1,4 @@
-package com.example.activities;
+package com.example.activities.SearchActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.activities.SearchActivity.SearchActivity;
+import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.ShowActivities;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -96,46 +93,59 @@ private Button clickToSearch;
                     String[] array={name1,type1,difficulty1,gender1,group1,describe1,address1,date1,time1};
 
                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                           String[] activity=new String[12];
+                            Activity theCurrentActivity=ds.getValue(Activity.class);
+                           String[] activity=new String[9];
                            //activity name
                            if(!name1.isEmpty()){
-                           activity[0]=ds.getValue(Activity.class).getName().toLowerCase();}
+                           activity[0]=theCurrentActivity.getName().toLowerCase();}
                            //activity type
                                    if(!type1.isEmpty()){
-                                   activity[1]=ds.getValue(Activity.class).getType().toLowerCase();}
+                                   activity[1]=theCurrentActivity.getType().toLowerCase();
+                                   }
                            //activity difficulty
                            if(!difficulty1.isEmpty()){
-                               activity[2]= ds.getValue(Activity.class).getDifficulty().toLowerCase();
+                               activity[2]= theCurrentActivity.getDifficulty().toLowerCase();
                            }
                            //activity Gender
                            if(!gender1.isEmpty()){
-                               activity[3]=ds.getValue(Activity.class).getGender().toLowerCase();}
+                               activity[3]=theCurrentActivity.getGender().toLowerCase();
+                           }
                            //activity group(yes or not)
                            if(!group1.isEmpty()){
-                               activity[4]= String.valueOf(ds.getValue(Activity.class).isGroup()).toLowerCase();
+                            Log.wtf("group1 is",group1);
+                            if(theCurrentActivity.isGroup()){
+                                activity[4]="group";
+                            }
+                            else{
+                                activity[4]="single;";
+                            }
+                               Log.wtf("arcivity[4] is ",activity[4]);
+                             // activity[4]= String.valueOf(theCurrentActivity.isGroup()).toLowerCase();
                            }
                            //describe activity
                            if(!describe1.isEmpty()){
-                               activity[5]=  ds.getValue(Activity.class).getDescription().toLowerCase();}
+                               activity[5]=  theCurrentActivity.getDescription().toLowerCase();}
 
                                    //activity adress
                                    if(!address1.isEmpty()){
-                                   activity[6]=ds.getValue(Activity.class).getAddr().getCity_set().toLowerCase()+
-                                           ds.getValue(Activity.class).getAddr().getStreet().toLowerCase();
+                                   activity[6]=theCurrentActivity.getAddr().getCity_set().toLowerCase()+
+                                           theCurrentActivity.getAddr().getStreet().toLowerCase();
                                    }
 
                            //date of the activity
-                           if(!date1.isEmpty())
-                           {activity[7]=ds.getValue(Activity.class).getDate().toString().toLowerCase();}
+                           if(!date1.isEmpty()) {
+                               activity[7]=theCurrentActivity.getDate().toString().toLowerCase();
+                           }
                            if(!time1.isEmpty()){
-                               activity[8]= ds.getValue(Activity.class).getTime().toLowerCase();
+                               activity[8]= theCurrentActivity.getTime().toLowerCase();
                            }
                                for(int i=0;i<array.length;i++){
                                    if(!array[i].isEmpty()){
                                        if(activity[i].isEmpty()){allMatch=false; break;}
                                        else{
-                                           if(i==3){if (!activity[3].equals(array[3])){allMatch=false; break;}}
+                                           if(i==3){if (!(activity[3].equals(array[3]))){allMatch=false; break;
+                                                }
+                                           }
                                            else {
                                                if (!(activity[i].contains(array[i]))) {
                                                    allMatch = false;
@@ -145,7 +155,9 @@ private Button clickToSearch;
 
                                    }
                                }
-                               if(allMatch==true){activitiesArray.add(ds.getValue(Activity.class));}
+                               if(allMatch==true){
+                                   activitiesArray.add(ds.getValue(Activity.class));
+                               }
                                allMatch=true;
                     // check if all the not null are all contains   activitiesArray.add(ds.getValue(Activity.class));
 
