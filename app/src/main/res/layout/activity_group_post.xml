@@ -35,7 +35,7 @@
         android:id="@+id/genderTextView"
         android:layout_width="214dp"
         android:layout_height="48dp"
-        android:text="Activity group suitable"
+        android:text="@string/activity_for"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

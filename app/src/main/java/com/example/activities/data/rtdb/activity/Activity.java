@@ -269,6 +269,9 @@ public static class Date{
     };
 
     public String toString(){
+        String activityFor;
+        if(isGroup()){activityFor="Group";}
+        else{activityFor="Single";}
         return (
             "Activity's id: "+getId()+"\n"+
             "Activity's name: "+getName()+"\n"+
@@ -277,7 +280,7 @@ public static class Date{
             "Street name: "+getAddr().getStreet()+"\n"+
             "Apartment number:"+getAddr().getApartment_number()+"\n"+
             "Difficulty classification: "+getDifficulty()+"\n"+
-            "Group / Single: "+isGroup()+"\n"+
+            "Activity for: "+activityFor+"\n"+
             "Gender suitable: "+getGender()+"\n"+
             "Activity Description: "+getDescription()+"\n"+
             "Date: "+getDate().getDay()+"/"+getDate().getMonth()+"/"+getDate().getYear()+"\n"+
