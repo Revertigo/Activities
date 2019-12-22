@@ -3,12 +3,20 @@ package com.example.activities.SearchActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.activities.R;
@@ -21,15 +29,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AdvancedSearch extends AppCompatActivity {
-private Button clickToSearch;
+    private Button clickToSearch;
+    private Button dateButton;
+    private Button timeButton;
     private Button backToSearchActivity;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     final String path="activities";
     final DatabaseReference ref = database.getReference(path);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dateButton=findViewById(R.id.enterDateAdvanced);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_search);
         clickToSearch=findViewById(R.id.clickToUseAdvancedSearch);
@@ -43,18 +55,105 @@ private Button clickToSearch;
             }
         });
 
-   clickToSearch.setOnClickListener(new View.OnClickListener() {
+        //spinner info slots
+        String[] types = new String[]{
+                "Type", "Sport", "Food", "Online gaming", "Art", "Learning", "Other"
+        };
+        //type spinner
+        final Spinner typeSpinnerAdvanced = findViewById(R.id.typeSpinnerAdvanced);
+        ArrayAdapter<String> adapterForTypeSpinnerAdvanced = new ArrayAdapter<String>(AdvancedSearch.this,android.R.layout.simple_spinner_item, types);
+        adapterForTypeSpinnerAdvanced.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinnerAdvanced.setAdapter(adapterForTypeSpinnerAdvanced);
+
+
+        //difficulty
+        String[] difficulty = new String[]{
+                "Difficulty", "Beginner", "Advanced", "Professional"
+        };
+        //difficulty spinner
+        final Spinner difficultySpinnerAdvanced = findViewById(R.id.difficultySpinnerAdvanced);
+        ArrayAdapter<String> adapterFordifficultySpinnerAdvanced= new ArrayAdapter<String>(AdvancedSearch.this,
+                android.R.layout.simple_spinner_item, difficulty);
+        adapterFordifficultySpinnerAdvanced.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultySpinnerAdvanced.setAdapter(adapterFordifficultySpinnerAdvanced);
+
+
+        //time
+        timeButton=findViewById(R.id.addTimeButtonAdvanced);
+        final  TextView time=findViewById(R.id.timeSearchAdvanced);
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(AdvancedSearch.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String a = "" + selectedMinute;
+                        String b = "" + selectedHour;
+                        if(selectedMinute<10){
+                            a = "0"+selectedMinute;
+                        }
+                        if(selectedHour<10){
+                            b = "0"+selectedHour;
+                        }
+                        time.setText( b + ":" + a);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+
+        //date
+        final  TextView  date=findViewById(R.id.dateSearchAdvanced) ;
+        dateButton=findViewById(R.id.enterDateAdvanced);
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            DatePickerDialog datePickerDialog;
+            int year;
+            int month;
+            int dayOfMonth;
+            Calendar calendar;
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(AdvancedSearch.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                date.setText(day + "/" + (month + 1) + "/" + year);
+                            }
+                        }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.show();
+            }
+        });
+        //name
+        final TextView name=findViewById(R.id.nameSearch);
+
+
+        //gender
+        final RadioGroup rgGender=findViewById(R.id.rgGenderAdvanced);
+        //rgGender.getCheckedRadioButtonId()==-1)
+
+        //group
+        final RadioGroup rgActivityFor=findViewById(R.id.rgGroupSingle);
+
+
+        final  TextView describe=findViewById(R.id.describeAdvanced);
+        final TextView address=findViewById(R.id.addressSearch);
+
+
+
+        clickToSearch.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-          final TextView name=findViewById(R.id.nameSearch);
-           final  TextView type=findViewById(R.id.typeSearch);
-           final TextView difficulty=findViewById(R.id.difficultySearch);
-           final TextView gender=findViewById(R.id.genderSearch);
-           final  TextView group=findViewById(R.id.groupSearch);
-           final  TextView describe=findViewById(R.id.describeSearch);
-           final TextView address=findViewById(R.id.addressSearch);
-           final  TextView date=findViewById(R.id.dateSearch);
-           final  TextView time=findViewById(R.id.timeSearch);
 
            ref.addValueEventListener(new ValueEventListener() {
                @Override
@@ -66,16 +165,23 @@ private Button clickToSearch;
                    String name1 = name.getText().toString();
                    if (!name1.isEmpty()) {name1 = name1.toLowerCase();}
 
-                   String type1 = type.getText().toString();
-                   if (!type1.isEmpty()) {type1 = type1.toLowerCase();}
+                   String type1 = typeSpinnerAdvanced.getSelectedItem().toString();
+                   if (type1.toLowerCase().equals("type")) {type1 = "";}
 
-                   String difficulty1 = difficulty.getText().toString();
-                   if (!difficulty1.isEmpty()){ difficulty1 = difficulty1.toLowerCase();}
 
-                   String gender1 = gender.getText().toString();
+
+                   String difficulty1 = difficultySpinnerAdvanced.getSelectedItem().toString();
+                   if (difficulty1.toLowerCase().equals("difficulty")){ difficulty1 = "";}
+
+
+
+                   String gender1="";
+                   if(!(rgGender.getCheckedRadioButtonId()==-1)){gender1= ((RadioButton)findViewById(rgGender.getCheckedRadioButtonId())).getText().toString();}
+
                    if (!gender1.isEmpty()) {gender1 = gender1.toLowerCase();}
 
-                   String group1 = group.getText().toString();
+                   String group1 ="";
+                   if(!(rgActivityFor.getCheckedRadioButtonId()==-1)){group1=((RadioButton) findViewById(rgActivityFor.getCheckedRadioButtonId())).getText().toString();}
                    if (!group1.isEmpty()) {group1 = group1.toLowerCase();}
 
                    String describe1 = describe.getText().toString();
@@ -85,10 +191,33 @@ private Button clickToSearch;
                    if (!address1.isEmpty()){ address1 = address1.toLowerCase();}
 
                    String date1 = date.getText().toString();
-                   if (!date1.isEmpty()){ date1 = date1.toLowerCase();}
+                   if (!date1.isEmpty()){
+                       String[] dateSplit=date1.split("/");
+                       try{
+                           if(dateSplit.length!=3){date1="";}
+                           else{
+                           int a=Integer.parseInt(dateSplit[0]);
+                           a=Integer.parseInt(dateSplit[1]);
+                           a=Integer.parseInt(dateSplit[2]);
+                           }
+                       }
+                       catch (Exception e){date1="";}
+                   }
+
+
 
                    String time1 = time.getText().toString();
-                   if (!time1.isEmpty()){ time1 = time1.toLowerCase();}
+                   if (!time1.isEmpty()){
+                       String[] timeSplit=time1.split(":");
+                       try{
+                           if(timeSplit.length!=2){time1="";}
+                           else{
+                               int a=Integer.parseInt(timeSplit[0]);
+                               a=Integer.parseInt(timeSplit[1]);
+                           }
+                       }
+                       catch (Exception e){time1="";}
+                   }
 
                     String[] array={name1,type1,difficulty1,gender1,group1,describe1,address1,date1,time1};
 
@@ -112,14 +241,12 @@ private Button clickToSearch;
                            }
                            //activity group(yes or not)
                            if(!group1.isEmpty()){
-                            Log.wtf("group1 is",group1);
                             if(theCurrentActivity.isGroup()){
                                 activity[4]="group";
                             }
                             else{
                                 activity[4]="single;";
                             }
-                               Log.wtf("arcivity[4] is ",activity[4]);
                              // activity[4]= String.valueOf(theCurrentActivity.isGroup()).toLowerCase();
                            }
                            //describe activity
@@ -134,10 +261,11 @@ private Button clickToSearch;
 
                            //date of the activity
                            if(!date1.isEmpty()) {
-                               activity[7]=theCurrentActivity.getDate().toString().toLowerCase();
+                               activity[7]=theCurrentActivity.getDate().getDay()+
+                                       "/"+theCurrentActivity.getDate().getMonth()+"/"+theCurrentActivity.getDate().getYear();
                            }
                            if(!time1.isEmpty()){
-                               activity[8]= theCurrentActivity.getTime().toLowerCase();
+                               activity[8]= theCurrentActivity.getTime();
                            }
                                for(int i=0;i<array.length;i++){
                                    if(!array[i].isEmpty()){

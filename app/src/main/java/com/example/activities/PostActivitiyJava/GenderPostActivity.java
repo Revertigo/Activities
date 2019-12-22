@@ -25,7 +25,7 @@ private Activity newPost;
         nextToGroupPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final RadioGroup rgGender=findViewById(R.id.rgGender);
+                final RadioGroup rgGender=findViewById(R.id.rgGenderAdvanced);
 
                 if(rgGender.getCheckedRadioButtonId()==-1) {
                     Toast.makeText(getApplicationContext(), "Please select gender suitable", Toast.LENGTH_SHORT).show();

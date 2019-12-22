@@ -9,14 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchActivity.AdvancedSearch"></activity>
-        <activity android:name=".PostActivitiyJava.AdressPostActivity" />
-        <activity android:name=".PostActivitiyJava.DescribePostActivity" />
-        <activity android:name=".PostActivitiyJava.GenderPostActivity" />
-        <activity android:name=".PostActivitiyJava.GroupPostActivity" />
-        <activity android:name=".PostActivitiyJava.DifficultyPostActivity" />
-        <activity android:name=".PostActivitiyJava.TypePostActivity" />
-        <activity android:name=".PostActivitiyJava.NamePostActivity" />
+        <activity android:name=".SearchActivity.AdvancedSearch"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
+        <activity android:name=".PostActivitiyJava.AdressPostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.DescribePostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.GenderPostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.GroupPostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.DifficultyPostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.TypePostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".PostActivitiyJava.NamePostActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".data.rtdb.activity.ShowActivities"
             android:windowSoftInputMode="adjustPan" />
