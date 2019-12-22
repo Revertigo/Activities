@@ -194,14 +194,14 @@ public class AdvancedSearch extends AppCompatActivity {
                    if (!date1.isEmpty()){
                        String[] dateSplit=date1.split("/");
                        try{
-                           if(dateSplit.length!=3){date1="";}
+                           if(dateSplit.length!=3){date1="wrong enter date(dd/MM/yyyy)";}
                            else{
                            int a=Integer.parseInt(dateSplit[0]);
                            a=Integer.parseInt(dateSplit[1]);
                            a=Integer.parseInt(dateSplit[2]);
                            }
                        }
-                       catch (Exception e){date1="";}
+                       catch (Exception e){date1="wrong enter date(dd/MM/yyyy)";}
                    }
 
 
@@ -210,13 +210,13 @@ public class AdvancedSearch extends AppCompatActivity {
                    if (!time1.isEmpty()){
                        String[] timeSplit=time1.split(":");
                        try{
-                           if(timeSplit.length!=2){time1="";}
+                           if(timeSplit.length!=2){time1="wrong enter time(hh:mm)";}
                            else{
                                int a=Integer.parseInt(timeSplit[0]);
                                a=Integer.parseInt(timeSplit[1]);
                            }
                        }
-                       catch (Exception e){time1="";}
+                       catch (Exception e){time1="wrong enter time(hh:mm)";}
                    }
 
                     String[] array={name1,type1,difficulty1,gender1,group1,describe1,address1,date1,time1};
