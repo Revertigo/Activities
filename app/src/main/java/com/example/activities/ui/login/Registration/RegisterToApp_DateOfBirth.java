@@ -59,7 +59,7 @@ public class RegisterToApp_DateOfBirth extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                date = month + "/" + day + "/" + year;
+                date =  day + "/" +month + "/" + year;
                 dateView.setText(date);
             }
         };

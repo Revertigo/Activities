@@ -37,6 +37,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
         setContentView(R.layout.activity_registration_permition);
         //Get from last activity the User object of new user:
         newUser = getIntent().getParcelableExtra("newUser");
+        users_ref = FirebaseDatabase.getInstance().getReference(search_users);
 
         search = findViewById(R.id.registerToSearchButton);
         post = findViewById(R.id.registerToPostButton);
@@ -53,8 +54,8 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    users_ref = FirebaseDatabase.getInstance().getReference(search_users);
-                                    users_ref.child(search_users).setValue(newUser);
+                                    String[] emailsplit=newUser.getUsername().split("@");
+                                    users_ref.child(emailsplit[0]).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
                                 }
                                 else {

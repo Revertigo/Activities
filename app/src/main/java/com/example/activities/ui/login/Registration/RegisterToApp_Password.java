@@ -31,7 +31,7 @@ public class RegisterToApp_Password extends AppCompatActivity {
                 String password= passwordEditText.getText().toString();
                 // TO DO:
                 // add constrains on the password
-                if(password.isEmpty()){
+                if(password.isEmpty()||password.length()<5){
                     passwordEditText.setError("Please enter correct password");
                     passwordEditText.requestFocus();
                 }
