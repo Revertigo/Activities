@@ -74,7 +74,8 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         postNewUser.setEducation(educationEditText.getText().toString());
                                         postNewUser.setOccupation(occupationEditText.getText().toString());
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
-                                        users_ref.child(postNewUser.getName()).setValue(postNewUser);
+                                        String[] emailSplit=postNewUser.getUsername().split("@");
+                                        users_ref.child(emailSplit[0]).setValue(postNewUser);
                                         Intent i=new Intent(RegisterToApp_Education.this, MainActivity.class);
                                         startActivity(i);
                                     }
