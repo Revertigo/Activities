@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ private Activity newPost;
         newPost=getIntent().getParcelableExtra("newPost");
         nextToPostActivity=findViewById(R.id.nextToPostActivity);
 
+
         //Setup back button
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Sort the data
@@ -33,10 +36,30 @@ private Activity newPost;
 
         Spinner cities_settlmentsSpinner = findViewById(R.id.citySettlementSpinner);
 
-        ArrayAdapter<String> adapterForcities_settlmentsSpinner = new ArrayAdapter<String>(this,
+       final ArrayAdapter<String> adapterForcities_settlmentsSpinner = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, cities_settlments);
         adapterForcities_settlmentsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cities_settlmentsSpinner.setAdapter(adapterForcities_settlmentsSpinner);
+
+        cities_settlmentsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+
+              String  selecteditem =  adapter.getItemAtPosition(i).toString();
+              if(!selecteditem.equals("City/Settlement")){
+                  TextView tv=findViewById(R.id.streetsTextView);
+                  tv.setVisibility(View.VISIBLE);
+                  Spinner streetsSpinner = findViewById(R.id.streetsSpinner);
+                  streetsSpinner.setVisibility(View.VISIBLE);
+              }
+                //or this can be also right: selecteditem = level[i];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView)
+            {
+
+            }
+        });
 
         //string array for streetSpinner
         String[] streets = new String[]{
@@ -49,6 +72,26 @@ private Activity newPost;
         adapterForstreetsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         streetsSpinner.setAdapter(adapterForstreetsSpinner);
 
+        streetsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+
+                String  selecteditem =  adapter.getItemAtPosition(i).toString();
+                if(!selecteditem.equals("Street")){
+                    TextView tv=findViewById(R.id.apartNumberTextView);
+                    tv.setVisibility(View.VISIBLE);
+                    EditText et=findViewById(R.id.apartNumberPlainText);
+                    et.setVisibility(View.VISIBLE);
+
+                }
+                //or this can be also right: selecteditem = level[i];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView)
+            {
+
+            }
+        });
 
         nextToPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
