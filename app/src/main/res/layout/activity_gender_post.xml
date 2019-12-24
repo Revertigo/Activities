@@ -12,6 +12,7 @@
         android:layout_width="149dp"
         android:layout_height="106dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:checkedButton="@+id/rbBoth"
         app:layout_constraintEnd_toEndOf="@+id/genderTextView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/genderTextView"

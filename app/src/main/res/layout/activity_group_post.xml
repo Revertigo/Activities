@@ -11,6 +11,7 @@
         android:id="@+id/rgGroupSingle"
         android:layout_width="136dp"
         android:layout_height="80dp"
+        android:checkedButton="@+id/rbGroup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/genderTextView"
         app:layout_constraintHorizontal_bias="0.576"
