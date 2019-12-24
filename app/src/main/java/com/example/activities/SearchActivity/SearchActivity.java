@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private Button searchById;
     private Button searchByString;
     private Button advancedSearch;
-    
+    private Button backToSearchOrPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,17 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchByString(ref);
+            }
+        });
+
+
+
+        backToSearchOrPost=findViewById(R.id.backToSearchOrPost);
+        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchActivity.this,SearchOrPost.class);
+                startActivity(intent);
             }
         });
 

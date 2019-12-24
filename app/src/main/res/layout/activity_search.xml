@@ -59,15 +59,15 @@
 
     <Button
         android:id="@+id/showAllTheActivitiesButton"
-        android:layout_width="157dp"
-        android:layout_height="86dp"
+        android:layout_width="154dp"
+        android:layout_height="59dp"
         android:text="show all the activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <Button
         android:id="@+id/StringSearchButton"
@@ -107,6 +107,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StringSearchButton"
         app:layout_constraintVertical_bias="0.475" />
+
+    <Button
+        android:id="@+id/backToSearchOrPost"
+        android:layout_width="152dp"
+        android:layout_height="63dp"
+        android:text="Back to search/post activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/logoutSearchActivity"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/closeAppSearchActivity"
+        app:layout_constraintTop_toBottomOf="@+id/showAllTheActivitiesButton"
+        app:layout_constraintVertical_bias="0.603" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
