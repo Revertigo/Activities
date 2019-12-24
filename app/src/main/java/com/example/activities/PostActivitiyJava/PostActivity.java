@@ -151,14 +151,39 @@ public class PostActivity extends AppCompatActivity {
 
                 EditText theDate=findViewById(R.id.enterDatePlainText);
                 String st=theDate.getText().toString();
-                String[] st2=st.split("/");
-                Activity.Date date=new Activity.Date(st2[0],st2[1],st2[2]);
+                String[] st2 = st.split("/");
+                if (st2.length==3){
+                    try {
+
+                        int a = Integer.parseInt(st2[0]);
+                        a = Integer.parseInt(st2[1]);
+                        a = Integer.parseInt(st2[2]);
+                        Activity.Date date = new Activity.Date(st2[0], st2[1], st2[2]);
+                        newPost.setDate(date);
+                    }catch (Exception e){
+                        Activity.Date date = new Activity.Date("", "", "");
+                        newPost.setDate(date);
+                    }
+                }
+                else {
+                    Activity.Date date = new Activity.Date("", "", "");
                     newPost.setDate(date);
+                }
 
-
-                //set Format
+                //set Time
                 TextView time=findViewById(R.id.showTheTime);
-                newPost.setTime(time.getText().toString());
+                String theTimeString=time.getText().toString();
+                String[] theTimeSplit=theTimeString.split(":");
+                if(theTimeSplit.length==2) {
+                    try {
+                        int a = Integer.parseInt(theTimeSplit[0]);
+                        a = Integer.parseInt(theTimeSplit[1]);
+                        newPost.setTime(theTimeString);
+                    }catch (Exception e){  newPost.setTime("");}
+
+                }
+                else{newPost.setTime("");}
+
                 //Write new id counter to the database
                 while(!NamePostActivity.is_id_read);
                 newPost.setId(Activity.getId_counter());//Update the real id of the user
