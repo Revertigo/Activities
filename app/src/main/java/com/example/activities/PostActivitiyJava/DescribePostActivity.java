@@ -1,7 +1,6 @@
 package com.example.activities.PostActivitiyJava;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,13 +26,11 @@ private Button nextToPostActivity;
                 if(desc.isEmpty()){
                     desc="";
                 }
-
                 newPost.setDescription(desc);
                 Intent intent=new Intent(DescribePostActivity.this, AdressPostActivity.class);
                 intent.putExtra("newPost",newPost);
-                startActivity(intent);}
-            
+                startActivity(intent);
+            }
         });
-
     }
 }
