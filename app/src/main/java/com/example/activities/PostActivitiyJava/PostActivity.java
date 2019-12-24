@@ -147,9 +147,13 @@ public class PostActivity extends AppCompatActivity {
         clickToPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                //date edit text
                 EditText theDate=findViewById(R.id.enterDatePlainText);
+                //time edit text
+                TextView time=findViewById(R.id.showTheTime);
+
+                //take the split from date string that entered if legal,continue
+                //  else ask to enter date again
                 String st=theDate.getText().toString();
                 String[] st2 = st.split("/");
                 if (st2.length==3){
@@ -161,17 +165,19 @@ public class PostActivity extends AppCompatActivity {
                         Activity.Date date = new Activity.Date(st2[0], st2[1], st2[2]);
                         newPost.setDate(date);
                     }catch (Exception e){
-                        Activity.Date date = new Activity.Date("", "", "");
-                        newPost.setDate(date);
+                        theDate.setText("");
+                        theDate.setError("You must enter date, For example \n" + "1/1/2020");
+                        theDate.requestFocus();
                     }
                 }
                 else {
-                    Activity.Date date = new Activity.Date("", "", "");
-                    newPost.setDate(date);
+                    theDate.setText("");
+                    theDate.setError("You must enter date, For example \n" + "1/1/2020");
+                    theDate.requestFocus();
                 }
 
-                //set Time
-                TextView time=findViewById(R.id.showTheTime);
+                //take the split from time string that entered if legal,continue
+                //  else ask to enter time again
                 String theTimeString=time.getText().toString();
                 String[] theTimeSplit=theTimeString.split(":");
                 if(theTimeSplit.length==2) {
@@ -179,22 +185,30 @@ public class PostActivity extends AppCompatActivity {
                         int a = Integer.parseInt(theTimeSplit[0]);
                         a = Integer.parseInt(theTimeSplit[1]);
                         newPost.setTime(theTimeString);
-                    }catch (Exception e){  newPost.setTime("");}
+                    }catch (Exception e){
+                        time.setText("");
+                        time.setError("You must enter time, For example \n" + "10:30");
+                        time.requestFocus();}
 
                 }
-                else{newPost.setTime("");}
+                else{
+                    time.setText("");
+                    time.setError("You must enter date, For example \n" + "10:30");
+                    time.requestFocus();}
 
-                //Write new id counter to the database
+                //date,time  entered can create the post
+               if(!(theDate.getText().toString().isEmpty())&&!(time.getText().toString().isEmpty())) {
+                // befor the post Write new id counter to the database, and update the post id
                 while(!NamePostActivity.is_id_read);
                 newPost.setId(Activity.getId_counter());//Update the real id of the user
                 String [] tokens = NamePostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
                 NamePostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
                 NamePostActivity.is_id_read = false;
-
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
                 startActivity(new Intent(PostActivity.this, SearchOrPost.class));
+               }//if date and time are valid, finish
             }
         });
 
