@@ -22,7 +22,7 @@ private Activity newPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adress_post);
+        setContentView(R.layout.activity_address_post);
         newPost=getIntent().getParcelableExtra("newPost");
         nextToPostActivity=findViewById(R.id.nextToPostActivity);
 
@@ -105,15 +105,15 @@ private Activity newPost;
 
                 final Spinner activityStreet = findViewById(R.id.streetsSpinner);
                 if(apartmentNumber.isEmpty()){
-                    apartNum.setError("Please enter apartment number");
-                }else {
+                    apartmentNumber="0";
+                }
                     newPost.setAddr(new Activity.Address(activityCity.getSelectedItem().toString(),
                             activityStreet.getSelectedItem().toString(), Integer.parseInt(apartmentNumber)));
 
                     Intent intent = new Intent(AdressPostActivity.this, PostActivity.class);
                     intent.putExtra("newPost", newPost);
                     startActivity(intent);
-                }
+                
             }
         });
     }
