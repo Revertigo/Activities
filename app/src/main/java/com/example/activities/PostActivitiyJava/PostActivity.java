@@ -14,6 +14,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
@@ -185,7 +187,7 @@ public class PostActivity extends AppCompatActivity {
                 }
                 else{
                     time.setText("");
-                    time.setError("You must enter date, For example \n" + "10:30");
+                    time.setError("You must enter time, For example \n" + "10:30");
                     time.requestFocus();}
 
                 //date,time  entered can create the post
@@ -199,6 +201,7 @@ public class PostActivity extends AppCompatActivity {
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
+                Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(PostActivity.this, SearchOrPost.class));
                }//if date and time are valid, finish
             }
