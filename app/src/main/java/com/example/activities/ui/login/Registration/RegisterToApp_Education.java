@@ -83,7 +83,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         Intent i=new Intent(RegisterToApp_Education.this, RegisterToApp_Email.class);
                                         startActivity(i);
                                         Toast.makeText(getApplicationContext(),
-                                                "Registration Failed, try again",
+                                                "This email username already exist, Choose Another Email.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

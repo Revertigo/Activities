@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.activities.R;
@@ -61,6 +63,9 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                                 else {
                                     // If sign in fails, display a message to the user.
                                     startActivity(new Intent(RegisterToApp_Permition.this, RegisterToApp_Email.class));
+                                    Toast.makeText(getApplicationContext(),
+                                            "This email username already exist, Choose Another Email.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
