@@ -30,7 +30,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
     private EditText educationEditText;
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String post_users="Post users/";
+    private String post_users="Users/";
 
 
     @Override

@@ -26,7 +26,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String search_users="Search users/";
+    private String search_users="Users/";
 
 
 
