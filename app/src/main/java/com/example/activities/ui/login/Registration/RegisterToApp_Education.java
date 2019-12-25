@@ -48,19 +48,18 @@ public class RegisterToApp_Education extends AppCompatActivity {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String occupation = occupationEditText.getText().toString();
-                String education = educationEditText.getText().toString();
+                final String occupation = occupationEditText.getText().toString();
+                final String education = educationEditText.getText().toString();
                 if(occupation.isEmpty()){
                     occupationEditText.setError("Please enter your current occupation");
                     occupationEditText.requestFocus();
                 }
-                if(education.isEmpty()){
+               else if(education.isEmpty()){
                     educationEditText.setError("Please enter your education");
                     educationEditText.requestFocus();
                 }
                 else{
-                    postNewUser.setOccupation(occupation);
-                    postNewUser.setEducation(education);
+
                     //Create new postUser:
                     mAuth = FirebaseAuth.getInstance();
                     mAuth.createUserWithEmailAndPassword(postNewUser.getUsername(), postNewUser.getPassword())
@@ -71,8 +70,8 @@ public class RegisterToApp_Education extends AppCompatActivity {
 
                                         //Todo create text views and take info and insert into post user
                                         //send post user to database
-                                        postNewUser.setEducation(educationEditText.getText().toString());
-                                        postNewUser.setOccupation(occupationEditText.getText().toString());
+                                        postNewUser.setOccupation(occupation);
+                                        postNewUser.setEducation(education);
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
                                         String[] emailSplit=postNewUser.getUsername().split("@");
                                         users_ref.child(emailSplit[0]).setValue(postNewUser);
@@ -80,8 +79,11 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         startActivity(i);
                                     }
                                     else {
-                                       Toast.makeText(getApplicationContext(),
-                                                "enter education,occapution faild try again",
+
+                                        Intent i=new Intent(RegisterToApp_Education.this, RegisterToApp_Email.class);
+                                        startActivity(i);
+                                        Toast.makeText(getApplicationContext(),
+                                                "Registration Failed, try again",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

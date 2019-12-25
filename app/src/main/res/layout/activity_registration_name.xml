@@ -7,6 +7,7 @@
     android:background="@color/light_blue"
     tools:context=".ui.login.Registration.RegisterToApp_Name">
 
+
     <TextView
         android:id="@+id/Registration3"
         android:layout_width="wrap_content"
@@ -22,33 +23,45 @@
 
     <TextView
         android:id="@+id/AboutYouView"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
+        android:layout_width="153dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:text="About you"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.22" />
 
     <EditText
-        android:id="@+id/yourName1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="232dp"
+        android:id="@+id/firstNameEdit"
+        android:layout_width="153dp"
+        android:layout_height="49dp"
         android:ems="10"
-        android:hint="Full name"
+        android:hint="First name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintEnd_toEndOf="@+id/AboutYouView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AboutYouView"
+        app:layout_constraintTop_toBottomOf="@+id/AboutYouView"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <EditText
+        android:id="@+id/lastNameEdit"
+        android:layout_width="154dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Last name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/firstNameEdit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/firstNameEdit"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameEdit"
+        app:layout_constraintVertical_bias="0.054" />
 
     <Button
         android:id="@+id/Next3"

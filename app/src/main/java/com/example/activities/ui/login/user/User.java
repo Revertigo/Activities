@@ -5,10 +5,11 @@ import android.os.Parcel;
 
 public class User implements Parcelable {
 
-    private int NUM_USER_PROPS = 7;
+    private int NUM_USER_PROPS = 8;
     protected String username;
     protected String password;
-    protected String name;
+    protected String firstName;
+    protected String lastName;
     protected String permission;
     protected String gender;
     protected String dateOfBirth;
@@ -23,7 +24,8 @@ public class User implements Parcelable {
     public User(User other){
         this.username = other.getUsername();
         this.password = other.getPassword();
-        this.name = other.getName();
+        this.firstName = other.getFirstName();
+        this.lastName = other.getLastName();
         this.permission = other.getPermission();
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
@@ -61,12 +63,21 @@ public class User implements Parcelable {
     }
 
 
-    public String getName() {
-        return this.name;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 
@@ -108,11 +119,12 @@ public class User implements Parcelable {
         in.readStringArray(data);
         this.username = data[0];
         this.password = data[1];
-        this.name = data[2];
-        this.permission = data[3];
-        this.gender = data[4];
-        this.dateOfBirth = data[5];
-        this.location = data[6];
+        this.firstName = data[2];
+        this.lastName = data[3];
+        this.permission = data[4];
+        this.gender = data[5];
+        this.dateOfBirth = data[6];
+        this.location = data[7];
     }
 
     @Override
@@ -127,7 +139,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
         dest.writeStringArray(
-                new String[]{this.username, this.password, this.name,
+                new String[]{this.username, this.password, this.firstName, this.lastName,
                         this.permission, this.gender, this.dateOfBirth, this.location});
     }
 

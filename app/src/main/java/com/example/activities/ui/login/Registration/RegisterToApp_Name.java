@@ -12,7 +12,8 @@ import com.example.activities.ui.login.user.User;
 
 public class RegisterToApp_Name extends AppCompatActivity {
 
-    private EditText nameEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
     private Button Next;
     private User newUser ;
 
@@ -23,21 +24,28 @@ public class RegisterToApp_Name extends AppCompatActivity {
         //Get from last activity the User object of new user:
         newUser = getIntent().getParcelableExtra("newUser");
 
-        nameEditText = findViewById(R.id.yourName1);
+        firstNameEditText = findViewById(R.id.firstNameEdit);
+        lastNameEditText = findViewById(R.id.lastNameEdit);
         Next = findViewById(R.id.Next3);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name= nameEditText.getText().toString();
+                String firstName= firstNameEditText.getText().toString();
+                String lastName = lastNameEditText.getText().toString();
                 // TO DO:
                 // add constrains on the Name/to parse it
-                if(name.isEmpty()){
-                    nameEditText.setError("Please enter your name");
-                    nameEditText.requestFocus();
+                if(firstName.isEmpty()){
+                    firstNameEditText.setError("Please enter your first name");
+                    firstNameEditText.requestFocus();
+                }
+                else if(lastName.isEmpty()){
+                    lastNameEditText.setError("Please enter your last name");
+                    lastNameEditText.requestFocus();
                 }
                 else{
-                    newUser.setName(name);
+                    newUser.setFirstName(firstName);
+                    newUser.setLastName(lastName);
                     Intent i = new Intent(RegisterToApp_Name.this, RegisterToApp_Gender.class);
                     i.putExtra("newUser",newUser);//Submit the User object to the next activity
                     startActivity(i);

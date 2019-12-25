@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class PostUser extends User{
 
-    private int NUM_USER_PROPS = 9;
+    private int NUM_USER_PROPS = 10;
     private String occupation;
     private String education;
 
@@ -34,13 +34,14 @@ public class PostUser extends User{
         in.readStringArray(data);
         this.username = data[0];
         this.password = data[1];
-        this.name = data[2];
-        this.permission = data[3];
-        this.gender = data[4];
-        this.dateOfBirth = data[5];
-        this.location = data[6];
-        this.occupation = data[7];
-        this.education = data[8];
+        this.firstName = data[2];
+        this.lastName=data[3];
+        this.permission = data[4];
+        this.gender = data[5];
+        this.dateOfBirth = data[6];
+        this.location = data[7];
+        this.occupation = data[8];
+        this.education = data[9];
     }
 
 
@@ -56,7 +57,7 @@ public class PostUser extends User{
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
         dest.writeStringArray(
-                new String[]{this.username, this.password, this.name,
+                new String[]{this.username, this.password, this.firstName,this.lastName,
                         this.permission, this.gender, this.dateOfBirth, this.location,this.occupation,this.education});
     }
 
