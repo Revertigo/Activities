@@ -65,6 +65,7 @@
         android:id="@+id/dateSelectedTextView"
         android:layout_width="105dp"
         android:layout_height="29dp"
+        android:hint="mm/DD/yyyy"
         android:text="@string/date_selected"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
