@@ -57,7 +57,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     String[] emailsplit=newUser.getUsername().split("@");
-                                    users_ref.child(emailsplit[0]).setValue(newUser);
+                                    users_ref.child(mAuth.getUid()).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
                                 }
                                 else {

@@ -34,6 +34,7 @@ public class Activity implements Parcelable{
         this.date = date;
         this.time = time;
     }
+
 public static class Date{
     private String day;
     private String month;
