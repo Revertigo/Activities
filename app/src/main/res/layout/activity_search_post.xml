@@ -59,8 +59,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="307dp"
-        android:layout_height="38dp"
+        android:layout_width="340dp"
+        android:layout_height="37dp"
         android:text="@string/what_kind_of_activity_you_looking_for"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
