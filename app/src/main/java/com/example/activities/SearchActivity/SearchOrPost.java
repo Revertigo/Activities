@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import com.example.activities.PostActivitiyJava.NamePostActivity;
 import com.example.activities.R;
 import com.example.activities.SettingsActivity;
 import com.example.activities.Util.CsvReader;
+import com.example.activities.data.rtdb.activity.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SearchOrPost extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class SearchOrPost extends AppCompatActivity {
     private Button closeAppFromSearchPost;
     private Button changeActivityToPostActivity;
     private Button changeActivityToSearchActivity;
+    private Button myProfile;
 
     private FirebaseAuth.AuthStateListener authListener;
 
@@ -76,6 +79,19 @@ public class SearchOrPost extends AppCompatActivity {
 
         //Read all relevant data from Realtime DB(cities and settlements, streets)
         CsvReader.readRecordsfromDB(CsvReader.CITIES_AND_SETTLEMENTS, "server/cities_settlements");
+
+
+        myProfile=findViewById(R.id.myProfileSearchPost);
+        myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchOrPost.this, UserProfile.class);
+                Log.wtf("the email is",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                intent.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -95,4 +111,5 @@ public class SearchOrPost extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
