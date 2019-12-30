@@ -54,6 +54,7 @@ public class ShowActivities extends AppCompatActivity {
                 ArrayList<Activity> joinActivity=new ArrayList<Activity>();
                 joinActivity.add(theActivities.get(position));
                 intent.putExtra("joinActivity",joinActivity);
+                intent.putExtra("showActivitiesAgain",theActivities);
                 startActivity(intent);
             }
         });
