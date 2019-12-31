@@ -32,9 +32,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutLower"
-        android:layout_width="432dp"
-        android:layout_height="531dp"
+        android:layout_width="414dp"
+        android:layout_height="524dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:background="@color/light_blue"
@@ -43,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutUpper"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
 
         <TextView
@@ -53,138 +52,116 @@
             android:layout_marginTop="60dp"
             android:text="name of the user"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/emailOfTheUser"
-            android:layout_width="143dp"
-            android:layout_height="21dp"
-            android:layout_marginEnd="208dp"
-            android:text="email of the user"
-            app:layout_constraintBottom_toBottomOf="@+id/emailImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/emailImage"
-            app:layout_constraintTop_toTopOf="@+id/emailImage"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/occupationOfTheUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="228dp"
-            android:text="occupation of the user"
-            app:layout_constraintBottom_toBottomOf="@+id/occupationImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/occupationImage"
-            app:layout_constraintTop_toTopOf="@+id/occupationImage"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/educationOfTheUser"
-            android:layout_width="143dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="192dp"
-            android:text="education of the user"
-            app:layout_constraintBottom_toBottomOf="@+id/educationImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/educationImage"
-            app:layout_constraintTop_toTopOf="@+id/educationImage"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/permissionOfTheUser"
-            android:layout_width="143dp"
-            android:layout_height="21dp"
-            android:layout_marginEnd="160dp"
-            android:text="permition of the user"
-            app:layout_constraintBottom_toBottomOf="@+id/permissionImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/permissionImage"
-            app:layout_constraintTop_toTopOf="@+id/permissionImage"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/birthdayImage"
-            android:layout_width="21dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/permissionImage"
-            app:layout_constraintVertical_bias="0.023"
-            tools:srcCompat="@drawable/ic_date_range_black_24dp" />
-
-        <ImageView
-            android:id="@+id/emailImage"
-            android:layout_width="21dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="12dp"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameOfTheUser"
-            tools:srcCompat="@drawable/ic_email_black_24dp" />
-
-        <ImageView
-            android:id="@+id/educationImage"
-            android:layout_width="21dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="12dp"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/occupationImage"
-            tools:srcCompat="@drawable/ic_star_black_24dp" />
-
-        <ImageView
-            android:id="@+id/occupationImage"
-            android:layout_width="21dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailImage"
-            tools:srcCompat="@drawable/ic_star_black_24dp" />
-
-        <ImageView
-            android:id="@+id/permissionImage"
-            android:layout_width="21dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="12dp"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/educationImage"
-            tools:srcCompat="@drawable/ic_indeterminate_check_box_black_24dp" />
-
-        <TextView
-            android:id="@+id/birthdayOfTheUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="birthday of the user"
-            app:layout_constraintBottom_toBottomOf="@+id/birthdayImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.004"
-            app:layout_constraintStart_toEndOf="@+id/birthdayImage"
-            app:layout_constraintTop_toTopOf="@+id/birthdayImage"
-            app:layout_constraintVertical_bias="1.0" />
-
         <LinearLayout
-            android:id="@+id/linearLayoutHorizontalLower"
-            android:layout_width="358dp"
-            android:layout_height="210dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/light_yellow"
+            android:id="@+id/emailLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="188dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/birthdayImage"
-            app:layout_constraintVertical_bias="0.061">
+            app:layout_constraintTop_toBottomOf="@+id/nameOfTheUser"
+            app:layout_constraintVertical_bias="0.247">
+
+            <ImageView
+                android:id="@+id/emailImage"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/emailOfTheUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="email of the user"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/occupationLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="200dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLinearLayout"
+            app:layout_constraintVertical_bias="0.132">
+
+            <ImageView
+                android:id="@+id/occupationImage"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/occupationOfTheUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="occupation of the user"
+
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/educationLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="188dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/occupationLinearLayout"
+            app:layout_constraintVertical_bias="0.161">
+
+            <ImageView
+                android:id="@+id/educationImage"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/educationOfTheUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="education of the user"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genderLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="188dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/educationLinearLayout"
+            app:layout_constraintVertical_bias="0.317">
 
             <ImageView
                 android:id="@+id/genderImage"
@@ -200,6 +177,67 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="gender of the user"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/permissionLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="156dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderLinearLayout">
+
+            <ImageView
+                android:id="@+id/permissionImage"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/permissionOfTheUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="permission of the user"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/birthdayLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="92dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/permissionLinearLayout"
+            app:layout_constraintVertical_bias="0.375">
+
+            <ImageView
+                android:id="@+id/birthdayImage"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/birthdayOfTheUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="birthday of the user"
 
                 />
         </LinearLayout>
