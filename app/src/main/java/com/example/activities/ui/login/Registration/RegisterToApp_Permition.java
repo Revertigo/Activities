@@ -28,7 +28,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String search_users="Users/";
+    private String search_users="users/";
 
 
 
@@ -56,7 +56,6 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    String[] emailsplit=newUser.getUsername().split("@");
                                     users_ref.child(mAuth.getUid()).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
                                 }

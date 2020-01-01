@@ -30,7 +30,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
     private EditText educationEditText;
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String post_users="Users/";
+    private String post_users="users/";
 
 
     @Override
@@ -73,7 +73,6 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         postNewUser.setOccupation(occupation);
                                         postNewUser.setEducation(education);
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
-                                        String[] emailSplit=postNewUser.getUsername().split("@");
                                         users_ref.child(mAuth.getUid()).setValue(postNewUser);
                                         Intent i=new Intent(RegisterToApp_Education.this, MainActivity.class);
                                         startActivity(i);
