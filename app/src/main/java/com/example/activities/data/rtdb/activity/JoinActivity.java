@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.activities.MainActivity;
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,11 +32,13 @@ public class JoinActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
         database=FirebaseDatabase.getInstance();
+
         myRef=database.getReference("Joined_Users");
       final  ArrayList<Activity> showActivitiesAgain=getIntent().getParcelableArrayListExtra("showActivitiesAgain");
 
@@ -64,13 +67,12 @@ public class JoinActivity extends AppCompatActivity {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
 
                             myRef.child("Activity_"+currentActivity.get(0).getId()).child("Joined Users")
                                     .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                             Intent intent=new Intent(JoinActivity.this, MainActivity.class);
                             startActivity(intent);
-                    }
+
                 }
 
                 @Override
