@@ -201,6 +201,8 @@ public class PostActivity extends AppCompatActivity {
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
+                database_activity=FirebaseDatabase.getInstance().getReference("Joined_Users");
+                database_activity.child("Activity_"+newPost.getId()).setValue(newPost);
                 Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(PostActivity.this, SearchOrPost.class));
                }//if date and time are valid, finish
