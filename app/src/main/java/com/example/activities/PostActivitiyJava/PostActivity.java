@@ -21,6 +21,7 @@ import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
+import com.example.activities.data.rtdb.activity.JoinActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -201,8 +202,6 @@ public class PostActivity extends AppCompatActivity {
                 //Write new activity to the database
                 database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                 database_activity.setValue(newPost);
-                database_activity=FirebaseDatabase.getInstance().getReference("Joined_Users");
-                database_activity.child("Activity_"+newPost.getId()).setValue(newPost);
                 Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(PostActivity.this, SearchOrPost.class));
                }//if date and time are valid, finish

@@ -31,7 +31,12 @@ public class JoinActivity extends AppCompatActivity {
     private Button joinThisActitivty;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private static final String users_in_activities="users_in_activities";
 
+
+    public static String getUsers_in_activities() {
+        return users_in_activities;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
         database=FirebaseDatabase.getInstance();
 
-        myRef=database.getReference("Joined_Users");
+        myRef=database.getReference("users_in_activities");
       final  ArrayList<Activity> showActivitiesAgain=getIntent().getParcelableArrayListExtra("showActivitiesAgain");
 
         final ArrayList<Activity> currentActivity= getIntent().getParcelableArrayListExtra("joinActivity");
@@ -67,9 +72,8 @@ public class JoinActivity extends AppCompatActivity {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            myRef.child("Activity_"+currentActivity.get(0).getId()).child("Joined Users")
-                                    .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                            myRef.child("Activity_"+currentActivity.get(0).getId())
+                                   .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                             Intent intent=new Intent(JoinActivity.this, MainActivity.class);
                             startActivity(intent);
 
