@@ -49,7 +49,7 @@ public class UserProfile extends AppCompatActivity {
                         email.setText(emailStr);
 
                         if (ds.child("occupation").exists()) {
-                            occupation.setText(ds.child("permission").getValue(String.class));
+                            occupation.setText(ds.child("occupation").getValue(String.class));
                         } else {
                             occupation.setText("Occupation: ");
                         }
