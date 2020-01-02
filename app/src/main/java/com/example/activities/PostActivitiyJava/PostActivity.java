@@ -33,6 +33,10 @@ public class PostActivity extends AppCompatActivity {
     private static final String activities = "activities/";
     private static DatabaseReference database_activity = null;
 
+    public static String getActivities() {
+        return activities;
+    }
+
     private Button closeAppFromPost;
     private Button buttonLogout;
     private Button clickToPost;

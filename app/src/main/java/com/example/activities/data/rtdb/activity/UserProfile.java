@@ -5,17 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.activities.MainActivity;
+import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.google.android.gms.common.util.Strings;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday;
@@ -24,6 +31,7 @@ public class UserProfile extends AppCompatActivity {
     private Button showMyActivities;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
+    private DatabaseReference joinedRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +48,17 @@ public class UserProfile extends AppCompatActivity {
         gender = findViewById(R.id.genderOfTheUser);
         permission = findViewById(R.id.permissionOfTheUser);
         birthday = findViewById(R.id.birthdayOfTheUser);
+        database = FirebaseDatabase.getInstance();
 
-
-        backToMainActivity=findViewById(R.id.backToMainActivity);
+        backToMainActivity = findViewById(R.id.backToMainActivity);
         backToMainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(UserProfile.this, MainActivity.class);
+                Intent intent = new Intent(UserProfile.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-        database = FirebaseDatabase.getInstance();
+
         userRef = database.getReference("users");
 
         userRef.addValueEventListener(new ValueEventListener() {
@@ -87,6 +95,60 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        showJoinedActivities = findViewById(R.id.joinedActivities);
+        showJoinedActivities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                joinedRef = database.getReference(JoinActivity.getUsers_in_activities());
+                joinedRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        final ArrayList<String> joinedActivitiesArray = new ArrayList<String>();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            //if my uid is exist here
+                            if (ds.child(ds.getKey()).child(FirebaseAuth.getInstance().getUid()).getKey().equals(FirebaseAuth.getInstance().getUid())) {
+                                joinedActivitiesArray.add(ds.getKey());
+                            }
+
+                        }
+                        if (joinedActivitiesArray.size() > 0) {
+                            final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                            final Intent i = new Intent(UserProfile.this, ShowActivities.class);
+                            DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
+                            activitiesRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (int i = 0; i < joinedActivitiesArray.size(); i++) {
+                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            if (ds.getKey().equals(joinedActivitiesArray.get(i))) {
+                                                activitiesArray.add(ds.getValue(Activity.class));
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    i.putExtra("activitiesArray", activitiesArray);
+                                    startActivity(i);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        } else {
+                            Toast.makeText(UserProfile.this, "Your not joined any Activity", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
