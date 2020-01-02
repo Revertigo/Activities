@@ -44,7 +44,7 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
         database=FirebaseDatabase.getInstance();
 
-        myRef=database.getReference("users_in_activities");
+        myRef=database.getReference(users_in_activities);
       final  ArrayList<Activity> showActivitiesAgain=getIntent().getParcelableArrayListExtra("showActivitiesAgain");
 
         final ArrayList<Activity> currentActivity= getIntent().getParcelableArrayListExtra("joinActivity");

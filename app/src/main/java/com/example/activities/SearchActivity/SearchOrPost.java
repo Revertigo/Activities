@@ -86,9 +86,7 @@ public class SearchOrPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(SearchOrPost.this, UserProfile.class);
-                Log.wtf("the email is",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 intent.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
-
                 startActivity(intent);
             }
         });

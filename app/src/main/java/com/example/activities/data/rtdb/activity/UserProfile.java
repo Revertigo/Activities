@@ -49,7 +49,7 @@ public class UserProfile extends AppCompatActivity {
 //        profileImage=findViewById(R.id.profileImage);
 
         database=FirebaseDatabase.getInstance();
-        userRef=database.getReference("Users");
+        userRef=database.getReference("users");
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,6 +73,7 @@ public class UserProfile extends AppCompatActivity {
 
                         birthday.setText(ds.child("dateOfBirth").getValue(String.class));
                         gender.setText(ds.child("gender").getValue(String.class));
+                        break;
                     }
                 }
             }
