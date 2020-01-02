@@ -32,6 +32,7 @@ public class UserProfile extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private DatabaseReference joinedRef;
+    private  DatabaseReference myActivitiesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +152,26 @@ public class UserProfile extends AppCompatActivity {
                 });
             }
         });
+        showMyActivities=findViewById(R.id.myPostedActivities);
+        showMyActivities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myActivitiesRef=database.getReference(PostActivity.getActivities());
+                myActivitiesRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+
 
     }
 }
