@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.activities.R;
@@ -16,58 +15,50 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class UserProfile extends AppCompatActivity {
-    private TextView name,email,occupation,education,gender,permission,birthday;
-   // private ImageView emailImage,occupationImage,educationImage,genderImage,permissionImage,birthdayImage,profileImage;
+    private TextView name, email, occupation, education, gender, permission, birthday;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        Intent intent=getIntent();
-        final String emailStr=intent.getStringExtra("email");
+        Intent intent = getIntent();
+        final String emailStr = intent.getStringExtra("email");
 
+        name = findViewById(R.id.nameOfTheUser);
+        email = findViewById(R.id.emailOfTheUser);
+        occupation = findViewById(R.id.occupationOfTheUser);
+        education = findViewById(R.id.educationOfTheUserTitle);
+        gender = findViewById(R.id.genderOfTheUser);
+        permission = findViewById(R.id.permissionOfTheUser);
+        birthday = findViewById(R.id.birthdayOfTheUser);
 
-
-        name=findViewById(R.id.nameOfTheUser);
-        email=findViewById(R.id.emailOfTheUser);
-        occupation=findViewById(R.id.occupationOfTheUser);
-        education=findViewById(R.id.educationOfTheUserTitle);
-        gender=findViewById(R.id.genderOfTheUser);
-        permission=findViewById(R.id.permissionOfTheUser);
-        birthday=findViewById(R.id.birthdayOfTheUser);
-//
-//        emailImage=findViewById(R.id.emailImage);
-//        occupationImage=findViewById(R.id.occupationImage);
-//        educationImage=findViewById(R.id.educationImage);
-//        genderImage=findViewById(R.id.genderImage);
-//        permissionImage=findViewById(R.id.permissionImage);
-//        birthdayImage=findViewById(R.id.birthdayImage);
-//        profileImage=findViewById(R.id.profileImage);
-
-        database=FirebaseDatabase.getInstance();
-        userRef=database.getReference("users");
+        database = FirebaseDatabase.getInstance();
+        userRef = database.getReference("users");
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    if(ds.child("username").getValue().equals(emailStr)){
-                        name.setText(ds.child("firstName").getValue(String.class)+" "+ds.child("lastName").getValue(String.class));
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("username").getValue().equals(emailStr)) {
+                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
 
                         email.setText(emailStr);
 
-                        if(ds.child("occupation").exists()){
-                        occupation.setText(ds.child("permission").getValue(String.class));}
-                        else{occupation.setText("Occupation: ");}
+                        if (ds.child("occupation").exists()) {
+                            occupation.setText(ds.child("permission").getValue(String.class));
+                        } else {
+                            occupation.setText("Occupation: ");
+                        }
 
-                        if(ds.child("education").exists()){
-                            education.setText(ds.child("education").getValue(String.class));}
-                        else{education.setText("Education:");}
+                        if (ds.child("education").exists()) {
+                            education.setText(ds.child("education").getValue(String.class));
+                        } else {
+                            education.setText("Education:");
+                        }
 
                         permission.setText(ds.child("permission").getValue(String.class));
 

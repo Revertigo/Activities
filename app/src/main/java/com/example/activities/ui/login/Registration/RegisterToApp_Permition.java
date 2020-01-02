@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
 import com.example.activities.ui.login.user.User;
@@ -22,15 +23,13 @@ public class RegisterToApp_Permition extends AppCompatActivity {
 
     private Button search;
     private Button post;
-    private String permition="search";//default for Parcalble
+    private String permition = "search";//default for Parcalble
 
-    private User newUser ;
+    private User newUser;
 
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String search_users="users/";
-
-
+    private String search_users = "users/";
 
 
     @Override
@@ -58,8 +57,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     users_ref.child(mAuth.getUid()).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
-                                }
-                                else {
+                                } else {
                                     // If sign in fails, display a message to the user.
                                     startActivity(new Intent(RegisterToApp_Permition.this, RegisterToApp_Email.class));
                                     Toast.makeText(getApplicationContext(),
@@ -78,7 +76,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                 permition = "post";
                 newUser.setPermission(permition);
                 Intent i = new Intent(RegisterToApp_Permition.this, RegisterToApp_PostIntro.class);
-                i.putExtra("newUser",newUser);
+                i.putExtra("newUser", newUser);
                 startActivity(i);
             }
         });

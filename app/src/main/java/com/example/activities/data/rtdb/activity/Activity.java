@@ -2,9 +2,10 @@ package com.example.activities.data.rtdb.activity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import java.text.SimpleDateFormat;
 
-public class Activity implements Parcelable{
+public class Activity implements Parcelable {
     private static long id_counter;//For autoincrement of id's
     private final int NUM_USER_PROPS = 14;
 
@@ -20,7 +21,8 @@ public class Activity implements Parcelable{
     private String time;//Format: hh:mm
 
 
-    public Activity() {}
+    public Activity() {
+    }
 
     public Activity(String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
@@ -35,46 +37,51 @@ public class Activity implements Parcelable{
         this.time = time;
     }
 
-public static class Date{
-    private String day;
-    private String month;
+    public static class Date {
+        private String day;
+        private String month;
         private String year;
 
 
-        public Date(){this.year=""; this.month=""; this.day="";}
-        public Date(String day,String month,String year){
-            this.day=day;
-            this.month=month;
-             this.year=year;
+        public Date() {
+            this.year = "";
+            this.month = "";
+            this.day = "";
         }
 
-    public String getYear() {
-        return this.year;
-    }
+        public Date(String day, String month, String year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+        public String getYear() {
+            return this.year;
+        }
 
-    public String getMonth() {
-        return this.month;
-    }
+        public void setYear(String year) {
+            this.year = year;
+        }
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
+        public String getMonth() {
+            return this.month;
+        }
 
-    public String getDay() {
-        return this.day;
-    }
+        public void setMonth(String month) {
+            this.month = month;
+        }
 
-    public void setDay(String day) {
-        this.day = day;
+        public String getDay() {
+            return this.day;
+        }
+
+        public void setDay(String day) {
+            this.day = day;
+        }
     }
-}
 
     //date
-    public Date getDate () {
+    public Date getDate() {
         return this.date;
     }
 
@@ -103,9 +110,11 @@ public static class Date{
         public String getCity_set() {
             return city_set;
         }
+
         public String getStreet() {
             return street;
         }
+
         public int getApartment_number() {
             return apartment_number;
         }
@@ -122,6 +131,7 @@ public static class Date{
             this.apartment_number = apartment_number;
         }
     }
+
     //addr
     public Address getAddr() {
         return this.addr;
@@ -139,7 +149,7 @@ public static class Date{
 
         //This shouldn't be in here, but due to null exception according we will keep it here.
         this.addr = new Address();
-        this.date=new Date();
+        this.date = new Date();
         this.id = Long.parseLong(data[0]);
         this.name = data[1];
         this.type = data[2];
@@ -149,9 +159,9 @@ public static class Date{
         this.difficulty = data[6];
         this.gender = data[7];
         this.description = data[8];
-        this.date.day =data[9];//Since we will update later this.date
-        this.date.month=data[10];
-                this.date.year=data[11];
+        this.date.day = data[9];//Since we will update later this.date
+        this.date.month = data[10];
+        this.date.year = data[11];
         this.time = data[12];
         this.group = Boolean.parseBoolean(data[13]);
     }
@@ -161,101 +171,102 @@ public static class Date{
     }
 
     //id
-    public long getId () {
+    public long getId() {
         return this.id;
     }
 
-    public void setId ( long id){
+    public void setId(long id) {
         this.id = id;
     }
 
 
     //name
-    public String getName () {
+    public String getName() {
         return this.name;
     }
 
-    public void setName (String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     //type
-    public String getType () {
+    public String getType() {
         return this.type;
     }
 
-    public void setType (String type){
+    public void setType(String type) {
         this.type = type;
     }
 
 
-
     //difficulty
-    public void setDifficulty (String difficulty){
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 
-    public String getDifficulty () {
+    public String getDifficulty() {
         return this.difficulty;
     }
 
-    public void setGroup ( boolean ans){
+    public void setGroup(boolean ans) {
         this.group = ans;
     }
-    public boolean isGroup () {
+
+    public boolean isGroup() {
         return group;
     }
+
     //gender of the activity
-    public void setGender (String gender){
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getGender () {
+    public String getGender() {
         return this.gender;
     }
 
     //description of the activity
-    public void setDescription (String description){
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getDescription () {
+    public String getDescription() {
         return this.description;
     }
 
 
-
     //time format
-    public String getTime () {
+    public String getTime() {
         return this.time;
     }
 
-    public void setTime (String time){
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public static long getId_counter () {
+    public static long getId_counter() {
         return id_counter;
     }
 
-    public static void setId_counter (long id_counter){
+    public static void setId_counter(long id_counter) {
         Activity.id_counter = id_counter;
     }
 
     //implementation
 
     @Override
-    public int describeContents () {
+    public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel (Parcel dest,int flags){
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(
                 new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set, this.addr.street,
                         Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description,
-                       this.date.day,this.date.month,this.date.year, this.time, String.valueOf(this.group)});
+                        this.date.day, this.date.month, this.date.year, this.time, String.valueOf(this.group)});
     }
+
     public static final Parcelable.Creator<Activity> CREATOR = new Parcelable.Creator<Activity>() {
 
         @Override
@@ -269,22 +280,25 @@ public static class Date{
         }
     };
 
-    public String toString(){
+    public String toString() {
         String activityFor;
-        if(isGroup()){activityFor="Group";}
-        else{activityFor="Single";}
+        if (isGroup()) {
+            activityFor = "Group";
+        } else {
+            activityFor = "Single";
+        }
         return (
-            "Activity's id: "+getId()+"\n"+
-            "Activity's name: "+getName()+"\n"+
-            "Activity's type: "+getType()+"\n"+
-            "Occurrence City: "+ getAddr().getCity_set()+"\n"+
-            "Street name: "+getAddr().getStreet()+"\n"+
-            "Apartment number:"+getAddr().getApartment_number()+"\n"+
-            "Difficulty classification: "+getDifficulty()+"\n"+
-            "Activity for: "+activityFor+"\n"+
-            "Gender suitable: "+getGender()+"\n"+
-            "Activity Description: "+getDescription()+"\n"+
-            "Date: "+getDate().getDay()+"/"+getDate().getMonth()+"/"+getDate().getYear()+"\n"+
-            "Time:"+getTime());
+                "Activity's id: " + getId() + "\n" +
+                        "Activity's name: " + getName() + "\n" +
+                        "Activity's type: " + getType() + "\n" +
+                        "Occurrence City: " + getAddr().getCity_set() + "\n" +
+                        "Street name: " + getAddr().getStreet() + "\n" +
+                        "Apartment number:" + getAddr().getApartment_number() + "\n" +
+                        "Difficulty classification: " + getDifficulty() + "\n" +
+                        "Activity for: " + activityFor + "\n" +
+                        "Gender suitable: " + getGender() + "\n" +
+                        "Activity Description: " + getDescription() + "\n" +
+                        "Date: " + getDate().getDay() + "/" + getDate().getMonth() + "/" + getDate().getYear() + "\n" +
+                        "Time:" + getTime());
     }
 }

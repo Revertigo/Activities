@@ -21,7 +21,7 @@ public class User implements Parcelable {
     public User() {
     }
 
-    public User(User other){
+    public User(User other) {
         this.username = other.getUsername();
         this.password = other.getPassword();
         this.firstName = other.getFirstName();
@@ -106,9 +106,6 @@ public class User implements Parcelable {
     public void setPermission(String permission) {
         this.permission = permission;
     }
-
-
-
 
 
     //Parcel implementation part:

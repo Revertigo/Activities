@@ -81,12 +81,12 @@ public class SearchOrPost extends AppCompatActivity {
         CsvReader.readRecordsfromDB(CsvReader.CITIES_AND_SETTLEMENTS, "server/cities_settlements");
 
 
-        myProfile=findViewById(R.id.myProfileSearchPost);
+        myProfile = findViewById(R.id.myProfileSearchPost);
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SearchOrPost.this, UserProfile.class);
-                intent.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                Intent intent = new Intent(SearchOrPost.this, UserProfile.class);
+                intent.putExtra("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(intent);
             }
         });

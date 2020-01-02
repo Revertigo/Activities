@@ -31,7 +31,7 @@ public class JoinActivity extends AppCompatActivity {
     private Button joinThisActitivty;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private static final String users_in_activities="users_in_activities";
+    private static final String users_in_activities = "users_in_activities";
 
 
     public static String getUsers_in_activities() {
@@ -42,53 +42,50 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-        database=FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
 
-        myRef=database.getReference(users_in_activities);
-      final  ArrayList<Activity> showActivitiesAgain=getIntent().getParcelableArrayListExtra("showActivitiesAgain");
+        myRef = database.getReference(users_in_activities);
+        final ArrayList<Activity> showActivitiesAgain = getIntent().getParcelableArrayListExtra("showActivitiesAgain");
 
-        final ArrayList<Activity> currentActivity= getIntent().getParcelableArrayListExtra("joinActivity");
+        final ArrayList<Activity> currentActivity = getIntent().getParcelableArrayListExtra("joinActivity");
 
 
-        backToShowActivities=findViewById(R.id.backToShowActivities);
-        joinThisActitivty=findViewById(R.id.joinThisActivity);
+        backToShowActivities = findViewById(R.id.backToShowActivities);
+        joinThisActitivty = findViewById(R.id.joinThisActivity);
 
-        ListView lv=findViewById(R.id.joinActivityListView);
-        ArrayAdapter<Activity> adapter =new ArrayAdapter<Activity>(JoinActivity.this,android.R.layout.simple_list_item_1,currentActivity);
+        ListView lv = findViewById(R.id.joinActivityListView);
+        ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(JoinActivity.this, android.R.layout.simple_list_item_1, currentActivity);
         lv.setAdapter(adapter);
 
         backToShowActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent=new Intent(JoinActivity.this,ShowActivities.class);
-            intent.putExtra("activitiesArray",showActivitiesAgain);
-            startActivity(intent);
+                Intent intent = new Intent(JoinActivity.this, ShowActivities.class);
+                intent.putExtra("activitiesArray", showActivitiesAgain);
+                startActivity(intent);
             }
         });
 
         joinThisActitivty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            myRef.child("Activity_"+currentActivity.get(0).getId())
-                                   .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                            Intent intent=new Intent(JoinActivity.this, MainActivity.class);
-                            startActivity(intent);
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        myRef.child("Activity_" + currentActivity.get(0).getId())
+                                .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                        Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                        startActivity(intent);
 
-                }
+                    }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
             }
         });
-
-
-
 
 
     }

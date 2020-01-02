@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.activities.R;
 import com.example.activities.ui.login.user.User;
 
@@ -14,8 +16,8 @@ import com.example.activities.ui.login.user.User;
 public class RegisterToApp_Gender extends AppCompatActivity {
 
     private Button Next;
-    private String gender="gender";
-    private User newUser ;
+    private String gender = "gender";
+    private User newUser;
 
     private RadioButton lastRadioBtn;
     private RadioGroup group;
@@ -35,13 +37,12 @@ public class RegisterToApp_Gender extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //If nothing is selected:
-                if(group.getCheckedRadioButtonId()== -1){
+                if (group.getCheckedRadioButtonId() == -1) {
                     lastRadioBtn.setError("Select Item");//Set error to last Radio button
-                }
-                else{
+                } else {
                     newUser.setGender(gender);
                     Intent i = new Intent(RegisterToApp_Gender.this, RegisterToApp_DateOfBirth.class);
-                    i.putExtra("newUser",newUser); //Submit the object to the next activity
+                    i.putExtra("newUser", newUser); //Submit the object to the next activity
                     startActivity(i);
                 }
             }
@@ -53,15 +54,17 @@ public class RegisterToApp_Gender extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();// Is the button now checked?
 
         // Check which radio button was clicked:
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radioButtonMan:
-                if (checked){
+                if (checked) {
                     this.gender = "Man";
-                    break;}
+                    break;
+                }
             case R.id.radioButtonWoman:
-                if (checked){
+                if (checked) {
                     this.gender = "Woman";
-                    break;}
+                    break;
+                }
         }
     }
 

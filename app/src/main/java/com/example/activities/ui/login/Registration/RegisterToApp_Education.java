@@ -25,12 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterToApp_Education extends AppCompatActivity {
 
     private Button Next;
-    private PostUser postNewUser ;
+    private PostUser postNewUser;
     private EditText occupationEditText;
     private EditText educationEditText;
     private FirebaseAuth mAuth;
     private DatabaseReference users_ref;
-    private String post_users="users/";
+    private String post_users = "users/";
 
 
     @Override
@@ -50,15 +50,13 @@ public class RegisterToApp_Education extends AppCompatActivity {
             public void onClick(View v) {
                 final String occupation = occupationEditText.getText().toString();
                 final String education = educationEditText.getText().toString();
-                if(occupation.isEmpty()){
+                if (occupation.isEmpty()) {
                     occupationEditText.setError("Please enter your current occupation");
                     occupationEditText.requestFocus();
-                }
-               else if(education.isEmpty()){
+                } else if (education.isEmpty()) {
                     educationEditText.setError("Please enter your education");
                     educationEditText.requestFocus();
-                }
-                else{
+                } else {
 
                     //Create new postUser:
                     mAuth = FirebaseAuth.getInstance();
@@ -74,12 +72,11 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         postNewUser.setEducation(education);
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
                                         users_ref.child(mAuth.getUid()).setValue(postNewUser);
-                                        Intent i=new Intent(RegisterToApp_Education.this, MainActivity.class);
+                                        Intent i = new Intent(RegisterToApp_Education.this, MainActivity.class);
                                         startActivity(i);
-                                    }
-                                    else {
+                                    } else {
 
-                                        Intent i=new Intent(RegisterToApp_Education.this, RegisterToApp_Email.class);
+                                        Intent i = new Intent(RegisterToApp_Education.this, RegisterToApp_Email.class);
                                         startActivity(i);
                                         Toast.makeText(getApplicationContext(),
                                                 "This email username already exist, Choose Another Email.",

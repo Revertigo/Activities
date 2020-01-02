@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterToApp_PostIntro extends AppCompatActivity {
 
     private Button finishRegistrationPostUser;
-    private User newUser ;
+    private User newUser;
 
 
     @Override
@@ -37,8 +37,8 @@ public class RegisterToApp_PostIntro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PostUser postNewUser = new PostUser(newUser);
-                Intent i=new Intent(RegisterToApp_PostIntro.this,RegisterToApp_Education.class);
-                i.putExtra("postNewUser",postNewUser);
+                Intent i = new Intent(RegisterToApp_PostIntro.this, RegisterToApp_Education.class);
+                i.putExtra("postNewUser", postNewUser);
                 startActivity(i);
             }
         });

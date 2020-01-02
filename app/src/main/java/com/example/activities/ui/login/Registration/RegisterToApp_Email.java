@@ -14,7 +14,7 @@ import com.example.activities.ui.login.user.User;
 public class RegisterToApp_Email extends AppCompatActivity {
 
     private EditText EmailEditText;
-    private Button Next ;
+    private Button Next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +27,19 @@ public class RegisterToApp_Email extends AppCompatActivity {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email= EmailEditText.getText().toString();
+                String email = EmailEditText.getText().toString();
                 //TO DO:
                 //add constrains on the username
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     EmailEditText.setError("Please enter correct email, for example \n" +
                             "xxx@gmail.com");
                     EmailEditText.requestFocus();
-                }
-                else{
-                    if(!((email.contains("@"))&&(email.contains(".")))){
+                } else {
+                    if (!((email.contains("@")) && (email.contains(".")))) {
                         EmailEditText.setError("Please enter correct email, for example \n" +
                                 "xxx@gmail.com");
                         EmailEditText.requestFocus();
-                    }
-                    else {
+                    } else {
                         User newUser = new User(email);
                         Intent i = new Intent(RegisterToApp_Email.this, RegisterToApp_Password.class);
                         i.putExtra("newUser", newUser); //Submit the User object to the next activity

@@ -14,13 +14,14 @@ import com.example.activities.data.rtdb.activity.Activity;
 
 public class TypePostActivity extends AppCompatActivity {
     private Button nextToDifficulty;
-private Activity newPost;
+    private Activity newPost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_post);
-        newPost=getIntent().getParcelableExtra("newPost");
-        nextToDifficulty=findViewById(R.id.nextToDifficultyPostActivity);
+        newPost = getIntent().getParcelableExtra("newPost");
+        nextToDifficulty = findViewById(R.id.nextToDifficultyPostActivity);
 
         //spinner info slots
         String[] types = new String[]{
@@ -36,11 +37,11 @@ private Activity newPost;
         nextToDifficulty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Spinner typeThatSelected=findViewById(R.id.typeSpinner);
-                String theTypedThatSelected=typeThatSelected.getSelectedItem().toString();
+                final Spinner typeThatSelected = findViewById(R.id.typeSpinner);
+                String theTypedThatSelected = typeThatSelected.getSelectedItem().toString();
                 newPost.setType(theTypedThatSelected);
-                Intent intent =new Intent(TypePostActivity.this,DifficultyPostActivity.class);
-                intent.putExtra("newPost",newPost);
+                Intent intent = new Intent(TypePostActivity.this, DifficultyPostActivity.class);
+                intent.putExtra("newPost", newPost);
                 startActivity(intent);
             }
         });

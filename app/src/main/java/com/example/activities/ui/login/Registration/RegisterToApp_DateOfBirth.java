@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.activities.R;
 import com.example.activities.ui.login.user.User;
 
@@ -59,7 +61,7 @@ public class RegisterToApp_DateOfBirth extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                date =  day + "/" +month + "/" + year;
+                date = day + "/" + month + "/" + year;
                 dateView.setText(date);
             }
         };
@@ -67,10 +69,10 @@ public class RegisterToApp_DateOfBirth extends AppCompatActivity {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    newUser.setDateOfBirth(date);
-                    Intent i = new Intent(RegisterToApp_DateOfBirth.this, RegisterToApp_Permition.class);
-                    i.putExtra("newUser",newUser); //Submit the User object to the next activity
-                    startActivity(i);
+                newUser.setDateOfBirth(date);
+                Intent i = new Intent(RegisterToApp_DateOfBirth.this, RegisterToApp_Permition.class);
+                i.putExtra("newUser", newUser); //Submit the User object to the next activity
+                startActivity(i);
             }
         });
     }

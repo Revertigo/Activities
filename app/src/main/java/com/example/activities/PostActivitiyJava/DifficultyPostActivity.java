@@ -13,14 +13,15 @@ import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
 
 public class DifficultyPostActivity extends AppCompatActivity {
-private Activity newPost;
-private Button nextToGenderPostActivity;
+    private Activity newPost;
+    private Button nextToGenderPostActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty_post);
-        newPost=getIntent().getParcelableExtra("newPost");
-        nextToGenderPostActivity=findViewById(R.id.nextToGroup);
+        newPost = getIntent().getParcelableExtra("newPost");
+        nextToGenderPostActivity = findViewById(R.id.nextToGroup);
         String[] difficulty = new String[]{
                 "Difficulty", "Beginner", "Advanced", "Professional"
         };
@@ -35,15 +36,14 @@ private Button nextToGenderPostActivity;
             @Override
             public void onClick(View v) {
 
-                final Spinner difficultSelected=findViewById(R.id.difficultySpinner);
-                String difficultThatSelected=difficultSelected.getSelectedItem().toString();
+                final Spinner difficultSelected = findViewById(R.id.difficultySpinner);
+                String difficultThatSelected = difficultSelected.getSelectedItem().toString();
                 newPost.setDifficulty(difficultThatSelected);
-                Intent intent=new Intent(DifficultyPostActivity.this,GenderPostActivity.class);
-                intent.putExtra("newPost",newPost);
+                Intent intent = new Intent(DifficultyPostActivity.this, GenderPostActivity.class);
+                intent.putExtra("newPost", newPost);
                 startActivity(intent);
             }
         });
-
 
 
     }

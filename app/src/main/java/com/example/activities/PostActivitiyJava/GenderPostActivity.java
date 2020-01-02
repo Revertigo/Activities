@@ -14,24 +14,24 @@ import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
 
 public class GenderPostActivity extends AppCompatActivity {
-private Button nextToGroupPostActivity;
-private Activity newPost;
+    private Button nextToGroupPostActivity;
+    private Activity newPost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender_post);
-        newPost=getIntent().getParcelableExtra("newPost");
-        nextToGroupPostActivity=findViewById(R.id.nextToGroup);
+        newPost = getIntent().getParcelableExtra("newPost");
+        nextToGroupPostActivity = findViewById(R.id.nextToGroup);
         nextToGroupPostActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final RadioGroup rgGender=findViewById(R.id.rgGenderAdvanced);
+                final RadioGroup rgGender = findViewById(R.id.rgGenderAdvanced);
 
-                if(rgGender.getCheckedRadioButtonId()==-1) {
+                if (rgGender.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(getApplicationContext(), "Please select gender suitable", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    String gender = ((RadioButton)findViewById(rgGender.getCheckedRadioButtonId())).getText().toString();
+                } else {
+                    String gender = ((RadioButton) findViewById(rgGender.getCheckedRadioButtonId())).getText().toString();
                     newPost.setGender(gender);
                     Intent intent = new Intent(GenderPostActivity.this, GroupPostActivity.class);
                     intent.putExtra("newPost", newPost);
