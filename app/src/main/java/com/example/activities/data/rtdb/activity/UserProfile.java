@@ -32,7 +32,7 @@ public class UserProfile extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private DatabaseReference joinedRef;
-    private  DatabaseReference myActivitiesRef;
+    private DatabaseReference myActivitiesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +141,7 @@ public class UserProfile extends AppCompatActivity {
                             });
 
                         } else {
-                            Toast.makeText(UserProfile.this, "Your not joined any Activity", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserProfile.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -152,15 +152,27 @@ public class UserProfile extends AppCompatActivity {
                 });
             }
         });
-        showMyActivities=findViewById(R.id.myPostedActivities);
+        showMyActivities = findViewById(R.id.myPostedActivities);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myActivitiesRef=database.getReference(PostActivity.getActivities());
+                myActivitiesRef = database.getReference(PostActivity.getActivities());
+                final ArrayList<Activity> myPostedActivities = new ArrayList<Activity>();
                 myActivitiesRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if (ds.child("postedUser").getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                                myPostedActivities.add(ds.getValue(Activity.class));
+                            }
+                        }
+                        if (myPostedActivities.size() > 0) {
+                            Intent i = new Intent(UserProfile.this, ShowActivities.class);
+                            i.putExtra("activitiesArray", myPostedActivities);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(UserProfile.this, "Your not posted any activity.", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
