@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 
 public class Activity implements Parcelable {
     private static long id_counter;//For autoincrement of id's
-    private final int NUM_USER_PROPS = 14;
-
+    private final int NUM_USER_PROPS = 15;
+    private String postedUser;
     private long id;//Very long id number
     private String name;//Activity name
     private String type;
@@ -24,8 +24,9 @@ public class Activity implements Parcelable {
     public Activity() {
     }
 
-    public Activity(String name, String Type, Address addr, String difficulty, boolean group,
+    public Activity(String postedUser,String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
+        this.postedUser=postedUser;
         this.name = name;
         this.type = Type;
         this.addr = addr;
@@ -151,19 +152,21 @@ public class Activity implements Parcelable {
         this.addr = new Address();
         this.date = new Date();
         this.id = Long.parseLong(data[0]);
-        this.name = data[1];
-        this.type = data[2];
-        this.addr.city_set = data[3];
-        this.addr.street = data[4];
-        this.addr.apartment_number = Integer.parseInt(data[5]);
-        this.difficulty = data[6];
-        this.gender = data[7];
-        this.description = data[8];
-        this.date.day = data[9];//Since we will update later this.date
-        this.date.month = data[10];
-        this.date.year = data[11];
-        this.time = data[12];
-        this.group = Boolean.parseBoolean(data[13]);
+        this.postedUser = data[1];
+        this.name = data[2];
+        this.type = data[3];
+        this.addr.city_set = data[4];
+        this.addr.street = data[5];
+        this.addr.apartment_number = Integer.parseInt(data[6]);
+        this.difficulty = data[7];
+        this.gender = data[8];
+        this.description = data[9];
+        this.date.day = data[10];//Since we will update later this.date
+        this.date.month = data[11];
+        this.date.year = data[12];
+        this.time = data[13];
+        this.group = Boolean.parseBoolean(data[14]);
+
     }
 
     public enum Gender {
@@ -252,6 +255,14 @@ public class Activity implements Parcelable {
         Activity.id_counter = id_counter;
     }
 
+    public void setpostedUser(String postedUser) {
+        this.postedUser = postedUser;
+    }
+
+    public String getpostedUser() {
+        return this.postedUser;
+    }
+
     //implementation
 
     @Override
@@ -262,7 +273,7 @@ public class Activity implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(
-                new String[]{Long.toString(this.id), this.name, this.type, this.addr.city_set, this.addr.street,
+                new String[]{Long.toString(this.id), this.postedUser, this.name, this.type, this.addr.city_set, this.addr.street,
                         Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description,
                         this.date.day, this.date.month, this.date.year, this.time, String.valueOf(this.group)});
     }
@@ -288,7 +299,9 @@ public class Activity implements Parcelable {
             activityFor = "Single";
         }
         return (
-                "Activity's id: " + getId() + "\n" +
+                "Activiy's id: " + getId() + "\n" +
+                        "Posted user: " + getpostedUser() + "\n" +
+                        "Activity's id: " + getId() + "\n" +
                         "Activity's name: " + getName() + "\n" +
                         "Activity's type: " + getType() + "\n" +
                         "Occurrence City: " + getAddr().getCity_set() + "\n" +

@@ -75,7 +75,7 @@ public class NamePostActivity extends AppCompatActivity {
                     name.requestFocus();
                 } else {
 
-                    Activity newPost = new Activity(activityNameChoosen, "", new Activity.Address(), "",
+                    Activity newPost = new Activity("",activityNameChoosen,"", new Activity.Address(), "",
                             true, "", "", new Activity.Date(), "");
 
                     Intent intent = new Intent(NamePostActivity.this, TypePostActivity.class);

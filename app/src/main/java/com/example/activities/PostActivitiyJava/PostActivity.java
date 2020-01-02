@@ -200,6 +200,7 @@ public class PostActivity extends AppCompatActivity {
                     // befor the post Write new id counter to the database, and update the post id
                     while (!NamePostActivity.is_id_read) ;
                     newPost.setId(Activity.getId_counter());//Update the real id of the user
+                    newPost.setpostedUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     String[] tokens = NamePostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
                     NamePostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
                     NamePostActivity.is_id_read = false;
