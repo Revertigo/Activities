@@ -70,7 +70,7 @@ public class RegisterToApp_DateOfBirth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newUser.setDateOfBirth(date);
-                Intent i = new Intent(RegisterToApp_DateOfBirth.this, RegisterToApp_Permition.class);
+                Intent i = new Intent(RegisterToApp_DateOfBirth.this, RegisterToApp_Phone.class);
                 i.putExtra("newUser", newUser); //Submit the User object to the next activity
                 startActivity(i);
             }
