@@ -71,6 +71,9 @@
             android:name=".ui.login.Registration.RegisterToApp_DateOfBirth"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".ui.login.Registration.RegisterToApp_Phone"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".ui.login.Registration.RegisterToApp_Permition"
             android:windowSoftInputMode="adjustPan" />
         <activity
