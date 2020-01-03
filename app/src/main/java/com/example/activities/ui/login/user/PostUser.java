@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class PostUser extends User {
 
-    private int NUM_USER_PROPS = 10;
+    private int NUM_USER_PROPS = 11;
     private String occupation;
     private String education;
 
@@ -45,9 +45,10 @@ public class PostUser extends User {
         this.permission = data[4];
         this.gender = data[5];
         this.dateOfBirth = data[6];
-        this.location = data[7];
-        this.occupation = data[8];
-        this.education = data[9];
+        this.phone = data[7];
+        this.location = data[8];
+        this.occupation = data[9];
+        this.education = data[10];
     }
 
 
@@ -64,7 +65,7 @@ public class PostUser extends User {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.firstName, this.lastName,
-                        this.permission, this.gender, this.dateOfBirth, this.location, this.occupation, this.education});
+                        this.permission, this.gender, this.dateOfBirth, this.phone, this.location, this.occupation, this.education});
     }
 
     public static final Parcelable.Creator<PostUser> CREATOR = new Parcelable.Creator<PostUser>() {
