@@ -33,8 +33,11 @@ public class RegisterToApp_Password extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
                 // TO DO:
                 // add constrains on the password
-                if (password.isEmpty() || password.length() < 5) {
-                    passwordEditText.setError("Please enter correct password");
+                if (password.isEmpty()) {
+                    passwordEditText.setError("Please enter password");
+                    passwordEditText.requestFocus();
+                } else if (password.length() < 5) {
+                    passwordEditText.setError("Please enter a password with at least 6 digits");
                     passwordEditText.requestFocus();
                 } else {
                     newUser.setPassword(password);
