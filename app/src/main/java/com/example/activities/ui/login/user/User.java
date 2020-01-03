@@ -5,7 +5,7 @@ import android.os.Parcel;
 
 public class User implements Parcelable {
 
-    private int NUM_USER_PROPS = 8;
+    private int NUM_USER_PROPS = 9;
     protected String username;
     protected String password;
     protected String firstName;
@@ -13,6 +13,7 @@ public class User implements Parcelable {
     protected String permission;
     protected String gender;
     protected String dateOfBirth;
+    protected String phone;
     protected String location;
 
     //TODO: for later
@@ -29,6 +30,7 @@ public class User implements Parcelable {
         this.permission = other.getPermission();
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
+        this.phone = other.getPhone();
         this.location = other.getLocation();
     }
 
@@ -107,6 +109,14 @@ public class User implements Parcelable {
         this.permission = permission;
     }
 
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String location) {
+        this.phone = phone;
+    }
+
 
     //Parcel implementation part:
     //User constructor from Parcel (for the getIntent().getParcelableExtra method)
@@ -121,7 +131,8 @@ public class User implements Parcelable {
         this.permission = data[4];
         this.gender = data[5];
         this.dateOfBirth = data[6];
-        this.location = data[7];
+        this.phone = data[7];
+        this.location = data[8];
     }
 
     @Override
@@ -137,7 +148,7 @@ public class User implements Parcelable {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.firstName, this.lastName,
-                        this.permission, this.gender, this.dateOfBirth, this.location});
+                        this.permission, this.gender, this.dateOfBirth, this.phone, this.location});
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
