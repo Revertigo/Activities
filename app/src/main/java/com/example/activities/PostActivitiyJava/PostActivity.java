@@ -127,7 +127,7 @@ public class PostActivity extends AppCompatActivity {
         //Setup back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Sort the data
-        CsvReader.reorganize_data();
+        //CsvReader.reorganize_data();
 
 
         //log out button
