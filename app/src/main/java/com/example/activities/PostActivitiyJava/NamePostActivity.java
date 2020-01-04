@@ -23,8 +23,6 @@ public class NamePostActivity extends AppCompatActivity {
     private Button nextToType;
     static public final String id_counter_path = "resources/activity_id_counter";
     static public DatabaseReference database_ref_id_counter = null;
-    static public boolean is_id_read = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,6 @@ public class NamePostActivity extends AppCompatActivity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                         Activity.setId_counter((dataSnapshot.getValue(Long.class)));
-                        is_id_read = true;
                     }
 
                     @Override
