@@ -1,22 +1,18 @@
 package com.example.activities.Util;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +29,14 @@ public class CsvReader {
     public static ArrayList<String> cities = new ArrayList<String>();
 
     private static DatabaseReference mDatabase = null;
+
+    /*
+      Sequence of method should be:
+        ReadCSVFile(fileNameInsideAssets, this)
+        prepeareCsvForDB(recordsFromLastCall)
+        writeCitiesAndStreetsToDB(MatFromLastCall)
+     */
+
 
     public static String[] ReadCSVFile(String path, Context c) {
         String[] tokens = null;
@@ -61,13 +65,13 @@ public class CsvReader {
         {
             String [] parsed = records[i].split(",");
             outputMat[i][0] = parsed[0];//settlment
-            outputMat[i][1] = parsed[1];//settlment
+            outputMat[i][1] = parsed[1];//street
         }
 
         return outputMat;
     }
 
-    public static void writeRecordsToDB(String[] records, String path) {
+    public static void writeCitiesToDB(String[] records, String path) {
         mDatabase = FirebaseDatabase.getInstance().getReference(path);//Get Database instance
 
         //Write data into FireBase realtime database
@@ -82,7 +86,7 @@ public class CsvReader {
      * @param records
      * @param path
      */
-    public static void writeMatRecordsToDB(String[][] records, String path) {
+    public static void writeCitiesAndStreetsToDB(String[][] records, String path) {
 
         //Write data into FireBase realtime database
         for (int i = 0; i < records.length; i++) {

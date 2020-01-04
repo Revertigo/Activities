@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
-import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.JoinActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -127,9 +126,6 @@ public class PostActivity extends AppCompatActivity {
         //Setup back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Sort the data
-        //CsvReader.reorganize_data();
-
-
         //log out button
         buttonLogout = findViewById(R.id.logoutPostActivity);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
