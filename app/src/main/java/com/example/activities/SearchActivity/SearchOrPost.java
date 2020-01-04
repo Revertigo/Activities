@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import com.example.activities.MainActivity;
 import com.example.activities.PostActivitiyJava.NamePostActivity;
 import com.example.activities.R;
 import com.example.activities.SettingsActivity;
-import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -75,11 +73,6 @@ public class SearchOrPost extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        //Read all relevant data from Realtime DB(cities and settlements, streets)
-        CsvReader.readRecordsfromDB(CsvReader.CITIES_AND_SETTLEMENTS, "server/cities_settlements");
-
 
         myProfile = findViewById(R.id.myProfileSearchPost);
         myProfile.setOnClickListener(new View.OnClickListener() {
