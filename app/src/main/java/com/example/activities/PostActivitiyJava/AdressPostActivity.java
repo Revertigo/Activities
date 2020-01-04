@@ -16,9 +16,16 @@ import com.example.activities.R;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.data.rtdb.activity.Activity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class AdressPostActivity extends AppCompatActivity {
     private Button nextToPostActivity;
     private Activity newPost;
+    //Class members for implementing streets view according to city
+    private List<String> streets;
+    private ArrayAdapter<String> adapterForstreetsSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +38,7 @@ public class AdressPostActivity extends AppCompatActivity {
         //Setup back button
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Sort the data
-        CsvReader.reorganize_data();
-
+        CsvReader.reorganize_data(CsvReader.cities, "City/Settlement");
         final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
 
         Spinner cities_settlmentsSpinner = findViewById(R.id.citySettlementSpinner);
@@ -45,30 +51,42 @@ public class AdressPostActivity extends AppCompatActivity {
         cities_settlmentsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+                String  selecteditem =  adapter.getItemAtPosition(i).toString();
+                if(!selecteditem.equals("City/Settlement")){
+                    HashMap<Integer, String> streets_in_city = (HashMap<Integer, String>)CsvReader.all_streets.get(selecteditem.trim());
 
-                String selecteditem = adapter.getItemAtPosition(i).toString();
-                if (!selecteditem.equals("City/Settlement")) {
+                    //Remove all existing strings before adding new
+                    streets.removeIf(s -> !s.equals("Street"));
+                    if(streets_in_city != null) {
+                        for (String street : streets_in_city.values()) {
+                            //We don't insert null or the name of the city/settlment
+                            if (street != null && !street.trim().equals(selecteditem.trim())) {
+                                streets.add(street);
+                            }
+                        }
+                    }
+
+                    CsvReader.reorganize_data(streets, "Street");
+                    //notify the adapter to update the view
+                    adapterForstreetsSpinner.notifyDataSetChanged();
+
                     TextView tv = findViewById(R.id.streetsTextView);
                     tv.setVisibility(View.VISIBLE);
-                    Spinner streetsSpinner = findViewById(R.id.streetsSpinner);
-                    streetsSpinner.setVisibility(View.VISIBLE);
+                    findViewById(R.id.streetsSpinner).setVisibility(View.VISIBLE);//Set visability to spinner
                 }
                 //or this can be also right: selecteditem = level[i];
             }
 
-            @Override
+                @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
-            }
-        });
+                }
+            });
 
-        //string array for streetSpinner
-        String[] streets = new String[]{
-                "Street", "Dizingoff", "Hertzel", "Another"
-        };
         //using streets string array
+        streets = new ArrayList<String>();
         Spinner streetsSpinner = findViewById(R.id.streetsSpinner);
-        ArrayAdapter<String> adapterForstreetsSpinner = new ArrayAdapter<String>(this,
+        adapterForstreetsSpinner = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, streets);
         adapterForstreetsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         streetsSpinner.setAdapter(adapterForstreetsSpinner);
@@ -83,7 +101,6 @@ public class AdressPostActivity extends AppCompatActivity {
                     tv.setVisibility(View.VISIBLE);
                     EditText et = findViewById(R.id.apartNumberPlainText);
                     et.setVisibility(View.VISIBLE);
-
                 }
                 //or this can be also right: selecteditem = level[i];
             }
