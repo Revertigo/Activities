@@ -65,7 +65,8 @@ public class UserProfile extends AppCompatActivity {
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent i=new Intent(UserProfile.this,ShowHistory.class);
+                startActivity(i);
             }
         });
 
