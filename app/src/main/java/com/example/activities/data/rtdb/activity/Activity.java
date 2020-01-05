@@ -299,7 +299,6 @@ public class Activity implements Parcelable {
             activityFor = "Single";
         }
         return (
-                "Activiy's id: " + getId() + "\n" +
                         "Posted user: " + getpostedUser() + "\n" +
                         "Activity's id: " + getId() + "\n" +
                         "Activity's name: " + getName() + "\n" +
