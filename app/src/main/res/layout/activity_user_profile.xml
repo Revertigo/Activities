@@ -341,6 +341,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/backToMainActivity"
             app:layout_constraintVertical_bias="0.666" />
+
+        <Button
+            android:id="@+id/activitiesHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activities history"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/joinedActivities"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.387" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

@@ -33,6 +33,7 @@ public class UserProfile extends AppCompatActivity {
     private DatabaseReference userRef;
     private DatabaseReference joinedRef;
     private DatabaseReference myActivitiesRef;
+    private Button activitiesHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,14 @@ public class UserProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfile.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        activitiesHistory=findViewById(R.id.activitiesHistory);
+        activitiesHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
 
