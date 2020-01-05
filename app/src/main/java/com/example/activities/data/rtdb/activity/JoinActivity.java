@@ -74,6 +74,10 @@ public class JoinActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         myRef.child("Activity_" + currentActivity.get(0).getId())
                                 .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                        myRef=FirebaseDatabase.getInstance().getReference();
+                        myRef.child("users_history_joined"+"/"+FirebaseAuth.getInstance().getUid()+"/"+"Activity_"+currentActivity.get(0).getId()
+                                ).setValue(currentActivity.get(0));
+
                         Intent intent = new Intent(JoinActivity.this, MainActivity.class);
                         startActivity(intent);
 
