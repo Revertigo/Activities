@@ -163,8 +163,6 @@ public class UserProfile extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             Activity ac=ds.getValue(Activity.class);
-                           Log.wtf("",ac.getpostedUser());
-                           Log.wtf("FirebaseAuth.getInstance().getCurrentUser().getEmail()",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                             if (ac.getpostedUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                                 myPostedActivities.add(ds.getValue(Activity.class));
                             }
