@@ -79,6 +79,7 @@ public class SearchActivity extends AppCompatActivity {
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        ShowActivities.activityFilter=true;
                         Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
 
                         //get current activity from database
@@ -166,6 +167,7 @@ public class SearchActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ShowActivities.activityFilter=false;
                 Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
                 String id;
                 SearchView enterId=findViewById(R.id.searchByIdSearchView);
@@ -200,6 +202,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                ShowActivities.activityFilter=true;
                 Intent intent = new Intent(SearchActivity.this, ShowActivities.class);
                 SearchView searchView = findViewById(R.id.stringSearchView);
                 String query = searchView.getQuery().toString();

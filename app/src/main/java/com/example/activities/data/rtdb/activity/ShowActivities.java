@@ -24,7 +24,7 @@ import java.util.Date;
 public class ShowActivities extends AppCompatActivity {
     private Button searchOrPost;
     private Button searchMenu;
-
+    public static boolean activityFilter=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,46 +50,47 @@ public class ShowActivities extends AppCompatActivity {
 
         final ArrayList<Activity> theActivities;
         theActivities = getIntent().getParcelableArrayListExtra("activitiesArray");
-        for (int i = 0; i < theActivities.size(); i++) {
-            String[] date = {theActivities.get(i).getDate().getDay(), theActivities.get(i).getDate().getMonth(), theActivities.get(i).getDate().getYear()};
-            String[] time = theActivities.get(i).getTime().split(":");
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Date dateobj = new Date();
-            String[] dateAndTime = df.format(dateobj).split(" ");
-            String[] dateStr = dateAndTime[0].split("/");
-            String[] timeStr = dateAndTime[1].split(":");
-            //check if year passed
-            if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
-                theActivities.remove(i);
+        if (activityFilter){
+            for (int i = 0; i < theActivities.size(); i++) {
+                String[] date = {theActivities.get(i).getDate().getDay(), theActivities.get(i).getDate().getMonth(), theActivities.get(i).getDate().getYear()};
+                String[] time = theActivities.get(i).getTime().split(":");
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date dateobj = new Date();
+                String[] dateAndTime = df.format(dateobj).split(" ");
+                String[] dateStr = dateAndTime[0].split("/");
+                String[] timeStr = dateAndTime[1].split(":");
+                //check if year passed
+                if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
+                    theActivities.remove(i);
 
-            } else {//year not passed so check month
-                if (Integer.parseInt(date[2])==Integer.parseInt(dateStr[2])) {//if year are equals check month
-                    if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
-                        theActivities.remove(i);
-                    } else {//month not passed so check days
-                        if (Integer.parseInt(date[1])==Integer.parseInt(dateStr[1])) {//if same month check days
-                            if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
-                                theActivities.remove(i);
-                            } else {//day is fine check the time.
-                                if (Integer.parseInt(date[0])==Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
-                                    if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
-                                        theActivities.remove(i);
-                                    } else {
-                                        if (Integer.parseInt(time[0])==Integer.parseInt(timeStr[0])) {//if we are in same hour check min
-                                            if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
-                                                theActivities.remove(i);
+                } else {//year not passed so check month
+                    if (Integer.parseInt(date[2]) == Integer.parseInt(dateStr[2])) {//if year are equals check month
+                        if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
+                            theActivities.remove(i);
+                        } else {//month not passed so check days
+                            if (Integer.parseInt(date[1]) == Integer.parseInt(dateStr[1])) {//if same month check days
+                                if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
+                                    theActivities.remove(i);
+                                } else {//day is fine check the time.
+                                    if (Integer.parseInt(date[0]) == Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
+                                        if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
+                                            theActivities.remove(i);
+                                        } else {
+                                            if (Integer.parseInt(time[0]) == Integer.parseInt(timeStr[0])) {//if we are in same hour check min
+                                                if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
+                                                    theActivities.remove(i);
+                                                }
                                             }
                                         }
                                     }
-                                }
 
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-
+    }
         ListView activityListView = findViewById(R.id.listViewShowActivities);
         ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(ShowActivities.this, android.R.layout.simple_list_item_1, theActivities);
         activityListView.setAdapter(adapter);

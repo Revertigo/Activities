@@ -118,6 +118,7 @@ public class UserProfile extends AppCompatActivity {
                         if (joinedActivitiesArray.size() > 0) {
                             final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
                             final Intent i = new Intent(UserProfile.this, ShowActivities.class);
+                            ShowActivities.activityFilter=false;
                             DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
                             activitiesRef.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -168,6 +169,7 @@ public class UserProfile extends AppCompatActivity {
                             }
                         }
                         if (myPostedActivities.size() > 0) {
+                            ShowActivities.activityFilter=false;
                             Intent i = new Intent(UserProfile.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);

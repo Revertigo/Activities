@@ -160,6 +160,7 @@ public class AdvancedSearch extends AppCompatActivity {
                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    boolean allMatch=true;
                    ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                   ShowActivities.activityFilter=true;
                    Intent intent = new Intent(AdvancedSearch.this, ShowActivities.class);
 
                    String name1 = name.getText().toString();
