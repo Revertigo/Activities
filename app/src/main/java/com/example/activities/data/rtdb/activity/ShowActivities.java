@@ -67,28 +67,23 @@ public class ShowActivities extends AppCompatActivity {
                 //check if year passed
                 if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
                     theActivities.remove(i);
-                    Log.wtf("fails in", "years");
                 } else {//year not passed so check month
                     if (Integer.parseInt(date[2]) == Integer.parseInt(dateStr[2])) {//if year are equals check month
                         if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
                             theActivities.remove(i);
-                            Log.wtf("fails in", "month");
                         } else {//month not passed so check days
                             if (Integer.parseInt(date[1]) == Integer.parseInt(dateStr[1])) {//if same month check days
                                 if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
-                                    Log.wtf("fails in", "days" + theActivities.get(i).getId());
                                     theActivities.remove(i);
 
                                 } else {//day is fine check the time.
                                     if (Integer.parseInt(date[0]) == Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
                                         if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
                                             theActivities.remove(i);
-                                            Log.wtf("fails in", "hour");
                                         } else {
                                             if (Integer.parseInt(time[0]) == Integer.parseInt(timeStr[0])) {//if we are in same hour check min
                                                 if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
                                                     theActivities.remove(i);
-                                                    Log.wtf("fails in", "min");
                                                 }
                                             }
                                         }
