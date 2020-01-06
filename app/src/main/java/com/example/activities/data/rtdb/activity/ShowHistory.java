@@ -52,9 +52,9 @@ public class ShowHistory extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getUid())) {
+                        if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
                             myRef = FirebaseDatabase.getInstance().getReference
-                                    ("users_history_posted/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    ("users_history_posted/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
                             myRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,18 +69,14 @@ public class ShowHistory extends AppCompatActivity {
                                         Toast.makeText(ShowHistory.this, "Thats the activities that you posted", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                     }
-
                                 }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                 }
                             });
-
                         } else {
                             Toast.makeText(ShowHistory.this, "You never posted an activity.", Toast.LENGTH_LONG).show();
-
                         }
                     }
 
@@ -89,7 +85,6 @@ public class ShowHistory extends AppCompatActivity {
 
                     }
                 });
-
             }
         });
 
@@ -101,8 +96,8 @@ public class ShowHistory extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                            myRef = FirebaseDatabase.getInstance().getReference("users_history_joined/" + FirebaseAuth.getInstance().getUid());
+                        if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
+                            myRef = FirebaseDatabase.getInstance().getReference("users_history_joined/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
                             myRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

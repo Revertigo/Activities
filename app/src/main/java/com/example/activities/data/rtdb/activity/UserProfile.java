@@ -60,11 +60,11 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        activitiesHistory=findViewById(R.id.activitiesHistory);
+        activitiesHistory = findViewById(R.id.activitiesHistory);
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(UserProfile.this,ShowHistory.class);
+                Intent i = new Intent(UserProfile.this, ShowHistory.class);
                 startActivity(i);
             }
         });
@@ -122,13 +122,11 @@ public class UserProfile extends AppCompatActivity {
                             if (ds.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
                                 joinedActivitiesArray.add(ds.getKey());
                             }
-                            else{Toast.makeText(UserProfile.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
-                            }
                         }
                         if (joinedActivitiesArray.size() > 0) {
                             final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
+                            ShowActivities.activityFilter = true;
                             final Intent i = new Intent(UserProfile.this, ShowActivities.class);
-                            ShowActivities.activityFilter=true;
                             DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
                             activitiesRef.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -147,10 +145,8 @@ public class UserProfile extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                 }
                             });
-
                         } else {
                             Toast.makeText(UserProfile.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
                         }
@@ -158,7 +154,6 @@ public class UserProfile extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             }
@@ -173,13 +168,13 @@ public class UserProfile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            Activity ac=ds.getValue(Activity.class);
+                            Activity ac = ds.getValue(Activity.class);
                             if (ac.getpostedUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                                 myPostedActivities.add(ds.getValue(Activity.class));
                             }
                         }
                         if (myPostedActivities.size() > 0) {
-                            ShowActivities.activityFilter=true;
+                            ShowActivities.activityFilter = true;
                             Intent i = new Intent(UserProfile.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);
