@@ -5,23 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".data.rtdb.activity.JoinActivity">
+    tools:context=".data.rtdb.activity.ActivityInfo">
 
     <ListView
         android:id="@+id/joinActivityListView"
-        android:layout_width="408dp"
-        android:layout_height="652dp"
+        android:layout_width="399dp"
+        android:layout_height="537dp"
         app:layout_constraintBottom_toTopOf="@+id/joinThisActivity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.166" />
 
     <Button
         android:id="@+id/joinThisActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
         android:text="Join this activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,4 +52,28 @@
         app:layout_constraintStart_toEndOf="@+id/joinThisActivity"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.991" />
+
+    <Button
+        android:id="@+id/showRegisteredUsers"
+        android:layout_width="158dp"
+        android:layout_height="72dp"
+        android:text="show registered users"
+        app:layout_constraintBottom_toTopOf="@+id/backToShowActivities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/joinActivityListView"
+        app:layout_constraintVertical_bias="0.644" />
+
+    <Button
+        android:id="@+id/leaveThisActivity"
+        android:layout_width="232dp"
+        android:layout_height="50dp"
+        android:text="leave this activity"
+        app:layout_constraintBottom_toTopOf="@+id/joinThisActivity"
+        app:layout_constraintEnd_toStartOf="@+id/showRegisteredUsers"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/joinActivityListView"
+        app:layout_constraintVertical_bias="0.736" />
 </androidx.constraintlayout.widget.ConstraintLayout>

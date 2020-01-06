@@ -81,7 +81,6 @@ public class SearchActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ShowActivities.activityFilter=true;
                         Intent intent=new Intent(SearchActivity.this, ShowActivities.class);
-
                         //get current activity from database
                         ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
                         for(DataSnapshot ds: dataSnapshot.getChildren()){

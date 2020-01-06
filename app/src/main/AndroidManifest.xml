@@ -12,7 +12,7 @@
         <activity android:name=".data.rtdb.activity.ShowHistory"></activity>
         <activity android:name=".data.rtdb.activity.UserProfile" />
         <activity
-            android:name=".data.rtdb.activity.JoinActivity"
+            android:name=".data.rtdb.activity.ActivityInfo"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SearchActivity.AdvancedSearch"

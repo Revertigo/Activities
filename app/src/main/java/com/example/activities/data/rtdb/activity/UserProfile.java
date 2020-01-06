@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.example.activities.MainActivity;
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
-import com.google.android.gms.common.util.Strings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -113,7 +111,7 @@ public class UserProfile extends AppCompatActivity {
         showJoinedActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinedRef = database.getReference(JoinActivity.getUsers_in_activities());
+                joinedRef = database.getReference(ActivityInfo.getUsers_in_activities());
                 joinedRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
