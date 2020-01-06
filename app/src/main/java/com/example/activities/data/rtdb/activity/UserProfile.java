@@ -112,6 +112,7 @@ public class UserProfile extends AppCompatActivity {
         showJoinedActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ShowActivities.activityFilter = true;
                 joinedRef = database.getReference(ActivityInfo.getUsers_in_activities());
                 joinedRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -125,7 +126,6 @@ public class UserProfile extends AppCompatActivity {
                         }
                         if (joinedActivitiesArray.size() > 0) {
                             final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
-                            ShowActivities.activityFilter = true;
                             final Intent i = new Intent(UserProfile.this, ShowActivities.class);
                             DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
                             activitiesRef.addValueEventListener(new ValueEventListener() {
@@ -162,6 +162,7 @@ public class UserProfile extends AppCompatActivity {
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ShowActivities.activityFilter = true;
                 myActivitiesRef = database.getReference(PostActivity.getActivities());
                 final ArrayList<Activity> myPostedActivities = new ArrayList<Activity>();
                 myActivitiesRef.addValueEventListener(new ValueEventListener() {
@@ -174,7 +175,6 @@ public class UserProfile extends AppCompatActivity {
                             }
                         }
                         if (myPostedActivities.size() > 0) {
-                            ShowActivities.activityFilter = true;
                             Intent i = new Intent(UserProfile.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);

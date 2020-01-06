@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
@@ -27,7 +28,8 @@ import java.util.Date;
 public class ShowActivities extends AppCompatActivity {
     private Button searchOrPost;
     private Button searchMenu;
-    public static boolean activityFilter=true;
+    public static boolean activityFilter = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class ShowActivities extends AppCompatActivity {
 
         final ArrayList<Activity> theActivities;
         theActivities = getIntent().getParcelableArrayListExtra("activitiesArray");
-        if (false){
+        if (activityFilter) {
             for (int i = 0; i < theActivities.size(); i++) {
                 String[] date = {theActivities.get(i).getDate().getDay(), theActivities.get(i).getDate().getMonth(), theActivities.get(i).getDate().getYear()};
                 String[] time = theActivities.get(i).getTime().split(":");
@@ -64,38 +66,29 @@ public class ShowActivities extends AppCompatActivity {
                 String[] timeStr = dateAndTime[1].split(":");
                 //check if year passed
                 if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
-                    FirebaseDatabase.getInstance().getReference(PostActivity.getActivities()).child("Activity_"+theActivities.get(i).getId()).removeValue();
-                    FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+theActivities.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                     theActivities.remove(i);
-
+                    Log.wtf("fails in", "years");
                 } else {//year not passed so check month
                     if (Integer.parseInt(date[2]) == Integer.parseInt(dateStr[2])) {//if year are equals check month
                         if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
-                            FirebaseDatabase.getInstance().getReference(PostActivity.getActivities()).child("Activity_"+theActivities.get(i).getId()).removeValue();
-                            FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+theActivities.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                             theActivities.remove(i);
-
+                            Log.wtf("fails in", "month");
                         } else {//month not passed so check days
                             if (Integer.parseInt(date[1]) == Integer.parseInt(dateStr[1])) {//if same month check days
                                 if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
-                                    FirebaseDatabase.getInstance().getReference(PostActivity.getActivities()).child("Activity_"+theActivities.get(i).getId()).removeValue();
-                                    FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+theActivities.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                    Log.wtf("fails in", "days" + theActivities.get(i).getId());
                                     theActivities.remove(i);
 
                                 } else {//day is fine check the time.
                                     if (Integer.parseInt(date[0]) == Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
                                         if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
-                                            FirebaseDatabase.getInstance().getReference(PostActivity.getActivities()).child("Activity_"+theActivities.get(i).getId()).removeValue();
-                                            FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+theActivities.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                             theActivities.remove(i);
-
+                                            Log.wtf("fails in", "hour");
                                         } else {
                                             if (Integer.parseInt(time[0]) == Integer.parseInt(timeStr[0])) {//if we are in same hour check min
                                                 if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
-                                                    FirebaseDatabase.getInstance().getReference(PostActivity.getActivities()).child("Activity_"+theActivities.get(i).getId()).removeValue();
-                                                    FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+theActivities.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                                     theActivities.remove(i);
-
+                                                    Log.wtf("fails in", "min");
                                                 }
                                             }
                                         }
@@ -107,22 +100,23 @@ public class ShowActivities extends AppCompatActivity {
                     }
                 }
             }
-    }
-        ListView activityListView = findViewById(R.id.listViewShowActivities);
-        ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(ShowActivities.this, android.R.layout.simple_list_item_1, theActivities);
-        activityListView.setAdapter(adapter);
-        //Todo need to fix the 0 1 10 id sorting by the adapter or listvew
-        activityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ShowActivities.this, ActivityInfo.class);
-                ArrayList<Activity> joinActivity = new ArrayList<Activity>();
-                joinActivity.add(theActivities.get(position));
-                intent.putExtra("joinActivity", joinActivity);
-                intent.putExtra("showActivitiesAgain", theActivities);
-                startActivity(intent);
-            }
-        });
+        }
+            ListView activityListView = findViewById(R.id.listViewShowActivities);
+            ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(ShowActivities.this, android.R.layout.simple_list_item_1, theActivities);
+            activityListView.setAdapter(adapter);
+
+            //Todo need to fix the 0 1 10 id sorting by the adapter or listvew
+            activityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(ShowActivities.this, ActivityInfo.class);
+                    ArrayList<Activity> joinActivity = new ArrayList<Activity>();
+                    joinActivity.add(theActivities.get(position));
+                    intent.putExtra("joinActivity", joinActivity);
+                    intent.putExtra("showActivitiesAgain", theActivities);
+                    startActivity(intent);
+                }
+            });
 
     }
 }
