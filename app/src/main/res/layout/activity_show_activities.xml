@@ -31,12 +31,24 @@
 
     <Button
         android:id="@+id/backToSearchActivity"
-        android:layout_width="176dp"
-        android:layout_height="50dp"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
         android:text="search menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
+        app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities"
+        app:layout_constraintVertical_bias="0.636" />
+
+    <Button
+        android:id="@+id/clickToSearchAgain"
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:text="@string/click_to_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/backToSearchActivity"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
         app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities" />
 </androidx.constraintlayout.widget.ConstraintLayout>

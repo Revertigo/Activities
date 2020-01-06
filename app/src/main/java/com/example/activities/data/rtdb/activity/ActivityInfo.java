@@ -69,15 +69,14 @@ public class ActivityInfo extends AppCompatActivity {
         joinThisActitivty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         myRef.child("Activity_" + currentActivity.get(0).getId())
                                 .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-
                         DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference("users_history_joined");
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
-                        Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         startActivity(intent);
 
@@ -127,15 +126,18 @@ public class ActivityInfo extends AppCompatActivity {
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Intent intent=new Intent(ActivityInfo.this,UserProfile.class);
                         try {
                             owner.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("Activity_" + currentActivity.get(0).getId())) {
                                         Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
+                                        startActivity(intent);
                                     } else {
                                         showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                         Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
+                                        startActivity(intent);
                                     }
                                 }
                                 @Override
@@ -144,6 +146,7 @@ public class ActivityInfo extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
                         }
                     }
 

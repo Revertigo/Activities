@@ -28,12 +28,21 @@ import java.util.Date;
 public class ShowActivities extends AppCompatActivity {
     private Button searchOrPost;
     private Button searchMenu;
+    private Button clickToSearchAgain;
     public static boolean activityFilter = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_activities);
+        clickToSearchAgain=findViewById(R.id.clickToSearchAgain);
+        clickToSearchAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ShowActivities.this,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         searchOrPost = findViewById(R.id.backToMainActivity);
         searchMenu = findViewById(R.id.backToSearchActivity);
