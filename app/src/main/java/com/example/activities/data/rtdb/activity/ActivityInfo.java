@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -75,7 +76,7 @@ public class ActivityInfo extends AppCompatActivity {
                                 .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
                         DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference("users_history_joined");
-                        history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_"+currentActivity.get(0).getId()).setValue(currentActivity.get(0));
+                        history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         startActivity(intent);
@@ -107,6 +108,7 @@ public class ActivityInfo extends AppCompatActivity {
                             registeredUsers.add(ds.getValue(String.class));
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -126,15 +128,20 @@ public class ActivityInfo extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         try {
-                            if (owner.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("Activity_" + currentActivity.get(0).getId()).getKey()
-                                    .equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                                Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
-                            } else {
-                                showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
-                                Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
-                            }
-
+                            owner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("Activity_" + currentActivity.get(0).getId())) {
+                                        Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                        Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                }
+                            });
                         } catch (Exception e) {
                             Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
                         }
