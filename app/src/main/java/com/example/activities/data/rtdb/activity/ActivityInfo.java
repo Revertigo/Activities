@@ -76,7 +76,8 @@ public class ActivityInfo extends AppCompatActivity {
 
                         DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference("users_history_joined");
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_"+currentActivity.get(0).getId()).setValue(currentActivity.get(0));
-                        Intent intent = new Intent(ActivityInfo.this, MainActivity.class);
+                        Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
+                        Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         startActivity(intent);
 
                     }
@@ -118,7 +119,32 @@ public class ActivityInfo extends AppCompatActivity {
         leaveThisActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference owner = FirebaseDatabase.getInstance().getReference("users_history_posted");
+                DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance()
+                        .getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
+                showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        try {
+                            if (owner.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("Activity_" + currentActivity.get(0).getId()).getKey()
+                                    .equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                                Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
+                            } else {
+                                showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
+                            }
 
+                        } catch (Exception e) {
+                            Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });

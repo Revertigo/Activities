@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -118,10 +119,11 @@ public class UserProfile extends AppCompatActivity {
                         final ArrayList<String> joinedActivitiesArray = new ArrayList<String>();
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             //if my uid is exist here
-                            if (ds.child(ds.getKey()).child(FirebaseAuth.getInstance().getUid()).getKey().equals(FirebaseAuth.getInstance().getUid())) {
+                            if (ds.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
                                 joinedActivitiesArray.add(ds.getKey());
                             }
-
+                            else{Toast.makeText(UserProfile.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
+                            }
                         }
                         if (joinedActivitiesArray.size() > 0) {
                             final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
@@ -182,7 +184,7 @@ public class UserProfile extends AppCompatActivity {
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);
                         } else {
-                            Toast.makeText(UserProfile.this, "Your not posted any activity.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserProfile.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
                         }
                     }
 

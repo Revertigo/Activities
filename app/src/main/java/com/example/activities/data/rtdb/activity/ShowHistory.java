@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.activities.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +53,8 @@ public class ShowHistory extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getUid())) {
-                            myRef = FirebaseDatabase.getInstance().getReference("users_history_posted/" + FirebaseAuth.getInstance().getUid());
+                            myRef = FirebaseDatabase.getInstance().getReference
+                                    ("users_history_posted/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
                             myRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -60,12 +62,14 @@ public class ShowHistory extends AppCompatActivity {
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                         historyArray.add(ds.getValue(Activity.class));
                                     }
-                                    if(historyArray.size()>0){
-                                        Intent intent=new Intent(ShowHistory.this,ShowActivities.class);
-                                        intent.putExtra("activitiesArray",historyArray);
-                                        ShowActivities.activityFilter=false;
+                                    if (historyArray.size() > 0) {
+                                        Intent intent = new Intent(ShowHistory.this, ShowActivities.class);
+                                        intent.putExtra("activitiesArray", historyArray);
+                                        ShowActivities.activityFilter = false;
+                                        Toast.makeText(ShowHistory.this, "Thats the activities that you posted", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                     }
+
                                 }
 
                                 @Override
@@ -73,6 +77,9 @@ public class ShowHistory extends AppCompatActivity {
 
                                 }
                             });
+
+                        } else {
+                            Toast.makeText(ShowHistory.this, "You never posted an activity.", Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -94,7 +101,7 @@ public class ShowHistory extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getUid())) {
+                        if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                             myRef = FirebaseDatabase.getInstance().getReference("users_history_joined/" + FirebaseAuth.getInstance().getUid());
                             myRef.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -103,10 +110,10 @@ public class ShowHistory extends AppCompatActivity {
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                         historyArray.add(ds.getValue(Activity.class));
                                     }
-                                    if(historyArray.size()>0){
-                                        Intent intent=new Intent(ShowHistory.this,ShowActivities.class);
-                                        intent.putExtra("activitiesArray",historyArray);
-                                        ShowActivities.activityFilter=false;
+                                    if (historyArray.size() > 0) {
+                                        Intent intent = new Intent(ShowHistory.this, ShowActivities.class);
+                                        intent.putExtra("activitiesArray", historyArray);
+                                        ShowActivities.activityFilter = false;
                                         startActivity(intent);
                                     }
                                 }
@@ -116,7 +123,10 @@ public class ShowHistory extends AppCompatActivity {
 
                                 }
                             });
+                            Toast.makeText(ShowHistory.this, "Thats the activities that you took a part.", Toast.LENGTH_LONG).show();
 
+                        } else {
+                            Toast.makeText(ShowHistory.this, "You didnt joined any activity right now.", Toast.LENGTH_LONG).show();
                         }
                     }
 
