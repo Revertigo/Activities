@@ -66,23 +66,33 @@ public class ShowActivities extends AppCompatActivity {
                 String[] timeStr = dateAndTime[1].split(":");
                 //check if year passed
                 if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
+                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
+                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                     theActivities.remove(i);
                 } else {//year not passed so check month
                     if (Integer.parseInt(date[2]) == Integer.parseInt(dateStr[2])) {//if year are equals check month
                         if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
+                            FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
+                                    .child("Activity_"+theActivities.get(i).getId()).removeValue();
                             theActivities.remove(i);
                         } else {//month not passed so check days
                             if (Integer.parseInt(date[1]) == Integer.parseInt(dateStr[1])) {//if same month check days
                                 if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
+                                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
+                                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                     theActivities.remove(i);
 
                                 } else {//day is fine check the time.
                                     if (Integer.parseInt(date[0]) == Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
                                         if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
+                                            FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
+                                                    .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                             theActivities.remove(i);
                                         } else {
                                             if (Integer.parseInt(time[0]) == Integer.parseInt(timeStr[0])) {//if we are in same hour check min
                                                 if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
+                                                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
+                                                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                                     theActivities.remove(i);
                                                 }
                                             }
