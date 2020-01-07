@@ -2,9 +2,14 @@ package com.example.activities.PostActivitiyJava;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,6 +25,7 @@ import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.data.rtdb.activity.Activity;
+import com.example.activities.data.rtdb.activity.ActivityInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -214,6 +220,7 @@ public class PostActivity extends AppCompatActivity {
                     database_activity.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
+                    postNotification(newPost.getName(),Long.toString(newPost.getId()));
                     startActivity(new Intent(PostActivity.this, SearchOrPost.class));
                     finish();
                 }//if date and time are valid, finish
@@ -230,5 +237,26 @@ public class PostActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void postNotification(String name,String id) {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("12345",
+                    "channel name",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("unique channel");
+            mNotificationManager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
+                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                .setContentTitle("Activity notification") // title for notification
+                .setContentText("You Posted activity: " + name+", "+"ID for invition: "+id)// message for notification
+                .setAutoCancel(true); // clear notification after click
+        Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mNotificationManager.notify(0, mBuilder.build());
     }
 }

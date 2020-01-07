@@ -80,6 +80,7 @@ public class ActivityInfo extends AppCompatActivity {
             }
         });
 
+
         joinThisActitivty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,10 +94,7 @@ public class ActivityInfo extends AppCompatActivity {
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         myRef.removeEventListener(this);
-                        //notification
                         joinNotification(currentActivity.get(0).getName());
-                        //notification
-
                         startActivity(intent);
                         finish();
 
@@ -122,7 +120,6 @@ public class ActivityInfo extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         ArrayList<String> usersInfo = new ArrayList<String>();
                         ArrayList<String> registeredUsers = new ArrayList<String>();
-
 
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             registeredUsers.add(ds.getValue(String.class));
@@ -230,29 +227,7 @@ public class ActivityInfo extends AppCompatActivity {
     }//onCreate
 
 
-
-       private void joinNotification(String name) {
-            NotificationManager mNotificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                NotificationChannel channel = new NotificationChannel("12345",
-                        "channel name",
-                        NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription("unique channel");
-                mNotificationManager.createNotificationChannel(channel);
-            }
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
-                    .setSmallIcon(R.mipmap.ic_launcher) // notification icon
-                    .setContentTitle("Activity notification") // title for notification
-                    .setContentText("You joined to activity: "+name)// message for notification
-                    .setAutoCancel(true); // clear notification after click
-            Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
-            PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            mBuilder.setContentIntent(pi);
-            mNotificationManager.notify(0, mBuilder.build());
-        }
-
-    private void leftNotification(String name) {
+    private void joinNotification(String name) {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -265,7 +240,28 @@ public class ActivityInfo extends AppCompatActivity {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
                 .setSmallIcon(R.mipmap.ic_launcher) // notification icon
                 .setContentTitle("Activity notification") // title for notification
-                .setContentText("You left the activity: "+name)// message for notification
+                .setContentText("You joined to activity: " + name)// message for notification
+                .setAutoCancel(true); // clear notification after click
+        Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mNotificationManager.notify(0, mBuilder.build());
+    }
+
+    private void leftNotification(String name) {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("123456",
+                    "channel name",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("unique channel");
+            mNotificationManager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "123456")
+                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                .setContentTitle("Activity notification") // title for notification
+                .setContentText("You left the activity: " + name)// message for notification
                 .setAutoCancel(true); // clear notification after click
         Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
