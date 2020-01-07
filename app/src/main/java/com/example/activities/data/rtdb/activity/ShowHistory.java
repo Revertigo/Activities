@@ -41,6 +41,7 @@ public class ShowHistory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ShowHistory.this, UserProfile.class);
+                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
             }
