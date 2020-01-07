@@ -61,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
     public void openLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void openRegisterActivity() {
         Intent intent = new Intent(MainActivity.this, RegisterToApp_Email.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

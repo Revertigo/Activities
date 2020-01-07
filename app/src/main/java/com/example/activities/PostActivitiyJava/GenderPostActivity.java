@@ -36,6 +36,7 @@ public class GenderPostActivity extends AppCompatActivity {
                     Intent intent = new Intent(GenderPostActivity.this, GroupPostActivity.class);
                     intent.putExtra("newPost", newPost);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

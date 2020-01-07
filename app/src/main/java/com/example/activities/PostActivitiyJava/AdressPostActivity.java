@@ -131,6 +131,7 @@ public class AdressPostActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdressPostActivity.this, PostActivity.class);
                 intent.putExtra("newPost", newPost);
                 startActivity(intent);
+                finish();
 
             }
         });

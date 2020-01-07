@@ -41,6 +41,7 @@ public class ShowActivities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(ShowActivities.this,SearchActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -51,6 +52,7 @@ public class ShowActivities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShowActivities.this, SearchOrPost.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -59,6 +61,7 @@ public class ShowActivities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShowActivities.this, SearchActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -129,6 +132,7 @@ public class ShowActivities extends AppCompatActivity {
                     intent.putExtra("joinActivity", joinActivity);
                     intent.putExtra("showActivitiesAgain", theActivities);
                     startActivity(intent);
+                    finish();
                 }
             });
 

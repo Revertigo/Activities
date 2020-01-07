@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
                 }
@@ -122,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                 Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
                                                 startActivity(in);
+                                                finish();
                                             }
                                         }
                                     }
@@ -146,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterToApp_Email.class);
                 startActivity(intent);
+                finish();
             }
         });
     }//end onCreate

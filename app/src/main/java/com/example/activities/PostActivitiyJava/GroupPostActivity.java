@@ -36,6 +36,7 @@ public class GroupPostActivity extends AppCompatActivity {
                     Intent intent = new Intent(GroupPostActivity.this, DescribePostActivity.class);
                     intent.putExtra("newPost", newPost);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

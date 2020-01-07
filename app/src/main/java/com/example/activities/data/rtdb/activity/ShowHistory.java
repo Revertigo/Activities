@@ -42,6 +42,7 @@ public class ShowHistory extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ShowHistory.this, UserProfile.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -68,6 +69,7 @@ public class ShowHistory extends AppCompatActivity {
                                         ShowActivities.activityFilter = false;
                                         Toast.makeText(ShowHistory.this, "Thats the activities that you posted", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
+                                        finish();
                                     }
                                 }
 
@@ -110,6 +112,7 @@ public class ShowHistory extends AppCompatActivity {
                                         intent.putExtra("activitiesArray", historyArray);
                                         ShowActivities.activityFilter = false;
                                         startActivity(intent);
+                                        finish();
                                     }
                                 }
 

@@ -57,6 +57,7 @@ public class UserProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfile.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -66,6 +67,7 @@ public class UserProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(UserProfile.this, ShowHistory.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -141,6 +143,7 @@ public class UserProfile extends AppCompatActivity {
                                     }
                                     i.putExtra("activitiesArray", activitiesArray);
                                     startActivity(i);
+                                    finish();
                                 }
 
                                 @Override
@@ -178,6 +181,7 @@ public class UserProfile extends AppCompatActivity {
                             Intent i = new Intent(UserProfile.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);
+                            finish();
                         } else {
                             Toast.makeText(UserProfile.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
                         }

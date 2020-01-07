@@ -78,6 +78,7 @@ public class NamePostActivity extends AppCompatActivity {
                     Intent intent = new Intent(NamePostActivity.this, TypePostActivity.class);
                     intent.putExtra("newPost", newPost);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

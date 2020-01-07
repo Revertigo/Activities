@@ -40,6 +40,7 @@ public class RegisterToApp_PostIntro extends AppCompatActivity {
                 Intent i = new Intent(RegisterToApp_PostIntro.this, RegisterToApp_Education.class);
                 i.putExtra("postNewUser", postNewUser);
                 startActivity(i);
+                finish();
             }
         });
     }

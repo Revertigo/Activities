@@ -49,6 +49,7 @@ public class RegisterToApp_Name extends AppCompatActivity {
                     Intent i = new Intent(RegisterToApp_Name.this, RegisterToApp_Gender.class);
                     i.putExtra("newUser", newUser);//Submit the User object to the next activity
                     startActivity(i);
+                    finish();
                 }
             }
         });

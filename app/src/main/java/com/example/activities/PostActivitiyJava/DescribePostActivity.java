@@ -33,6 +33,7 @@ public class DescribePostActivity extends AppCompatActivity {
                 Intent intent = new Intent(DescribePostActivity.this, AdressPostActivity.class);
                 intent.putExtra("newPost", newPost);
                 startActivity(intent);
+                finish();
             }
         });
     }

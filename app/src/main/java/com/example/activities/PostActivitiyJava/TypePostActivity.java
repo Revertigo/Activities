@@ -43,6 +43,7 @@ public class TypePostActivity extends AppCompatActivity {
                 Intent intent = new Intent(TypePostActivity.this, DifficultyPostActivity.class);
                 intent.putExtra("newPost", newPost);
                 startActivity(intent);
+                finish();
             }
         });
     }

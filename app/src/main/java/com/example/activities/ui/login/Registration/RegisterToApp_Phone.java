@@ -41,6 +41,7 @@ public class RegisterToApp_Phone extends AppCompatActivity {
                 Intent i = new Intent(RegisterToApp_Phone.this, RegisterToApp_Permition.class);
                 i.putExtra("newUser", newUser); //Submit the User object to the next activity
                 startActivity(i);
+                finish();
             }
         });
 

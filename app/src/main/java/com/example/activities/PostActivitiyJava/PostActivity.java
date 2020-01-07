@@ -133,6 +133,7 @@ public class PostActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(PostActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -214,6 +215,7 @@ public class PostActivity extends AppCompatActivity {
                             .setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(PostActivity.this, SearchOrPost.class));
+                    finish();
                 }//if date and time are valid, finish
             }
         });

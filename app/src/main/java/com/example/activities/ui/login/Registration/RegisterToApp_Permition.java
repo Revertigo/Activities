@@ -57,9 +57,11 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     users_ref.child(mAuth.getUid()).setValue(newUser);
                                     startActivity(new Intent(RegisterToApp_Permition.this, SearchActivity.class));
+                                    finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     startActivity(new Intent(RegisterToApp_Permition.this, RegisterToApp_Email.class));
+                                    finish();
                                     Toast.makeText(getApplicationContext(),
                                             "This email username already exist, Choose Another Email.",
                                             Toast.LENGTH_SHORT).show();
@@ -78,6 +80,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                 Intent i = new Intent(RegisterToApp_Permition.this, RegisterToApp_PostIntro.class);
                 i.putExtra("newUser", newUser);
                 startActivity(i);
+                finish();
             }
         });
 

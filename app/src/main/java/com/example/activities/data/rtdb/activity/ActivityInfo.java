@@ -64,6 +64,7 @@ public class ActivityInfo extends AppCompatActivity {
                 Intent intent = new Intent(ActivityInfo.this, ShowActivities.class);
                 intent.putExtra("activitiesArray", showActivitiesAgain);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -80,6 +81,7 @@ public class ActivityInfo extends AppCompatActivity {
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         startActivity(intent);
+                        finish();
 
                     }
 
@@ -172,10 +174,12 @@ public class ActivityInfo extends AppCompatActivity {
                                     if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("Activity_" + currentActivity.get(0).getId())) {
                                         Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
+                                        finish();
                                     } else {
                                         showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                         Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
+                                        finish();
                                     }
                                 }
 
@@ -186,6 +190,7 @@ public class ActivityInfo extends AppCompatActivity {
                         } catch (Exception e) {
                             Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
                             startActivity(intent);
+                            finish();
                         }
                     }
 

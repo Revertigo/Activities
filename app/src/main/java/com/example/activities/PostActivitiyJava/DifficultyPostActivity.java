@@ -42,6 +42,7 @@ public class DifficultyPostActivity extends AppCompatActivity {
                 Intent intent = new Intent(DifficultyPostActivity.this, GenderPostActivity.class);
                 intent.putExtra("newPost", newPost);
                 startActivity(intent);
+                finish();
             }
         });
 

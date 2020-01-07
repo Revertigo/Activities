@@ -40,6 +40,7 @@ public class SearchOrPost extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchOrPost.this, NamePostActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -50,6 +51,7 @@ public class SearchOrPost extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchOrPost.this, SearchActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -71,6 +73,7 @@ public class SearchOrPost extends AppCompatActivity {
                 auth.getInstance().signOut();
                 Intent intent = new Intent(SearchOrPost.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -81,6 +84,7 @@ public class SearchOrPost extends AppCompatActivity {
                 Intent intent = new Intent(SearchOrPost.this, UserProfile.class);
                 intent.putExtra("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -98,6 +102,7 @@ public class SearchOrPost extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(SearchOrPost.this, SettingsActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

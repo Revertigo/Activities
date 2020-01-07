@@ -50,6 +50,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(SearchActivity.this, AdvancedSearch.class);
                 startActivity(intent);
+                finish();
             }
         });
         searchByString =findViewById(R.id.StringSearchButton);
@@ -69,6 +70,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(SearchActivity.this,SearchOrPost.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -89,6 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                         intent.putExtra("activitiesArray",activitiesArray);
 
                         startActivity(intent);
+                        finish();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -156,6 +159,7 @@ public class SearchActivity extends AppCompatActivity {
                 getInstance().signOut();
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -182,7 +186,9 @@ public class SearchActivity extends AppCompatActivity {
                 if(activitiesArray.size()== 1){
                     //send the string array to the next activity
                     intent.putExtra("activitiesArray", activitiesArray);
-                    startActivity(intent);}
+                    startActivity(intent);
+                    finish();
+                }
                 else{
                     Toast.makeText(getApplicationContext(),"The id isn't exist, try again",Toast.LENGTH_SHORT).show();
                 }
@@ -223,6 +229,7 @@ public class SearchActivity extends AppCompatActivity {
                     } else {
                         intent.putExtra("activitiesArray", activitiesArray);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 else { Toast.makeText(getApplicationContext(), "What do you want to search?", Toast.LENGTH_SHORT).show();

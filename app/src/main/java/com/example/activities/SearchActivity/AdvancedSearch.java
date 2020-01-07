@@ -52,6 +52,7 @@ public class AdvancedSearch extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(AdvancedSearch.this, SearchActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -297,6 +298,7 @@ public class AdvancedSearch extends AppCompatActivity {
                        else {
                            intent.putExtra("activitiesArray", activitiesArray);
                            startActivity(intent);
+                           finish();
                        }
                }//end on data change
 

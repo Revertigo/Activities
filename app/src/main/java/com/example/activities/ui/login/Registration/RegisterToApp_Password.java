@@ -44,6 +44,7 @@ public class RegisterToApp_Password extends AppCompatActivity {
                     Intent i = new Intent(RegisterToApp_Password.this, RegisterToApp_Name.class);
                     i.putExtra("newUser", newUser);//Submit the User object to the next activity
                     startActivity(i);
+                    finish();
 
                 }
             }

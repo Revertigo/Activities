@@ -74,10 +74,12 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         users_ref.child(mAuth.getUid()).setValue(postNewUser);
                                         Intent i = new Intent(RegisterToApp_Education.this, MainActivity.class);
                                         startActivity(i);
+                                        finish();
                                     } else {
 
                                         Intent i = new Intent(RegisterToApp_Education.this, RegisterToApp_Email.class);
                                         startActivity(i);
+                                        finish();
                                         Toast.makeText(getApplicationContext(),
                                                 "This email username already exist, Choose Another Email.",
                                                 Toast.LENGTH_SHORT).show();
