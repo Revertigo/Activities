@@ -80,6 +80,7 @@ public class ActivityInfo extends AppCompatActivity {
                         DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference("users_history_joined");
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
+                        myRef.removeEventListener(this);
                         startActivity(intent);
                         finish();
 
@@ -138,7 +139,6 @@ public class ActivityInfo extends AppCompatActivity {
                                 lv.clearAnimation();
                             }
 
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -155,31 +155,36 @@ public class ActivityInfo extends AppCompatActivity {
                 });
             }
         });
-
+//Todo check if has a bug
         leaveThisActivity = findViewById(R.id.leaveThisActivity);
         leaveThisActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                 DatabaseReference owner = FirebaseDatabase.getInstance().getReference("users_history_posted");
                 DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance()
                         .getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                         try {
                             owner.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("Activity_" + currentActivity.get(0).getId())) {
+                                    if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).exists()) {
                                         Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
+                                        owner.removeEventListener(this);
+                                        showRegisteredUsersRef.removeEventListener(this);
                                         startActivity(intent);
                                         finish();
                                     } else {
                                         showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                         Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
+                                        owner.removeEventListener(this);
+                                        showRegisteredUsersRef.removeEventListener(this);
                                         startActivity(intent);
                                         finish();
+
                                     }
                                 }
 
@@ -189,6 +194,8 @@ public class ActivityInfo extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
+                            owner.removeEventListener(this);
+                            showRegisteredUsersRef.removeEventListener(this);
                             startActivity(intent);
                             finish();
                         }
@@ -201,6 +208,7 @@ public class ActivityInfo extends AppCompatActivity {
                 });
 
             }
-        });
-    }
-}
+        });//leaveThisActivity click listener
+
+    }//onCreate
+}//class
