@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.rtdb.activity.ShowHistory"></activity>
+        <activity android:name=".data.rtdb.activity.UserProfileEditable"></activity>
+        <activity android:name=".data.rtdb.activity.ShowHistory" />
         <activity android:name=".data.rtdb.activity.UserProfile" />
         <activity
             android:name=".data.rtdb.activity.ActivityInfo"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class UserProfile extends AppCompatActivity {
     private DatabaseReference joinedRef;
     private DatabaseReference myActivitiesRef;
     private Button activitiesHistory;
+    private ImageView EditProfile;
+    private ImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,21 @@ public class UserProfile extends AppCompatActivity {
         permission = findViewById(R.id.permissionOfTheUser);
         birthday = findViewById(R.id.birthdayOfTheUser);
         database = FirebaseDatabase.getInstance();
+
+
+        EditProfile=findViewById(R.id.editImageView);
+
+        EditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfile.this, UserProfileEditable.class);
+                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                startActivity(i);
+                finish();
+            }
+
+        });
+        profileImage=findViewById(R.id.profileImage);
 
         backToMainActivity = findViewById(R.id.backToMainActivity);
         backToMainActivity.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +117,8 @@ public class UserProfile extends AppCompatActivity {
 
                         birthday.setText(ds.child("dateOfBirth").getValue(String.class));
                         gender.setText(ds.child("gender").getValue(String.class));
+                        // Todo  : GET URI OF PROFILE IMAGE
+                        // profileImage.setImageURI();
                         break;
                     }
                 }

@@ -22,24 +22,21 @@
             android:background="@drawable/circle_border">
 
             <ImageView
-                android:id="@+id/profileImage"
+                android:id="@+id/imageViewProfile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginStart="9dp"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="9dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_person_black_24dp" />
+                android:src="@mipmap/ic_launcher" />
 
         </RelativeLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/nameOfTheUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,23 +46,33 @@
             android:fontFamily="sans-serif-light"
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:background="@android:color/transparent" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgUser"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="325dp"
+            android:layout_marginTop="-78dp"
+            android:layout_marginEnd="38dp"
+            app:srcCompat="@drawable/ic_add_photo" />
 
         <ImageView
-            android:id="@+id/editImageView"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/imgUser"
-            android:layout_alignBottom="@+id/imgUser"
+            android:id="@+id/saveImage"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="98dp"
-            android:layout_toEndOf="@+id/imgUser"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="34dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_edit" />
+            android:src="@drawable/ic_save" />
+
 
     </RelativeLayout>
 
@@ -118,14 +125,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/emailOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="email of the user"
+                    android:hint="email of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent" />
 
                 <View
                     android:layout_width="match_parent"
@@ -150,14 +158,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/occupationOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="occupation of the user"
+                    android:hint="occupation of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent" />
 
                 <View
                     android:layout_width="match_parent"
@@ -179,18 +188,19 @@
                     android:id="@+id/educationOfTheUserTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="education of the user"
+                    android:text="Education:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/educationOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Education:"
+                    android:hint="education of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent" />
 
                 <View
                     android:layout_width="match_parent"
@@ -215,14 +225,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/genderOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="gender of the user"
+                    android:hint="gender of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -247,14 +258,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/permissionOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="permission of the user"
+                    android:hint="permission of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent" />
 
                 <View
                     android:layout_width="match_parent"
@@ -279,23 +291,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/birthdayOfTheUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="birthday of the user"
+                    android:hint="birthday of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/phoneOfTheUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="phone of the user"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@android:color/transparent" />
 
             </LinearLayout>
 
@@ -318,18 +322,6 @@
         android:layout_marginBottom="4dp">
 
         <Button
-            android:id="@+id/myPostedActivities"
-            android:layout_width="151dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:text="my activities"
-            app:layout_constraintBottom_toTopOf="@+id/joinedActivities"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.988"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/backToMainActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -341,29 +333,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.938" />
 
-        <Button
-            android:id="@+id/joinedActivities"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="joined activities"
-            app:layout_constraintBottom_toBottomOf="@+id/backToMainActivity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.987"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/backToMainActivity"
-            app:layout_constraintVertical_bias="0.666" />
 
-        <Button
-            android:id="@+id/activitiesHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Activities history"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/joinedActivities"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.387" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
