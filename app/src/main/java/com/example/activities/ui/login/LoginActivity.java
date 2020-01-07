@@ -16,11 +16,18 @@ import com.example.activities.R;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
 import com.example.activities.SearchActivity.SearchOrPost;
 
+import com.example.activities.ui.login.user.PostUser;
+import com.example.activities.ui.login.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -87,8 +94,43 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Invalid name or password", Toast.LENGTH_SHORT).show();
 //                            // Username or password false, display and an error
                             } else {
-                                Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
-                                startActivity(intent);
+                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+                                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            if (ds.child("username").getValue().equals(mAuth.getCurrentUser().getEmail())) {
+                                                String user_permission = (String) ds.child("permission").getValue();
+
+                                                if (user_permission.equals("search")) {
+                                                    User.setCurrentUser(new User(mAuth.getCurrentUser().getEmail(), "no_pass",
+                                                            (String) ds.child("firstName").getValue(),
+                                                            (String) ds.child("lastName").getValue(),
+                                                            user_permission, (String) ds.child("gender").getValue(),
+                                                            (String) ds.child("dateOfBirth").getValue(),
+                                                            "no_phone", "no_location"));
+                                                } else {
+                                                    User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "",
+                                                            (String) ds.child("firstName").getValue(),
+                                                            (String) ds.child("lasttName").getValue(),
+                                                            user_permission, (String) ds.child("gender").getValue(),
+                                                            (String) ds.child("dateOfBirth").getValue(),
+                                                            "no_phone", "no_location",
+                                                            (String) ds.child("occupation").getValue(),
+                                                            (String) ds.child("education").getValue()));
+                                                }
+
+                                                Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
+                                                startActivity(in);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
                         }
                     });
@@ -106,7 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }//end onCreate
 
 
