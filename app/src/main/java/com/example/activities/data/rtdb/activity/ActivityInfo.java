@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.activities.MainActivity;
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -95,17 +96,54 @@ public class ActivityInfo extends AppCompatActivity {
         showRegisteredUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
+                DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance().
+                        getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<String> usersInfo = new ArrayList<String>();
                         ArrayList<String> registeredUsers = new ArrayList<String>();
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ActivityInfo.this, android.R.layout.simple_list_item_1, registeredUsers);
-                        lv.setAdapter(adapter);
-                        lv.clearAnimation();
+
+
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             registeredUsers.add(ds.getValue(String.class));
                         }
+                        DatabaseReference usersRef = FirebaseDatabase.getInstance().
+                                getReference("users");
+                        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (int i = 0; i < registeredUsers.size(); i++) {
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        Log.wtf("", ds.child("username").getValue(String.class));
+                                        Log.wtf("", registeredUsers.get(i));
+                                        if (ds.child("username").getValue(String.class).equals(registeredUsers.get(i))) {
+                                            Log.wtf("", "inside the if");
+                                            String currentUser = "";
+                                            String st1 = ds.getValue(User.class).getFirstName() + " " + ds.getValue(User.class).getLastName() + "\n";
+                                            if (st1.isEmpty()) {
+                                                st1 = "No name";
+                                            }
+                                            String st2 = ds.getValue(User.class).getGender() + "\n";
+                                            String st3 = ds.getValue(User.class).getDateOfBirth();
+                                            currentUser = st1 + st2 + st3;
+                                            usersInfo.add(currentUser);
+                                        }
+                                    }
+                                }
+                                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(ActivityInfo.this, android.R.layout.simple_list_item_1, usersInfo);
+                                lv.setAdapter(adapter2);
+                                lv.clearAnimation();
+                            }
+
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
                     }
 
                     @Override
@@ -126,7 +164,7 @@ public class ActivityInfo extends AppCompatActivity {
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Intent intent=new Intent(ActivityInfo.this,UserProfile.class);
+                        Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
                         try {
                             owner.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -140,6 +178,7 @@ public class ActivityInfo extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 }
+
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
                                 }
