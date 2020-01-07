@@ -1,11 +1,18 @@
 package com.example.activities.ui.login.user;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class PostUser extends User {
+import com.example.activities.MainActivity;
+import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.data.rtdb.activity.Ipermission;
+import com.example.activities.ui.login.LoginActivity;
 
-    private int NUM_USER_PROPS = 11;
+public class PostUser extends User implements Ipermission {
+
+    private static final int NUM_USER_PROPS = 11;
+
     private String occupation;
     private String education;
 
@@ -13,6 +20,12 @@ public class PostUser extends User {
         super(user);
         this.occupation = "default_occupation";
         this.education = "default_education";
+    }
+
+    public PostUser(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone, String location, String occupation, String education) {
+        super(username, password, firstName, lastName, permission, gender, dateOfBirth, phone, location);
+        this.occupation = occupation;
+        this.education = education;
     }
 
     public void setOccupation(String occupation) {
@@ -82,5 +95,17 @@ public class PostUser extends User {
             return new PostUser[size];
         }
     };
+
+    @Override
+    public Intent loadMainMenu(LoginActivity la) {
+        //TODO:Imeplement
+        return new Intent(la, SearchOrPost.class);
+    }
+
+    @Override
+    public Intent loadProfile(MainActivity ma) {
+        //TODO:Imeplement
+        return null;
+    }
 
 }

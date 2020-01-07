@@ -1,11 +1,19 @@
 package com.example.activities.ui.login.user;
 
+import android.content.Intent;
 import android.os.Parcelable;
 import android.os.Parcel;
 
-public class User implements Parcelable {
+import com.example.activities.MainActivity;
+import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.data.rtdb.activity.Ipermission;
+import com.example.activities.ui.login.LoginActivity;
 
-    private int NUM_USER_PROPS = 9;
+public class User implements Parcelable, Ipermission {
+
+    private static User currentUser = null;//We save instance of the logged user
+    private static final int NUM_USER_PROPS = 9;
+
     protected String username;
     protected String password;
     protected String firstName;
@@ -33,6 +41,21 @@ public class User implements Parcelable {
         this.phone = other.getPhone();
         this.location = other.getLocation();
     }
+
+    public User(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone, String location) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.permission = permission;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
+        this.location = location;
+    }
+
+    public static User getCurrentUser() {return currentUser; }
+    public static void setCurrentUser(User currentUser) {User.currentUser = currentUser; }
 
     public User(String email) {
         this.username = email;
@@ -166,5 +189,14 @@ public class User implements Parcelable {
         }
     };
 
+    @Override
+    public Intent loadMainMenu(LoginActivity la) {
+        return new Intent(la, SearchOrPost.class);
+    }
 
+    @Override
+    public Intent loadProfile(MainActivity ma) {
+        //TODO:Imeplement
+        return null;
+    }
 }
