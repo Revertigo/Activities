@@ -2,8 +2,17 @@ package com.example.activities.data.rtdb.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,8 +31,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Constants;
 
 import java.util.ArrayList;
+
+import static com.example.activities.R.mipmap.ic_launcher_round;
 
 public class ActivityInfo extends AppCompatActivity {
     private Button backToShowActivities;
@@ -81,6 +93,10 @@ public class ActivityInfo extends AppCompatActivity {
                         history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         myRef.removeEventListener(this);
+                        //notification
+                        joinNotification(currentActivity.get(0).getName());
+                        //notification
+
                         startActivity(intent);
                         finish();
 
@@ -179,6 +195,7 @@ public class ActivityInfo extends AppCompatActivity {
                                         finish();
                                     } else {
                                         showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                        leftNotification(currentActivity.get(0).getName());
                                         Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
                                         owner.removeEventListener(this);
                                         showRegisteredUsersRef.removeEventListener(this);
@@ -211,4 +228,48 @@ public class ActivityInfo extends AppCompatActivity {
         });//leaveThisActivity click listener
 
     }//onCreate
+
+
+
+       private void joinNotification(String name) {
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel("12345",
+                        "channel name",
+                        NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription("unique channel");
+                mNotificationManager.createNotificationChannel(channel);
+            }
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
+                    .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                    .setContentTitle("Activity notification") // title for notification
+                    .setContentText("You joined to activity: "+name)// message for notification
+                    .setAutoCancel(true); // clear notification after click
+            Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
+            PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(pi);
+            mNotificationManager.notify(0, mBuilder.build());
+        }
+
+    private void leftNotification(String name) {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("12345",
+                    "channel name",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("unique channel");
+            mNotificationManager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
+                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                .setContentTitle("Activity notification") // title for notification
+                .setContentText("You left the activity: "+name)// message for notification
+                .setAutoCancel(true); // clear notification after click
+        Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mNotificationManager.notify(0, mBuilder.build());
+    }
 }//class
