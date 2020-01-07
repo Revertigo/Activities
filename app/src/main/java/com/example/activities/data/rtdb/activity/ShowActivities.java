@@ -4,20 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
@@ -27,7 +24,7 @@ import java.util.Date;
 
 public class ShowActivities extends AppCompatActivity {
     private Button searchOrPost;
-    private Button searchMenu;
+    private Button backToProfile;
     private Button clickToSearchAgain;
     public static boolean activityFilter = true;
 
@@ -46,7 +43,7 @@ public class ShowActivities extends AppCompatActivity {
         });
 
         searchOrPost = findViewById(R.id.backToMainActivity);
-        searchMenu = findViewById(R.id.backToSearchActivity);
+        backToProfile = findViewById(R.id.backToProfile);
         searchOrPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,10 +53,11 @@ public class ShowActivities extends AppCompatActivity {
             }
         });
 
-        searchMenu.setOnClickListener(new View.OnClickListener() {
+        backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowActivities.this, SearchActivity.class);
+                Intent intent = new Intent(ShowActivities.this, UserProfile.class);
+                intent.putExtra("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(intent);
                 finish();
             }

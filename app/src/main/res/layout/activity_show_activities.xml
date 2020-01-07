@@ -19,36 +19,37 @@
 
     <Button
         android:id="@+id/backToMainActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="41dp"
         android:text="main menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/backToProfile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/backToSearchActivity"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:text="search menu"
+        android:id="@+id/backToProfile"
+        android:layout_width="145dp"
+        android:layout_height="41dp"
+        android:text="go to profile"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.993"
-        app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
+        app:layout_constraintEnd_toStartOf="@+id/clickToSearchAgain"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/clickToSearchAgain"
-        android:layout_width="150dp"
-        android:layout_height="46dp"
-        android:text="@string/click_to_search"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
+        android:text="search again"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/backToSearchActivity"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/backToMainActivity"
-        app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
