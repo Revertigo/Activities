@@ -1,8 +1,12 @@
 package com.example.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.ui.login.LoginActivity;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button LoginToActivities;
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //button of the login
         LoginToActivities = findViewById(R.id.button2);
@@ -47,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         closeAppBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                moveTaskToBack(true);
+                open();
             }
         });
 
@@ -91,4 +97,28 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void open(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure,You wanted to exit application?");
+                alertDialogBuilder.setPositiveButton("yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                finish();
+                                moveTaskToBack(true);
+                            }
+                        });
+
+        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+           @Override
+            public void onClick(DialogInterface dialog, int which) {
+               Toast.makeText(MainActivity.this,"Thanks for stay with us.",Toast.LENGTH_LONG).show();
+
+           }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }
