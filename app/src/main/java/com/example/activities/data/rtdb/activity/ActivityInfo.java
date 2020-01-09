@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
@@ -174,53 +176,7 @@ public class ActivityInfo extends AppCompatActivity {
         leaveThisActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
-                DatabaseReference owner = FirebaseDatabase.getInstance().getReference("users_history_posted");
-                DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance()
-                        .getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
-                showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        try {
-                            owner.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).exists()) {
-                                        Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
-                                        owner.removeEventListener(this);
-                                        showRegisteredUsersRef.removeEventListener(this);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
-                                        leftNotification(currentActivity.get(0).getName());
-                                        Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
-                                        owner.removeEventListener(this);
-                                        showRegisteredUsersRef.removeEventListener(this);
-                                        startActivity(intent);
-                                        finish();
-
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                }
-                            });
-                        } catch (Exception e) {
-                            Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
-                            owner.removeEventListener(this);
-                            showRegisteredUsersRef.removeEventListener(this);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+              open(currentActivity.get(0));
 
             }
         });//leaveThisActivity click listener
@@ -269,4 +225,74 @@ public class ActivityInfo extends AppCompatActivity {
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
     }
+
+    public void open(Activity currentActivity){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure,You want to leave this activity?");
+        alertDialogBuilder.setPositiveButton("yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(ActivityInfo.this, UserProfile.class);
+                        DatabaseReference owner = FirebaseDatabase.getInstance().getReference("users_history_posted");
+                        DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance()
+                                .getReference("users_in_activities/Activity_" + currentActivity.getId());
+                        showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                try {
+                                    owner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.getId()).exists()) {
+                                                Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
+                                                owner.removeEventListener(this);
+                                                showRegisteredUsersRef.removeEventListener(this);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                                leftNotification(currentActivity.getName());
+                                                Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
+                                                owner.removeEventListener(this);
+                                                showRegisteredUsersRef.removeEventListener(this);
+                                                startActivity(intent);
+                                                finish();
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    Toast.makeText(ActivityInfo.this, "You are not in this activity", Toast.LENGTH_LONG).show();
+                                    owner.removeEventListener(this);
+                                    showRegisteredUsersRef.removeEventListener(this);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ActivityInfo.this,"Thanks for stay with us.",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }//class
