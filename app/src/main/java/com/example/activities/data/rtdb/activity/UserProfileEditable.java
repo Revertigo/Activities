@@ -36,6 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 
 import java.io.ByteArrayOutputStream;
@@ -217,10 +218,16 @@ public class UserProfileEditable extends AppCompatActivity {
                         imageUri = data.getData();
                         imageProfile.setImageURI(imageUri);
 
+                        Picasso.get()
+                                .load(imageUri)
+                                .transform(new CircleTransform())
+                                .fit()
+                                .into(imageProfile);
+
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                        Bitmap bitmapRounded = getRoundedCroppedBitmap(bitmap);
+                        //Bitmap bitmapRounded = getRoundedCroppedBitmap(bitmap);
                         file = baos.toByteArray();
                         //imageProfile.setImageBitmap(bitmapRounded);
                     } catch (IOException e) {
@@ -234,23 +241,24 @@ public class UserProfileEditable extends AppCompatActivity {
     }//end of onActivityResult
 
     //round the picture
-    private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
-        int widthLight = bitmap.getWidth();
-        int heightLight = bitmap.getHeight();
-
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(output);
-        Paint paintColor = new Paint();
-        paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
-
-        RectF rectF = new RectF(new Rect(0, 0, widthLight, heightLight));
-        canvas.drawRoundRect(rectF, widthLight  ,heightLight, paintColor); //heightLight / 2
-        Paint paintImage = new Paint();
-        paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        canvas.drawBitmap(bitmap, 0, 0, paintImage);
-
-        return output;
-    }
+//    private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
+//        int widthLight = bitmap.getWidth();
+//        int heightLight = bitmap.getHeight();
+//
+//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+//
+//        Canvas canvas = new Canvas(output);
+//        Paint paintColor = new Paint();
+//        paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
+//
+//        RectF rectF = new RectF(new Rect(0, 0, widthLight, heightLight));
+//        canvas.drawRoundRect(rectF, widthLight  ,heightLight, paintColor); //heightLight / 2
+//        Paint paintImage = new Paint();
+//        paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+//        canvas.drawBitmap(bitmap, 0, 0, paintImage);
+//
+//
+//        return output;
+//    }
 
 }//end class UserProfileEditable
