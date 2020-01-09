@@ -70,6 +70,7 @@ public class RegisterToApp_Education extends AppCompatActivity {
                                         //send post user to database
                                         postNewUser.setOccupation(occupation);
                                         postNewUser.setEducation(education);
+                                        postNewUser.setpictureUri("");
                                         users_ref = FirebaseDatabase.getInstance().getReference(post_users);
                                         users_ref.child(mAuth.getUid()).setValue(postNewUser);
                                         Intent i = new Intent(RegisterToApp_Education.this, MainActivity.class);

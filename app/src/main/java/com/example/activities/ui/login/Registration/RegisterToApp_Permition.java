@@ -48,6 +48,8 @@ public class RegisterToApp_Permition extends AppCompatActivity {
             public void onClick(View v) {
                 permition = "search";
                 newUser.setPermission(permition);
+                newUser.setpictureUri("");
+
                 //Upload to database:
                 mAuth = FirebaseAuth.getInstance();// Initialize Firebase Auth
                 mAuth.createUserWithEmailAndPassword(newUser.getUsername(), newUser.getPassword())

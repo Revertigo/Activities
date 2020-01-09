@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         //button of the login
         LoginToActivities = findViewById(R.id.button2);
         LoginToActivities.setOnClickListener(new View.OnClickListener() {
@@ -97,24 +96,25 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void open(){
+
+    public void open() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure,You wanted to exit application?");
-                alertDialogBuilder.setPositiveButton("yes",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                finish();
-                                moveTaskToBack(true);
-                            }
-                        });
+        alertDialogBuilder.setPositiveButton("yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finish();
+                        moveTaskToBack(true);
+                    }
+                });
 
-        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-           @Override
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
-               Toast.makeText(MainActivity.this,"Thanks for stay with us.",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Thanks for stay with us.", Toast.LENGTH_LONG).show();
 
-           }
+            }
         });
 
         AlertDialog alertDialog = alertDialogBuilder.create();

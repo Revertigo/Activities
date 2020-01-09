@@ -12,7 +12,7 @@ import com.example.activities.ui.login.LoginActivity;
 public class User implements Parcelable, Ipermission {
 
     private static User currentUser = null;//We save instance of the logged user
-    private static final int NUM_USER_PROPS = 8;
+    private static final int NUM_USER_PROPS = 9;
 
     protected String username;
     protected String password;
@@ -22,6 +22,7 @@ public class User implements Parcelable, Ipermission {
     protected String gender;
     protected String dateOfBirth;
     protected String phone;
+    protected String pictureUri;
 
     //TODO: for later
     //ArrayList<String> hobbies;
@@ -38,9 +39,11 @@ public class User implements Parcelable, Ipermission {
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
         this.phone = other.getPhone();
+        this.pictureUri = other.getpictureUri();
     }
 
-    public User(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone) {
+    public User(String username, String password, String firstName, String lastName,
+                String permission, String gender, String dateOfBirth, String phone,String pictureUri) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -49,13 +52,20 @@ public class User implements Parcelable, Ipermission {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.phone = phone;
+        this.pictureUri=pictureUri;
     }
 
-    public static User getCurrentUser() {return currentUser; }
-    public static void setCurrentUser(User currentUser) {User.currentUser = currentUser; }
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
+    }
 
     public User(String email) {
         this.username = email;
+
     }
 
     public String getUsername() {
@@ -111,8 +121,13 @@ public class User implements Parcelable, Ipermission {
         this.gender = gender;
     }
 
+    public void setpictureUri(String pictureUri) {
+        this.pictureUri = pictureUri;
+    }
 
-
+    public String getpictureUri() {
+        return this.pictureUri;
+    }
 
 
     public String getPermission() {
@@ -127,7 +142,7 @@ public class User implements Parcelable, Ipermission {
         return this.phone;
     }
 
-    public void setPhone(String location) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -146,6 +161,7 @@ public class User implements Parcelable, Ipermission {
         this.gender = data[5];
         this.dateOfBirth = data[6];
         this.phone = data[7];
+        this.pictureUri=data[8];
     }
 
     @Override
@@ -161,7 +177,7 @@ public class User implements Parcelable, Ipermission {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.firstName, this.lastName,
-                        this.permission, this.gender, this.dateOfBirth, this.phone});
+                        this.permission, this.gender, this.dateOfBirth, this.phone,this.pictureUri});
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
