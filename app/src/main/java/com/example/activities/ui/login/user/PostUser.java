@@ -11,7 +11,7 @@ import com.example.activities.ui.login.LoginActivity;
 
 public class PostUser extends User implements Ipermission {
 
-    private static final int NUM_USER_PROPS = 11;
+    private static final int NUM_USER_PROPS = 10;
 
     private String occupation;
     private String education;
@@ -22,8 +22,8 @@ public class PostUser extends User implements Ipermission {
         this.education = "default_education";
     }
 
-    public PostUser(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone, String location, String occupation, String education) {
-        super(username, password, firstName, lastName, permission, gender, dateOfBirth, phone, location);
+    public PostUser(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone, String occupation, String education) {
+        super(username, password, firstName, lastName, permission, gender, dateOfBirth, phone);
         this.occupation = occupation;
         this.education = education;
     }
@@ -59,9 +59,8 @@ public class PostUser extends User implements Ipermission {
         this.gender = data[5];
         this.dateOfBirth = data[6];
         this.phone = data[7];
-        this.location = data[8];
-        this.occupation = data[9];
-        this.education = data[10];
+        this.occupation = data[8];
+        this.education = data[9];
     }
 
 
@@ -78,7 +77,7 @@ public class PostUser extends User implements Ipermission {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.firstName, this.lastName,
-                        this.permission, this.gender, this.dateOfBirth, this.phone, this.location, this.occupation, this.education});
+                        this.permission, this.gender, this.dateOfBirth, this.phone, this.occupation, this.education});
     }
 
     public static final Parcelable.Creator<PostUser> CREATOR = new Parcelable.Creator<PostUser>() {

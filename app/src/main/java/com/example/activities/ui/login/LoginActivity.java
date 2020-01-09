@@ -109,14 +109,14 @@ public class LoginActivity extends AppCompatActivity {
                                                             (String) ds.child("lastName").getValue(),
                                                             user_permission, (String) ds.child("gender").getValue(),
                                                             (String) ds.child("dateOfBirth").getValue(),
-                                                            "no_phone", "no_location"));
+                                                            "no_phone"));
                                                 } else {
                                                     User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "",
                                                             (String) ds.child("firstName").getValue(),
                                                             (String) ds.child("lasttName").getValue(),
                                                             user_permission, (String) ds.child("gender").getValue(),
                                                             (String) ds.child("dateOfBirth").getValue(),
-                                                            "no_phone", "no_location",
+                                                            "no_phone",
                                                             (String) ds.child("occupation").getValue(),
                                                             (String) ds.child("education").getValue()));
                                                 }

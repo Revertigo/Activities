@@ -63,7 +63,7 @@ public class RegisterToApp_Permition extends AppCompatActivity {
                                     startActivity(new Intent(RegisterToApp_Permition.this, RegisterToApp_Email.class));
                                     finish();
                                     Toast.makeText(getApplicationContext(),
-                                            "This email username already exist, Choose Another Email.",
+                                            "This email username already exist, Choose another email.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

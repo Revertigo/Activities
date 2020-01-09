@@ -12,7 +12,7 @@ import com.example.activities.ui.login.LoginActivity;
 public class User implements Parcelable, Ipermission {
 
     private static User currentUser = null;//We save instance of the logged user
-    private static final int NUM_USER_PROPS = 9;
+    private static final int NUM_USER_PROPS = 8;
 
     protected String username;
     protected String password;
@@ -22,7 +22,6 @@ public class User implements Parcelable, Ipermission {
     protected String gender;
     protected String dateOfBirth;
     protected String phone;
-    protected String location;
 
     //TODO: for later
     //ArrayList<String> hobbies;
@@ -39,10 +38,9 @@ public class User implements Parcelable, Ipermission {
         this.gender = other.getGender();
         this.dateOfBirth = other.getDateOfBirth();
         this.phone = other.getPhone();
-        this.location = other.getLocation();
     }
 
-    public User(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone, String location) {
+    public User(String username, String password, String firstName, String lastName, String permission, String gender, String dateOfBirth, String phone) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -51,7 +49,6 @@ public class User implements Parcelable, Ipermission {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.phone = phone;
-        this.location = location;
     }
 
     public static User getCurrentUser() {return currentUser; }
@@ -115,13 +112,7 @@ public class User implements Parcelable, Ipermission {
     }
 
 
-    public String getLocation() {
-        return this.location;
-    }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
 
     public String getPermission() {
@@ -155,7 +146,6 @@ public class User implements Parcelable, Ipermission {
         this.gender = data[5];
         this.dateOfBirth = data[6];
         this.phone = data[7];
-        this.location = data[8];
     }
 
     @Override
@@ -171,7 +161,7 @@ public class User implements Parcelable, Ipermission {
         // TODO Auto-generated method stub
         dest.writeStringArray(
                 new String[]{this.username, this.password, this.firstName, this.lastName,
-                        this.permission, this.gender, this.dateOfBirth, this.phone, this.location});
+                        this.permission, this.gender, this.dateOfBirth, this.phone});
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {

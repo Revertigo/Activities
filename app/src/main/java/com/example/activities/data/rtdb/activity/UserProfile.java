@@ -41,8 +41,7 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        Intent intent = getIntent();
-        final String emailStr = intent.getStringExtra("email");
+        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);

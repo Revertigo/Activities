@@ -91,7 +91,8 @@ public class ActivityInfo extends AppCompatActivity {
                         myRef.child("Activity_" + currentActivity.get(0).getId())
                                 .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                         DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference("users_history_joined");
-                        history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
+                        history_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         myRef.removeEventListener(this);
                         joinNotification(currentActivity.get(0).getName());
