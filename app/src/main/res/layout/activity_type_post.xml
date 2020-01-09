@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/typeSpinner"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/typeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/typeSpinner"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.697" />
 </androidx.constraintlayout.widget.ConstraintLayout>

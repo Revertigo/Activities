@@ -11,13 +11,13 @@
         android:id="@+id/rgGenderAdvanced"
         android:layout_width="149dp"
         android:layout_height="106dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:checkedButton="@+id/rbBoth"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/genderTextView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/genderTextView"
         app:layout_constraintTop_toBottomOf="@+id/genderTextView"
-        app:layout_constraintVertical_bias="0.293">
+        app:layout_constraintVertical_bias="0.255">
 
         <RadioButton
             android:id="@+id/rbMale"
@@ -48,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rgGenderAdvanced"
-        app:layout_constraintVertical_bias="0.614" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/genderTextView"
