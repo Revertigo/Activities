@@ -51,13 +51,13 @@ public class AdressPostActivity extends AppCompatActivity {
         cities_settlmentsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                String  selecteditem =  adapter.getItemAtPosition(i).toString();
-                if(!selecteditem.equals("City/Settlement")){
-                    HashMap<Integer, String> streets_in_city = (HashMap<Integer, String>)CsvReader.all_streets.get(selecteditem.trim());
+                String selecteditem = adapter.getItemAtPosition(i).toString();
+                if (!selecteditem.equals("City/Settlement")) {
+                    HashMap<Integer, String> streets_in_city = (HashMap<Integer, String>) CsvReader.all_streets.get(selecteditem.trim());
 
                     //Remove all existing strings before adding new
                     streets.removeIf(s -> !s.equals("Street"));
-                    if(streets_in_city != null) {
+                    if (streets_in_city != null) {
                         for (String street : streets_in_city.values()) {
                             //We don't insert null or the name of the city/settlment
                             if (street != null && !street.trim().equals(selecteditem.trim())) {
@@ -74,14 +74,19 @@ public class AdressPostActivity extends AppCompatActivity {
                     tv.setVisibility(View.VISIBLE);
                     findViewById(R.id.streetsSpinner).setVisibility(View.VISIBLE);//Set visability to spinner
                 }
+                else{  TextView tv = findViewById(R.id.streetsTextView);
+                    tv.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.streetsSpinner).setVisibility(View.INVISIBLE);//Set visability to spinner}
+                    //or this can be also right: selecteditem = level[i];
+                }
                 //or this can be also right: selecteditem = level[i];
             }
 
-                @Override
+            @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
-                }
-            });
+            }
+        });
 
         //using streets string array
         streets = new ArrayList<String>();
@@ -102,6 +107,10 @@ public class AdressPostActivity extends AppCompatActivity {
                     EditText et = findViewById(R.id.apartNumberPlainText);
                     et.setVisibility(View.VISIBLE);
                 }
+                else{    TextView tv = findViewById(R.id.apartNumberTextView);
+                    tv.setVisibility(View.INVISIBLE);
+                    EditText et = findViewById(R.id.apartNumberPlainText);
+                    et.setVisibility(View.INVISIBLE);}
                 //or this can be also right: selecteditem = level[i];
             }
 
@@ -116,17 +125,32 @@ public class AdressPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final TextView apartNum = findViewById(R.id.apartNumberPlainText);
                 String apartmentNumber = apartNum.getText().toString();
+                int apartNumber = 0;
+                if (!apartmentNumber.isEmpty()) {
+                    apartNumber = Integer.parseInt(apartmentNumber);
+                }
+
                 //City
+                String city = "No relevant city";
                 final Spinner activityCity = findViewById(R.id.citySettlementSpinner);
+                if (!(activityCity.getSelectedItem().toString().equals("City/Settlement"))) {
+                    city = activityCity.getSelectedItem().toString();
+                }
 
                 //Street
 
                 final Spinner activityStreet = findViewById(R.id.streetsSpinner);
-                if (apartmentNumber.isEmpty()) {
-                    apartmentNumber = "0";
+
+                String street = "Street are not relevant";
+                try {
+                    if (!activityStreet.getSelectedItem().toString().isEmpty()) {
+                        street = activityStreet.getSelectedItem().toString();
+                    }
+                } catch (Exception e) {
+
                 }
-                newPost.setAddr(new Activity.Address(activityCity.getSelectedItem().toString(),
-                        activityStreet.getSelectedItem().toString(), Integer.parseInt(apartmentNumber)));
+
+                newPost.setAddr(new Activity.Address(city, street, apartNumber));
 
                 Intent intent = new Intent(AdressPostActivity.this, PostActivity.class);
                 intent.putExtra("newPost", newPost);
