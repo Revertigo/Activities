@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity {
-    private TextView name, email, occupation, education, gender, permission, birthday;
+    private TextView name, email, occupation, education, gender, permission, birthday, phone;
     private Button backToSearchOrPost;
     private Button showJoinedActivities;
     private Button showMyActivities;
@@ -50,10 +50,11 @@ public class UserProfile extends AppCompatActivity {
         gender = findViewById(R.id.genderOfTheUserProfile);
         permission = findViewById(R.id.permissionOfTheUserProfile);
         birthday = findViewById(R.id.birthdayOfTheUserProfile);
+        phone = findViewById(R.id.PhoneOfTheUserProfile);
         database = FirebaseDatabase.getInstance();
 
 
-        EditProfile=findViewById(R.id.editImageViewProfile);
+        EditProfile = findViewById(R.id.editImageViewProfile);
 
         EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +65,7 @@ public class UserProfile extends AppCompatActivity {
             }
 
         });
-        profileImage=findViewById(R.id.profileImageProfile);
+        profileImage = findViewById(R.id.profileImageProfile);
 
         backToSearchOrPost = findViewById(R.id.backToSearchOrPost);
         backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +96,7 @@ public class UserProfile extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.child("username").getValue(String.class).equals(emailStr)) {
                         name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
-
+                        phone.setText(ds.child("phone").getValue(String.class));
                         email.setText(emailStr);
 
                         if (ds.child("occupation").exists()) {

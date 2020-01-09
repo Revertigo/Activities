@@ -2,12 +2,7 @@ package com.example.activities.data.rtdb.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,7 +40,8 @@ import java.io.IOException;
 
 public class UserProfileEditable extends AppCompatActivity {
 
-    private EditText  email, name, occupation, education, gender, permission, birthday;
+    private EditText name, occupation, education, gender, birthday, phone;
+    private TextView email, permission;
 
     private Button backToSearchOrPost;
     private ImageView saveChanges;
@@ -57,7 +54,7 @@ public class UserProfileEditable extends AppCompatActivity {
 
     private ImageView imageProfile;
     private Uri imageUri;
-    private  String imageUrl = "";
+    private String imageUrl = "";
     private StorageTask uploadTask;
 
     byte[] file;
@@ -71,13 +68,14 @@ public class UserProfileEditable extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile_editable);
 
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        name = findViewById(R.id.nameOfTheUserEdit);
         email = findViewById(R.id.emailOfTheUserEdit);
+        name = findViewById(R.id.nameOfTheUserEdit);
         occupation = findViewById(R.id.occupationOfTheUserEdit);
         education = findViewById(R.id.educationOfTheUserEdit);
         gender = findViewById(R.id.genderOfTheUserEdit);
         permission = findViewById(R.id.permissionOfTheUserEdit);
         birthday = findViewById(R.id.birthdayOfTheUserEdit);
+        phone = findViewById(R.id.phoneOfTheUserEdit);
 
         imageProfile = findViewById(R.id.imageViewEdit);
 
@@ -97,7 +95,7 @@ public class UserProfileEditable extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"),SELECT_PICTURE);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
                 uploadImage();
             }
         });
@@ -108,10 +106,15 @@ public class UserProfileEditable extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.child("username").getValue(String.class).equals(emailStr)) {
-                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
                         email.setText(emailStr);
-
+                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
                         //--TO DO: HERE WE NEED TO IMPLEMENT SOLID PRINCIPELS OF POLIMORPHISEM!--
+
+                        if (ds.child("phone").exists()) {
+                            phone.setText(ds.child("phone").getValue(String.class));
+                        } else {
+                            phone.setText("Phone:");
+                        }
 
                         if (ds.child("occupation").exists()) {
                             occupation.setText(ds.child("occupation").getValue(String.class));
@@ -136,6 +139,7 @@ public class UserProfileEditable extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -144,28 +148,27 @@ public class UserProfileEditable extends AppCompatActivity {
 
         //update changes:
         saveChanges = findViewById(R.id.saveImageEdit);
-        saveChanges.setOnClickListener(new View.OnClickListener(){
+        saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String newName = name.getText().toString();
-                String newMail = email.getText().toString();
                 String newOccupation = occupation.getText().toString();
                 String newEducation = education.getText().toString();
-                String newPermission = permission.getText().toString();
                 String newBirthday = birthday.getText().toString();
                 String newGender = gender.getText().toString();
+                String newPhone= phone.getText().toString();
 
+                String[] nameSplited=newName.split(" ");
                 DatabaseReference currentUserRef = userRef.child(userID);
-                currentUserRef.child("name").setValue(newName);
-                currentUserRef.child("username").setValue(newMail);
+                currentUserRef.child("firstName").setValue(nameSplited[0]);
+                currentUserRef.child("lastName").setValue(nameSplited[1]);
                 currentUserRef.child("occupation").setValue(newOccupation);
                 currentUserRef.child("education").setValue(newEducation);
-                currentUserRef.child("permission").setValue(newPermission);
                 currentUserRef.child("dateOfBirth").setValue(newBirthday);
                 currentUserRef.child("gender").setValue(newGender);
+                currentUserRef.child("phone").setValue(newPhone);
 
                 Intent i = new Intent(UserProfileEditable.this, UserProfile.class);
-                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
             }
@@ -187,8 +190,8 @@ public class UserProfileEditable extends AppCompatActivity {
     } //end of onCreate
 
 
-    public void uploadImage(){
-        if(file != null){
+    public void uploadImage() {
+        if (file != null) {
             UploadTask uploadTask = ImRef.putBytes(file);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -208,7 +211,7 @@ public class UserProfileEditable extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode ==  SELECT_PICTURE ) {
+        if (requestCode == SELECT_PICTURE) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     try {
@@ -234,7 +237,7 @@ public class UserProfileEditable extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            } else if (resultCode == this.RESULT_CANCELED)  {
+            } else if (resultCode == this.RESULT_CANCELED) {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
             }
         }

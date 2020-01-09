@@ -98,7 +98,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="337dp"
+        android:layout_height="448dp"
         android:layout_below="@+id/linlay1">
 
         <LinearLayout
@@ -125,15 +125,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/emailOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="email of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -162,11 +162,11 @@
                     android:id="@+id/occupationOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="occupation of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -196,11 +196,11 @@
                     android:id="@+id/educationOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="education of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -229,11 +229,11 @@
                     android:id="@+id/genderOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="gender of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent"/>
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -258,15 +258,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/permissionOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="permission of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -295,13 +295,43 @@
                     android:id="@+id/birthdayOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-light"
                     android:hint="birthday of the user"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:background="@android:color/transparent" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phoneLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/phoneOfTheUserEditTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone:"
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/phoneOfTheUserEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="phone of the user"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+
 
 
         </LinearLayout>
@@ -311,13 +341,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lowerConstraintEdit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="581dp"
+        android:layout_marginTop="682dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="4dp">
 
