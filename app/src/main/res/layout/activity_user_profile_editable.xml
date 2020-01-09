@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.rtdb.activity.UserProfile">
+    tools:context=".data.rtdb.activity.UserProfileEditable">
 
     <RelativeLayout
-        android:id="@+id/profile_upper_layout"
+        android:id="@+id/profile_upper_layout_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/grad"
         android:paddingBottom="20dp">
 
         <RelativeLayout
-            android:id="@+id/imgUser"
+            android:id="@+id/imgUserEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -22,7 +22,7 @@
             android:background="@drawable/circle_border">
 
             <ImageView
-                android:id="@+id/imageViewProfile"
+                android:id="@+id/imageViewEdit"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="9dp"
@@ -37,38 +37,38 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/nameOfTheUser"
+            android:id="@+id/nameOfTheUserEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
+            android:layout_below="@+id/imgUserEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
+            android:background="@android:color/transparent"
             android:fontFamily="sans-serif-light"
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
-            android:textSize="32sp"
-            android:background="@android:color/transparent" />
+            android:textSize="32sp" />
 
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButtonEdit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgUser"
+            android:layout_height="53dp"
+            android:layout_below="@id/imgUserEdit"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="325dp"
-            android:layout_marginTop="-78dp"
-            android:layout_marginEnd="38dp"
+            android:layout_marginStart="329dp"
+            android:layout_marginTop="-75dp"
+            android:layout_marginEnd="34dp"
             app:srcCompat="@drawable/ic_add_photo" />
 
         <ImageView
-            android:id="@+id/saveImage"
+            android:id="@+id/saveImageEdit"
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="34dp"
+            android:layout_marginRight="28dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:src="@drawable/ic_save" />
@@ -80,7 +80,7 @@
         android:id="@+id/linlay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_upper_layout"
+        android:layout_below="@id/profile_upper_layout_Edit"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -118,7 +118,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/emailOfTheUserTitle"
+                    android:id="@+id/emailOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email:"
@@ -126,7 +126,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/emailOfTheUser"
+                    android:id="@+id/emailOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -151,7 +151,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/occupationOfTheUserTitle"
+                    android:id="@+id/occupationOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Occupation:"
@@ -159,7 +159,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/occupationOfTheUser"
+                    android:id="@+id/occupationOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -185,7 +185,7 @@
 
 
                 <TextView
-                    android:id="@+id/educationOfTheUserTitle"
+                    android:id="@+id/educationOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Education:"
@@ -193,7 +193,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/educationOfTheUser"
+                    android:id="@+id/educationOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -218,7 +218,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/genderOfTheUserTitle"
+                    android:id="@+id/genderOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender:"
@@ -226,7 +226,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/genderOfTheUser"
+                    android:id="@+id/genderOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -251,7 +251,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/permissionOfTheUserTitle"
+                    android:id="@+id/permissionOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Permission:"
@@ -259,7 +259,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/permissionOfTheUser"
+                    android:id="@+id/permissionOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -284,7 +284,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/birthdayOfTheUserTitle"
+                    android:id="@+id/birthdayOfTheUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Birthday:"
@@ -292,7 +292,7 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/birthdayOfTheUser"
+                    android:id="@+id/birthdayOfTheUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -309,7 +309,7 @@
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lowerConstraint"
+        android:id="@+id/lowerConstraintEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -322,7 +322,7 @@
         android:layout_marginBottom="4dp">
 
         <Button
-            android:id="@+id/backToMainActivity"
+            android:id="@+id/backToSearchOrPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Main menu"

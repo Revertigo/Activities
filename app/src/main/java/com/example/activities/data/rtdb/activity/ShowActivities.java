@@ -42,7 +42,7 @@ public class ShowActivities extends AppCompatActivity {
             }
         });
 
-        searchOrPost = findViewById(R.id.backToMainActivity);
+        searchOrPost = findViewById(R.id.backToSearchOrPost);
         backToProfile = findViewById(R.id.backToProfile);
         searchOrPost.setOnClickListener(new View.OnClickListener() {
             @Override

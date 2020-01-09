@@ -5,16 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.activities.MainActivity;
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.example.activities.SearchActivity.SearchOrPost;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday;
-    private Button backToMainActivity;
+    private Button backToSearchOrPost;
     private Button showJoinedActivities;
     private Button showMyActivities;
     private FirebaseDatabase database;
@@ -45,35 +44,34 @@ public class UserProfile extends AppCompatActivity {
         Intent intent = getIntent();
         final String emailStr = intent.getStringExtra("email");
 
-        name = findViewById(R.id.nameOfTheUser);
-        email = findViewById(R.id.emailOfTheUser);
-        occupation = findViewById(R.id.occupationOfTheUser);
-        education = findViewById(R.id.educationOfTheUserTitle);
-        gender = findViewById(R.id.genderOfTheUser);
-        permission = findViewById(R.id.permissionOfTheUser);
-        birthday = findViewById(R.id.birthdayOfTheUser);
+        name = findViewById(R.id.nameOfTheUserProfile);
+        email = findViewById(R.id.emailOfTheUserProfile);
+        occupation = findViewById(R.id.occupationOfTheUserProfile);
+        education = findViewById(R.id.educationOfTheUserProfile);
+        gender = findViewById(R.id.genderOfTheUserProfile);
+        permission = findViewById(R.id.permissionOfTheUserProfile);
+        birthday = findViewById(R.id.birthdayOfTheUserProfile);
         database = FirebaseDatabase.getInstance();
 
 
-        EditProfile=findViewById(R.id.editImageView);
+        EditProfile=findViewById(R.id.editImageViewProfile);
 
         EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(UserProfile.this, UserProfileEditable.class);
-                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
             }
 
         });
-        profileImage=findViewById(R.id.profileImage);
+        profileImage=findViewById(R.id.profileImageProfile);
 
-        backToMainActivity = findViewById(R.id.backToMainActivity);
-        backToMainActivity.setOnClickListener(new View.OnClickListener() {
+        backToSearchOrPost = findViewById(R.id.backToSearchOrPost);
+        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfile.this, MainActivity.class);
+                Intent intent = new Intent(UserProfile.this, SearchOrPost.class);
                 startActivity(intent);
                 finish();
             }
@@ -96,7 +94,7 @@ public class UserProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("username").getValue().equals(emailStr)) {
+                    if (ds.child("username").getValue(String.class).equals(emailStr)) {
                         name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
 
                         email.setText(emailStr);

@@ -1,7 +1,5 @@
 package com.example.activities.data.rtdb.activity;
 
-import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,28 +11,20 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.activities.MainActivity;
-import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.activities.SearchActivity.SearchOrPost;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,14 +40,12 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class UserProfileEditable extends AppCompatActivity {
 
     private EditText  email, name, occupation, education, gender, permission, birthday;
 
-    private Button backToMainActivity;
+    private Button backToSearchOrPost;
     private ImageView saveChanges;
     private ImageButton changePhoto;
 
@@ -81,19 +69,16 @@ public class UserProfileEditable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile_editable);
 
-        Intent intent = getIntent();
-        final String emailStr = intent.getStringExtra("email");
-        Log.wtf("email ", emailStr);
+        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        name = findViewById(R.id.nameOfTheUserEdit);
+        email = findViewById(R.id.emailOfTheUserEdit);
+        occupation = findViewById(R.id.occupationOfTheUserEdit);
+        education = findViewById(R.id.educationOfTheUserEdit);
+        gender = findViewById(R.id.genderOfTheUserEdit);
+        permission = findViewById(R.id.permissionOfTheUserEdit);
+        birthday = findViewById(R.id.birthdayOfTheUserEdit);
 
-        name = findViewById(R.id.nameOfTheUser);
-        email = findViewById(R.id.emailOfTheUser);
-        occupation = findViewById(R.id.occupationOfTheUser);
-        education = findViewById(R.id.educationOfTheUser);
-        gender = findViewById(R.id.genderOfTheUser);
-        permission = findViewById(R.id.permissionOfTheUser);
-        birthday = findViewById(R.id.birthdayOfTheUser);
-
-        imageProfile = findViewById(R.id.imageViewProfile);
+        imageProfile = findViewById(R.id.imageViewEdit);
 
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users");
@@ -103,7 +88,7 @@ public class UserProfileEditable extends AppCompatActivity {
         //change profile photo:
         storageRef = FirebaseStorage.getInstance().getReference().child("profile_images");
         ImRef = storageRef.child(System.currentTimeMillis() + ".jpeg");
-        changePhoto = findViewById(R.id.imageButton);
+        changePhoto = findViewById(R.id.imageButtonEdit);
         changePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +97,6 @@ public class UserProfileEditable extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"),SELECT_PICTURE);
-                Log.wtf("before upload", "before upload");
                 uploadImage();
             }
         });
@@ -122,7 +106,7 @@ public class UserProfileEditable extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("username").getValue().equals(emailStr)) {
+                    if (ds.child("username").getValue(String.class).equals(emailStr)) {
                         name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
                         email.setText(emailStr);
 
@@ -158,7 +142,7 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
         //update changes:
-        saveChanges = findViewById(R.id.saveImage);
+        saveChanges = findViewById(R.id.saveImageEdit);
         saveChanges.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -171,6 +155,7 @@ public class UserProfileEditable extends AppCompatActivity {
                 String newGender = gender.getText().toString();
 
                 DatabaseReference currentUserRef = userRef.child(userID);
+                currentUserRef.child("name").setValue(newName);
                 currentUserRef.child("username").setValue(newMail);
                 currentUserRef.child("occupation").setValue(newOccupation);
                 currentUserRef.child("education").setValue(newEducation);
@@ -186,11 +171,11 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
         //Main menu button
-        backToMainActivity = findViewById(R.id.backToMainActivity);
-        backToMainActivity.setOnClickListener(new View.OnClickListener() {
+        backToSearchOrPost = findViewById(R.id.backToSearchOrPost);
+        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfileEditable.this, MainActivity.class);
+                Intent intent = new Intent(UserProfileEditable.this, SearchOrPost.class);
                 startActivity(intent);
             }
         });
@@ -202,7 +187,6 @@ public class UserProfileEditable extends AppCompatActivity {
 
 
     public void uploadImage(){
-        Log.wtf("inside upload image", "inside upload image");
         if(file != null){
             UploadTask uploadTask = ImRef.putBytes(file);
             uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -236,7 +220,6 @@ public class UserProfileEditable extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                        Log.wtf("inside onActivityResult", "before getRound");
                         Bitmap bitmapRounded = getRoundedCroppedBitmap(bitmap);
                         file = baos.toByteArray();
                         //imageProfile.setImageBitmap(bitmapRounded);
@@ -252,7 +235,6 @@ public class UserProfileEditable extends AppCompatActivity {
 
     //round the picture
     private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
-        Log.wtf("inside getRoundedCroppedBitmap", "in the start");
         int widthLight = bitmap.getWidth();
         int heightLight = bitmap.getHeight();
 
@@ -263,10 +245,7 @@ public class UserProfileEditable extends AppCompatActivity {
         paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         RectF rectF = new RectF(new Rect(0, 0, widthLight, heightLight));
-        Log.wtf("widthLight", "" + widthLight);
-        Log.wtf("heightLight", "" + heightLight);
         canvas.drawRoundRect(rectF, widthLight  ,heightLight, paintColor); //heightLight / 2
-        Log.wtf("inside getRoundedCroppedBitmap", "before paint image");
         Paint paintImage = new Paint();
         paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
         canvas.drawBitmap(bitmap, 0, 0, paintImage);

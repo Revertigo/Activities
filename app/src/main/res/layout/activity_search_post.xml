@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button9"
         app:layout_constraintTop_toBottomOf="@+id/button9"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.222" />
 
     <Button
         android:id="@+id/button9"
@@ -39,10 +39,10 @@
         android:text="@string/find_existing_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.171" />
 
     <Button
         android:id="@+id/button13"
@@ -59,9 +59,9 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="340dp"
-        android:layout_height="37dp"
-        android:text="@string/what_kind_of_activity_you_looking_for"
+        android:layout_width="212dp"
+        android:layout_height="36dp"
+        android:text="what you wanna do?"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,15 +72,15 @@
 
     <Button
         android:id="@+id/myProfileSearchPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="45dp"
         android:layout_marginStart="177dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="146dp"
-        android:layout_marginBottom="150dp"
         android:text="My profile"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        app:layout_constraintVertical_bias="0.48" />
 </androidx.constraintlayout.widget.ConstraintLayout>
