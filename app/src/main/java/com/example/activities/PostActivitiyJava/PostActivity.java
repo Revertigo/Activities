@@ -26,6 +26,7 @@ import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.ActivityInfo;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -221,7 +222,7 @@ public class PostActivity extends AppCompatActivity {
                             .setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
                     postNotification(newPost.getName(),Long.toString(newPost.getId()));
-                    startActivity(new Intent(PostActivity.this, SearchOrPost.class));
+                    startActivity(User.getCurrentUser().loadMainMenu(PostActivity.this));
                     finish();
                 }//if date and time are valid, finish
             }

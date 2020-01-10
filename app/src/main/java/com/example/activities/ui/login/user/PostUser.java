@@ -9,6 +9,8 @@ import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.data.rtdb.activity.Ipermission;
 import com.example.activities.ui.login.LoginActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class PostUser extends User implements Ipermission {
 
     private static final int NUM_USER_PROPS = 11;
@@ -98,8 +100,7 @@ public class PostUser extends User implements Ipermission {
     };
 
     @Override
-    public Intent loadMainMenu(LoginActivity la) {
-        //TODO:Imeplement
+    public Intent loadMainMenu(AppCompatActivity la) {
         return new Intent(la, SearchOrPost.class);
     }
 

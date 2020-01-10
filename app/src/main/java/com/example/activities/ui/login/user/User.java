@@ -5,9 +5,12 @@ import android.os.Parcelable;
 import android.os.Parcel;
 
 import com.example.activities.MainActivity;
+import com.example.activities.SearchActivity.SearchOnly;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.data.rtdb.activity.Ipermission;
 import com.example.activities.ui.login.LoginActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class User implements Parcelable, Ipermission {
 
@@ -196,8 +199,8 @@ public class User implements Parcelable, Ipermission {
     };
 
     @Override
-    public Intent loadMainMenu(LoginActivity la) {
-        return new Intent(la, SearchOrPost.class);
+    public Intent loadMainMenu(AppCompatActivity la) {
+        return new Intent(la, SearchOnly.class);
     }
 
     @Override

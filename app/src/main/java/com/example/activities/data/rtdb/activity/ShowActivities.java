@@ -14,6 +14,7 @@ import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
 import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ShowActivities extends AppCompatActivity {
-    private Button searchOrPost;
+    private Button backToMainMenu;
     private Button backToProfile;
     private Button clickToSearchAgain;
     public static boolean activityFilter = true;
@@ -42,12 +43,12 @@ public class ShowActivities extends AppCompatActivity {
             }
         });
 
-        searchOrPost = findViewById(R.id.backToSearchOrPost);
         backToProfile = findViewById(R.id.backToProfile);
-        searchOrPost.setOnClickListener(new View.OnClickListener() {
+        backToMainMenu = findViewById(R.id.backToSearchOrPost);
+        backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowActivities.this, SearchOrPost.class);
+                Intent intent = User.getCurrentUser().loadMainMenu(ShowActivities.this);
                 startActivity(intent);
                 finish();
             }

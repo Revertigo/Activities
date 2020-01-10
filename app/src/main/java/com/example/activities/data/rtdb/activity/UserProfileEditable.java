@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.ui.login.user.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +44,7 @@ public class UserProfileEditable extends AppCompatActivity {
     private EditText name, occupation, education, gender, birthday, phone;
     private TextView email, permission;
 
-    private Button backToSearchOrPost;
+    private Button backToMainMenu;
     private ImageView saveChanges;
     private ImageButton changePhoto;
 
@@ -175,11 +176,11 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
         //Main menu button
-        backToSearchOrPost = findViewById(R.id.backToSearchOrPost);
-        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
+        backToMainMenu = findViewById(R.id.backToSearchOrPost);
+        backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfileEditable.this, SearchOrPost.class);
+                Intent intent = User.getCurrentUser().loadMainMenu(UserProfileEditable.this);
                 startActivity(intent);
             }
         });

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
-import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday, phone;
-    private Button backToSearchOrPost;
+    private Button backToMainMenu;
     private Button showJoinedActivities;
     private Button showMyActivities;
     private FirebaseDatabase database;
@@ -67,11 +67,11 @@ public class UserProfile extends AppCompatActivity {
         });
         profileImage = findViewById(R.id.profileImageProfile);
 
-        backToSearchOrPost = findViewById(R.id.backToSearchOrPost);
-        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
+        backToMainMenu = findViewById(R.id.backToSearchOrPost);
+        backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfile.this, SearchOrPost.class);
+                Intent intent = User.getCurrentUser().loadMainMenu(UserProfile.this);
                 startActivity(intent);
                 finish();
             }

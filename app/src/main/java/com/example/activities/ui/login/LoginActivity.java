@@ -64,10 +64,48 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                if (ds.child("username").getValue().equals(mAuth.getCurrentUser().getEmail())) {
+                                    String user_permission = (String) ds.child("permission").getValue();
+
+                                    if (user_permission.equals("search")) {
+                                        User.setCurrentUser(new User(mAuth.getCurrentUser().getEmail(), "no_pass",
+                                                (String) ds.child("firstName").getValue(),
+                                                (String) ds.child("lastName").getValue(),
+                                                user_permission, (String) ds.child("gender").getValue(),
+                                                (String) ds.child("dateOfBirth").getValue(),
+                                                "no_phone", "no url"));
+                                    } else {
+                                        User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "",
+                                                (String) ds.child("firstName").getValue(),
+                                                (String) ds.child("lasttName").getValue(),
+                                                user_permission, (String) ds.child("gender").getValue(),
+                                                (String) ds.child("dateOfBirth").getValue(),
+                                                "no_phone", "no pictureUrl",
+                                                (String) ds.child("occupation").getValue(),
+                                                (String) ds.child("education").getValue()));
+                                    }
+
+                                    Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
+                                    startActivity(in);
+                                    finish();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                     Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
+//                    startActivity(intent);
+//                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
                 }

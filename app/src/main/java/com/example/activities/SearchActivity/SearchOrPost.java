@@ -77,7 +77,7 @@ public class SearchOrPost extends AppCompatActivity {
             }
         });
 
-        myProfile = findViewById(R.id.myProfileSearchPost);
+        myProfile = findViewById(R.id.myProfileSearch);
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

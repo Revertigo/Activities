@@ -14,6 +14,7 @@ import com.example.activities.MainActivity;
 import com.example.activities.R;
 import com.example.activities.data.rtdb.activity.Activity;
 import com.example.activities.data.rtdb.activity.ShowActivities;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     private Button searchById;
     private Button searchByString;
     private Button advancedSearch;
-    private Button backToSearchOrPost;
+    private Button backToMainMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +65,11 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-        backToSearchOrPost=findViewById(R.id.backToSearchOrPost);
-        backToSearchOrPost.setOnClickListener(new View.OnClickListener() {
+        backToMainMenu =findViewById(R.id.backToSearchOrPost);
+        backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SearchActivity.this,SearchOrPost.class);
+                Intent intent= User.getCurrentUser().loadMainMenu(SearchActivity.this);
                 startActivity(intent);
                 finish();
             }

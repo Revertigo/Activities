@@ -1,12 +1,10 @@
 package com.example.activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.Util.CsvReader;
 import com.example.activities.ui.login.LoginActivity;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
@@ -23,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
     private Button LoginToActivities;
     private Button RegisterToActivities;
     private Button closeAppBtn;
+
+    static {
+        //Read all cities/settlements from Realtime DB
+        CsvReader.readCitiesAndStreetsFromDB(CsvReader.STREETS, CsvReader.STREETS);
+        //Read all relevant data from Realtime DB(cities and settlements, streets)
+        CsvReader.readCitiesFromDB(CsvReader.CITIES_AND_SETTLEMENTS_HEBREW, CsvReader.CITIES_AND_SETTLEMENTS_HEBREW);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 open();
             }
         });
-
-        //Read all cities/settlements from Realtime DB
-        CsvReader.readCitiesAndStreetsFromDB(CsvReader.STREETS, CsvReader.STREETS);
-        //Read all relevant data from Realtime DB(cities and settlements, streets)
-        CsvReader.readCitiesFromDB(CsvReader.CITIES_AND_SETTLEMENTS_HEBREW, CsvReader.CITIES_AND_SETTLEMENTS_HEBREW);
     }
 
     public void openLoginActivity() {

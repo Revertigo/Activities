@@ -112,7 +112,7 @@
         android:id="@+id/backToSearchOrPost"
         android:layout_width="152dp"
         android:layout_height="63dp"
-        android:text="Back to search/post activity"
+        android:text="Back to main menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/logoutSearchActivity"
         app:layout_constraintHorizontal_bias="0.49"
