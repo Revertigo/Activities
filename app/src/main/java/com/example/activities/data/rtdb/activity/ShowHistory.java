@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -35,7 +36,6 @@ public class ShowHistory extends AppCompatActivity {
         showJoinHistory = findViewById(R.id.showJoinedHistory);
         showPostsHistory = findViewById(R.id.showPostedHistory);
         ArrayList<Activity> historyArray = new ArrayList<Activity>();
-
 
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,6 @@ public class ShowHistory extends AppCompatActivity {
                                         Intent intent = new Intent(ShowHistory.this, ShowActivities.class);
                                         intent.putExtra("activitiesArray", historyArray);
                                         ShowActivities.activityFilter = false;
-                                        Toast.makeText(ShowHistory.this, "Thats the activities that you posted", Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                         finish();
                                     }
@@ -122,7 +121,6 @@ public class ShowHistory extends AppCompatActivity {
 
                                 }
                             });
-                            Toast.makeText(ShowHistory.this, "Thats the activities that you took a part.", Toast.LENGTH_LONG).show();
 
                         } else {
                             Toast.makeText(ShowHistory.this, "You didnt joined any activity right now.", Toast.LENGTH_LONG).show();
