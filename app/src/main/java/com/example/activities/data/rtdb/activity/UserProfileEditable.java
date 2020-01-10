@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +54,7 @@ public class UserProfileEditable extends AppCompatActivity {
     private DatabaseReference userRef;
 
 
-    private ImageView imageProfile;
-    private ImageButton changePhoto;
+    private ImageView profileImage;
     private DatabaseReference mDatabaseRefProfile;
     private static final int PICK_IMAGE = 1;
     private StorageReference mRefProfileImages;
@@ -82,10 +82,17 @@ public class UserProfileEditable extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
 
-        imageProfile = findViewById(R.id.imageViewEdit);
+        profileImage = findViewById(R.id.imageViewEdit);
+        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
         mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
-
+        ImageButton imageButtonEdit=findViewById(R.id.imageButtonEdit);
+        imageButtonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadProfileImage(v);
+            }
+        });
 
 
         //display the current data in the EditText
@@ -168,7 +175,7 @@ public class UserProfileEditable extends AppCompatActivity {
             }
         });
 
-        imageProfile.setImageResource(R.drawable.ic_person_black_24dp);
+
 
         loadProfileImage();
 
@@ -179,13 +186,10 @@ public class UserProfileEditable extends AppCompatActivity {
         mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                Log.wtf("string pathToPicture",dataSnapshot.child(userID).child("pictureUri").getValue(String.class));
                 String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
 
                 if (pathToPicture != null) {
-                    pathToPicture = pathToPicture;
-
-
                     //check if the user has already an profile image
                     // if so, Load it
                     if (!(pathToPicture.equals(""))) {
@@ -193,7 +197,7 @@ public class UserProfileEditable extends AppCompatActivity {
                                 .load(pathToPicture)
                                 .transform(new CircleTransform())
                                 .fit()
-                                .into(imageProfile);
+                                .into(profileImage);
                         //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
                     }
                     //uses default image
@@ -231,7 +235,7 @@ public class UserProfileEditable extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mImageUri);
                 //change that
-                imageProfile.setImageBitmap(bitmap);
+                profileImage.setImageBitmap(bitmap);
 //                  Load new Profile image to the storage and database
                 uploadFile(mRefProfileImages, mDatabaseRefProfile);
 

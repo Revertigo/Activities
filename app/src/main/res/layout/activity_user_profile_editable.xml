@@ -61,7 +61,6 @@
             android:layout_marginTop="-75dp"
             android:layout_marginEnd="34dp"
             app:srcCompat="@drawable/ic_add_photo"
-            android:onClick="uploadProfileImage"
             />
 
         <ImageView

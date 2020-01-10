@@ -31,12 +31,9 @@ public class UserProfile extends AppCompatActivity {
     private Button activitiesHistory;
 
 
-    private DatabaseReference mDatabaseRefProfile;
-    private static final int PICK_IMAGE = 1;
-    private StorageReference mRefProfileImages;
     private ImageView EditProfile;
     private ImageView profileImage;
-    private String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +44,6 @@ public class UserProfile extends AppCompatActivity {
 
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
-        mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
 
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);
