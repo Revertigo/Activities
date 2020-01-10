@@ -252,8 +252,8 @@ public class PostActivity extends AppCompatActivity {
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
                 .setSmallIcon(R.mipmap.ic_launcher) // notification icon
-                .setContentTitle("Activity notification") // title for notification
-                .setContentText("You Posted activity: " + name+", "+"ID for invition: "+id)// message for notification
+                .setContentTitle("Activity notification") //c title for notification
+                .setContentText("You posted activity: " + name + ", "+"ID for invitation: " +id)// message for notification
                 .setAutoCancel(true); // clear notification after click
         Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

@@ -106,7 +106,7 @@ public class PostUser extends User implements Ipermission {
     }
 
     @Override
-    public Intent loadProfile(MainActivity ma) {
+    public Intent loadProfile(AppCompatActivity ma) {
         //TODO:Imeplement
         return null;
     }

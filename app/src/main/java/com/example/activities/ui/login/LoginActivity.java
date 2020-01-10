@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.activities.R;
 import com.example.activities.ui.login.Registration.RegisterToApp_Email;
-import com.example.activities.SearchActivity.SearchOrPost;
 
 import com.example.activities.ui.login.user.PostUser;
 import com.example.activities.ui.login.user.User;
@@ -64,48 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
-                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                if (ds.child("username").getValue().equals(mAuth.getCurrentUser().getEmail())) {
-                                    String user_permission = (String) ds.child("permission").getValue();
-
-                                    if (user_permission.equals("search")) {
-                                        User.setCurrentUser(new User(mAuth.getCurrentUser().getEmail(), "no_pass",
-                                                (String) ds.child("firstName").getValue(),
-                                                (String) ds.child("lastName").getValue(),
-                                                user_permission, (String) ds.child("gender").getValue(),
-                                                (String) ds.child("dateOfBirth").getValue(),
-                                                "no_phone", "no url"));
-                                    } else {
-                                        User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "",
-                                                (String) ds.child("firstName").getValue(),
-                                                (String) ds.child("lasttName").getValue(),
-                                                user_permission, (String) ds.child("gender").getValue(),
-                                                (String) ds.child("dateOfBirth").getValue(),
-                                                "no_phone", "no pictureUrl",
-                                                (String) ds.child("occupation").getValue(),
-                                                (String) ds.child("education").getValue()));
-                                    }
-
-                                    Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
-                                    startActivity(in);
-                                    finish();
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+                    loadUserAndLogin();
                     Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(LoginActivity.this, SearchOrPost.class);
-//                    startActivity(intent);
-//                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
                 }
@@ -131,52 +90,13 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Invalid name or password", Toast.LENGTH_SHORT).show();
-//                            // Username or password false, display and an error
                             } else {
-                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-                                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                            if (ds.child("username").getValue().equals(mAuth.getCurrentUser().getEmail())) {
-                                                String user_permission = (String) ds.child("permission").getValue();
-
-                                                if (user_permission.equals("search")) {
-                                                    User.setCurrentUser(new User(mAuth.getCurrentUser().getEmail(), "no_pass",
-                                                            (String) ds.child("firstName").getValue(),
-                                                            (String) ds.child("lastName").getValue(),
-                                                            user_permission, (String) ds.child("gender").getValue(),
-                                                            (String) ds.child("dateOfBirth").getValue(),
-                                                            "no_phone", "no url"));
-                                                } else {
-                                                    User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "",
-                                                            (String) ds.child("firstName").getValue(),
-                                                            (String) ds.child("lasttName").getValue(),
-                                                            user_permission, (String) ds.child("gender").getValue(),
-                                                            (String) ds.child("dateOfBirth").getValue(),
-                                                            "no_phone", "no pictureUrl",
-                                                            (String) ds.child("occupation").getValue(),
-                                                            (String) ds.child("education").getValue()));
-                                                }
-
-                                                Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
-                                                startActivity(in);
-                                                finish();
-                                            }
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
+                                loadUserAndLogin();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(LoginActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(LoginActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -196,6 +116,49 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthStateListener);
     }
+
+    private void loadUserAndLogin()
+    {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("username").getValue().equals(mAuth.getCurrentUser().getEmail())) {
+                        String user_permission = (String) ds.child("permission").getValue();
+
+                        if (user_permission.equals("search")) {
+                            User.setCurrentUser(new User(mAuth.getCurrentUser().getEmail(), "no_pass",
+                                    ds.child("firstName").getValue(String.class),
+                                    ds.child("lastName").getValue(String.class),
+                                    user_permission, (String) ds.child("gender").getValue(),
+                                    ds.child("dateOfBirth").getValue(String.class),
+                                    ds.child("phone").getValue(String.class),
+                                    ds.child("pictureUri").getValue(String.class)));
+                        } else {
+                            User.setCurrentUser(new PostUser(mAuth.getCurrentUser().getEmail(), "no_pass",
+                                    ds.child("firstName").getValue(String.class),
+                                    ds.child("lastName").getValue(String.class),
+                                    user_permission, (String) ds.child("gender").getValue(),
+                                    ds.child("dateOfBirth").getValue(String.class),
+                                    ds.child("phone").getValue(String.class),
+                                    ds.child("pictureUri").getValue(String.class),
+                                    ds.child("occupation").getValue(String.class),
+                                    ds.child("education").getValue(String.class)));
+                        }
+
+                        Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
+                        startActivity(in);
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
-
-

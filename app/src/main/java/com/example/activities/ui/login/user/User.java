@@ -204,7 +204,7 @@ public class User implements Parcelable, Ipermission {
     }
 
     @Override
-    public Intent loadProfile(MainActivity ma) {
+    public Intent loadProfile(AppCompatActivity ma) {
         //TODO:Imeplement
         return null;
     }

@@ -19,8 +19,8 @@
 
     <Button
         android:id="@+id/backToSearchOrPost"
-        android:layout_width="105dp"
-        android:layout_height="41dp"
+        android:layout_width="135dp"
+        android:layout_height="52dp"
         android:text="main menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/backToProfile"
@@ -31,12 +31,12 @@
 
     <Button
         android:id="@+id/backToProfile"
-        android:layout_width="145dp"
-        android:layout_height="41dp"
+        android:layout_width="135dp"
+        android:layout_height="52dp"
         android:text="go to profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clickToSearchAgain"
-        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listViewShowActivities"
         app:layout_constraintVertical_bias="1.0" />
@@ -44,7 +44,7 @@
     <Button
         android:id="@+id/clickToSearchAgain"
         android:layout_width="135dp"
-        android:layout_height="41dp"
+        android:layout_height="52dp"
         android:text="search again"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

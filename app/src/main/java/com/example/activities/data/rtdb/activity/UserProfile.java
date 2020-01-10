@@ -11,23 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.activities.R;
+import com.example.activities.ui.login.user.PostUser;
 import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday, phone;
     private Button backToMainMenu;
     private Button showMyActivities;
-    private FirebaseDatabase database;
-    private DatabaseReference userRef;
     private Button activitiesHistory;
 
 
@@ -40,10 +32,7 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-
-
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-
 
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);
@@ -53,7 +42,6 @@ public class UserProfile extends AppCompatActivity {
         permission = findViewById(R.id.permissionOfTheUserProfile);
         birthday = findViewById(R.id.birthdayOfTheUserProfile);
         phone = findViewById(R.id.PhoneOfTheUserProfile);
-        database = FirebaseDatabase.getInstance();
 
 
         EditProfile = findViewById(R.id.editImageViewProfile);
@@ -91,63 +79,17 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        userRef = database.getReference("users");
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("username").getValue(String.class).equals(emailStr)) {
-                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
-                        phone.setText(ds.child("phone").getValue(String.class));
-                        email.setText(emailStr);
-
-                        if (ds.child("occupation").exists()) {
-                            occupation.setText(ds.child("occupation").getValue(String.class));
-                        } else {
-                            occupation.setText("Occupation: ");
-                        }
-
-                        if (ds.child("education").exists()) {
-                            education.setText(ds.child("education").getValue(String.class));
-                        } else {
-                            education.setText("Education:");
-                        }
-
-                        permission.setText(ds.child("permission").getValue(String.class));
-
-                        birthday.setText(ds.child("dateOfBirth").getValue(String.class));
-                        gender.setText(ds.child("gender").getValue(String.class));
-                        // Todo  : GET URI OF PROFILE IMAGE
-                        //
-                        String pathToPicture = ds.child("pictureUri").getValue(String.class);
-
-                        if (pathToPicture != null) {
-                            pathToPicture = pathToPicture;
-
-
-                            //check if the user has already an profile image
-                            // if so, Load it
-                            if (!(pathToPicture.equals(""))) {
-                                Picasso.get()
-                                        .load(pathToPicture)
-                                        .transform(new CircleTransform())
-                                        .fit()
-                                        .into(profileImage);
-                                //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
-                            }
-                            //uses default image
-                        }
-                    break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
+        phone.setText(User.getCurrentUser().getPhone());
+        email.setText(emailStr);
+        permission.setText(User.getCurrentUser().getPermission());
+        birthday.setText(User.getCurrentUser().getDateOfBirth());
+        gender.setText(User.getCurrentUser().getGender());
+        loadUserPicture();
+        if(User.getCurrentUser() instanceof PostUser) {
+            occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
+            education.setText(((PostUser) User.getCurrentUser()).getEducation());
+        }
 
         showMyActivities = findViewById(R.id.myPostedActivities);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
@@ -158,8 +100,23 @@ public class UserProfile extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-
+    private void loadUserPicture()
+    {
+        String pathToPicture = User.getCurrentUser().getpictureUri();
+        if (pathToPicture != null) {
+            //check if the user has already an profile image
+            // if so, Load it
+            if (!(pathToPicture.equals(""))) {
+                Picasso.get()
+                        .load(pathToPicture)
+                        .transform(new CircleTransform())
+                        .fit()
+                        .into(profileImage);
+            }
+            //uses default image
+        }
     }
 
 }

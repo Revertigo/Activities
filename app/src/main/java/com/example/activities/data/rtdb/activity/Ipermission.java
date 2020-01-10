@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public interface Ipermission {
     public Intent loadMainMenu(AppCompatActivity la);//Main Activity
-    public Intent loadProfile(MainActivity ma);
+    public Intent loadProfile(AppCompatActivity ma);
     public Intent loadHistory(AppCompatActivity la);
     public Intent loadFuture(AppCompatActivity la);
 }

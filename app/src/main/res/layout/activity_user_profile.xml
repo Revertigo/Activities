@@ -338,7 +338,7 @@
         <Button
             android:id="@+id/myPostedActivities"
             android:layout_width="151dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:text="my activities"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -350,7 +350,7 @@
         <Button
             android:id="@+id/backToSearchOrPost"
             android:layout_width="104dp"
-            android:layout_height="45dp"
+            android:layout_height="52dp"
             android:text="Main menu"
             app:layout_constraintBottom_toBottomOf="@+id/activitiesHistory"
             app:layout_constraintEnd_toStartOf="@+id/activitiesHistory"
@@ -362,7 +362,7 @@
         <Button
             android:id="@+id/activitiesHistory"
             android:layout_width="151dp"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:layout_marginStart="256dp"
             android:text="My History"
             app:layout_constraintBottom_toBottomOf="parent"
