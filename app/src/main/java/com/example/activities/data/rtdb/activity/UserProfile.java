@@ -18,6 +18,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday, phone;
@@ -26,15 +29,26 @@ public class UserProfile extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private Button activitiesHistory;
+
+
+    private DatabaseReference mDatabaseRefProfile;
+    private static final int PICK_IMAGE = 1;
+    private StorageReference mRefProfileImages;
     private ImageView EditProfile;
     private ImageView profileImage;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+
+
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+        mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
+        mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
 
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);
@@ -59,6 +73,7 @@ public class UserProfile extends AppCompatActivity {
 
         });
         profileImage = findViewById(R.id.profileImageProfile);
+        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         backToMainMenu = findViewById(R.id.backToSearchOrPost);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +87,7 @@ public class UserProfile extends AppCompatActivity {
 
         activitiesHistory = findViewById(R.id.activitiesHistory);
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent i = User.getCurrentUser().loadHistory(UserProfile.this);
@@ -85,7 +101,6 @@ public class UserProfile extends AppCompatActivity {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.child("username").getValue(String.class).equals(emailStr)) {
                         name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
@@ -109,8 +124,26 @@ public class UserProfile extends AppCompatActivity {
                         birthday.setText(ds.child("dateOfBirth").getValue(String.class));
                         gender.setText(ds.child("gender").getValue(String.class));
                         // Todo  : GET URI OF PROFILE IMAGE
-                        // profileImage.setImageURI();
-                        break;
+                        //
+                        String pathToPicture = ds.child("pictureUri").getValue(String.class);
+
+                        if (pathToPicture != null) {
+                            pathToPicture = pathToPicture;
+
+
+                            //check if the user has already an profile image
+                            // if so, Load it
+                            if (!(pathToPicture.equals(""))) {
+                                Picasso.get()
+                                        .load(pathToPicture)
+                                        .transform(new CircleTransform())
+                                        .fit()
+                                        .into(profileImage);
+                                //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
+                            }
+                            //uses default image
+                        }
+                    break;
                     }
                 }
             }
@@ -133,4 +166,5 @@ public class UserProfile extends AppCompatActivity {
 
 
     }
+
 }

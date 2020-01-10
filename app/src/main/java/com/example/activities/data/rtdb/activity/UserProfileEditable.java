@@ -1,5 +1,6 @@
 package com.example.activities.data.rtdb.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -46,22 +48,19 @@ public class UserProfileEditable extends AppCompatActivity {
 
     private Button backToMainMenu;
     private ImageView saveChanges;
-    private ImageButton changePhoto;
-
+    private Uri mImageUri;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
-    private String userID;
 
 
     private ImageView imageProfile;
-    private Uri imageUri;
-    private String imageUrl = "";
-    private StorageTask uploadTask;
+    private ImageButton changePhoto;
+    private DatabaseReference mDatabaseRefProfile;
+    private static final int PICK_IMAGE = 1;
+    private StorageReference mRefProfileImages;
+    private String userID;
 
-    byte[] file;
-    StorageReference storageRef;
-    StorageReference ImRef;
-    private final int SELECT_PICTURE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,28 +77,16 @@ public class UserProfileEditable extends AppCompatActivity {
         birthday = findViewById(R.id.birthdayOfTheUserEdit);
         phone = findViewById(R.id.phoneOfTheUserEdit);
 
-        imageProfile = findViewById(R.id.imageViewEdit);
-
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
 
-        //change profile photo:
-        storageRef = FirebaseStorage.getInstance().getReference().child("profile_images");
-        ImRef = storageRef.child(System.currentTimeMillis() + ".jpeg");
-        changePhoto = findViewById(R.id.imageButtonEdit);
-        changePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open the galery:
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-                uploadImage();
-            }
-        });
+        imageProfile = findViewById(R.id.imageViewEdit);
+        mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
+        mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
+
+
 
         //display the current data in the EditText
         userRef.addValueEventListener(new ValueEventListener() {
@@ -130,12 +117,7 @@ public class UserProfileEditable extends AppCompatActivity {
                         permission.setText(ds.child("permission").getValue(String.class));
                         birthday.setText(ds.child("dateOfBirth").getValue(String.class));
                         gender.setText(ds.child("gender").getValue(String.class));
-                        // ----------- TO IMPLEMENT ------------- //
-//                        if(ds.child("pictureUrl").exists()) {
-//                            imageProfile.setImageURI();
-//                        }
 
-                        // userRef.removeEventListener(this);
                         break;
                     }
                 }
@@ -147,6 +129,7 @@ public class UserProfileEditable extends AppCompatActivity {
             }
         });
 
+
         //update changes:
         saveChanges = findViewById(R.id.saveImageEdit);
         saveChanges.setOnClickListener(new View.OnClickListener() {
@@ -157,9 +140,9 @@ public class UserProfileEditable extends AppCompatActivity {
                 String newEducation = education.getText().toString();
                 String newBirthday = birthday.getText().toString();
                 String newGender = gender.getText().toString();
-                String newPhone= phone.getText().toString();
+                String newPhone = phone.getText().toString();
 
-                String[] nameSplited=newName.split(" ");
+                String[] nameSplited = newName.split(" ");
                 DatabaseReference currentUserRef = userRef.child(userID);
                 currentUserRef.child("firstName").setValue(nameSplited[0]);
                 currentUserRef.child("lastName").setValue(nameSplited[1]);
@@ -185,84 +168,132 @@ public class UserProfileEditable extends AppCompatActivity {
             }
         });
 
+        imageProfile.setImageResource(R.drawable.ic_person_black_24dp);
 
-        //CropImage.activity().setAspectRatio(1, 1).start(UserProfileEditable.this);
+        loadProfileImage();
 
     } //end of onCreate
 
 
-    public void uploadImage() {
-        if (file != null) {
-            UploadTask uploadTask = ImRef.putBytes(file);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // ------ TO COMPLETE!!!! ------ //
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
-                }
-            });
-        }
-    }//end of uploadImage
+    private void loadProfileImage() {
+        mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SELECT_PICTURE) {
-            if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    try {
-                        //Log.wtf("inside onActivityResult", "before crop image");
-                        //CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                        //Log.wtf("inside onActivityResult", "before image URi");
-                        imageUri = data.getData();
-                        imageProfile.setImageURI(imageUri);
+                String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
 
+                if (pathToPicture != null) {
+                    pathToPicture = pathToPicture;
+
+
+                    //check if the user has already an profile image
+                    // if so, Load it
+                    if (!(pathToPicture.equals(""))) {
                         Picasso.get()
-                                .load(imageUri)
+                                .load(pathToPicture)
                                 .transform(new CircleTransform())
                                 .fit()
                                 .into(imageProfile);
-
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                        //Bitmap bitmapRounded = getRoundedCroppedBitmap(bitmap);
-                        file = baos.toByteArray();
-                        //imageProfile.setImageBitmap(bitmapRounded);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
                     }
+                    //uses default image
                 }
-            } else if (resultCode == this.RESULT_CANCELED) {
-                Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }//end of onActivityResult
 
-    //round the picture
-//    private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
-//        int widthLight = bitmap.getWidth();
-//        int heightLight = bitmap.getHeight();
-//
-//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-//
-//        Canvas canvas = new Canvas(output);
-//        Paint paintColor = new Paint();
-//        paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
-//
-//        RectF rectF = new RectF(new Rect(0, 0, widthLight, heightLight));
-//        canvas.drawRoundRect(rectF, widthLight  ,heightLight, paintColor); //heightLight / 2
-//        Paint paintImage = new Paint();
-//        paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-//        canvas.drawBitmap(bitmap, 0, 0, paintImage);
-//
-//
-//        return output;
-//    }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }// end loadProfileImage
+
+
+    // 1) ------- Method called when clicking pn button upload  - open gallery -------
+    public void uploadProfileImage(View view) {
+        Intent gallery = new Intent();
+        gallery.setType("image/*");
+        gallery.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
+
+    }
+
+    // 2) ------- This function is called when we picked an image from gallery -------
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+
+            mImageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mImageUri);
+                //change that
+                imageProfile.setImageBitmap(bitmap);
+//                  Load new Profile image to the storage and database
+                uploadFile(mRefProfileImages, mDatabaseRefProfile);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    // 3) -------  uoload file to storage and data bases ------
+    private void uploadFile(StorageReference mStorageRef, final DatabaseReference mDatabaseRef) {
+
+        if (mImageUri != null) {
+            final ProgressDialog mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setTitle("Uploading ...");
+            mProgressDialog.show();
+
+            final StorageReference fileReference = mStorageRef
+                    .child(System.currentTimeMillis() + ".jpg");
+
+            // upload image int o storagebase
+            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    mProgressDialog.dismiss();
+                    Toast.makeText(UserProfileEditable.this, "File Uploaded ", Toast.LENGTH_LONG).show();
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String uploadImage = uri.toString();
+                            // add url into user profile data in database
+                            mDatabaseRef.child(userID).child("pictureUri").setValue(uploadImage);
+
+                        }
+                    });
+
+                    mProgressDialog.dismiss();
+                }//END onSuccess
+
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    mProgressDialog.dismiss();
+                    Toast.makeText(UserProfileEditable.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                    mProgressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+                }
+            });
+
+        } else {
+            Toast.makeText(this, "No file was selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }//end class UserProfileEditable
