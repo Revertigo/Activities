@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".data.rtdb.activity.ShowHistory">
+    tools:context=".data.rtdb.activity.ShowFuture">
 
     <Button
-        android:id="@+id/showPostedHistory"
+        android:id="@+id/showPostedFuture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Created By You"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <Button
-        android:id="@+id/showJoinedHistory"
+        android:id="@+id/showJoinedFuture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You Participated"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showPostedHistory"
+        app:layout_constraintTop_toBottomOf="@+id/showPostedFuture"
         app:layout_constraintVertical_bias="0.174" />
 
     <Button

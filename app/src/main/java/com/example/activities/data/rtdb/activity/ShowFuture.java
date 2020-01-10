@@ -31,13 +31,12 @@ public class ShowFuture extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_future);
+        setContentView(R.layout.activity_future_post);
 
         backToProfile = findViewById(R.id.backToProfile);
-        showJoin = findViewById(R.id.showJoinedHistory);
-        showPosts = findViewById(R.id.showPostedHistory);
+        showJoin = findViewById(R.id.showJoinedFuture);
+        showPosts = findViewById(R.id.showPostedFuture);
         database = FirebaseDatabase.getInstance();
-        ArrayList<Activity> historyArray = new ArrayList<Activity>();
 
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override

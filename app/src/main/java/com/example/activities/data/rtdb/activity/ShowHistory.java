@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -30,7 +29,7 @@ public class ShowHistory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_history);
+        setContentView(R.layout.activity_history_post);
 
         backToProfile = findViewById(R.id.backToProfile);
         showJoinHistory = findViewById(R.id.showJoinedHistory);
