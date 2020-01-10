@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ShowFuture extends AppCompatActivity {
+public class ShowFuturePost extends AppCompatActivity {
     private Button backToProfile;
     private Button showJoin;
     private Button showPosts;
@@ -41,7 +41,7 @@ public class ShowFuture extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShowFuture.this, UserProfile.class);
+                Intent i = new Intent(ShowFuturePost.this, UserProfile.class);
                 i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
@@ -64,12 +64,12 @@ public class ShowFuture extends AppCompatActivity {
                             }
                         }
                         if (myPostedActivities.size() > 0) {
-                            Intent i = new Intent(ShowFuture.this, ShowActivities.class);
+                            Intent i = new Intent(ShowFuturePost.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
                             startActivity(i);
                             finish();
                         } else {
-                            Toast.makeText(ShowFuture.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShowFuturePost.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -100,7 +100,7 @@ public class ShowFuture extends AppCompatActivity {
                         }
                         if (joinedActivitiesArray.size() > 0) {
                             final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
-                            final Intent i = new Intent(ShowFuture.this, ShowActivities.class);
+                            final Intent i = new Intent(ShowFuturePost.this, ShowActivities.class);
                             DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
                             activitiesRef.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -123,7 +123,7 @@ public class ShowFuture extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            Toast.makeText(ShowFuture.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShowFuturePost.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
                         }
                     }
 

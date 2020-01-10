@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ShowHistory extends AppCompatActivity {
+public class ShowHistoryPost extends AppCompatActivity {
     private Button backToProfile;
     private Button showJoinHistory;
     private Button showPostsHistory;
@@ -39,7 +39,7 @@ public class ShowHistory extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShowHistory.this, UserProfile.class);
+                Intent i = new Intent(ShowHistoryPost.this, UserProfile.class);
                 i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
@@ -64,7 +64,7 @@ public class ShowHistory extends AppCompatActivity {
                                         historyArray.add(ds.getValue(Activity.class));
                                     }
                                     if (historyArray.size() > 0) {
-                                        Intent intent = new Intent(ShowHistory.this, ShowActivities.class);
+                                        Intent intent = new Intent(ShowHistoryPost.this, ShowActivities.class);
                                         intent.putExtra("activitiesArray", historyArray);
                                         ShowActivities.activityFilter = false;
                                         startActivity(intent);
@@ -77,7 +77,7 @@ public class ShowHistory extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            Toast.makeText(ShowHistory.this, "You never posted an activity.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShowHistoryPost.this, "You never posted an activity.", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -107,7 +107,7 @@ public class ShowHistory extends AppCompatActivity {
                                         historyArray.add(ds.getValue(Activity.class));
                                     }
                                     if (historyArray.size() > 0) {
-                                        Intent intent = new Intent(ShowHistory.this, ShowActivities.class);
+                                        Intent intent = new Intent(ShowHistoryPost.this, ShowActivities.class);
                                         intent.putExtra("activitiesArray", historyArray);
                                         ShowActivities.activityFilter = false;
                                         startActivity(intent);
@@ -122,7 +122,7 @@ public class ShowHistory extends AppCompatActivity {
                             });
 
                         } else {
-                            Toast.makeText(ShowHistory.this, "You didnt joined any activity right now.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShowHistoryPost.this, "You didnt joined any activity right now.", Toast.LENGTH_LONG).show();
                         }
                     }
 
