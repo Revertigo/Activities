@@ -13,6 +13,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".data.rtdb.activity.UserProfileEditable"></activity>
         <activity android:name=".data.rtdb.activity.ShowHistory" />
+        <activity android:name=".data.rtdb.activity.ShowFuture" />
         <activity android:name=".data.rtdb.activity.UserProfile" />
         <activity
             android:name=".data.rtdb.activity.ActivityInfo"

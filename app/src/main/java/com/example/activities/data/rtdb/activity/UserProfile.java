@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
 import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,17 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class UserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday, phone;
     private Button backToMainMenu;
-    private Button showJoinedActivities;
     private Button showMyActivities;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
-    private DatabaseReference joinedRef;
-    private DatabaseReference myActivitiesRef;
     private Button activitiesHistory;
     private ImageView EditProfile;
     private ImageView profileImage;
@@ -128,89 +121,13 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        showJoinedActivities = findViewById(R.id.joinedActivities);
-        showJoinedActivities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowActivities.activityFilter = true;
-                joinedRef = database.getReference(ActivityInfo.getUsers_in_activities());
-                joinedRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final ArrayList<String> joinedActivitiesArray = new ArrayList<String>();
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            //if my uid is exist here
-                            if (ds.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
-                                joinedActivitiesArray.add(ds.getKey());
-                            }
-                        }
-                        if (joinedActivitiesArray.size() > 0) {
-                            final ArrayList<Activity> activitiesArray = new ArrayList<Activity>();
-                            final Intent i = new Intent(UserProfile.this, ShowActivities.class);
-                            DatabaseReference activitiesRef = database.getReference(PostActivity.getActivities());
-                            activitiesRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for (int i = 0; i < joinedActivitiesArray.size(); i++) {
-                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                            if (ds.getKey().equals(joinedActivitiesArray.get(i))) {
-                                                activitiesArray.add(ds.getValue(Activity.class));
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    i.putExtra("activitiesArray", activitiesArray);
-                                    startActivity(i);
-                                    finish();
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                }
-                            });
-                        } else {
-                            Toast.makeText(UserProfile.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });
-            }
-        });
         showMyActivities = findViewById(R.id.myPostedActivities);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowActivities.activityFilter = true;
-                myActivitiesRef = database.getReference(PostActivity.getActivities());
-                final ArrayList<Activity> myPostedActivities = new ArrayList<Activity>();
-                myActivitiesRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            Activity ac = ds.getValue(Activity.class);
-                            if (ac.getpostedUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                                myPostedActivities.add(ds.getValue(Activity.class));
-                            }
-                        }
-                        if (myPostedActivities.size() > 0) {
-                            Intent i = new Intent(UserProfile.this, ShowActivities.class);
-                            i.putExtra("activitiesArray", myPostedActivities);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            Toast.makeText(UserProfile.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
+                Intent in = new Intent(UserProfile.this, ShowFuture.class);
+                startActivity(in);
+                finish();
             }
         });
 
