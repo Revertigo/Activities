@@ -74,7 +74,7 @@ public class UserProfile extends AppCompatActivity {
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfile.this, ShowHistoryPost.class);
+                Intent i = User.getCurrentUser().loadHistory(UserProfile.this);
                 startActivity(i);
                 finish();
             }
@@ -125,7 +125,7 @@ public class UserProfile extends AppCompatActivity {
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(UserProfile.this, ShowFuturePost.class);
+                Intent in = User.getCurrentUser().loadFuture(UserProfile.this);
                 startActivity(in);
                 finish();
             }

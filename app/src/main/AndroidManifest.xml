@@ -13,7 +13,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".data.rtdb.activity.UserProfileEditable"></activity>
         <activity android:name=".data.rtdb.activity.ShowHistoryPost" />
+        <activity android:name=".data.rtdb.activity.ShowHistorySearch" />
         <activity android:name=".data.rtdb.activity.ShowFuturePost" />
+        <activity android:name=".data.rtdb.activity.ShowFutureSearch" />
         <activity android:name=".data.rtdb.activity.UserProfile" />
         <activity
             android:name=".data.rtdb.activity.ActivityInfo"
