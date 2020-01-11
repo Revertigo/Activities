@@ -25,14 +25,14 @@
 
     <ImageView
         android:id="@+id/imageViewArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26dp"
+        android:layout_height="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.181"
+        app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/ic_arrow" />
 
     <TextView
@@ -80,8 +80,8 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:fontFamily="monospace"
         android:hint="Your email"
@@ -90,18 +90,17 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/EnterYourMail"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/EnterYourMail"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.462" />
 
     <Button
         android:id="@+id/Next1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:text="Next"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        style="@style/button_rectangle_gray_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

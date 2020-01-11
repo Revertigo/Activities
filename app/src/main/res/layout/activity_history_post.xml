@@ -9,38 +9,41 @@
 
     <Button
         android:id="@+id/showPostedHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="127dp"
+        android:layout_height="46dp"
         android:text="Created By You"
         android:tooltipText="Activities you posted"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <Button
         android:id="@+id/showJoinedHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="127dp"
+        android:layout_height="45dp"
         android:text="You Participated"
         android:tooltipText="Activities you took a part"
         app:layout_constraintBottom_toTopOf="@+id/backToProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/showPostedHistory"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/showPostedHistory"
         app:layout_constraintTop_toBottomOf="@+id/showPostedHistory"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.298" />
 
     <Button
         android:id="@+id/backToProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="127dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="100dp"
         android:text="back to profile"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/showJoinedHistory"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/showJoinedHistory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

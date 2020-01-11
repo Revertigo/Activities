@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/back_1"
     tools:context=".data.rtdb.activity.ShowFuturePost">
 
     <Button
         android:id="@+id/showPostedFuture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:text="Created By You"
+        android:fontFamily="monospace"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:background="@color/colorAccent"
         android:tooltipText="Activities you posted"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,25 +25,31 @@
 
     <Button
         android:id="@+id/showJoinedFuture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="151dp"
+        android:layout_height="52dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="monospace"
         android:text="You Participated"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:tooltipText="Activities you took a part"
         app:layout_constraintBottom_toTopOf="@+id/backToProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/showPostedFuture"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/showPostedFuture"
         app:layout_constraintTop_toBottomOf="@+id/showPostedFuture"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.323" />
 
     <Button
         android:id="@+id/backToProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
+        android:layout_width="152dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="88dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="monospace"
         android:text="back to profile"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/showJoinedFuture"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/showJoinedFuture" />
 </androidx.constraintlayout.widget.ConstraintLayout>

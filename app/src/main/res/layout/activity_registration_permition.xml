@@ -37,8 +37,9 @@
 
     <Button
         android:id="@+id/registerToSearchButton"
-        android:layout_width="366dp"
-        android:layout_height="108dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="368dp"
+        android:layout_height="92dp"
         android:text="@string/search_and_join_activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,15 +50,16 @@
 
     <Button
         android:id="@+id/registerToPostButton"
-        android:layout_width="365dp"
-        android:layout_height="107dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="366dp"
+        android:layout_height="90dp"
         android:text="@string/both_post_and_search_activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/registerToSearchButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/registerToSearchButton"
         app:layout_constraintTop_toBottomOf="@+id/registerToSearchButton"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.376" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

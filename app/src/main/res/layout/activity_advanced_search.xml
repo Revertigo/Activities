@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="press to enter relevant date"
+        style="@style/button_rectangle_gray_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -181,20 +182,21 @@
 
     <Button
         android:id="@+id/clickToUseAdvancedSearch"
-        android:layout_width="256dp"
-        android:layout_height="65dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="257dp"
+        android:layout_height="54dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addTimeButtonAdvanced"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.368" />
 
     <Button
         android:id="@+id/clickToBackToMainSearchActivity"
-        android:layout_width="256dp"
-        android:layout_height="36dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="252dp"
+        android:layout_height="54dp"
         android:text="back to main search screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,8 +207,9 @@
 
     <Button
         android:id="@+id/addTimeButtonAdvanced"
-        android:layout_width="247dp"
-        android:layout_height="50dp"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
         android:text="add time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
