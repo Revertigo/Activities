@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import com.example.activities.data.interfaces.IpermissionLA;
+import com.example.activities.data.interfaces.IpermissionMM;
 import com.example.activities.ui.searchActivity.SearchOnly;
-import com.example.activities.data.interfaces.Ipermission;
+import com.example.activities.data.interfaces.IpermissionLP;
 import com.example.activities.ui.profile.ShowFutureSearch;
 import com.example.activities.ui.profile.ShowHistorySearch;
 import com.example.activities.ui.profile.UserProfile;
@@ -14,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /** User class represents the basic user - with activity search permission
  * Implement the class 'Parcelable' so it can be passed from Intent to Intent **/
-public class User implements Parcelable, Ipermission {
+public class User implements Parcelable, IpermissionLP, IpermissionMM, IpermissionLA {
     // We save instance of the logged user:
     private static User currentUser = null;
     // Parcelable parameter:
@@ -209,8 +211,8 @@ public class User implements Parcelable, Ipermission {
     };
 
     @Override
-    public Intent loadMainMenu(AppCompatActivity la) {
-        return new Intent(la, SearchOnly.class);
+    public Intent loadMainMenu(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, SearchOnly.class);
     }
 
     @Override
@@ -219,12 +221,12 @@ public class User implements Parcelable, Ipermission {
     }
 
     @Override
-    public Intent loadHistory(AppCompatActivity la) {
-        return new Intent(la, ShowHistorySearch.class);
+    public Intent loadHistory(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, ShowHistorySearch.class);
     }
 
     @Override
-    public Intent loadFuture(AppCompatActivity la) {
-        return new Intent(la, ShowFutureSearch.class);
+    public Intent loadFuture(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, ShowFutureSearch.class);
     }
 }

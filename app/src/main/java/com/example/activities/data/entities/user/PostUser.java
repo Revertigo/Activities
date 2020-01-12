@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.activities.data.interfaces.IpermissionLA;
+import com.example.activities.data.interfaces.IpermissionLP;
+import com.example.activities.data.interfaces.IpermissionMM;
 import com.example.activities.ui.searchActivity.SearchOrPost;
-import com.example.activities.data.interfaces.Ipermission;
 import com.example.activities.ui.profile.PostUserProfile;
 import com.example.activities.ui.profile.ShowFuturePost;
 import com.example.activities.ui.profile.ShowHistoryPost;
@@ -13,7 +15,7 @@ import com.example.activities.ui.profile.ShowHistoryPost;
 import androidx.appcompat.app.AppCompatActivity;
 
 /** PostUser class represents the user with advertising permission **/
-public class PostUser extends User implements Ipermission {
+public class PostUser extends User implements IpermissionLP, IpermissionMM, IpermissionLA {
     // Parcelable parameter:
     private static final int NUM_USER_PROPS = 11;
 
@@ -108,8 +110,8 @@ public class PostUser extends User implements Ipermission {
     };
 
     @Override
-    public Intent loadMainMenu(AppCompatActivity la) {
-        return new Intent(la, SearchOrPost.class);
+    public Intent loadMainMenu(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, SearchOrPost.class);
     }
 
     @Override
@@ -118,13 +120,13 @@ public class PostUser extends User implements Ipermission {
     }
 
     @Override
-    public Intent loadHistory(AppCompatActivity la) {
-        return new Intent(la, ShowHistoryPost.class);
+    public Intent loadHistory(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, ShowHistoryPost.class);
     }
 
     @Override
-    public Intent loadFuture(AppCompatActivity la) {
-        return new Intent(la, ShowFuturePost.class);
+    public Intent loadFuture(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, ShowFuturePost.class);
     }
 
 }
