@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.activities.R;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +32,7 @@ public class ShowHistoryPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_post);
 
-        backToProfile = findViewById(R.id.backToProfile);
+        backToProfile = findViewById(R.id.backToProfileHistory);
         showJoinHistory = findViewById(R.id.showJoinedHistory);
         showPostsHistory = findViewById(R.id.showPostedHistory);
         ArrayList<Activity> historyArray = new ArrayList<Activity>();
@@ -39,8 +40,7 @@ public class ShowHistoryPost extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShowHistoryPost.this, UserProfile.class);
-                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                Intent i = User.getCurrentUser().loadProfile(ShowHistoryPost.this);
                 startActivity(i);
                 finish();
             }
@@ -62,7 +62,7 @@ public class ShowHistoryPost extends AppCompatActivity {
                                     historyArray.clear();
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                         historyArray.add(ds.getValue(Activity.class));
-                                    }
+                                }
                                     if (historyArray.size() > 0) {
                                         Intent intent = new Intent(ShowHistoryPost.this, ShowActivities.class);
                                         intent.putExtra("activitiesArray", historyArray);

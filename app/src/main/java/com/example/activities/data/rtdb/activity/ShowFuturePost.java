@@ -2,12 +2,15 @@ package com.example.activities.data.rtdb.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.example.activities.SearchActivity.SearchOrPost;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,8 +44,7 @@ public class ShowFuturePost extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShowFuturePost.this, UserProfile.class);
-                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                Intent i = User.getCurrentUser().loadProfile(ShowFuturePost.this);
                 startActivity(i);
                 finish();
             }
@@ -58,19 +60,23 @@ public class ShowFuturePost extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            Activity ac = ds.getValue(Activity.class);
-                            if (ac.getpostedUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                           Activity ac = ds.getValue(Activity.class);
+
+
+                            if (ds.getValue(Activity.class).getpostedUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                                 myPostedActivities.add(ds.getValue(Activity.class));
                             }
+
+                            if (myPostedActivities.size() > 0) {
+                                Intent i = new Intent(ShowFuturePost.this, ShowActivities.class);
+                                i.putExtra("activitiesArray", myPostedActivities);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                Toast.makeText(ShowFuturePost.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
+                            }
                         }
-                        if (myPostedActivities.size() > 0) {
-                            Intent i = new Intent(ShowFuturePost.this, ShowActivities.class);
-                            i.putExtra("activitiesArray", myPostedActivities);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            Toast.makeText(ShowFuturePost.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
-                        }
+
                     }
 
                     @Override

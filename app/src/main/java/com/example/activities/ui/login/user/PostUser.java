@@ -7,8 +7,10 @@ import android.os.Parcelable;
 import com.example.activities.MainActivity;
 import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.data.rtdb.activity.Ipermission;
+import com.example.activities.data.rtdb.activity.PostUserProfile;
 import com.example.activities.data.rtdb.activity.ShowFuturePost;
 import com.example.activities.data.rtdb.activity.ShowHistoryPost;
+import com.example.activities.data.rtdb.activity.UserProfile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -113,9 +115,8 @@ public class PostUser extends User implements Ipermission {
     }
 
     @Override
-    public Intent loadProfile(AppCompatActivity ma) {
-        //TODO:Imeplement
-        return null;
+    public Intent loadProfile(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, PostUserProfile.class);
     }
 
     @Override

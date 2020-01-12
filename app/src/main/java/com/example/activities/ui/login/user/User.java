@@ -7,8 +7,10 @@ import android.os.Parcel;
 import com.example.activities.MainActivity;
 import com.example.activities.SearchActivity.SearchOnly;
 import com.example.activities.data.rtdb.activity.Ipermission;
+import com.example.activities.data.rtdb.activity.PostUserProfile;
 import com.example.activities.data.rtdb.activity.ShowFutureSearch;
 import com.example.activities.data.rtdb.activity.ShowHistorySearch;
+import com.example.activities.data.rtdb.activity.UserProfile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -214,9 +216,8 @@ public class User implements Parcelable, Ipermission {
     }
 
     @Override
-    public Intent loadProfile(AppCompatActivity ma) {
-        //TODO:Imeplement
-        return null;
+    public Intent loadProfile(AppCompatActivity prevIntent) {
+        return new Intent(prevIntent, UserProfile.class);
     }
 
     @Override

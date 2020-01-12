@@ -1,8 +1,5 @@
 package com.example.activities.data.rtdb.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,69 +7,71 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.activities.R;
 import com.example.activities.ui.login.user.PostUser;
 import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
-public class UserProfile extends AppCompatActivity {
+public class PostUserProfile extends AppCompatActivity {
     private TextView name, email, occupation, education, gender, permission, birthday, phone;
     private Button backToMainMenu;
     private Button showMyActivities;
     private Button activitiesHistory;
 
 
-    private ImageView EditProfile;
+    private ImageView editProfile;
     private ImageView profileImage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_post_user_profile);
 
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        name = findViewById(R.id.nameOfTheUserProfile);
-        email = findViewById(R.id.emailOfTheUserProfile);
-        occupation = findViewById(R.id.occupationOfTheUserProfile);
-        education = findViewById(R.id.educationOfTheUserProfile);
-        gender = findViewById(R.id.genderOfTheUserProfile);
-        permission = findViewById(R.id.permissionOfTheUserProfile);
-        birthday = findViewById(R.id.birthdayOfTheUserProfile);
-        phone = findViewById(R.id.PhoneOfTheUserProfile);
+        name = findViewById(R.id.nameOfThePostUserProfile);
+        email = findViewById(R.id.emailOfThePostUserProfile);
+        occupation = findViewById(R.id.occupationOfThePostUserProfile);
+        education = findViewById(R.id.educationOfThePostUserProfile);
+        gender = findViewById(R.id.genderOfThePostUserProfile);
+        permission = findViewById(R.id.permissionOfThePostUserProfile);
+        birthday = findViewById(R.id.birthdayOfThePostUserProfile);
+        phone = findViewById(R.id.PhoneOfThePostUserProfile);
 
 
-        EditProfile = findViewById(R.id.editImageViewProfile);
-        EditProfile.setOnClickListener(new View.OnClickListener() {
+        editProfile = findViewById(R.id.editImageViewPostUserProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfile.this, UserProfileEditable.class);
+                Intent i = new Intent(PostUserProfile.this, PostUserProfileEditable.class);
                 startActivity(i);
                 finish();
             }
 
         });
-        profileImage = findViewById(R.id.profileImageProfile);
+        profileImage = findViewById(R.id.profileImagePostUser);
         profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         backToMainMenu = findViewById(R.id.backToSearchOrPost);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = User.getCurrentUser().loadMainMenu(UserProfile.this);
+                Intent intent = User.getCurrentUser().loadMainMenu(PostUserProfile.this);
                 startActivity(intent);
                 finish();
             }
         });
 
-        activitiesHistory = findViewById(R.id.activitiesHistory);
+        activitiesHistory = findViewById(R.id.activitiesHistoryPostUser);
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent i = User.getCurrentUser().loadHistory(UserProfile.this);
+                Intent i = User.getCurrentUser().loadHistory(PostUserProfile.this);
                 startActivity(i);
                 finish();
             }
@@ -84,22 +83,21 @@ public class UserProfile extends AppCompatActivity {
         permission.setText(User.getCurrentUser().getPermission());
         birthday.setText(User.getCurrentUser().getDateOfBirth());
         gender.setText(User.getCurrentUser().getGender());
+        occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
+        education.setText(((PostUser) User.getCurrentUser()).getEducation());
         loadUserPicture();
-        if(User.getCurrentUser() instanceof PostUser) {
-            occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
-            education.setText(((PostUser) User.getCurrentUser()).getEducation());
-        }
 
-        showMyActivities = findViewById(R.id.myPostedActivities);
+        showMyActivities = findViewById(R.id.myPostedActivitiesPostUser);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = User.getCurrentUser().loadFuture(UserProfile.this);
+                Intent in = User.getCurrentUser().loadFuture(PostUserProfile.this);
                 startActivity(in);
                 finish();
             }
         });
     }
+
 
     private void loadUserPicture()
     {

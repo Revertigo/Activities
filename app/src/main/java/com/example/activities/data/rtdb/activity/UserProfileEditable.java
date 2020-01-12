@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.activities.R;
-import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.ui.login.user.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,12 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class UserProfileEditable extends AppCompatActivity {
@@ -70,8 +67,6 @@ public class UserProfileEditable extends AppCompatActivity {
         final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         email = findViewById(R.id.emailOfTheUserEdit);
         name = findViewById(R.id.nameOfTheUserEdit);
-        occupation = findViewById(R.id.occupationOfTheUserEdit);
-        education = findViewById(R.id.educationOfTheUserEdit);
         gender = findViewById(R.id.genderOfTheUserEdit);
         permission = findViewById(R.id.permissionOfTheUserEdit);
         birthday = findViewById(R.id.birthdayOfTheUserEdit);
@@ -111,16 +106,6 @@ public class UserProfileEditable extends AppCompatActivity {
                             phone.setText("Phone:");
                         }
 
-                        if (ds.child("occupation").exists()) {
-                            occupation.setText(ds.child("occupation").getValue(String.class));
-                        } else {
-                            occupation.setText("Occupation: ");
-                        }
-                        if (ds.child("education").exists()) {
-                            education.setText(ds.child("education").getValue(String.class));
-                        } else {
-                            education.setText("Education:");
-                        }
                         permission.setText(ds.child("permission").getValue(String.class));
                         birthday.setText(ds.child("dateOfBirth").getValue(String.class));
                         gender.setText(ds.child("gender").getValue(String.class));
@@ -143,8 +128,6 @@ public class UserProfileEditable extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String newName = name.getText().toString();
-                String newOccupation = occupation.getText().toString();
-                String newEducation = education.getText().toString();
                 String newBirthday = birthday.getText().toString();
                 String newGender = gender.getText().toString();
                 String newPhone = phone.getText().toString();
@@ -153,8 +136,6 @@ public class UserProfileEditable extends AppCompatActivity {
                 DatabaseReference currentUserRef = userRef.child(userID);
                 currentUserRef.child("firstName").setValue(nameSplited[0]);
                 currentUserRef.child("lastName").setValue(nameSplited[1]);
-                currentUserRef.child("occupation").setValue(newOccupation);
-                currentUserRef.child("education").setValue(newEducation);
                 currentUserRef.child("dateOfBirth").setValue(newBirthday);
                 currentUserRef.child("gender").setValue(newGender);
                 currentUserRef.child("phone").setValue(newPhone);
@@ -166,7 +147,7 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
         //Main menu button
-        backToMainMenu = findViewById(R.id.backToSearchOrPost);
+        backToMainMenu = findViewById(R.id.backToSearchOrPostUser);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

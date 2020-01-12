@@ -1,6 +1,5 @@
 package com.example.activities.data.rtdb.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.activities.R;
-import com.example.activities.ui.login.user.PostUser;
 import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class UserProfile extends AppCompatActivity {
-    private TextView name, email, occupation, education, gender, permission, birthday, phone;
+    private TextView name, email, gender, permission, birthday, phone;
     private Button backToMainMenu;
     private Button showMyActivities;
     private Button activitiesHistory;
@@ -36,15 +34,13 @@ public class UserProfile extends AppCompatActivity {
 
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);
-        occupation = findViewById(R.id.occupationOfTheUserProfile);
-        education = findViewById(R.id.educationOfTheUserProfile);
         gender = findViewById(R.id.genderOfTheUserProfile);
         permission = findViewById(R.id.permissionOfTheUserProfile);
         birthday = findViewById(R.id.birthdayOfTheUserProfile);
         phone = findViewById(R.id.PhoneOfTheUserProfile);
 
 
-        EditProfile = findViewById(R.id.editImageViewProfile);
+        EditProfile = findViewById(R.id.editImageViewUserProfile);
         EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +50,7 @@ public class UserProfile extends AppCompatActivity {
             }
 
         });
-        profileImage = findViewById(R.id.profileImageProfile);
+        profileImage = findViewById(R.id.profileImageUser);
         profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         backToMainMenu = findViewById(R.id.backToSearchOrPost);
@@ -67,7 +63,7 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        activitiesHistory = findViewById(R.id.activitiesHistory);
+        activitiesHistory = findViewById(R.id.activitiesHistoryPostUser);
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -85,12 +81,8 @@ public class UserProfile extends AppCompatActivity {
         birthday.setText(User.getCurrentUser().getDateOfBirth());
         gender.setText(User.getCurrentUser().getGender());
         loadUserPicture();
-        if(User.getCurrentUser() instanceof PostUser) {
-            occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
-            education.setText(((PostUser) User.getCurrentUser()).getEducation());
-        }
 
-        showMyActivities = findViewById(R.id.myPostedActivities);
+        showMyActivities = findViewById(R.id.myPostedActivitiesPostUser);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

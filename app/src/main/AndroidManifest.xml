@@ -11,12 +11,28 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".data.rtdb.activity.UserProfileEditable"></activity>
-        <activity android:name=".data.rtdb.activity.ShowHistoryPost" />
-        <activity android:name=".data.rtdb.activity.ShowHistorySearch" />
-        <activity android:name=".data.rtdb.activity.ShowFuturePost" />
-        <activity android:name=".data.rtdb.activity.ShowFutureSearch" />
-        <activity android:name=".data.rtdb.activity.UserProfile" />
+        <activity android:name=".data.rtdb.activity.PostUserProfileEditable"></activity>
+        <activity
+            android:name=".data.rtdb.activity.UserProfileEditable"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.ShowHistoryPost"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.ShowHistorySearch"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.ShowFuturePost"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.ShowFutureSearch"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.UserProfile"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".data.rtdb.activity.PostUserProfile"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".data.rtdb.activity.ActivityInfo"
             android:windowSoftInputMode="adjustPan" />

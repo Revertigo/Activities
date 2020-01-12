@@ -15,6 +15,7 @@ import com.example.activities.PostActivitiyJava.NamePostActivity;
 import com.example.activities.R;
 import com.example.activities.SettingsActivity;
 import com.example.activities.data.rtdb.activity.UserProfile;
+import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SearchOrPost extends AppCompatActivity {
@@ -81,8 +82,7 @@ public class SearchOrPost extends AppCompatActivity {
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchOrPost.this, UserProfile.class);
-                intent.putExtra("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                Intent intent = User.getCurrentUser().loadProfile(SearchOrPost.this);
                 startActivity(intent);
                 finish();
             }

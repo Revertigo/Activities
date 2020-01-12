@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.example.activities.PostActivitiyJava.PostActivity;
 import com.example.activities.R;
 import com.example.activities.SearchActivity.SearchActivity;
-import com.example.activities.SearchActivity.SearchOrPost;
 import com.example.activities.ui.login.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -57,8 +56,7 @@ public class ShowActivities extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowActivities.this, UserProfile.class);
-                intent.putExtra("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                Intent intent =User.getCurrentUser().loadProfile(ShowActivities.this);
                 startActivity(intent);
                 finish();
             }

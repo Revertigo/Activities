@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.298" />
 
     <Button
-        android:id="@+id/backToProfile"
+        android:id="@+id/backToProfileHistory"
         style="@style/button_rectangle_gray_no_corner"
         android:layout_width="127dp"
         android:layout_height="45dp"

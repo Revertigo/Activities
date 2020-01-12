@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.rtdb.activity.UserProfile">
+    tools:context=".data.rtdb.activity.PostUserProfile">
 
     <RelativeLayout
-        android:id="@+id/profile_upper_layout_Profile"
+        android:id="@+id/profile_upper_layout_PostUserProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/grad"
         android:paddingBottom="20dp">
 
         <RelativeLayout
-            android:id="@+id/imgUserProfile"
+            android:id="@+id/imgPostUserProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -22,7 +22,7 @@
             android:background="@drawable/circle_border">
 
             <ImageView
-                android:id="@+id/profileImageProfile"
+                android:id="@+id/profileImagePostUser"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_alignParentStart="true"
@@ -40,10 +40,10 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/nameOfTheUserProfile"
+            android:id="@+id/nameOfThePostUserProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUserProfile"
+            android:layout_below="@+id/imgPostUserProfile"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
@@ -52,7 +52,7 @@
             android:textSize="32sp" />
 
         <ImageView
-            android:id="@+id/editImageViewProfile"
+            android:id="@+id/editImageViewPostUserProfile"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_alignTop="@+id/imgUserProfile"
@@ -70,10 +70,10 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/linlay1"
+        android:id="@+id/linilayoutPostUserProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_upper_layout_Profile"
+        android:layout_below="@id/profile_upper_layout_PostUserProfile"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -90,10 +90,15 @@
 
 
     <RelativeLayout
-        android:id="@+id/containsData"
-        android:layout_width="match_parent"
-        android:layout_height="393dp"
-        android:layout_below="@+id/linlay1">
+        android:id="@+id/containsDataPostUserProfile"
+        android:layout_width="420dp"
+        android:layout_height="389dp"
+        android:layout_below="@+id/linilayoutPostUserProfile"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-13dp"
+        android:layout_marginEnd="-9dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,13 +111,13 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/emailLinearLayout"
+                android:id="@+id/emailLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/emailOfTheUserProfileTitle"
+                    android:id="@+id/emailOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email:"
@@ -120,7 +125,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/emailOfTheUserProfile"
+                    android:id="@+id/emailOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -137,14 +142,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/occupationLinearLayout"
+                android:id="@+id/occupationLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/occupationOfTheUserProfileTitle"
+                    android:id="@+id/occupationOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Occupation:"
@@ -152,7 +157,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/occupationOfTheUserProfile"
+                    android:id="@+id/occupationOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -169,7 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/educationLinearLayout"
+                android:id="@+id/educationLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
@@ -177,7 +182,7 @@
 
 
                 <TextView
-                    android:id="@+id/educationOfTheUserProfileTitle"
+                    android:id="@+id/educationOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Education:"
@@ -185,7 +190,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/educationOfTheUserProfile"
+                    android:id="@+id/educationOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -202,14 +207,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/genderLinearLayout"
+                android:id="@+id/genderLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/genderOfTheUserProfileTitle"
+                    android:id="@+id/genderOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender:"
@@ -217,7 +222,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/genderOfTheUserProfile"
+                    android:id="@+id/genderOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -234,14 +239,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/permissionLinearLayout"
+                android:id="@+id/permissionLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/permissionOfTheUserProfileTitle"
+                    android:id="@+id/permissionOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Permission:"
@@ -249,7 +254,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/permissionOfTheUserProfile"
+                    android:id="@+id/permissionOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -266,14 +271,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/birthdayLinearLayout"
+                android:id="@+id/birthdayLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/birthdayOfTheUserProfileTitle"
+                    android:id="@+id/birthdayOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Birthday:"
@@ -281,7 +286,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/birthdayOfTheUserProfile"
+                    android:id="@+id/birthdayOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -292,14 +297,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/phoneLinearLayout"
+                android:id="@+id/phoneLinearLayoutPostUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/phoneOfTheUserProfileTitle"
+                    android:id="@+id/phoneOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone:"
@@ -307,7 +312,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/PhoneOfTheUserProfile"
+                    android:id="@+id/PhoneOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -323,9 +328,9 @@
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lowerConstraintProfile"
-        android:layout_width="409dp"
-        android:layout_height="97dp"
+        android:id="@+id/lowerConstraintPostUseProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="106dp"
 
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -336,11 +341,11 @@
         android:layout_marginBottom="-1dp">
 
         <Button
-            android:id="@+id/myPostedActivities"
+            android:id="@+id/myPostedActivitiesPostUser"
+            style="@style/button_rectangle_gray_no_corner"
             android:layout_width="151dp"
             android:layout_height="50dp"
             android:text="my activities"
-            style="@style/button_rectangle_gray_no_corner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.996"
@@ -350,29 +355,29 @@
 
         <Button
             android:id="@+id/backToSearchOrPost"
+            style="@style/button_rectangle_gray_no_corner"
             android:layout_width="104dp"
             android:layout_height="52dp"
             android:text="Main menu"
-            style="@style/button_rectangle_gray_no_corner"
-            app:layout_constraintBottom_toBottomOf="@+id/activitiesHistory"
-            app:layout_constraintEnd_toStartOf="@+id/activitiesHistory"
+            app:layout_constraintBottom_toBottomOf="@+id/activitiesHistoryPostUser"
+            app:layout_constraintEnd_toStartOf="@+id/activitiesHistoryPostUser"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/activitiesHistory"
+            app:layout_constraintTop_toTopOf="@+id/activitiesHistoryPostUser"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/activitiesHistory"
+            android:id="@+id/activitiesHistoryPostUser"
+            style="@style/button_rectangle_gray_no_corner"
             android:layout_width="151dp"
             android:layout_height="50dp"
             android:layout_marginStart="256dp"
             android:text="My History"
-            style="@style/button_rectangle_gray_no_corner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myPostedActivities"
+            app:layout_constraintTop_toBottomOf="@+id/myPostedActivitiesPostUser"
             app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
