@@ -7,6 +7,8 @@ import com.example.activities.ui.login.LoginActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** Ipermission interface represent objects with certain permission
+ * Allows certain buttons to send to a different content depending on user permission*/
 public interface Ipermission {
     public Intent loadMainMenu(AppCompatActivity la);//Main Activity
     public Intent loadProfile(AppCompatActivity ma);

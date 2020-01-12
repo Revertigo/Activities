@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 import java.text.SimpleDateFormat;
 
+/** Activity class represents the fields that are saved in the Firebase and define activity
+ * Implement the class 'Parcelable' so it can be passed from Intent to Intent**/
 public class Activity implements Parcelable {
+
     private static long id_counter;//For autoincrement of id's
     private final int NUM_USER_PROPS = 15;
     private String postedUser;
@@ -20,10 +23,19 @@ public class Activity implements Parcelable {
     private Date date;
     private String time;//Format: hh:mm
 
-
-    public Activity() {
-    }
-
+    /***
+     * Constructor
+     * @param postedUser Name of owner user
+     * @param name Name of activity
+     * @param Type
+     * @param addr Address
+     * @param difficulty Level of participants
+     * @param group True/False
+     * @param gender Gender of participants
+     * @param description Possible text to describe the activity
+     * @param date
+     * @param time
+     */
     public Activity(String postedUser,String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
         this.postedUser=postedUser;

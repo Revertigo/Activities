@@ -12,13 +12,20 @@ import com.example.activities.data.rtdb.activity.ShowHistoryPost;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** PostUser class represents the user with advertising permission **/
 public class PostUser extends User implements Ipermission {
-
+    // Parcelable parameter:
     private static final int NUM_USER_PROPS = 11;
 
+    // Extra fields besides that are in User class
     private String occupation;
     private String education;
 
+
+    /**
+     * Constructor
+     * @param user
+     */
     public PostUser(User user) {
         super(user);
         this.occupation = "default_occupation";

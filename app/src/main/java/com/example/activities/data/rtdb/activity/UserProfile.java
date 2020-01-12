@@ -45,7 +45,6 @@ public class UserProfile extends AppCompatActivity {
 
 
         EditProfile = findViewById(R.id.editImageViewProfile);
-
         EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

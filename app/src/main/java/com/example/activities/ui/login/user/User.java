@@ -12,11 +12,14 @@ import com.example.activities.data.rtdb.activity.ShowHistorySearch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** User class represents the basic user - with activity search permission
+ * Implement the class 'Parcelable' so it can be passed from Intent to Intent **/
 public class User implements Parcelable, Ipermission {
-
-    private static User currentUser = null;//We save instance of the logged user
+    // We save instance of the logged user:
+    private static User currentUser = null;
+    // Parcelable parameter:
     private static final int NUM_USER_PROPS = 9;
-
+    // Fields:
     protected String username;
     protected String password;
     protected String firstName;
@@ -30,9 +33,10 @@ public class User implements Parcelable, Ipermission {
     //TODO: for later
     //ArrayList<String> hobbies;
 
-    public User() {
-    }
-
+    /**
+     * Copy Constructor
+     * @param other
+     */
     public User(User other) {
         this.username = other.getUsername();
         this.password = other.getPassword();
@@ -43,6 +47,12 @@ public class User implements Parcelable, Ipermission {
         this.dateOfBirth = other.getDateOfBirth();
         this.phone = other.getPhone();
         this.pictureUri = other.getpictureUri();
+    }
+
+    /**
+     * Empty Constructor
+     */
+    public User() {
     }
 
     public User(String username, String password, String firstName, String lastName,
