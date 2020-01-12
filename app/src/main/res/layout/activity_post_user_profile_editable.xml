@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.rtdb.activity.PostUserProfileEditable">
+    tools:context=".ui.profile.PostUserProfileEditable">
 
     <RelativeLayout
         android:id="@+id/profile_upper_layout_post_user_Edit"

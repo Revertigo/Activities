@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".data.rtdb.activity.ShowHistorySearch">
+    tools:context=".ui.profile.ShowHistorySearch">
 
     <Button
         android:id="@+id/showJoinedHistory"

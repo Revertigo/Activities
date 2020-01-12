@@ -13,10 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.activities.R;
-import com.example.activities.ui.login.Registration.RegisterToApp_Email;
+import com.example.activities.ui.registration.RegisterToApp_Email;
 
-import com.example.activities.ui.login.user.PostUser;
-import com.example.activities.ui.login.user.User;
+import com.example.activities.data.entities.user.PostUser;
+import com.example.activities.data.entities.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

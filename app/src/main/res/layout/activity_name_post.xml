@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".PostActivitiyJava.NamePostActivity">
+    tools:context=".ui.postActivitiyJava.NamePostActivity">
 
     <Button
         android:id="@+id/closeAppNamePostActivity"

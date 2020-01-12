@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".data.rtdb.activity.ActivityInfo">
+    tools:context=".data.rtdb.ActivityInfo">
 
     <ListView
         android:id="@+id/joinActivityListView"

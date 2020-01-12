@@ -11,112 +11,112 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".data.rtdb.activity.PostUserProfileEditable"></activity>
+        <activity android:name=".ui.profile.PostUserProfileEditable"></activity>
         <activity
-            android:name=".data.rtdb.activity.UserProfileEditable"
+            android:name=".ui.profile.UserProfileEditable"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ShowHistoryPost"
+            android:name=".ui.profile.ShowHistoryPost"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ShowHistorySearch"
+            android:name=".ui.profile.ShowHistorySearch"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ShowFuturePost"
+            android:name=".ui.profile.ShowFuturePost"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ShowFutureSearch"
+            android:name=".ui.profile.ShowFutureSearch"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.UserProfile"
+            android:name=".ui.profile.UserProfile"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.PostUserProfile"
+            android:name=".ui.profile.PostUserProfile"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ActivityInfo"
+            android:name=".data.rtdb.ActivityInfo"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SearchActivity.AdvancedSearch"
+            android:name=".ui.searchActivity.AdvancedSearch"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.AdressPostActivity"
+            android:name=".ui.postActivitiyJava.AdressPostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.DescribePostActivity"
+            android:name=".ui.postActivitiyJava.DescribePostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.GenderPostActivity"
+            android:name=".ui.postActivitiyJava.GenderPostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.GroupPostActivity"
+            android:name=".ui.postActivitiyJava.GroupPostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.DifficultyPostActivity"
+            android:name=".ui.postActivitiyJava.DifficultyPostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.TypePostActivity"
+            android:name=".ui.postActivitiyJava.TypePostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.NamePostActivity"
+            android:name=".ui.postActivitiyJava.NamePostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".data.rtdb.activity.ShowActivities"
+            android:name=".data.rtdb.ShowActivities"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ui.main.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".SearchActivity.SearchOrPost"
+            android:parentActivityName=".ui.searchActivity.SearchOrPost"
             android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.activities.SearchActivity.SearchOrPost" />
+                android:value=".ui.searchActivity.SearchOrPost" />
         </activity>
         <activity
-            android:name=".SearchActivity.SearchActivity"
+            android:name=".ui.searchActivity.SearchActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PostActivitiyJava.PostActivity"
+            android:name=".ui.postActivitiyJava.PostActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Email"
+            android:name=".ui.registration.RegisterToApp_Email"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Password"
+            android:name=".ui.registration.RegisterToApp_Password"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Name"
+            android:name=".ui.registration.RegisterToApp_Name"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Gender"
+            android:name=".ui.registration.RegisterToApp_Gender"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_DateOfBirth"
+            android:name=".ui.registration.RegisterToApp_DateOfBirth"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Phone"
+            android:name=".ui.registration.RegisterToApp_Phone"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Permition"
+            android:name=".ui.registration.RegisterToApp_Permition"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_PostIntro"
+            android:name=".ui.registration.RegisterToApp_PostIntro"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.login.Registration.RegisterToApp_Education"
+            android:name=".ui.registration.RegisterToApp_Education"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SearchActivity.SearchOrPost"
+            android:name=".ui.searchActivity.SearchOrPost"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SearchActivity.SearchOnly"
+            android:name=".ui.searchActivity.SearchOnly"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">

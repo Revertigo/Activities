@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_1"
-    tools:context=".ui.login.Registration.RegisterToApp_Email">
+    tools:context=".ui.registration.RegisterToApp_Email">
 
 
     <TextView
