@@ -8,6 +8,7 @@
     tools:context=".data.rtdb.ShowActivities">
 
     <ListView
+        style="@style/button_rectangle_light_gray_no_corner"
         android:id="@+id/listViewShowActivities"
         android:layout_width="408dp"
         android:layout_height="674dp"

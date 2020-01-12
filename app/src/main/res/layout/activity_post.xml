@@ -4,138 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/paint_back_crop_bright"
     tools:context=".ui.postActivitiyJava.PostActivity">
+
+    <TextView
+        android:id="@+id/posting2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="POST ACTIVITY"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeAndLocationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        app:srcCompat="@drawable/ic_arrow" />
 
     <Button
         android:id="@+id/closeAppPostActivity"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/close_app"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="CLOSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintTop_toBottomOf="@+id/btnClickToPost"
+        app:layout_constraintVertical_bias="0.777" />
 
     <Button
         android:id="@+id/btnClickToPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/post_activity"
-        style="@style/button_rectangle_gray_no_corner"
+        style="@style/button_rectangle_light_gray_no_corner"
+        android:layout_width="393dp"
+        android:layout_height="59dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="POST ACTIVITY"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
+        app:layout_constraintVertical_bias="0.821" />
 
     <Button
         android:id="@+id/logoutPostActivity"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toEndOf="@+id/closeAppPostActivity"
+        app:layout_constraintTop_toBottomOf="@+id/btnClickToPost"
+        app:layout_constraintVertical_bias="0.777" />
 
     <TextView
         android:id="@+id/timeAndLocationTextView"
-        android:layout_width="293dp"
+        android:layout_width="217dp"
         android:layout_height="56dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="Date and Time"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="185dp"
-        android:layout_height="43dp"
-        android:text="@string/the_choosen_date"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pressToSetDate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <EditText
         android:id="@+id/enterDatePlainText"
         android:layout_width="196dp"
         android:layout_height="44dp"
         android:ems="10"
+        android:fontFamily="monospace"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:text="dd/MM/yyyy"
-        app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/dateTextView"
-        app:layout_constraintTop_toTopOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="0.276" />
+        app:layout_constraintBottom_toTopOf="@+id/addTimeButton"
+        app:layout_constraintEnd_toEndOf="@+id/pressToSetDate"
+        app:layout_constraintStart_toStartOf="@+id/pressToSetDate"
+        app:layout_constraintTop_toBottomOf="@+id/pressToSetDate"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/pressToSetDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="press to add date"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="254dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="PRESS TO ADD DATE"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/timeAndLocationTextView"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/timeAndLocationTextView"
         app:layout_constraintTop_toBottomOf="@+id/timeAndLocationTextView"
-        app:layout_constraintVertical_bias="0.194" />
-
-    <TextView
-        android:id="@+id/timeDescriptionTextView"
-        android:layout_width="183dp"
-        android:layout_height="44dp"
-        android:text="Time Description"
-        app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <EditText
         android:id="@+id/showTheTime"
         android:layout_width="199dp"
         android:layout_height="44dp"
         android:ems="10"
+        android:fontFamily="monospace"
         android:inputType="textPersonName"
         android:text="hh:mm"
-        app:layout_constraintBottom_toBottomOf="@+id/timeDescriptionTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/timeDescriptionTextView"
-        app:layout_constraintTop_toTopOf="@+id/timeDescriptionTextView"
-        app:layout_constraintVertical_bias="0.289" />
+        app:layout_constraintBottom_toTopOf="@+id/btnClickToPost"
+        app:layout_constraintEnd_toEndOf="@+id/addTimeButton"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/addTimeButton"
+        app:layout_constraintTop_toBottomOf="@+id/addTimeButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addTimeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="press to add time"
         style="@style/button_rectangle_gray_no_corner"
-        app:layout_constraintBottom_toTopOf="@+id/timeDescriptionTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="244dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="PRESS TO ADD TIME"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/pressToSetDate"
+        app:layout_constraintStart_toStartOf="@+id/pressToSetDate"
+        tools:layout_editor_absoluteY="365dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

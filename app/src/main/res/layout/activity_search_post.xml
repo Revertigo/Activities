@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/paint_back_crop"
     tools:context=".ui.searchActivity.SearchOrPost">
 
 
     <Button
         android:id="@+id/button7"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -23,37 +23,41 @@
 
     <Button
         android:id="@+id/button8"
-        style="@style/button_rectangle_gray_no_corner"
-        android:layout_width="160dp"
-        android:layout_height="47dp"
-        android:text="@string/post_your_own_activity"
+        style="@style/button_rectangle_light_gray_no_corner"
+        android:layout_width="308dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="POST NEW ACTIVITY"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button9"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button9"
         app:layout_constraintTop_toBottomOf="@+id/button9"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.096" />
 
     <Button
         android:id="@+id/button9"
-        style="@style/button_rectangle_gray_no_corner"
-        android:layout_width="160dp"
-        android:layout_height="46dp"
-        android:text="@string/find_existing_activity"
+        style="@style/button_rectangle_light_gray_no_corner"
+        android:layout_width="315dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="FIND ACTIVITY"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.109" />
 
     <Button
         android:id="@+id/button13"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/close_app"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="CLOSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
@@ -63,28 +67,31 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="212dp"
-        android:layout_height="36dp"
-        android:text="what you wanna do?"
-        android:textSize="18sp"
+        android:layout_width="313dp"
+        android:layout_height="56dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="WHAT DO YOU WANNA DO?"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.195" />
 
     <Button
         android:id="@+id/myProfileSearch"
-        style="@style/button_rectangle_gray_no_corner"
-        android:layout_width="160dp"
-        android:layout_height="45dp"
+        style="@style/button_rectangle_light_gray"
+        android:layout_width="303dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="146dp"
-        android:text="My profile"
+        android:fontFamily="@font/caveat_brush"
+        android:text="MY PROFILE"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="@+id/button8"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button8"
         app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.683" />
 </androidx.constraintlayout.widget.ConstraintLayout>

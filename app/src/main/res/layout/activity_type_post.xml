@@ -4,43 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/paint_back_crop_bright"
     tools:context=".ui.postActivitiyJava.TypePostActivity">
+
+    <TextView
+        android:id="@+id/posting1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="POST ACTIVITY"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038"
+        app:srcCompat="@drawable/ic_arrow" />
 
     <Spinner
         android:id="@+id/typeSpinner"
-        android:layout_width="186dp"
-        android:layout_height="39dp"
+        style="@style/button_rectangle_light_gray_no_corner"
+        android:layout_width="240dp"
+        android:layout_height="44dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/typeTextView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/typeTextView"
         app:layout_constraintTop_toBottomOf="@+id/typeTextView"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintVertical_bias="0.072" />
 
     <TextView
         android:id="@+id/typeTextView"
-        android:layout_width="134dp"
-        android:layout_height="36dp"
-        android:text="@string/activity_type"
+        android:layout_width="247dp"
+        android:layout_height="55dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="ACTIVITY TYPE"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <Button
         android:id="@+id/nextToDifficultyPostActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:text="NEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/typeSpinner"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="@+id/typeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/typeSpinner"
-        app:layout_constraintVertical_bias="0.697" />
+        app:layout_constraintVertical_bias="0.844" />
 </androidx.constraintlayout.widget.ConstraintLayout>

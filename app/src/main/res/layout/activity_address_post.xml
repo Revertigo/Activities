@@ -4,13 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/paint_back_crop_bright"
     tools:context=".ui.postActivitiyJava.AdressPostActivity">
+
+    <TextView
+        android:id="@+id/posting23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="monospace"
+        android:text="POST ACTIVITY"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeAndLocationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        app:srcCompat="@drawable/ic_arrow" />
 
     <EditText
         android:id="@+id/apartNumberPlainText"
-        android:layout_width="193dp"
-        android:layout_height="36dp"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="optional"
@@ -19,54 +47,59 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/apartNumberTextView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/apartNumberTextView"
         app:layout_constraintTop_toBottomOf="@+id/apartNumberTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/apartNumberTextView"
-        android:layout_width="193dp"
-        android:layout_height="37dp"
-        android:text="@string/apartment_number"
+        android:layout_width="209dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="APPARTMENT NUMBER"
+        android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/streetsSpinner"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="@+id/streetsSpinner"
         app:layout_constraintTop_toBottomOf="@+id/streetsSpinner"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintVertical_bias="0.139" />
 
     <Spinner
         android:id="@+id/streetsSpinner"
-        android:layout_width="198dp"
-        android:layout_height="43dp"
+        android:layout_width="204dp"
+        android:layout_height="42dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/streetsTextView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/streetsTextView"
         app:layout_constraintTop_toBottomOf="@+id/streetsTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/streetsTextView"
-        android:layout_width="196dp"
-        android:layout_height="40dp"
-        android:text="@string/street"
+        android:layout_width="205dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="STREET"
+        android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/citySettlementSpinner"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/citySettlementSpinner"
         app:layout_constraintTop_toBottomOf="@+id/citySettlementSpinner"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <Spinner
         android:id="@+id/citySettlementSpinner"
-        android:layout_width="196dp"
-        android:layout_height="47dp"
+        android:layout_width="209dp"
+        android:layout_height="46dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,28 +109,46 @@
         app:layout_constraintTop_toBottomOf="@+id/citySettlementsTextView"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <TextView
         android:id="@+id/citySettlementsTextView"
-        android:layout_width="198dp"
-        android:layout_height="38dp"
-        android:text="@string/cyty_settelment"
+        android:layout_width="209dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="CITY SETTELMENT"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.35" />
 
     <Button
         android:id="@+id/nextToPostActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:text="NEXT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/typeSpinner"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="@+id/typeSpinner"
         app:layout_constraintTop_toBottomOf="@+id/apartNumberPlainText"
-        app:layout_constraintVertical_bias="0.429" />
+        app:layout_constraintVertical_bias="0.844" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="260dp"
+        android:layout_height="69dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="CHOOSE LOCATION:"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/citySettlementsTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posting23"
+        app:layout_constraintVertical_bias="0.557" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

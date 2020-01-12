@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/paint_back_crop"
     tools:context=".ui.searchActivity.SearchOnly">
 
 
     <Button
         android:id="@+id/button7"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -23,24 +23,26 @@
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="162dp"
-        android:layout_height="51dp"
-        android:text="@string/find_existing_activity"
-        style="@style/button_rectangle_gray_no_corner"
+        style="@style/button_rectangle_light_gray_no_corner"
+        android:layout_width="269dp"
+        android:layout_height="61dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="FIND ACTIVITY"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.267" />
 
     <Button
         android:id="@+id/button13"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/close_app"
-        style="@style/button_rectangle_gray_no_corner"
+        android:text="CLOSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
@@ -50,26 +52,29 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="212dp"
-        android:layout_height="36dp"
-        android:text="what you wanna do?"
-        android:textSize="18sp"
+        android:layout_width="366dp"
+        android:layout_height="67dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="WHAT DO YOU WANNA DO?"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.155" />
 
     <Button
         android:id="@+id/myProfileSearch"
-        android:layout_width="160dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="176dp"
-        android:text="My profile"
-        style="@style/button_rectangle_gray_no_corner"
+        style="@style/button_rectangle_light_gray"
+        android:layout_width="269dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="188dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="MY PROFILE"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,7 +53,7 @@ public class UserProfile extends AppCompatActivity {
         profileImage = findViewById(R.id.profileImageUser);
         profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
-        backToMainMenu = findViewById(R.id.backToSearchOrPost);
+        backToMainMenu = findViewById(R.id.backToSearchOrPostUser);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        activitiesHistory = findViewById(R.id.activitiesHistoryPostUser);
+        activitiesHistory = findViewById(R.id.activitiesHistoryUser);
         activitiesHistory.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,7 +82,7 @@ public class UserProfile extends AppCompatActivity {
         gender.setText(User.getCurrentUser().getGender());
         loadUserPicture();
 
-        showMyActivities = findViewById(R.id.myPostedActivitiesPostUser);
+        showMyActivities = findViewById(R.id.myPostedActivitiesUser);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
