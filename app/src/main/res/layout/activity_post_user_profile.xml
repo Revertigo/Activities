@@ -9,8 +9,8 @@
     <RelativeLayout
         android:id="@+id/profile_upper_layout_PostUserProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/grad"
+        android:layout_height="227dp"
+        android:background="@drawable/paint_back_crop_bright"
         android:paddingBottom="20dp">
 
         <RelativeLayout
@@ -23,12 +23,12 @@
 
             <ImageView
                 android:id="@+id/profileImagePostUser"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="123dp"
+                android:layout_height="121dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="9dp"
                 android:adjustViewBounds="true"
@@ -45,22 +45,24 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgPostUserProfile"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/caveat_brush"
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
         <ImageView
             android:id="@+id/editImageViewPostUserProfile"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_width="77dp"
+            android:layout_height="48dp"
             android:layout_alignTop="@+id/imgUserProfile"
+            android:layout_alignEnd="@+id/imgPostUserProfile"
             android:layout_alignBottom="@+id/imgUserProfile"
             android:layout_alignParentRight="true"
             android:layout_marginStart="9dp"
             android:layout_marginTop="1dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="-139dp"
+            android:layout_marginRight="-3dp"
             android:layout_marginBottom="98dp"
             android:layout_toEndOf="@+id/imgUserProfile"
             android:adjustViewBounds="true"
@@ -77,28 +79,28 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/followersBg"
             android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
 
     </LinearLayout>
 
 
     <RelativeLayout
         android:id="@+id/containsDataPostUserProfile"
-        android:layout_width="420dp"
-        android:layout_height="389dp"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
         android:layout_below="@+id/linilayoutPostUserProfile"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="-13dp"
-        android:layout_marginEnd="-9dp">
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,6 +122,7 @@
                     android:id="@+id/emailOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Email:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -128,7 +131,7 @@
                     android:id="@+id/emailOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="email of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -152,6 +155,7 @@
                     android:id="@+id/occupationOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Occupation:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -160,7 +164,7 @@
                     android:id="@+id/occupationOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="occupation of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -185,6 +189,7 @@
                     android:id="@+id/educationOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Education:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -193,7 +198,7 @@
                     android:id="@+id/educationOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="education of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -217,6 +222,7 @@
                     android:id="@+id/genderOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Gender:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -225,7 +231,7 @@
                     android:id="@+id/genderOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="gender of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -249,6 +255,7 @@
                     android:id="@+id/permissionOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Permission:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -257,7 +264,7 @@
                     android:id="@+id/permissionOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="permission of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -281,6 +288,7 @@
                     android:id="@+id/birthdayOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Birthday:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -289,7 +297,7 @@
                     android:id="@+id/birthdayOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="birthday of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -307,6 +315,7 @@
                     android:id="@+id/phoneOfThePostUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Phone:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -315,7 +324,7 @@
                     android:id="@+id/PhoneOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="phone of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -330,7 +339,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lowerConstraintPostUseProfile"
         android:layout_width="wrap_content"
-        android:layout_height="106dp"
+        android:layout_height="110dp"
 
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -342,43 +351,46 @@
 
         <Button
             android:id="@+id/myPostedActivitiesPostUser"
-            style="@style/button_rectangle_gray_no_corner"
-            android:layout_width="151dp"
-            android:layout_height="50dp"
-            android:text="my activities"
+            style="@style/button_rectangle_bright_no_corner"
+            android:layout_width="134dp"
+            android:layout_height="37dp"
+            android:fontFamily="@font/caveat_brush"
+            android:text="FUTURE ACTIVITIES"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.996"
+            app:layout_constraintHorizontal_bias="0.931"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.178" />
 
         <Button
             android:id="@+id/backToSearchOrPost"
             style="@style/button_rectangle_gray_no_corner"
-            android:layout_width="104dp"
-            android:layout_height="52dp"
-            android:text="Main menu"
+            android:layout_width="89dp"
+            android:layout_height="43dp"
+            android:fontFamily="@font/caveat_brush"
+            android:text="MAIN MENU"
             app:layout_constraintBottom_toBottomOf="@+id/activitiesHistoryPostUser"
             app:layout_constraintEnd_toStartOf="@+id/activitiesHistoryPostUser"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/activitiesHistoryPostUser"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.384" />
 
         <Button
             android:id="@+id/activitiesHistoryPostUser"
-            style="@style/button_rectangle_gray_no_corner"
-            android:layout_width="151dp"
-            android:layout_height="50dp"
+            style="@style/button_rectangle_bright_no_corner"
+            android:layout_width="137dp"
+            android:layout_height="39dp"
             android:layout_marginStart="256dp"
-            android:text="My History"
+            android:fontFamily="@font/caveat_brush"
+            android:text="MY HISTORY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myPostedActivitiesPostUser"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.407" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

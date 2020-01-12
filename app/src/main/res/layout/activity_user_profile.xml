@@ -10,7 +10,7 @@
         android:id="@+id/profile_upper_layout_Profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/grad"
+        android:background="@drawable/paint_back_crop_bright"
         android:paddingBottom="20dp">
 
         <RelativeLayout
@@ -53,15 +53,17 @@
 
         <ImageView
             android:id="@+id/editImageViewUserProfile"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
             android:layout_alignTop="@+id/imgUserProfile"
             android:layout_alignBottom="@+id/imgUserProfile"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="81dp"
             android:layout_marginTop="1dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="98dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_marginBottom="107dp"
             android:layout_toEndOf="@+id/imgUserProfile"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
@@ -283,7 +285,7 @@
             style="@style/button_rectangle_gray_no_corner"
             android:layout_width="104dp"
             android:layout_height="52dp"
-            android:text="Main menu"
+            android:text="MAIN MENU"
             app:layout_constraintBottom_toBottomOf="@+id/activitiesHistoryUser"
             app:layout_constraintEnd_toStartOf="@+id/activitiesHistoryUser"
             app:layout_constraintHorizontal_bias="0.019"
@@ -296,13 +298,12 @@
             style="@style/button_rectangle_gray_no_corner"
             android:layout_width="151dp"
             android:layout_height="50dp"
-            android:layout_marginStart="256dp"
             android:layout_marginBottom="4dp"
-            android:text="My History"
+            android:text="MY HISTORY"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/myPostedActivitiesUser"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/myPostedActivitiesUser" />
 
         <Button
             android:id="@+id/myPostedActivitiesUser"
@@ -310,7 +311,7 @@
             android:layout_width="151dp"
             android:layout_height="50dp"
             android:layout_marginStart="256dp"
-            android:text="My History"
+            android:text="FUTURE ACTIVITIES"
             app:layout_constraintBottom_toTopOf="@+id/activitiesHistoryUser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
