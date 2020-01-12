@@ -22,13 +22,17 @@
             android:id="@+id/rbSingle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/single" />
+            android:text="@string/single"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/rbGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/group" />
+            android:text="@string/group"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="24sp" />
     </RadioGroup>
 
     <TextView

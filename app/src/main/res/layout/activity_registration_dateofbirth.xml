@@ -67,7 +67,7 @@
         android:id="@+id/Next5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="NEXT"
         style="@style/button_rectangle_gray_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

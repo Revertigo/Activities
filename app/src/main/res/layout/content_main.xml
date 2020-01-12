@@ -23,17 +23,17 @@
         app:layout_constraintVertical_bias="0.746" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/signUp"
         android:layout_width="390dp"
         android:layout_height="49dp"
-        style="@style/button_rectangle_gray_no_corner"
-        android:text="@string/sign_up"
+        android:text="SIGN UP"
+        style = "@style/button_rectangle_bright_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.138" />
 
     <Button
         android:id="@+id/button11"

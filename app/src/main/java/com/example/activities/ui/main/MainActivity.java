@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //button of the Logout
-        RegisterToActivities = findViewById(R.id.button10);
+        RegisterToActivities = findViewById(R.id.signUp);
         RegisterToActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
