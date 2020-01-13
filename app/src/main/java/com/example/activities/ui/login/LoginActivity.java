@@ -148,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         Intent in = User.getCurrentUser().loadMainMenu(LoginActivity.this);
+                        userRef.removeEventListener(this);
                         startActivity(in);
                         finish();
                     }

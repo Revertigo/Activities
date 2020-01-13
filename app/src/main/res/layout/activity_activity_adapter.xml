@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/activityDifficultyAdapter"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:text="Activity difficulty:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitySingleGroupAdapter" />
+
+    <TextView
+        android:id="@+id/activityGenderAdapter"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:text="Activity gender:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityTypeAdapter" />
+
+    <TextView
+        android:id="@+id/activitySingleGroupAdapter"
+        android:layout_width="194dp"
+        android:layout_height="48dp"
+        android:text="Activity Single/Group:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityAdressAdapter" />
+
+    <TextView
+        android:id="@+id/activityTimeAdapter"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:text="Activity time:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityDateAdapter" />
+
+    <TextView
+        android:id="@+id/activityDateAdapter"
+        android:layout_width="194dp"
+        android:layout_height="45dp"
+        android:text="Activity date:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityCreatorAdapter" />
+
+    <TextView
+        android:id="@+id/activityAdressAdapter"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:text="Activity adress:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityGenderAdapter" />
+
+    <TextView
+        android:id="@+id/activityDescriptionAdapter"
+        android:layout_width="309dp"
+        android:layout_height="119dp"
+        android:text="Activity description:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityDifficultyAdapter" />
+
+    <TextView
+        android:id="@+id/activityTypeAdapter"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:text="Activity type:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityIdAdapter" />
+
+    <TextView
+        android:id="@+id/activityIdAdapter"
+        android:layout_width="194dp"
+        android:layout_height="47dp"
+        android:text="Activity id:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapter" />
+
+    <TextView
+        android:id="@+id/activityNameAdapter"
+        android:layout_width="411dp"
+        android:layout_height="58dp"
+        android:text="Activity name:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activityCreatorAdapter"
+        android:layout_width="403dp"
+        android:layout_height="46dp"
+        android:text="Activity creator: "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityNameAdapter" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

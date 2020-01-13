@@ -15,6 +15,7 @@ import com.example.activities.ui.postActivitiyJava.PostActivity;
 import com.example.activities.R;
 import com.example.activities.ui.searchActivity.SearchActivity;
 import com.example.activities.data.entities.user.User;
+import com.example.activities.util.ActivityAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
@@ -116,7 +117,7 @@ public class ShowActivities extends AppCompatActivity {
             }
         }
             ListView activityListView = findViewById(R.id.listViewShowActivities);
-            ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(ShowActivities.this, android.R.layout.simple_list_item_1, theActivities);
+            ActivityAdapter adapter = new ActivityAdapter(theActivities,ShowActivities.this);
             activityListView.setAdapter(adapter);
 
             //Todo need to fix the 0 1 10 id sorting by the adapter or listvew

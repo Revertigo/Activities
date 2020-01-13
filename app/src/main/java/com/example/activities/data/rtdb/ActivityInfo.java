@@ -23,6 +23,7 @@ import com.example.activities.R;
 import com.example.activities.data.entities.Activity;
 import com.example.activities.data.entities.user.User;
 import com.example.activities.ui.profile.UserProfile;
+import com.example.activities.util.ActivityAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,7 +63,7 @@ public class ActivityInfo extends AppCompatActivity {
         joinThisActitivty = findViewById(R.id.joinThisActivity);
 
         ListView lv = findViewById(R.id.joinActivityListView);
-        ArrayAdapter<Activity> adapter = new ArrayAdapter<Activity>(ActivityInfo.this, android.R.layout.simple_list_item_1, currentActivity);
+        ActivityAdapter adapter = new ActivityAdapter(currentActivity,ActivityInfo.this);
         lv.setAdapter(adapter);
 
         backToShowActivities.setOnClickListener(new View.OnClickListener() {
