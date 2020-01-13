@@ -39,8 +39,18 @@ public class PostUserProfile extends AppCompatActivity {
         gender = findViewById(R.id.genderOfThePostUserProfile);
         permission = findViewById(R.id.permissionOfThePostUserProfile);
         birthday = findViewById(R.id.birthdayOfThePostUserProfile);
-        phone = findViewById(R.id.PhoneOfThePostUserProfile);
+        phone = findViewById(R.id.phoneOfThePostUserProfile);
+        profileImage = findViewById(R.id.profileImagePostUser);
 
+        name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
+        phone.setText(User.getCurrentUser().getPhone());
+        email.setText(User.getCurrentUser().getUsername());
+        permission.setText(User.getCurrentUser().getPermission());
+        birthday.setText(User.getCurrentUser().getDateOfBirth());
+        gender.setText(User.getCurrentUser().getGender());
+        occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
+        education.setText(((PostUser) User.getCurrentUser()).getEducation());
+        loadUserPicture();
 
         editProfile = findViewById(R.id.editImageViewPostUserProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -52,8 +62,6 @@ public class PostUserProfile extends AppCompatActivity {
             }
 
         });
-        profileImage = findViewById(R.id.profileImagePostUser);
-        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         backToMainMenu = findViewById(R.id.backToSearchOrPost);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
@@ -76,15 +84,6 @@ public class PostUserProfile extends AppCompatActivity {
             }
         });
 
-        name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
-        phone.setText(User.getCurrentUser().getPhone());
-        email.setText(User.getCurrentUser().getUsername());
-        permission.setText(User.getCurrentUser().getPermission());
-        birthday.setText(User.getCurrentUser().getDateOfBirth());
-        gender.setText(User.getCurrentUser().getGender());
-        occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
-        education.setText(((PostUser) User.getCurrentUser()).getEducation());
-        loadUserPicture();
 
         showMyActivities = findViewById(R.id.myPostedActivitiesPostUser);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +96,7 @@ public class PostUserProfile extends AppCompatActivity {
         });
     }
 
-
-    private void loadUserPicture()
-    {
+    private void loadUserPicture() {
         String pathToPicture = User.getCurrentUser().getpictureUri();
         if (pathToPicture != null) {
             //check if the user has already an profile image
@@ -110,9 +107,16 @@ public class PostUserProfile extends AppCompatActivity {
                         .transform(new CircleTransform())
                         .fit()
                         .into(profileImage);
+            } else {
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+
             }
             //uses default image
+        } else {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+
         }
     }
+
 
 }

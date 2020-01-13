@@ -90,8 +90,7 @@ public class UserProfile extends AppCompatActivity {
         });
     }
 
-    private void loadUserPicture()
-    {
+    private void loadUserPicture() {
         String pathToPicture = User.getCurrentUser().getpictureUri();
         if (pathToPicture != null) {
             //check if the user has already an profile image
@@ -102,16 +101,14 @@ public class UserProfile extends AppCompatActivity {
                         .transform(new CircleTransform())
                         .fit()
                         .into(profileImage);
+            } else {
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+
             }
             //uses default image
-        }
-         else {
+        }  else {
             profileImage.setImageResource(R.drawable.ic_person_black_24dp);
-            Picasso.get()
-                    .load(User.getCurrentUser().getpictureUri())
-                    .transform(new CircleTransform())
-                    .fit()
-                    .into(profileImage);
+
         }
     }
 

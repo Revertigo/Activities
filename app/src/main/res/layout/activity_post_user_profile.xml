@@ -321,7 +321,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/PhoneOfThePostUserProfile"
+                    android:id="@+id/phoneOfThePostUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/caveat_brush"

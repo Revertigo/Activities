@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,8 +73,7 @@ public class UserProfileEditable extends AppCompatActivity {
         userRef = database.getReference("users");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
-
-        profileImage = findViewById(R.id.imageViewEdit);
+        profileImage = findViewById(R.id.imageProfileUserEdit);
         mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
         mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
         imageButtonEdit = findViewById(R.id.imageButtonEdit);
@@ -87,10 +85,7 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
 
-        profileImage = findViewById(R.id.imageViewEdit);
-
-
-
+        loadUserPicture();
         name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
         phone.setText(User.getCurrentUser().getPhone());
         email.setText(User.getCurrentUser().getUsername());
@@ -140,48 +135,29 @@ public class UserProfileEditable extends AppCompatActivity {
             }
         });
 
-
-        loadProfileImage();
-
     } //end of onCreate
 
-
-    private void loadProfileImage() {
-        mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
-
-                if (pathToPicture != null) {
-                    //check if the user has already an profile image
-                    // if so, Load it
-                    if (!(pathToPicture.equals(""))) {
-                        Picasso.get()
-                                .load(pathToPicture)
-                                .transform(new CircleTransform())
-                                .fit()
-                                .into(profileImage);
-                        //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
-                    }
-                    //uses default image
-                }
-                else {
-                    profileImage.setImageResource(R.drawable.ic_person_black_24dp);
-                    Picasso.get()
-                            .load(User.getCurrentUser().getpictureUri())
-                            .transform(new CircleTransform())
-                            .fit()
-                            .into(profileImage);
-                }
+    private void loadUserPicture() {
+        String pathToPicture = User.getCurrentUser().getpictureUri();
+        if (pathToPicture != null) {
+            //check if the user has already an profile image
+            // if so, Load it
+            if (!(pathToPicture.equals(""))) {
+                Picasso.get()
+                        .load(pathToPicture)
+                        .transform(new CircleTransform())
+                        .fit()
+                        .into(profileImage);
+            } else {
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
             }
+            //uses default image
+        } else {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }// end loadProfileImage
+        }
+    }
 
 
     // 1) ------- Method called when clicking pn button upload  - open gallery -------
@@ -245,6 +221,7 @@ public class UserProfileEditable extends AppCompatActivity {
                             // add url into user profile data in database
                             mDatabaseRef.child(userID).child("pictureUri").setValue(uploadImage);
                             User.getCurrentUser().setpictureUri(uploadImage);
+                            loadUserPicture();
 
                         }
                     });

@@ -79,6 +79,8 @@ public class PostUserProfileEditable extends AppCompatActivity {
         profileImage = findViewById(R.id.imageViewPostUserEdit);
         mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
         mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
+
+
         imageButtonEdit = findViewById(R.id.imageButtonPostUserEdit);
         imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,15 +90,7 @@ public class PostUserProfileEditable extends AppCompatActivity {
         });
 
 
-        if (!(User.getCurrentUser().getpictureUri().isEmpty()) && !(User.getCurrentUser().getpictureUri().equals(""))) {
-            Picasso.get()
-                    .load(User.getCurrentUser().getpictureUri())
-                    .transform(new CircleTransform())
-                    .fit()
-                    .into(profileImage);
-        } else {
-            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
-        }
+        loadUserPicture();
         name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
         phone.setText(User.getCurrentUser().getPhone());
         email.setText(User.getCurrentUser().getUsername());
@@ -129,6 +123,14 @@ public class PostUserProfileEditable extends AppCompatActivity {
                 currentUserRef.child("gender").setValue(newGender);
                 currentUserRef.child("phone").setValue(newPhone);
 
+                User.getCurrentUser().setFirstName(nameSplited[0]);
+                User.getCurrentUser().setLastName(nameSplited[1]);
+                ((PostUser) User.getCurrentUser()).setOccupation(newOccupation);
+                ((PostUser) User.getCurrentUser()).setEducation(newEducation);
+                User.getCurrentUser().setPhone(newPhone);
+                User.getCurrentUser().setDateOfBirth(newBirthday);
+                User.getCurrentUser().setGender(newGender);
+
                 Intent i = new Intent(PostUserProfileEditable.this, PostUserProfile.class);
                 startActivity(i);
                 finish();
@@ -147,40 +149,30 @@ public class PostUserProfileEditable extends AppCompatActivity {
         });//
 
 
-        loadProfileImage();
-
     } //end of onCreate
 
 
-    private void loadProfileImage() {
-        mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.wtf("string pathToPicture", dataSnapshot.child(userID).child("pictureUri").getValue(String.class));
-                String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
-
-                if (pathToPicture != null) {
-                    //check if the user has already an profile image
-                    // if so, Load it
-                    if (!(pathToPicture.equals(""))) {
-                        Picasso.get()
-                                .load(pathToPicture)
-                                .transform(new CircleTransform())
-                                .fit()
-                                .into(profileImage);
-                        //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
-                    }
-                    //uses default image
-                }
+    private void loadUserPicture() {
+        String pathToPicture = User.getCurrentUser().getpictureUri();
+        if (pathToPicture != null) {
+            //check if the user has already an profile image
+            // if so, Load it
+            if (!(pathToPicture.equals(""))) {
+                Picasso.get()
+                        .load(pathToPicture)
+                        .transform(new CircleTransform())
+                        .fit()
+                        .into(profileImage);
+            }  else {
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
             }
+            //uses default image
+        }  else {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }// end loadProfileImage
+        } 
+    }
 
 
     // 1) ------- Method called when clicking pn button upload  - open gallery -------
@@ -242,6 +234,8 @@ public class PostUserProfileEditable extends AppCompatActivity {
                             String uploadImage = uri.toString();
                             // add url into user profile data in database
                             mDatabaseRef.child(userID).child("pictureUri").setValue(uploadImage);
+                            User.getCurrentUser().setpictureUri(uploadImage);
+                            loadUserPicture();
 
                         }
                     });
