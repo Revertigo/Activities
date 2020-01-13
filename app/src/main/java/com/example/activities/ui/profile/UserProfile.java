@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.activities.R;
 import com.example.activities.data.entities.user.User;
-import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class UserProfile extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class UserProfile extends AppCompatActivity {
         gender = findViewById(R.id.genderOfTheUserProfile);
         permission = findViewById(R.id.permissionOfTheUserProfile);
         birthday = findViewById(R.id.birthdayOfTheUserProfile);
-        phone = findViewById(R.id.PhoneOfTheUserProfile);
+        phone = findViewById(R.id.phoneOfTheUserProfile);
         profileImage = findViewById(R.id.profileImageUser);
 
         editProfile = findViewById(R.id.editImageViewUserProfile);

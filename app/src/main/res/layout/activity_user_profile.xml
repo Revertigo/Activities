@@ -148,7 +148,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/PhoneOfTheUserProfile"
+                    android:id="@+id/phoneOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone:"
@@ -156,7 +156,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/occupationOfTheUserProfile"
+                    android:id="@+id/phoneOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
