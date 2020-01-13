@@ -50,7 +50,7 @@ public class UserProfileEditable extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
 
-
+    private ImageButton imageButtonEdit;
     private ImageView profileImage;
     private DatabaseReference mDatabaseRefProfile;
     private static final int PICK_IMAGE = 1;
@@ -58,13 +58,11 @@ public class UserProfileEditable extends AppCompatActivity {
     private String userID;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile_editable);
 
-        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         email = findViewById(R.id.emailOfTheUserEdit);
         name = findViewById(R.id.nameOfTheUserEdit);
         gender = findViewById(R.id.genderOfTheUserEdit);
@@ -78,10 +76,9 @@ public class UserProfileEditable extends AppCompatActivity {
         userID = user.getUid();
 
         profileImage = findViewById(R.id.imageViewEdit);
-        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
         mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
-        ImageButton imageButtonEdit=findViewById(R.id.imageButtonEdit);
+        imageButtonEdit = findViewById(R.id.imageButtonEdit);
         imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,36 +87,16 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
 
-        //display the current data in the EditText
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("username").getValue(String.class).equals(emailStr)) {
-                        email.setText(emailStr);
-                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
-                        //--TO DO: HERE WE NEED TO IMPLEMENT SOLID PRINCIPELS OF POLIMORPHISEM!--
+        profileImage = findViewById(R.id.imageViewEdit);
 
-                        if (ds.child("phone").exists()) {
-                            phone.setText(ds.child("phone").getValue(String.class));
-                        } else {
-                            phone.setText("Phone:");
-                        }
 
-                        permission.setText(ds.child("permission").getValue(String.class));
-                        birthday.setText(ds.child("dateOfBirth").getValue(String.class));
-                        gender.setText(ds.child("gender").getValue(String.class));
 
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
+        phone.setText(User.getCurrentUser().getPhone());
+        email.setText(User.getCurrentUser().getUsername());
+        permission.setText(User.getCurrentUser().getPermission());
+        birthday.setText(User.getCurrentUser().getDateOfBirth());
+        gender.setText(User.getCurrentUser().getGender());
 
 
         //update changes:
@@ -140,6 +117,13 @@ public class UserProfileEditable extends AppCompatActivity {
                 currentUserRef.child("gender").setValue(newGender);
                 currentUserRef.child("phone").setValue(newPhone);
 
+                User.getCurrentUser().setFirstName(nameSplited[0]);
+                User.getCurrentUser().setLastName(nameSplited[1]);
+                User.getCurrentUser().setPhone(newPhone);
+                User.getCurrentUser().setDateOfBirth(newBirthday);
+                User.getCurrentUser().setGender(newGender);
+
+
                 Intent i = new Intent(UserProfileEditable.this, UserProfile.class);
                 startActivity(i);
                 finish();
@@ -157,7 +141,6 @@ public class UserProfileEditable extends AppCompatActivity {
         });
 
 
-
         loadProfileImage();
 
     } //end of onCreate
@@ -167,7 +150,6 @@ public class UserProfileEditable extends AppCompatActivity {
         mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.wtf("string pathToPicture",dataSnapshot.child(userID).child("pictureUri").getValue(String.class));
                 String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
 
                 if (pathToPicture != null) {
@@ -182,6 +164,14 @@ public class UserProfileEditable extends AppCompatActivity {
                         //mProfileImage.setImageBitmap(BitmapFactory.decodeFile(pathToPicture));
                     }
                     //uses default image
+                }
+                else {
+                    profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+                    Picasso.get()
+                            .load(User.getCurrentUser().getpictureUri())
+                            .transform(new CircleTransform())
+                            .fit()
+                            .into(profileImage);
                 }
 
             }
@@ -254,6 +244,7 @@ public class UserProfileEditable extends AppCompatActivity {
                             String uploadImage = uri.toString();
                             // add url into user profile data in database
                             mDatabaseRef.child(userID).child("pictureUri").setValue(uploadImage);
+                            User.getCurrentUser().setpictureUri(uploadImage);
 
                         }
                     });

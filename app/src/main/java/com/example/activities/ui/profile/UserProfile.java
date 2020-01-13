@@ -21,7 +21,7 @@ public class UserProfile extends AppCompatActivity {
     private Button activitiesHistory;
 
 
-    private ImageView EditProfile;
+    private ImageView editProfile;
     private ImageView profileImage;
 
 
@@ -30,18 +30,16 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-
         name = findViewById(R.id.nameOfTheUserProfile);
         email = findViewById(R.id.emailOfTheUserProfile);
         gender = findViewById(R.id.genderOfTheUserProfile);
         permission = findViewById(R.id.permissionOfTheUserProfile);
         birthday = findViewById(R.id.birthdayOfTheUserProfile);
         phone = findViewById(R.id.PhoneOfTheUserProfile);
+        profileImage = findViewById(R.id.profileImageUser);
 
-
-        EditProfile = findViewById(R.id.editImageViewUserProfile);
-        EditProfile.setOnClickListener(new View.OnClickListener() {
+        editProfile = findViewById(R.id.editImageViewUserProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(UserProfile.this, UserProfileEditable.class);
@@ -50,8 +48,6 @@ public class UserProfile extends AppCompatActivity {
             }
 
         });
-        profileImage = findViewById(R.id.profileImageUser);
-        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         backToMainMenu = findViewById(R.id.backToSearchOrPostUser);
         backToMainMenu.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +70,15 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
+
+        loadUserPicture();
         name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
         phone.setText(User.getCurrentUser().getPhone());
-        email.setText(emailStr);
+        email.setText(User.getCurrentUser().getUsername());
         permission.setText(User.getCurrentUser().getPermission());
         birthday.setText(User.getCurrentUser().getDateOfBirth());
         gender.setText(User.getCurrentUser().getGender());
-        loadUserPicture();
+
 
         showMyActivities = findViewById(R.id.myPostedActivitiesUser);
         showMyActivities.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +105,14 @@ public class UserProfile extends AppCompatActivity {
                         .into(profileImage);
             }
             //uses default image
+        }
+         else {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+            Picasso.get()
+                    .load(User.getCurrentUser().getpictureUri())
+                    .transform(new CircleTransform())
+                    .fit()
+                    .into(profileImage);
         }
     }
 

@@ -31,7 +31,6 @@ public class PostUserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_user_profile);
 
-        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         name = findViewById(R.id.nameOfThePostUserProfile);
         email = findViewById(R.id.emailOfThePostUserProfile);
@@ -79,7 +78,7 @@ public class PostUserProfile extends AppCompatActivity {
 
         name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
         phone.setText(User.getCurrentUser().getPhone());
-        email.setText(emailStr);
+        email.setText(User.getCurrentUser().getUsername());
         permission.setText(User.getCurrentUser().getPermission());
         birthday.setText(User.getCurrentUser().getDateOfBirth());
         gender.setText(User.getCurrentUser().getGender());

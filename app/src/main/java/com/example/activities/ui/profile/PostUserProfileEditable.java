@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.activities.R;
+import com.example.activities.data.entities.user.PostUser;
 import com.example.activities.data.entities.user.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,7 +49,7 @@ public class PostUserProfileEditable extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
 
-    private  ImageButton imageButtonEdit;
+    private ImageButton imageButtonEdit;
     private ImageView profileImage;
     private DatabaseReference mDatabaseRefProfile;
     private static final int PICK_IMAGE = 1;
@@ -61,7 +62,6 @@ public class PostUserProfileEditable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_user_profile_editable);
 
-        final String emailStr = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         email = findViewById(R.id.emailOfThePostUserEdit);
         name = findViewById(R.id.nameOfThePostUserEdit);
         occupation = findViewById(R.id.occupationOfThePostUserEdit);
@@ -77,10 +77,9 @@ public class PostUserProfileEditable extends AppCompatActivity {
         userID = user.getUid();
 
         profileImage = findViewById(R.id.imageViewPostUserEdit);
-        profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         mDatabaseRefProfile = FirebaseDatabase.getInstance().getReference("users");
         mRefProfileImages = FirebaseStorage.getInstance().getReference("profile_images");
-         imageButtonEdit=findViewById(R.id.imageButtonPostUserEdit);
+        imageButtonEdit = findViewById(R.id.imageButtonPostUserEdit);
         imageButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,46 +88,23 @@ public class PostUserProfileEditable extends AppCompatActivity {
         });
 
 
-        //display the current data in the EditText
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.child("username").getValue(String.class).equals(emailStr)) {
-                        email.setText(emailStr);
-                        name.setText(ds.child("firstName").getValue(String.class) + " " + ds.child("lastName").getValue(String.class));
-                        //--TO DO: HERE WE NEED TO IMPLEMENT SOLID PRINCIPELS OF POLIMORPHISEM!--
-
-                        if (ds.child("phone").exists()) {
-                            phone.setText(ds.child("phone").getValue(String.class));
-                        } else {
-                            phone.setText("Phone:");
-                        }
-
-                        if (ds.child("occupation").exists()) {
-                            occupation.setText(ds.child("occupation").getValue(String.class));
-                        } else {
-                            occupation.setText("Occupation: ");
-                        }
-                        if (ds.child("education").exists()) {
-                            education.setText(ds.child("education").getValue(String.class));
-                        } else {
-                            education.setText("Education:");
-                        }
-                        permission.setText(ds.child("permission").getValue(String.class));
-                        birthday.setText(ds.child("dateOfBirth").getValue(String.class));
-                        gender.setText(ds.child("gender").getValue(String.class));
-
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        if (!(User.getCurrentUser().getpictureUri().isEmpty()) && !(User.getCurrentUser().getpictureUri().equals(""))) {
+            Picasso.get()
+                    .load(User.getCurrentUser().getpictureUri())
+                    .transform(new CircleTransform())
+                    .fit()
+                    .into(profileImage);
+        } else {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
+        name.setText(User.getCurrentUser().getFirstName() + " " + User.getCurrentUser().getLastName());
+        phone.setText(User.getCurrentUser().getPhone());
+        email.setText(User.getCurrentUser().getUsername());
+        permission.setText(User.getCurrentUser().getPermission());
+        birthday.setText(User.getCurrentUser().getDateOfBirth());
+        gender.setText(User.getCurrentUser().getGender());
+        occupation.setText(((PostUser) User.getCurrentUser()).getOccupation());
+        education.setText(((PostUser) User.getCurrentUser()).getEducation());
 
 
         //update changes:
@@ -171,7 +147,6 @@ public class PostUserProfileEditable extends AppCompatActivity {
         });//
 
 
-
         loadProfileImage();
 
     } //end of onCreate
@@ -181,7 +156,7 @@ public class PostUserProfileEditable extends AppCompatActivity {
         mDatabaseRefProfile.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.wtf("string pathToPicture",dataSnapshot.child(userID).child("pictureUri").getValue(String.class));
+                Log.wtf("string pathToPicture", dataSnapshot.child(userID).child("pictureUri").getValue(String.class));
                 String pathToPicture = dataSnapshot.child(userID).child("pictureUri").getValue(String.class);
 
                 if (pathToPicture != null) {
