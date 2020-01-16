@@ -128,10 +128,7 @@ public class ActivityInfo extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for (int i = 0; i < registeredUsers.size(); i++) {
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        Log.wtf("", ds.child("username").getValue(String.class));
-                                        Log.wtf("", registeredUsers.get(i));
                                         if (ds.child("username").getValue(String.class).equals(registeredUsers.get(i))) {
-                                            Log.wtf("", "inside the if");
                                             String currentUser = "";
                                             String st1 = ds.getValue(User.class).getFirstName() + " " + ds.getValue(User.class).getLastName() + "\n";
                                             if (st1.isEmpty()) {

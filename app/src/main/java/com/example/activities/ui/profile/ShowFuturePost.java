@@ -76,15 +76,13 @@ public class ShowFuturePost extends AppCompatActivity {
                         if (myPostedActivities.size() > 0) {
                             Intent i = new Intent(ShowFuturePost.this, ShowActivities.class);
                             i.putExtra("activitiesArray", myPostedActivities);
-                            myActivitiesRef.removeEventListener(this);
                             startActivity(i);
                             finish();
                         } else {
-                            myActivitiesRef.removeEventListener(this);
                             Toast.makeText(ShowFuturePost.this, "You not posted any activity.", Toast.LENGTH_LONG).show();
                         }
 
-
+                        myActivitiesRef.removeEventListener(this);
                     }
 
                     @Override
@@ -142,6 +140,7 @@ public class ShowFuturePost extends AppCompatActivity {
                         } else {
                             Toast.makeText(ShowFuturePost.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
                         }
+                        joinedRef.removeEventListener(this);
                     }
 
                     @Override

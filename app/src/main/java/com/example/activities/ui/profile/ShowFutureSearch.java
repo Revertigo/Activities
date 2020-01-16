@@ -91,6 +91,7 @@ public class ShowFutureSearch extends AppCompatActivity {
                         } else {
                             Toast.makeText(ShowFutureSearch.this, "Your not joined any Activity.", Toast.LENGTH_LONG).show();
                         }
+                        joinedRef.removeEventListener(this);
                     }
 
                     @Override

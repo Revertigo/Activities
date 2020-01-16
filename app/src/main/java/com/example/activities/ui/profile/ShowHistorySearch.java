@@ -79,6 +79,7 @@ public class ShowHistorySearch extends AppCompatActivity {
                         } else {
                             Toast.makeText(ShowHistorySearch.this, "You didnt joined any activity right now.", Toast.LENGTH_LONG).show();
                         }
+                         myRef.removeEventListener(this);
                     }
 
                     @Override

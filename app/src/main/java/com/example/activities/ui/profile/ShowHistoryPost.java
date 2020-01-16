@@ -82,6 +82,7 @@ public class ShowHistoryPost extends AppCompatActivity {
                         } else {
                             Toast.makeText(ShowHistoryPost.this, "You never posted an activity.", Toast.LENGTH_LONG).show();
                         }
+                        myRef.removeEventListener(this);
                     }
 
                     @Override
@@ -116,6 +117,7 @@ public class ShowHistoryPost extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     }
+                                    myRef.removeEventListener(this);
                                 }
 
                                 @Override
