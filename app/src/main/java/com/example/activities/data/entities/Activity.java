@@ -3,8 +3,10 @@ package com.example.activities.data.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/** Activity class represents the fields that are saved in the Firebase and define activity
- * Implement the class 'Parcelable' so it can be passed from Intent to Intent**/
+/**
+ * Activity class represents the fields that are saved in the Firebase and define activity
+ * Implement the class 'Parcelable' so it can be passed from Intent to Intent
+ **/
 public class Activity implements Parcelable {
 
     private static long id_counter;//For autoincrement of id's
@@ -34,9 +36,9 @@ public class Activity implements Parcelable {
      * @param date
      * @param time
      */
-    public Activity(String postedUser,String name, String Type, Address addr, String difficulty, boolean group,
+    public Activity(String postedUser, String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
-        this.postedUser=postedUser;
+        this.postedUser = postedUser;
         this.name = name;
         this.type = Type;
         this.addr = addr;
@@ -48,7 +50,8 @@ public class Activity implements Parcelable {
         this.time = time;
     }
 
-    public Activity(){}
+    public Activity() {
+    }
 
     public static class Date {
         private String day;
@@ -311,7 +314,7 @@ public class Activity implements Parcelable {
             activityFor = "Single";
         }
         return (
-                        "Posted user: " + getpostedUser() + "\n" +
+                "Posted user: " + getpostedUser() + "\n" +
                         "Activity's id: " + getId() + "\n" +
                         "Activity's name: " + getName() + "\n" +
                         "Activity's type: " + getType() + "\n" +

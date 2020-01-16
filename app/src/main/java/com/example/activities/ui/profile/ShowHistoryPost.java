@@ -13,6 +13,7 @@ import com.example.activities.R;
 import com.example.activities.data.entities.Activity;
 import com.example.activities.data.entities.user.User;
 import com.example.activities.data.rtdb.ShowActivities;
+import com.example.activities.util.UpdateFirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +34,7 @@ public class ShowHistoryPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_post);
-
+        UpdateFirebaseDatabase.fixDatabaseHistoryPosted();
         backToProfile = findViewById(R.id.backToProfileHistory);
         showJoinHistory = findViewById(R.id.showJoinedHistory);
         showPostsHistory = findViewById(R.id.showPostedHistory);

@@ -33,11 +33,11 @@ public class ShowActivities extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_activities);
-        clickToSearchAgain=findViewById(R.id.clickToSearchAgain);
+        clickToSearchAgain = findViewById(R.id.clickToSearchAgain);
         clickToSearchAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShowActivities.this,SearchActivity.class);
+                Intent intent = new Intent(ShowActivities.this, SearchActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -57,7 +57,7 @@ public class ShowActivities extends AppCompatActivity {
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =User.getCurrentUser().loadProfile(ShowActivities.this);
+                Intent intent = User.getCurrentUser().loadProfile(ShowActivities.this);
                 startActivity(intent);
                 finish();
             }
@@ -76,33 +76,23 @@ public class ShowActivities extends AppCompatActivity {
                 String[] timeStr = dateAndTime[1].split(":");
                 //check if year passed
                 if (Integer.parseInt(date[2]) < Integer.parseInt(dateStr[2])) {
-                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
-                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                     theActivities.remove(i);
                 } else {//year not passed so check month
                     if (Integer.parseInt(date[2]) == Integer.parseInt(dateStr[2])) {//if year are equals check month
                         if ((Integer.parseInt(date[1]) < Integer.parseInt(dateStr[1]))) {//if month passed remove activity
-                            FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
-                                    .child("Activity_"+theActivities.get(i).getId()).removeValue();
                             theActivities.remove(i);
                         } else {//month not passed so check days
                             if (Integer.parseInt(date[1]) == Integer.parseInt(dateStr[1])) {//if same month check days
                                 if (Integer.parseInt(date[0]) < Integer.parseInt(dateStr[0])) {//if day passed so remove
-                                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
-                                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                     theActivities.remove(i);
 
                                 } else {//day is fine check the time.
                                     if (Integer.parseInt(date[0]) == Integer.parseInt(dateStr[0])) {//if we are in same day check time else all is fine
                                         if (Integer.parseInt(time[0]) < Integer.parseInt(timeStr[0])) {//if hour is passed so remove else check min
-                                            FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
-                                                    .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                             theActivities.remove(i);
                                         } else {
                                             if (Integer.parseInt(time[0]) == Integer.parseInt(timeStr[0])) {//if we are in same hour check min
                                                 if (Integer.parseInt(time[1]) < Integer.parseInt(timeStr[1])) {//if mid passed remove
-                                                    FirebaseDatabase.getInstance().getReference().child(PostActivity.getActivities())
-                                                            .child("Activity_"+theActivities.get(i).getId()).removeValue();
                                                     theActivities.remove(i);
                                                 }
                                             }
@@ -116,23 +106,23 @@ public class ShowActivities extends AppCompatActivity {
                 }
             }
         }
-            ListView activityListView = findViewById(R.id.listViewShowActivities);
-            ActivityAdapter adapter = new ActivityAdapter(theActivities,ShowActivities.this);
-            activityListView.setAdapter(adapter);
+        ListView activityListView = findViewById(R.id.listViewShowActivities);
+        ActivityAdapter adapter = new ActivityAdapter(theActivities, ShowActivities.this);
+        activityListView.setAdapter(adapter);
 
-            //Todo need to fix the 0 1 10 id sorting by the adapter or listvew
-            activityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(ShowActivities.this, ActivityInfo.class);
-                    ArrayList<Activity> joinActivity = new ArrayList<Activity>();
-                    joinActivity.add(theActivities.get(position));
-                    intent.putExtra("joinActivity", joinActivity);
-                    intent.putExtra("showActivitiesAgain", theActivities);
-                    startActivity(intent);
-                    finish();
-                }
-            });
+        //Todo need to fix the 0 1 10 id sorting by the adapter or listvew
+        activityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ShowActivities.this, ActivityInfo.class);
+                ArrayList<Activity> joinActivity = new ArrayList<Activity>();
+                joinActivity.add(theActivities.get(position));
+                intent.putExtra("joinActivity", joinActivity);
+                intent.putExtra("showActivitiesAgain", theActivities);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }

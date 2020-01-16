@@ -2,6 +2,7 @@ package com.example.activities.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import com.example.activities.data.rtdb.ActivityInfo;
 import com.example.activities.data.rtdb.ShowActivities;
 import com.example.activities.ui.postActivitiyJava.PostActivity;
 import com.example.activities.R;
+import com.example.activities.util.UpdateFirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowFutureSearch extends AppCompatActivity {
     private Button backToProfile;
-    private Button showJoin;
+    private Button showFutureJoin;
     private FirebaseDatabase database;
 
     @Override
@@ -34,24 +36,23 @@ public class ShowFutureSearch extends AppCompatActivity {
         setContentView(R.layout.activity_future_search);
 
         backToProfile = findViewById(R.id.backToProfile);
-        showJoin = findViewById(R.id.showJoinedFuture);
+        showFutureJoin = findViewById(R.id.showJoinedFuture);
         database = FirebaseDatabase.getInstance();
-
+        UpdateFirebaseDatabase.fixDatabaseHistoryJoined();//update future and history Trees on database
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ShowFutureSearch.this, UserProfile.class);
-                i.putExtra("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(i);
                 finish();
             }
         });
 
-        showJoin.setOnClickListener(new View.OnClickListener() {
+        showFutureJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowActivities.activityFilter = true;
-                DatabaseReference joinedRef = database.getReference(ActivityInfo.getUsers_in_activities());
+                DatabaseReference joinedRef = database.getReference("users_future_joined");
                 joinedRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -59,6 +60,7 @@ public class ShowFutureSearch extends AppCompatActivity {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             //if my uid is exist here
                             if (ds.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).exists()) {
+
                                 joinedActivitiesArray.add(ds.getKey());
                             }
                         }

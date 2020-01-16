@@ -207,20 +207,20 @@ public class PostActivity extends AppCompatActivity {
                     //Write new activity to the database
                     database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
                     database_activity.setValue(newPost);
-                    database_activity=FirebaseDatabase.getInstance().getReference("users_history_posted"+"/"+FirebaseAuth.getInstance().getUid()+
-                            "/"+"Activity_"+ newPost.getId());
+                    database_activity = FirebaseDatabase.getInstance().getReference("users_future_posted" + "/" + FirebaseAuth.getInstance().getUid() +
+                            "/" + "Activity_" + newPost.getId());
                     database_activity.setValue(newPost);
 
 
-                    database_activity=FirebaseDatabase.getInstance().getReference("users_history_joined"+"/"+FirebaseAuth.getInstance().getUid()+
-                            "/"+"Activity_"+ newPost.getId());
+                    database_activity = FirebaseDatabase.getInstance().getReference("users_future_joined" + "/" + FirebaseAuth.getInstance().getUid() +
+                            "/" + "Activity_" + newPost.getId());
                     database_activity.setValue(newPost);
 
-                    database_activity=FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_"+newPost.getId());
+                    database_activity = FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_" + newPost.getId());
                     database_activity.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
-                    postNotification(newPost.getName(),Long.toString(newPost.getId()));
+                    postNotification(newPost.getName(), Long.toString(newPost.getId()));
                     startActivity(User.getCurrentUser().loadMainMenu(PostActivity.this));
                     finish();
                 }//if date and time are valid, finish
@@ -239,7 +239,7 @@ public class PostActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void postNotification(String name,String id) {
+    private void postNotification(String name, String id) {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -252,7 +252,7 @@ public class PostActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "12345")
                 .setSmallIcon(R.mipmap.ic_launcher) // notification icon
                 .setContentTitle("Activity notification") //c title for notification
-                .setContentText("You posted activity: " + name + ", "+"ID for invitation: " +id)// message for notification
+                .setContentText("You posted activity: " + name + ", " + "ID for invitation: " + id)// message for notification
                 .setAutoCancel(true); // clear notification after click
         Intent intent = new Intent(getApplicationContext(), ActivityInfo.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
