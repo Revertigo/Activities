@@ -14,6 +14,7 @@
 
     <EditText
         android:id="@+id/name"
+        style="@style/edit_text_style"
         android:layout_width="303dp"
         android:layout_height="60dp"
         android:autofillHints="@string/prompt_email"
@@ -29,6 +30,7 @@
 
     <EditText
         android:id="@+id/password"
+        style="@style/edit_text_style"
         android:layout_width="304dp"
         android:layout_height="56dp"
         android:autofillHints="@string/prompt_password"
@@ -62,16 +64,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
+        style="@style/text_view_style"
+        android:layout_width="301dp"
+        android:layout_height="51dp"
         android:text="@string/enter_details"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.239" />
 
     <Button
         android:id="@+id/button"
