@@ -54,4 +54,9 @@
         <item name="android:typeface">monospace</item>
     </style>
 
+    <style name="background_style1" parent="android:Widget">
+        <item name="android:background">@drawable/paint_back_crop_bright</item>
+
+    </style>
+
 </resources>

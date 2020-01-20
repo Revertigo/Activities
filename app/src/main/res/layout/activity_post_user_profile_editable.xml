@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.profile.PostUserProfileEditable">
 
     <RelativeLayout
         android:id="@+id/profile_upper_layout_post_user_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/grad"
+        android:background="@drawable/paint_back_crop_bright"
         android:paddingBottom="20dp">
 
         <RelativeLayout
@@ -32,7 +33,7 @@
                 android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_person_black_24dp" />
 
         </RelativeLayout>
 
