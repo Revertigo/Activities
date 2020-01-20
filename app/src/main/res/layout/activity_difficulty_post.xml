@@ -22,9 +22,11 @@
 
     <TextView
         android:id="@+id/difficultyTextView"
+        style="@style/text_view_style"
         android:layout_width="179dp"
         android:layout_height="43dp"
         android:text="Activity difficulty"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

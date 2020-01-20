@@ -9,10 +9,10 @@
 
     <Button
         android:id="@+id/showPostedFuture"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:text="Created By You"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="155dp"
+        android:layout_height="50dp"
+        android:text="Created By You"
         android:tooltipText="Activities you posted"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +23,10 @@
 
     <Button
         android:id="@+id/showJoinedFuture"
-        android:layout_width="151dp"
-        android:layout_height="52dp"
-        android:text="You Participated"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="152dp"
+        android:layout_height="51dp"
+        android:text="You Participated"
         android:tooltipText="Activities you took a part"
         app:layout_constraintBottom_toTopOf="@+id/backToProfile"
         app:layout_constraintEnd_toEndOf="@+id/showPostedFuture"
@@ -37,11 +37,11 @@
 
     <Button
         android:id="@+id/backToProfile"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="152dp"
         android:layout_height="53dp"
         android:layout_marginBottom="88dp"
         android:text="back to profile"
-        style="@style/button_rectangle_gray_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/showJoinedFuture"
         app:layout_constraintHorizontal_bias="1.0"

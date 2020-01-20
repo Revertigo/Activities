@@ -23,13 +23,13 @@
 
     <Button
         android:id="@+id/backToProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="117dp"
+        android:layout_height="51dp"
         android:layout_marginBottom="176dp"
         android:text="back to profile"
-        style="@style/button_rectangle_gray_no_corner"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/showJoinedHistory"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/showJoinedHistory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

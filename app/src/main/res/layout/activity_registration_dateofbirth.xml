@@ -77,13 +77,13 @@
 
     <TextView
         android:id="@+id/whenBorn"
-        android:layout_width="284dp"
-        android:layout_height="43dp"
+        style="@style/text_view_style"
+        android:layout_width="305dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:text="@string/when_were_you_born"
         android:fontFamily="monospace"
+        android:text="@string/when_were_you_born"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
@@ -94,26 +94,27 @@
 
     <Button
         android:id="@+id/buttonSetDate"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        style="@style/button_rectangle_gray_no_corner"
         android:text="@string/date_button_set"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/whenBorn"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/whenBorn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
 
     <TextView
         android:id="@+id/dateSelectedTextView"
-        android:layout_width="105dp"
-        android:layout_height="29dp"
+        style="@style/text_view_style"
+        android:layout_width="119dp"
+        android:layout_height="34dp"
         android:hint="mm/DD/yyyy"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,6 +124,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/text_view_style"
         android:layout_width="203dp"
         android:layout_height="34dp"
         android:fontFamily="monospace"
@@ -130,11 +132,11 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/Next5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSetDate"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonSetDate"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
+        app:layout_constraintVertical_bias="0.658" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

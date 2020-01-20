@@ -39,7 +39,7 @@
         android:id="@+id/apartNumberPlainText"
         android:layout_width="209dp"
         android:layout_height="48dp"
-        android:background="@android:color/white"
+        style="@style/edit_text_style"
         android:ems="10"
         android:hint="optional"
         android:importantForAutofill="no"
@@ -131,11 +131,11 @@
         android:layout_height="55dp"
         android:text="NEXT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/typeSpinner"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toStartOf="@+id/typeSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/apartNumberPlainText"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/apartNumberPlainText"
         app:layout_constraintTop_toBottomOf="@+id/apartNumberPlainText"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.835" />
 
     <TextView
         android:id="@+id/textView9"
@@ -146,9 +146,9 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/citySettlementsTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/posting23"
-        app:layout_constraintVertical_bias="0.557" />
+        app:layout_constraintVertical_bias="0.559" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,7 @@
         style="@style/button_rectangle_gray_no_corner"
         android:layout_width="127dp"
         android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:text="You Participated"
         android:tooltipText="Activities you took a part"
         app:layout_constraintBottom_toTopOf="@+id/backToProfile"
