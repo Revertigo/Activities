@@ -69,6 +69,7 @@ public class ActivityInfo extends AppCompatActivity {
         backToShowActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ShowActivities.activityFilter=true;
                 Intent intent = new Intent(ActivityInfo.this, ShowActivities.class);
                 intent.putExtra("activitiesArray", showActivitiesAgain);
                 startActivity(intent);
@@ -91,6 +92,7 @@ public class ActivityInfo extends AppCompatActivity {
                                 .child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         myRef.removeEventListener(this);
+                        ShowActivities.activityFilter=true;
                         joinNotification(currentActivity.get(0).getName());
                         startActivity(intent);
                         finish();
@@ -112,6 +114,7 @@ public class ActivityInfo extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance().
                         getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
+                ShowActivities.activityFilter=true;
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
