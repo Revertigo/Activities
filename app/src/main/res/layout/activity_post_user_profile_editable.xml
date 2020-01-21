@@ -45,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:background="@android:color/transparent"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/caveat_brush"
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
             android:textSize="32sp" />
@@ -125,6 +125,7 @@
                     android:id="@+id/emailOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Email:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -134,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="email of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -158,6 +159,7 @@
                     android:id="@+id/occupationOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Occupation:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -167,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="occupation of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -192,6 +194,7 @@
                     android:id="@+id/educationOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Education:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -201,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="education of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -225,6 +228,7 @@
                     android:id="@+id/genderOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Gender:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -234,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="gender of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -258,6 +262,7 @@
                     android:id="@+id/permissionOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Permission:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -267,7 +272,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="permission of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -291,6 +296,7 @@
                     android:id="@+id/birthdayOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Birthday:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -300,7 +306,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="birthday of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -318,6 +324,7 @@
                     android:id="@+id/phoneOfThePostUserEditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Phone:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -327,7 +334,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:hint="phone of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />

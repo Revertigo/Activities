@@ -19,10 +19,11 @@
 
     <Button
         android:id="@+id/joinThisActivity"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:text="Join this activity"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="@font/caveat_brush"
+        android:text="JOIN THIS ACTIVITY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -32,10 +33,13 @@
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/text_view_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/caveat_brush"
         android:text="Want to join this activity?"
-        style="@style/text_view_style"
+        android:textColor="?android:attr/colorControlActivated"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +48,11 @@
 
     <Button
         android:id="@+id/backToShowActivities"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:text="Back to activities"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="@font/caveat_brush"
+        android:text="BACK TO ACTIVITIES"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.694"
@@ -57,10 +62,11 @@
 
     <Button
         android:id="@+id/showRegisteredUsers"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:text="show registered users"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="@font/caveat_brush"
+        android:text="PARTICIPANTS"
         app:layout_constraintBottom_toTopOf="@+id/backToShowActivities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
@@ -73,7 +79,8 @@
         style="@style/button_rectangle_gray_no_corner"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:text="leave this activity"
+        android:fontFamily="@font/caveat_brush"
+        android:text="LEAVE THIS ACTIVITY"
         app:layout_constraintBottom_toTopOf="@+id/joinThisActivity"
         app:layout_constraintEnd_toStartOf="@+id/showRegisteredUsers"
         app:layout_constraintHorizontal_bias="0.305"

@@ -46,7 +46,7 @@
             android:layout_below="@+id/imgUserProfile"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/caveat_brush"
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
             android:textSize="32sp" />
@@ -119,6 +119,7 @@
                     android:id="@+id/emailOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Email:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -127,7 +128,7 @@
                     android:id="@+id/emailOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="email of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -151,6 +152,7 @@
                     android:id="@+id/phoneOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Phone:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -159,7 +161,7 @@
                     android:id="@+id/phoneOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="phone of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -183,6 +185,7 @@
                     android:id="@+id/genderOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Gender:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -191,7 +194,7 @@
                     android:id="@+id/genderOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="gender of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -215,6 +218,7 @@
                     android:id="@+id/permissionOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Permission:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -223,7 +227,7 @@
                     android:id="@+id/permissionOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="permission of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -247,6 +251,7 @@
                     android:id="@+id/birthdayOfTheUserProfileTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="Birthday:"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
@@ -255,7 +260,7 @@
                     android:id="@+id/birthdayOfTheUserProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="birthday of the user"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -285,6 +290,7 @@
             style="@style/button_rectangle_gray_no_corner"
             android:layout_width="104dp"
             android:layout_height="52dp"
+            android:fontFamily="@font/caveat_brush"
             android:text="MAIN MENU"
             app:layout_constraintBottom_toBottomOf="@+id/activitiesHistoryUser"
             app:layout_constraintEnd_toStartOf="@+id/activitiesHistoryUser"
@@ -295,10 +301,11 @@
 
         <Button
             android:id="@+id/activitiesHistoryUser"
-            style="@style/button_rectangle_gray_no_corner"
+            style="@style/button_rectangle_bright_no_corner"
             android:layout_width="151dp"
             android:layout_height="50dp"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/caveat_brush"
             android:text="MY HISTORY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/myPostedActivitiesUser"
@@ -307,10 +314,11 @@
 
         <Button
             android:id="@+id/myPostedActivitiesUser"
-            style="@style/button_rectangle_gray_no_corner"
+            style="@style/button_rectangle_bright_no_corner"
             android:layout_width="151dp"
             android:layout_height="50dp"
             android:layout_marginStart="256dp"
+            android:fontFamily="@font/caveat_brush"
             android:text="FUTURE ACTIVITIES"
             app:layout_constraintBottom_toTopOf="@+id/activitiesHistoryUser"
             app:layout_constraintEnd_toEndOf="parent"

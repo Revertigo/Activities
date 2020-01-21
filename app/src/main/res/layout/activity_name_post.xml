@@ -7,12 +7,41 @@
     style="@style/background_style1"
     tools:context=".ui.postActivitiyJava.NamePostActivity">
 
-    <Button
-        android:id="@+id/closeAppNamePostActivity"
+    <TextView
+        android:id="@+id/posting11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/close_app"
+        android:fontFamily="monospace"
+        android:text="POST ACTIVITY"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038"
+        app:srcCompat="@drawable/ic_arrow" />
+
+
+    <Button
+        android:id="@+id/closeAppNamePostActivity"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="CLOSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,23 +51,26 @@
 
     <Button
         android:id="@+id/nextToType"
-        style="@style/button_rectangle_gray_no_corner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_rectangle_light_gray"
+        android:layout_width="393dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="@string/nextFirstStepPost"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityNameEditText"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.67"
+        tools:text="NEXT" />
 
     <Button
         android:id="@+id/logoutNamePostActivity"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="monospace"
+        android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -53,6 +85,7 @@
         android:layout_height="40dp"
         android:background="@android:color/white"
         android:ems="10"
+        android:fontFamily="monospace"
         android:hint="Activity Name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
@@ -65,13 +98,15 @@
     <TextView
         android:id="@+id/activityNameTextView"
         style="@style/text_view_style"
-        android:layout_width="214dp"
-        android:layout_height="80dp"
+        android:layout_width="209dp"
+        android:layout_height="59dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="@string/activity_name"
+        android:textColor="@color/common_google_signin_btn_text_light"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.257" />
 </androidx.constraintlayout.widget.ConstraintLayout>

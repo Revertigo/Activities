@@ -65,6 +65,7 @@
         style="@style/button_rectangle_gray_no_corner"
         android:layout_width="409dp"
         android:layout_height="55dp"
+        android:fontFamily="monospace"
         android:text="NEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/typeSpinner"

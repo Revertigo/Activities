@@ -20,10 +20,11 @@
 
     <Button
         android:id="@+id/backToSearchOrPost"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="135dp"
         android:layout_height="52dp"
-        android:text="main menu"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="monospace"
+        android:text="MAIN MENU"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/backToProfile"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,10 +34,11 @@
 
     <Button
         android:id="@+id/backToProfile"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="135dp"
         android:layout_height="52dp"
-        android:text="go to profile"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="monospace"
+        android:text="PROFILE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clickToSearchAgain"
         app:layout_constraintHorizontal_bias="0.99"
@@ -46,10 +48,11 @@
 
     <Button
         android:id="@+id/clickToSearchAgain"
+        style="@style/button_rectangle_gray_no_corner"
         android:layout_width="135dp"
         android:layout_height="52dp"
-        android:text="search again"
-        style="@style/button_rectangle_gray_no_corner"
+        android:fontFamily="monospace"
+        android:text="SEARCH AGAIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.996"
