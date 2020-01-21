@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.activities.ActivityAdapterMoreInfo;
 import com.example.activities.R;
 import com.example.activities.data.entities.Activity;
 import com.example.activities.data.entities.user.User;
@@ -63,7 +64,7 @@ public class ActivityInfo extends AppCompatActivity {
         joinThisActitivty = findViewById(R.id.joinThisActivity);
 
         ListView lv = findViewById(R.id.joinActivityListView);
-        ActivityAdapter adapter = new ActivityAdapter(currentActivity,ActivityInfo.this);
+        ActivityAdapterMoreInfo adapter = new ActivityAdapterMoreInfo(currentActivity,ActivityInfo.this);
         lv.setAdapter(adapter);
 
         backToShowActivities.setOnClickListener(new View.OnClickListener() {

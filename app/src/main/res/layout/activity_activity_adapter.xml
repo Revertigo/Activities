@@ -7,123 +7,58 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/activityDifficultyAdapter"
-        android:layout_width="194dp"
-        android:layout_height="46dp"
-        android:text="Activity difficulty:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activitySingleGroupAdapter" />
-
-    <TextView
-        android:id="@+id/activityGenderAdapter"
-        android:layout_width="194dp"
-        android:layout_height="46dp"
-        android:text="Activity gender:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityTypeAdapter" />
-
-    <TextView
-        android:id="@+id/activitySingleGroupAdapter"
-        android:layout_width="194dp"
-        android:layout_height="48dp"
-        android:text="Activity Single/Group:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityAdressAdapter" />
-
-    <TextView
         android:id="@+id/activityTimeAdapter"
-        android:layout_width="194dp"
-        android:layout_height="46dp"
+        style="@style/edit_text_style"
+        android:layout_width="387dp"
+        android:layout_height="55dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="Activity time:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activityDateAdapter"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="@+id/activityDateAdapter"
         app:layout_constraintTop_toBottomOf="@+id/activityDateAdapter" />
 
     <TextView
         android:id="@+id/activityDateAdapter"
-        android:layout_width="194dp"
-        android:layout_height="45dp"
+        style="@style/edit_text_style"
+        android:layout_width="387dp"
+        android:layout_height="53dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="Activity date:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityCreatorAdapter" />
-
-    <TextView
-        android:id="@+id/activityAdressAdapter"
-        android:layout_width="194dp"
-        android:layout_height="46dp"
-        android:text="Activity adress:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityGenderAdapter" />
-
-    <TextView
-        android:id="@+id/activityDescriptionAdapter"
-        android:layout_width="309dp"
-        android:layout_height="119dp"
-        android:text="Activity description:"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityDifficultyAdapter" />
+        app:layout_constraintEnd_toEndOf="@+id/activityNameAdapter"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/activityNameAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/activityNameAdapter" />
 
     <TextView
         android:id="@+id/activityTypeAdapter"
-        android:layout_width="194dp"
-        android:layout_height="46dp"
+        style="@style/edit_text_style"
+        android:layout_width="386dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="Activity type:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activityTimeAdapter"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityIdAdapter" />
-
-    <TextView
-        android:id="@+id/activityIdAdapter"
-        android:layout_width="194dp"
-        android:layout_height="47dp"
-        android:text="Activity id:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapter" />
+        app:layout_constraintStart_toStartOf="@+id/activityTimeAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapter"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/activityNameAdapter"
-        android:layout_width="411dp"
-        android:layout_height="58dp"
+        style="@style/edit_text_style"
+        android:layout_width="386dp"
+        android:layout_height="68dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="Activity name:"
-        android:textSize="24sp"
+
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/activityCreatorAdapter"
-        android:layout_width="403dp"
-        android:layout_height="46dp"
-        android:text="Activity creator: "
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityNameAdapter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

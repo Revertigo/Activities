@@ -6,4 +6,147 @@
     android:layout_height="match_parent"
     tools:context=".ActivityAdapterMoreInfo">
 
+    <TextView
+        android:id="@+id/activityNameAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="404dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="@string/activity_name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activityCreatorAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="404dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity creator: "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityNameAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityNameAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityNameAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityDateAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="403dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity date:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityCreatorAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/activityCreatorAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityCreatorAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityTimeAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="403dp"
+        android:layout_height="41dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity time:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityDateAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityDateAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityDateAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityIdAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="403dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity id:"
+        app:layout_constraintEnd_toEndOf="@+id/activityTimeAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityTimeAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityTypeAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="404dp"
+        android:layout_height="44dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity type:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityIdAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityIdAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityIdAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityGenderAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="402dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity gender:"
+        app:layout_constraintEnd_toEndOf="@+id/activityTypeAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityTypeAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityTypeAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityAdressAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="401dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity adress:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityGenderAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityGenderAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityGenderAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activitySingleGroupAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="401dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity Single/Group:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activityAdressAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/activityAdressAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityAdressAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityDifficultyAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="402dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity difficulty:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/activitySingleGroupAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/activitySingleGroupAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activitySingleGroupAdapterMoreInfo" />
+
+    <TextView
+        android:id="@+id/activityDescriptionAdapterMoreInfo"
+        style="@style/edit_text_style"
+        android:layout_width="399dp"
+        android:layout_height="168dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Activity description:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activityDifficultyAdapterMoreInfo"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/activityDifficultyAdapterMoreInfo"
+        app:layout_constraintTop_toBottomOf="@+id/activityDifficultyAdapterMoreInfo"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

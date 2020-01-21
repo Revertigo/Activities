@@ -11,9 +11,10 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.profile.PostUserProfileEditable"
-            android:windowSoftInputMode="adjustPan"
-            ></activity>
+        <activity android:name=".ActivityAdapterMoreInfo"></activity>
+        <activity
+            android:name=".ui.profile.PostUserProfileEditable"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.profile.UserProfileEditable"
             android:windowSoftInputMode="adjustPan" />
