@@ -8,11 +8,9 @@ import android.os.Parcelable;
  * Implement the class 'Parcelable' so it can be passed from Intent to Intent
  **/
 public class Activity implements Parcelable {
-
-    private static long id_counter;//For autoincrement of id's
     private final int NUM_USER_PROPS = 15;
     private String postedUser;
-    private long id;//Very long id number
+    private String id;//Very long id number
     private String name;//Activity name
     private String type;
     private Address addr;//Activity address
@@ -36,8 +34,9 @@ public class Activity implements Parcelable {
      * @param date
      * @param time
      */
-    public Activity(String postedUser, String name, String Type, Address addr, String difficulty, boolean group,
+    public Activity(String id,String postedUser, String name, String Type, Address addr, String difficulty, boolean group,
                     String gender, String description, Date date, String time) {
+        this.id=id;
         this.postedUser = postedUser;
         this.name = name;
         this.type = Type;
@@ -166,7 +165,7 @@ public class Activity implements Parcelable {
         //This shouldn't be in here, but due to null exception according we will keep it here.
         this.addr = new Address();
         this.date = new Date();
-        this.id = Long.parseLong(data[0]);
+        this.id = data[0];
         this.postedUser = data[1];
         this.name = data[2];
         this.type = data[3];
@@ -189,11 +188,11 @@ public class Activity implements Parcelable {
     }
 
     //id
-    public long getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -262,13 +261,7 @@ public class Activity implements Parcelable {
         this.time = time;
     }
 
-    public static long getId_counter() {
-        return id_counter;
-    }
 
-    public static void setId_counter(long id_counter) {
-        Activity.id_counter = id_counter;
-    }
 
     public void setpostedUser(String postedUser) {
         this.postedUser = postedUser;
@@ -288,7 +281,7 @@ public class Activity implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(
-                new String[]{Long.toString(this.id), this.postedUser, this.name, this.type, this.addr.city_set, this.addr.street,
+                new String[]{this.id, this.postedUser, this.name, this.type, this.addr.city_set, this.addr.street,
                         Integer.toString(this.addr.apartment_number), this.difficulty, this.gender, this.description,
                         this.date.day, this.date.month, this.date.year, this.time, String.valueOf(this.group)});
     }

@@ -85,11 +85,11 @@ public class ActivityInfo extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        myRef.child("Activity_" + currentActivity.get(0).getId())
+                        myRef.child(currentActivity.get(0).getId())
                                 .child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                         DatabaseReference future_ref = FirebaseDatabase.getInstance().getReference("users_future_joined");
                         future_ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .child("Activity_" + currentActivity.get(0).getId()).setValue(currentActivity.get(0));
+                                .child(currentActivity.get(0).getId()).setValue(currentActivity.get(0));
                         Toast.makeText(ActivityInfo.this, "You are joined to this activity", Toast.LENGTH_LONG).show();
                         myRef.removeEventListener(this);
                         ShowActivities.activityFilter=true;
@@ -113,7 +113,7 @@ public class ActivityInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance().
-                        getReference("users_in_activities/Activity_" + currentActivity.get(0).getId());
+                        getReference("users_in_activities/" + currentActivity.get(0).getId());
                 ShowActivities.activityFilter=true;
                 showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -230,7 +230,7 @@ public class ActivityInfo extends AppCompatActivity {
                         Intent intent = User.getCurrentUser().loadProfile(ActivityInfo.this);
                         DatabaseReference owner = FirebaseDatabase.getInstance().getReference("users_future_posted");
                         DatabaseReference showRegisteredUsersRef = FirebaseDatabase.getInstance()
-                                .getReference("users_in_activities/Activity_" + currentActivity.getId());
+                                .getReference("users_in_activities/" + currentActivity.getId());
                         showRegisteredUsersRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -238,7 +238,7 @@ public class ActivityInfo extends AppCompatActivity {
                                     owner.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Activity_" + currentActivity.getId()).exists()) {
+                                            if (dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(currentActivity.getId()).exists()) {
                                                 Toast.makeText(ActivityInfo.this, "You are the activity owner, you cant leave.", Toast.LENGTH_LONG).show();
                                                 owner.removeEventListener(this);
                                                 showRegisteredUsersRef.removeEventListener(this);
@@ -247,7 +247,7 @@ public class ActivityInfo extends AppCompatActivity {
                                             } else {
                                                 showRegisteredUsersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                                 FirebaseDatabase.getInstance().getReference().child("users_future_joined").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                        .child("Activity_" + currentActivity.getId()).removeValue();
+                                                        .child(currentActivity.getId()).removeValue();
                                                 leftNotification(currentActivity.getName());
                                                 Toast.makeText(ActivityInfo.this, "You left this activity", Toast.LENGTH_LONG).show();
                                                 owner.removeEventListener(this);

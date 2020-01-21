@@ -178,7 +178,7 @@ public class SearchActivity extends AppCompatActivity {
                 id=enterId.getQuery().toString();
                 ArrayList<Activity> activitiesArray=new ArrayList<Activity>();
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    if(Long.toString(ds.getValue(Activity.class).getId()).equals(id)){
+                    if(ds.getValue(Activity.class).getId().equals(id)){
                         activitiesArray.add(ds.getValue(Activity.class));
                         break;
                     }

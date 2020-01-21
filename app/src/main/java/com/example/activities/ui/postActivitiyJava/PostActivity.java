@@ -12,6 +12,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -200,27 +201,25 @@ public class PostActivity extends AppCompatActivity {
                 //date,time  entered can create the post
                 if (!(theDate.getText().toString().isEmpty()) && !(time.getText().toString().isEmpty())) {
                     // befor the post Write new id counter to the database, and update the post id
-                    newPost.setId(Activity.getId_counter());//Update the real id of the user
                     newPost.setpostedUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                    String[] tokens = NamePostActivity.id_counter_path.split("/");//[0] = resources, [1] = activity_id_counter
-                    NamePostActivity.database_ref_id_counter.child(tokens[1]).setValue(newPost.getId() + 1);
                     //Write new activity to the database
-                    database_activity = FirebaseDatabase.getInstance().getReference(activities + "Activity_" + newPost.getId());
+                    database_activity = FirebaseDatabase.getInstance().getReference(activities +  newPost.getId());
                     database_activity.setValue(newPost);
+
                     database_activity = FirebaseDatabase.getInstance().getReference("users_future_posted" + "/" + FirebaseAuth.getInstance().getUid() +
-                            "/" + "Activity_" + newPost.getId());
+                            "/" + newPost.getId());
                     database_activity.setValue(newPost);
 
 
                     database_activity = FirebaseDatabase.getInstance().getReference("users_future_joined" + "/" + FirebaseAuth.getInstance().getUid() +
-                            "/" + "Activity_" + newPost.getId());
+                            "/" + newPost.getId());
                     database_activity.setValue(newPost);
 
-                    database_activity = FirebaseDatabase.getInstance().getReference("users_in_activities/Activity_" + newPost.getId());
+                    database_activity = FirebaseDatabase.getInstance().getReference("users_in_activities/" + newPost.getId());
                     database_activity.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     Toast.makeText(PostActivity.this, "Your post has been uploaded successfully", Toast.LENGTH_LONG).show();
-                    postNotification(newPost.getName(), Long.toString(newPost.getId()));
+                    postNotification(newPost.getName(), newPost.getId());
                     startActivity(User.getCurrentUser().loadMainMenu(PostActivity.this));
                     finish();
                 }//if date and time are valid, finish
