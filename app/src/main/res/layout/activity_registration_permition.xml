@@ -62,8 +62,8 @@
 
     <TextView
         android:id="@+id/WhatPlaning"
-        android:layout_width="327dp"
-        android:layout_height="101dp"
+        android:layout_width="342dp"
+        android:layout_height="130dp"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/caveat_brush"
         android:text="WITH GRATE POWER COMES GREAT RESPONSIBILITY..."

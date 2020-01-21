@@ -45,7 +45,6 @@ public class ActivityAdapterMoreInfo extends BaseAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.activity_adapter_more_info, null);
         }
-        ((TextView) convertView.findViewById(R.id.activityIdAdapterMoreInfo)).setText(String.valueOf("Activity id: " + activities.get(position).getId()));
         ((TextView) convertView.findViewById(R.id.activityNameAdapterMoreInfo)).setText(String.valueOf("Activity name: " + activities.get(position).getName()));
         ((TextView) convertView.findViewById(R.id.activityCreatorAdapterMoreInfo)).setText(String.valueOf("Activity Creator: " + activities.get(position).getpostedUser()));
         ((TextView) convertView.findViewById(R.id.activityGenderAdapterMoreInfo)).setText(String.valueOf("Activity gender: " + activities.get(position).getGender()));

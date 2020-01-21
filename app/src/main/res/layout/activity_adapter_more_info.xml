@@ -14,7 +14,8 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/caveat_brush"
         android:text="@string/activity_name"
-        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +28,7 @@
         android:layout_height="39dp"
         android:fontFamily="@font/caveat_brush"
         android:text="Activity creator: "
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/activityNameAdapterMoreInfo"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/activityNameAdapterMoreInfo"
@@ -40,7 +41,7 @@
         android:layout_height="38dp"
         android:fontFamily="@font/caveat_brush"
         android:text="Activity date:"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/activityCreatorAdapterMoreInfo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/activityCreatorAdapterMoreInfo"
@@ -53,23 +54,11 @@
         android:layout_height="41dp"
         android:fontFamily="@font/caveat_brush"
         android:text="Activity time:"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/activityDateAdapterMoreInfo"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/activityDateAdapterMoreInfo"
         app:layout_constraintTop_toBottomOf="@+id/activityDateAdapterMoreInfo" />
-
-    <TextView
-        android:id="@+id/activityIdAdapterMoreInfo"
-        style="@style/edit_text_style"
-        android:layout_width="403dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/caveat_brush"
-        android:text="Activity id:"
-        app:layout_constraintEnd_toEndOf="@+id/activityTimeAdapterMoreInfo"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/activityTimeAdapterMoreInfo"
-        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapterMoreInfo" />
 
     <TextView
         android:id="@+id/activityTypeAdapterMoreInfo"
@@ -79,10 +68,9 @@
         android:fontFamily="@font/caveat_brush"
         android:text="Activity type:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/activityIdAdapterMoreInfo"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/activityIdAdapterMoreInfo"
-        app:layout_constraintTop_toBottomOf="@+id/activityIdAdapterMoreInfo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityTimeAdapterMoreInfo" />
 
     <TextView
         android:id="@+id/activityGenderAdapterMoreInfo"

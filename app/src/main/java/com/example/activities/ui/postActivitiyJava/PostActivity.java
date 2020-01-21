@@ -201,7 +201,7 @@ public class PostActivity extends AppCompatActivity {
                 //date,time  entered can create the post
                 if (!(theDate.getText().toString().isEmpty()) && !(time.getText().toString().isEmpty())) {
                     // befor the post Write new id counter to the database, and update the post id
-                    newPost.setpostedUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    newPost.setpostedUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     //Write new activity to the database
                     database_activity = FirebaseDatabase.getInstance().getReference(activities +  newPost.getId());
                     database_activity.setValue(newPost);

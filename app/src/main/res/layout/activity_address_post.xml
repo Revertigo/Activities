@@ -37,9 +37,9 @@
 
     <EditText
         android:id="@+id/apartNumberPlainText"
-        android:layout_width="209dp"
-        android:layout_height="48dp"
         style="@style/edit_text_style"
+        android:layout_width="234dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:hint="optional"
         android:importantForAutofill="no"
@@ -54,8 +54,8 @@
 
     <TextView
         android:id="@+id/apartNumberTextView"
-        android:layout_width="209dp"
-        android:layout_height="47dp"
+        android:layout_width="233dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/caveat_brush"
         android:text="APPARTMENT NUMBER"
         android:textSize="24sp"
@@ -69,8 +69,8 @@
 
     <Spinner
         android:id="@+id/streetsSpinner"
-        android:layout_width="204dp"
-        android:layout_height="42dp"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         android:visibility="invisible"
@@ -83,8 +83,8 @@
 
     <TextView
         android:id="@+id/streetsTextView"
-        android:layout_width="205dp"
-        android:layout_height="42dp"
+        android:layout_width="229dp"
+        android:layout_height="46dp"
         android:fontFamily="@font/caveat_brush"
         android:text="STREET"
         android:textSize="24sp"
@@ -98,8 +98,8 @@
 
     <Spinner
         android:id="@+id/citySettlementSpinner"
-        android:layout_width="209dp"
-        android:layout_height="46dp"
+        android:layout_width="224dp"
+        android:layout_height="49dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,8 +112,8 @@
 
     <TextView
         android:id="@+id/citySettlementsTextView"
-        android:layout_width="209dp"
-        android:layout_height="40dp"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
         android:fontFamily="@font/caveat_brush"
         android:text="CITY SETTELMENT"
         android:textSize="30sp"
@@ -139,7 +139,7 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="260dp"
+        android:layout_width="348dp"
         android:layout_height="69dp"
         android:fontFamily="@font/caveat_brush"
         android:text="CHOOSE LOCATION:"

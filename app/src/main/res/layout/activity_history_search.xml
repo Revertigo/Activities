@@ -9,27 +9,32 @@
 
     <Button
         android:id="@+id/showJoinedHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You Participated"
         style="@style/button_rectangle_gray_no_corner"
+        android:layout_width="345dp"
+        android:layout_height="65dp"
+        android:fontFamily="@font/caveat_brush"
+        android:text="You Participated"
+        android:textSize="30sp"
         android:tooltipText="Activities you took a part"
         app:layout_constraintBottom_toTopOf="@+id/backToProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.393"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.748" />
 
     <Button
         android:id="@+id/backToProfile"
         style="@style/button_rectangle_gray_no_corner"
-        android:layout_width="117dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="176dp"
+        android:layout_width="345dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="172dp"
+        android:fontFamily="@font/caveat_brush"
         android:text="back to profile"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/showJoinedHistory"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="@+id/showJoinedHistory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

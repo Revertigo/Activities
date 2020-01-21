@@ -79,8 +79,8 @@
 
     <TextView
         android:id="@+id/ExplainTextView"
-        android:layout_width="337dp"
-        android:layout_height="281dp"
+        android:layout_width="356dp"
+        android:layout_height="311dp"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/caveat_brush"
         android:text="@string/filling_in_the_next_fields_is_recommended_in_order_to_increase_your_credibility_as_an_activity_advertiser"
