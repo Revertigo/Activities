@@ -300,6 +300,7 @@ public class AdvancedSearch extends AppCompatActivity {
                            startActivity(intent);
                            finish();
                        }
+                       ref.removeEventListener(this);
                }//end on data change
 
                @Override
