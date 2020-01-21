@@ -31,13 +31,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AdvancedSearch extends AppCompatActivity {
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String path="activities";
+    private final DatabaseReference ref = database.getReference(path);
+
     private Button clickToSearch;
     private Button dateButton;
     private Button timeButton;
     private Button backToSearchActivity;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    final String path="activities";
-    final DatabaseReference ref = database.getReference(path);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dateButton=findViewById(R.id.enterDateAdvanced);

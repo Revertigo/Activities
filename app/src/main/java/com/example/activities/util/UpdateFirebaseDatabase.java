@@ -4,8 +4,6 @@ package com.example.activities.util;
 import androidx.annotation.NonNull;
 
 import com.example.activities.data.entities.Activity;
-import com.example.activities.ui.postActivitiyJava.PostActivity;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

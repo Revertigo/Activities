@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,21 +17,13 @@ import com.example.activities.R;
 import com.example.activities.ui.main.SettingsActivity;
 import com.example.activities.data.entities.user.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class SearchOrPost extends AppCompatActivity {
     private Button buttonLogout;
-    private FirebaseAuth auth;
     private Button closeAppFromSearchPost;
     private Button changeActivityToPostActivity;
     private Button changeActivityToSearchActivity;
     private Button myProfile;
-
-    private FirebaseAuth.AuthStateListener authListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +68,7 @@ public class SearchOrPost extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(SearchOrPost.this, MainActivity.class);
                 startActivity(intent);
                 finish();

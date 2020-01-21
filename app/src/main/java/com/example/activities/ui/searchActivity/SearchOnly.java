@@ -22,8 +22,6 @@ public class SearchOnly extends AppCompatActivity {
     private Button changeActivityToSearchActivity;
     private Button myProfile;
 
-    private FirebaseAuth.AuthStateListener authListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

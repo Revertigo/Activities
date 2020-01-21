@@ -2,8 +2,6 @@ package com.example.activities.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,7 +30,6 @@ public class ShowFuturePost extends AppCompatActivity {
     private Button showFutureJoin;
     private Button showFuturePosts;
     private FirebaseDatabase database;
-    private DatabaseReference myRef;
 
 
     @Override

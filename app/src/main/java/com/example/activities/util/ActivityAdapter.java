@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.activities.R;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 public class ActivityAdapter extends BaseAdapter {
     private ArrayList<Activity> activities = new ArrayList<Activity>();
     private Context context;
-
 
     public ActivityAdapter(ArrayList<Activity> activities, Context context) {
         this.activities=activities;

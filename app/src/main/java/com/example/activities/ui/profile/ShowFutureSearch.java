@@ -2,13 +2,11 @@ package com.example.activities.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.activities.data.entities.Activity;
-import com.example.activities.data.rtdb.ActivityInfo;
 import com.example.activities.data.rtdb.ShowActivities;
 import com.example.activities.ui.postActivitiyJava.PostActivity;
 import com.example.activities.R;

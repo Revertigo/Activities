@@ -47,7 +47,7 @@ public class PostActivity extends AppCompatActivity {
     private Button dateButton;
     private Button timeButton;
     private TextView showTheDate;
-    private TextView showtheTime;
+    private TextView showTheTime;
 
 
     @Override
@@ -88,7 +88,7 @@ public class PostActivity extends AppCompatActivity {
 
         //time add button
         timeButton = findViewById(R.id.addTimeButton);
-        showtheTime = findViewById(R.id.showTheTime);
+        showTheTime = findViewById(R.id.showTheTime);
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class PostActivity extends AppCompatActivity {
                         if (selectedHour < 10) {
                             b = "0" + selectedHour;
                         }
-                        showtheTime.setText(b + ":" + a);
+                        showTheTime.setText(b + ":" + a);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");

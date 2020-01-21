@@ -21,14 +21,29 @@ import androidx.annotation.Nullable;
 
 
 public class CsvReader {
-    public static final String CITIES_AND_SETTLEMENTS = "server/cities_settlements";
-    public static final String CITIES_AND_SETTLEMENTS_HEBREW = "server/cities_settlements_hebrew";
-    public static final String STREETS = "server/streets";
+    private static final String CITIES_AND_SETTLEMENTS_HEBREW = "server/cities_settlements_hebrew";
+    private static final String STREETS = "server/streets";
 
-    public static HashMap<String, Object> all_streets = new HashMap<String, Object>();
-    public static ArrayList<String> cities = new ArrayList<String>();
+    private static HashMap<String, Object> all_streets = new HashMap<String, Object>();
+    private static ArrayList<String> cities = new ArrayList<String>();
 
     private static DatabaseReference mDatabase = null;
+
+    public static String getCitiesAndSettlementsHebrew() {
+        return CITIES_AND_SETTLEMENTS_HEBREW;
+    }
+
+    public static String getSTREETS() {
+        return STREETS;
+    }
+
+    public static HashMap<String, Object> getAll_streets() {
+        return all_streets;
+    }
+
+    public static ArrayList<String> getCities() {
+        return cities;
+    }
 
     /*
       Sequence of method should be:

@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class NamePostActivity extends AppCompatActivity {
-
     private Button nextToType;
     static public final String id_counter_path = "resources/activity_id_counter";
     static public DatabaseReference database_ref_id_counter = null;

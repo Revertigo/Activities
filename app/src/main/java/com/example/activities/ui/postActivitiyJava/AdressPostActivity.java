@@ -38,8 +38,8 @@ public class AdressPostActivity extends AppCompatActivity {
         //Setup back button
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Sort the data
-        CsvReader.reorganize_data(CsvReader.cities, "City/Settlement");
-        final String[] cities_settlments = CsvReader.cities.toArray(new String[CsvReader.cities.size()]);
+        CsvReader.reorganize_data(CsvReader.getCities(), "City/Settlement");
+        final String[] cities_settlments = CsvReader.getCities().toArray(new String[CsvReader.getCities().size()]);
 
         Spinner cities_settlmentsSpinner = findViewById(R.id.citySettlementSpinner);
 
@@ -53,7 +53,7 @@ public class AdressPostActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
                 String selecteditem = adapter.getItemAtPosition(i).toString();
                 if (!selecteditem.equals("City/Settlement")) {
-                    HashMap<Integer, String> streets_in_city = (HashMap<Integer, String>) CsvReader.all_streets.get(selecteditem.trim());
+                    HashMap<Integer, String> streets_in_city = (HashMap<Integer, String>) CsvReader.getAll_streets().get(selecteditem.trim());
 
                     //Remove all existing strings before adding new
                     streets.removeIf(s -> !s.equals("Street"));

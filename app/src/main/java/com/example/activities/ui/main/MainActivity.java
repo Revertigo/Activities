@@ -1,35 +1,23 @@
 package com.example.activities.ui.main;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.activities.R;
-import com.example.activities.ui.postActivitiyJava.PostActivity;
 import com.example.activities.util.CsvReader;
 import com.example.activities.ui.login.LoginActivity;
 import com.example.activities.ui.registration.RegisterToApp_Email;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private Button LoginToActivities;
@@ -38,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         //Read all cities/settlements from Realtime DB
-        CsvReader.readCitiesAndStreetsFromDB(CsvReader.STREETS, CsvReader.STREETS);
+        CsvReader.readCitiesAndStreetsFromDB(CsvReader.getSTREETS(), CsvReader.getSTREETS());
         //Read all relevant data from Realtime DB(cities and settlements, streets)
-        CsvReader.readCitiesFromDB(CsvReader.CITIES_AND_SETTLEMENTS_HEBREW, CsvReader.CITIES_AND_SETTLEMENTS_HEBREW);
+        CsvReader.readCitiesFromDB(CsvReader.getCitiesAndSettlementsHebrew(), CsvReader.getCitiesAndSettlementsHebrew());
     }
 
 
